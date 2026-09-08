@@ -1,0 +1,142 @@
+{
+  "id": "protocolo-blue",
+  "noInicial": "blue-deslizamento",
+  "nos": {
+    "blue-deslizamento": {
+      "tipo": "pergunta",
+      "janela": null,
+      "pergunta": "O deslizamento pleural (lung sliding) está presente, diminuído ou abolido?",
+      "opcoes": [
+        { "label": "Presente", "proximo": "blue-presente-perfil" },
+        { "label": "Diminuído", "proximo": "blue-conclusao-diminuido" },
+        { "label": "Abolido", "proximo": "blue-abolido-perfil" }
+      ],
+      "indeterminadoProximo": "blue-conclusao-indeterminado"
+    },
+    "blue-presente-perfil": {
+      "tipo": "pergunta",
+      "janela": null,
+      "pergunta": "Com deslizamento pleural presente, qual perfil predomina?",
+      "opcoes": [
+        { "label": "Perfil B", "proximo": "blue-conclusao-edema" },
+        { "label": "Perfil A", "proximo": "blue-avaliacao-venosa" }
+      ],
+      "indeterminadoProximo": "blue-conclusao-indeterminado"
+    },
+    "blue-avaliacao-venosa": {
+      "tipo": "pergunta",
+      "janela": "venoso-femoral-comum",
+      "pergunta": "Perfil A confirmado. Há trombose venosa à avaliação venosa?",
+      "opcoes": [
+        { "label": "Trombose Venosa", "proximo": "blue-conclusao-tep" },
+        { "label": "Veias Livres", "proximo": "blue-plaps" }
+      ],
+      "indeterminadoProximo": "blue-conclusao-indeterminado"
+    },
+    "blue-plaps": {
+      "tipo": "pergunta",
+      "janela": "pulmonar-plaps",
+      "pergunta": "Veias livres. Há PLAPS (Síndrome Alveolar e/ou Pleural Póstero-Lateral)?",
+      "opcoes": [
+        { "label": "PLAPS", "proximo": "blue-conclusao-pneumonia-plaps" },
+        { "label": "SEM PLAPS", "proximo": "blue-conclusao-dpoc-asma" }
+      ],
+      "indeterminadoProximo": "blue-conclusao-indeterminado"
+    },
+    "blue-abolido-perfil": {
+      "tipo": "pergunta",
+      "janela": null,
+      "pergunta": "Com deslizamento pleural abolido, qual perfil predomina?",
+      "opcoes": [
+        { "label": "Perfil B", "proximo": "blue-conclusao-pneumonia-abolido" },
+        { "label": "Linhas A", "proximo": "blue-lung-point" }
+      ],
+      "indeterminadoProximo": "blue-conclusao-indeterminado"
+    },
+    "blue-lung-point": {
+      "tipo": "pergunta",
+      "janela": null,
+      "pergunta": "Deslizamento pleural abolido, Linhas A. Há Lung Point?",
+      "opcoes": [
+        { "label": "Sim", "proximo": "blue-conclusao-pneumotorax" },
+        { "label": "Não", "proximo": "blue-conclusao-aprofundar" }
+      ],
+      "indeterminadoProximo": "blue-conclusao-aprofundar"
+    },
+    "blue-conclusao-edema": {
+      "tipo": "conclusao",
+      "diagnostico": "Edema Pulmonar",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural presente, Perfil B → Edema Pulmonar.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-tep": {
+      "tipo": "conclusao",
+      "diagnostico": "TEP",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural presente, Perfil A, com trombose venosa → TEP.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-pneumonia-plaps": {
+      "tipo": "conclusao",
+      "diagnostico": "Pneumonia",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural presente, Perfil A, veias livres, com PLAPS → Pneumonia.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-dpoc-asma": {
+      "tipo": "conclusao",
+      "diagnostico": "DPOC/ Asma",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural presente, Perfil A, veias livres, sem PLAPS → DPOC/ Asma.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-diminuido": {
+      "tipo": "conclusao",
+      "diagnostico": "Pneumonia",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural diminuído (Perfil A/B ou C) → Pneumonia.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-pneumonia-abolido": {
+      "tipo": "conclusao",
+      "diagnostico": "Pneumonia",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural abolido, Perfil B → Pneumonia.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-pneumotorax": {
+      "tipo": "conclusao",
+      "diagnostico": "Pneumotórax",
+      "confianca": "media",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural abolido, Linhas A, com Lung Point → Pneumotórax.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-aprofundar": {
+      "tipo": "conclusao",
+      "diagnostico": "Aprofundar o diagnóstico com outros métodos",
+      "confianca": "baixa",
+      "justificativa": "Segundo o fluxograma do Protocolo BLUE (Figura 16, pág. 60 do ebook): deslizamento pleural abolido, Linhas A, sem Lung Point — o próprio fluxograma do ebook não define um diagnóstico único para esta combinação.",
+      "proximosPassos": [],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    },
+    "blue-conclusao-indeterminado": {
+      "tipo": "conclusao",
+      "diagnostico": "Não foi possível classificar pelo Protocolo BLUE",
+      "confianca": "indeterminado",
+      "justificativa": "Não foi possível avaliar de forma conclusiva um dos achados necessários (deslizamento pleural, perfil pulmonar, avaliação venosa, PLAPS ou Lung Point) para seguir o fluxograma do ebook.",
+      "proximosPassos": [
+        "Repetir a avaliação ou tentar outra janela/técnica.",
+        "Considerar outros métodos diagnósticos conforme o quadro clínico."
+      ],
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico — integre sempre ao quadro clínico completo."
+    }
+  }
+}

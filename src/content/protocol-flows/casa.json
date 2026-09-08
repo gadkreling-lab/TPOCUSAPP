@@ -1,0 +1,99 @@
+{
+  "id": "protocolo-casa",
+  "noInicial": "casa-01-tamponamento",
+  "nos": {
+    "casa-01-tamponamento": {
+      "tipo": "pergunta",
+      "janela": "subxifoide",
+      "comoFazer": "Avaliar a presença de derrame pericárdico e, se presente, avaliar sinais de tamponamento como colapso diastólico precoce do ventrículo direito.",
+      "pergunta": "Há derrame pericárdico? Se presente, há sinais de tamponamento (ex.: colapso diastólico precoce do ventrículo direito)?",
+      "achadosDeApoio": [
+        "O derrame pericárdico causando tamponamento cardíaco é a causa da parada em 4–15% dos pacientes."
+      ],
+      "opcoes": [
+        { "label": "Sim — tamponamento presente", "proximo": "casa-conclusao-tamponamento" },
+        { "label": "Não", "proximo": "casa-02-embolia" }
+      ],
+      "indeterminadoProximo": "casa-02-embolia"
+    },
+    "casa-02-embolia": {
+      "tipo": "pergunta",
+      "janela": "apical-4-camaras",
+      "comoFazer": "Avaliar sinais de sobrecarga do coração direito, como ventrículo direito dilatado e ventrículo esquerdo comparativamente pequeno.",
+      "pergunta": "Há sinais de sobrecarga de câmaras direitas (ventrículo direito dilatado e ventrículo esquerdo comparativamente pequeno)?",
+      "achadosDeApoio": [
+        "A embolia pulmonar é a causa da parada em 4,0–7,6% dos pacientes."
+      ],
+      "opcoes": [
+        { "label": "Sim", "proximo": "casa-conclusao-embolia" },
+        { "label": "Não", "proximo": "casa-03-atividade" }
+      ],
+      "indeterminadoProximo": "casa-03-atividade"
+    },
+    "casa-03-atividade": {
+      "tipo": "pergunta",
+      "janela": "subxifoide",
+      "comoFazer": "Avaliar a presença de atividade cardíaca global ou fibrilações.",
+      "pergunta": "Há atividade cardíaca global ou fibrilação visível?",
+      "achadosDeApoio": [
+        "A presença ou ausência de atividade cardíaca ao ecocardiograma à beira do leito fornece informação prognóstica útil em pacientes com AESP."
+      ],
+      "opcoes": [
+        { "label": "Sim — atividade presente", "proximo": "casa-conclusao-atividade-presente" },
+        { "label": "Não — ausência de atividade (standstill)", "proximo": "casa-conclusao-atividade-ausente" }
+      ],
+      "indeterminadoProximo": "casa-conclusao-indeterminado"
+    },
+    "casa-conclusao-tamponamento": {
+      "tipo": "conclusao",
+      "diagnostico": "Tamponamento cardíaco",
+      "confianca": "media",
+      "justificativa": "Pacientes com tamponamento têm sobrevida até a alta hospitalar maior (15,4%) do que outras causas de AESP (1,3%).",
+      "proximosPassos": [
+        "Se cardiac tamponade estiver presente, pericardiocentese deve ser fortemente considerada."
+      ],
+      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+    },
+    "casa-conclusao-embolia": {
+      "tipo": "conclusao",
+      "diagnostico": "Embolia pulmonar (sinais de sobrecarga de câmaras direitas)",
+      "confianca": "media",
+      "justificativa": "Esses pacientes têm sobrevida até a alta hospitalar maior (6,7%) do que outros pacientes em AESP (1,3%).",
+      "proximosPassos": [
+        "Se sinais de sobrecarga de câmaras direitas estiverem presentes, a embolia pulmonar deve permanecer como consideração na causa da AESP."
+      ],
+      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+    },
+    "casa-conclusao-atividade-presente": {
+      "tipo": "conclusao",
+      "diagnostico": "Atividade cardíaca presente",
+      "confianca": "media",
+      "justificativa": "A presença ou ausência de atividade cardíaca ao ecocardiograma à beira do leito fornece informação prognóstica útil em pacientes com AESP.",
+      "proximosPassos": [
+        "Reavaliar pulsos e pressão arterial e considerar iniciar vasopressores contínuos."
+      ],
+      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+    },
+    "casa-conclusao-atividade-ausente": {
+      "tipo": "conclusao",
+      "diagnostico": "Ausência de atividade cardíaca (standstill)",
+      "confianca": "baixa",
+      "justificativa": "A ausência de atividade cardíaca indica pior prognóstico. Pacientes em AESP com parada cardíaca (standstill) ao ultrassom têm sobrevida até a alta hospitalar entre 0,0% e 0,6% — baixa, mas não zero; a ressuscitação inicial deve ser tentada em todos os pacientes independentemente da atividade cardíaca observada.",
+      "proximosPassos": [
+        "A utilidade de manter a ressuscitação deve ser revisada em conjunto com outros fatores prognósticos desfavoráveis, como ETCO2 baixo, tempo de parada prolongado e parada não testemunhada."
+      ],
+      "cuidado": "A ressuscitação inicial deve ser tentada em todos os pacientes independentemente da atividade cardíaca observada — esta conclusão nunca decide isoladamente a suspensão da ressuscitação. Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md)."
+    },
+    "casa-conclusao-indeterminado": {
+      "tipo": "conclusao",
+      "diagnostico": "Não foi possível avaliar a atividade cardíaca dentro do tempo da pausa",
+      "confianca": "indeterminado",
+      "justificativa": "A checagem de pulso deve ser limitada a poucos segundos — se a janela não permitir avaliação conclusiva dentro do tempo da pausa, retome as compressões e tente novamente na próxima checagem.",
+      "proximosPassos": [
+        "Retomar as compressões imediatamente.",
+        "Reavaliar na próxima checagem de pulso, se indicado."
+      ],
+      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+    }
+  }
+}
