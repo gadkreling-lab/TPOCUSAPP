@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Validação de FORMA do content pack TPOCUS via zod — espelha src/content/types.ts.
+ * Validação de FORMA do content pack TPOCUS via zod — espelha src/content/types.ts e
+ * src/content/calculators/types.ts.
  *   node scripts/validate-schema.mjs
  *
  * Diferente de scripts/validate-content.mjs (que valida domínio: ids únicos, enums,
@@ -11,18 +12,29 @@
  * Falha o build (exit 1) se qualquer item não bater com o schema — inclui campo
  * obrigatório faltando, tipo errado, enum fora do domínio.
  */
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { schemasPorArquivo } from './content-schemas.mjs'
+import { calculatorDefSchema } from './calculator-schemas.mjs'
 
-const DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'content')
+const DIR_CONTENT = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'content')
+const DIR_CALCULATORS = join(DIR_CONTENT, 'calculators')
 
 let totalItens = 0
 let totalErros = 0
 
+function relatarErros(rotuloArquivo, rotuloItem, resultado) {
+  for (const issue of resultado.error.issues) {
+    const path = issue.path.length ? issue.path.join('.') : '(raiz)'
+    console.error(`✗ ${rotuloArquivo} [${rotuloItem}] campo "${path}": ${issue.message}`)
+    totalErros++
+  }
+}
+
+// --- arquivos de conteúdo "clássicos": um array de itens por arquivo ---
 for (const [arquivo, schema] of Object.entries(schemasPorArquivo)) {
-  const caminho = join(DIR, arquivo)
+  const caminho = join(DIR_CONTENT, arquivo)
   let dados
   try {
     dados = JSON.parse(readFileSync(caminho, 'utf8'))
@@ -39,18 +51,32 @@ for (const [arquivo, schema] of Object.entries(schemasPorArquivo)) {
   dados.forEach((item, i) => {
     totalItens++
     const resultado = schema.safeParse(item)
-    if (!resultado.success) {
-      const rotulo = item?.id ?? item?.capituloId ?? `índice ${i}`
-      for (const issue of resultado.error.issues) {
-        const path = issue.path.length ? issue.path.join('.') : '(raiz)'
-        console.error(`✗ ${arquivo} [${rotulo}] campo "${path}": ${issue.message}`)
-        totalErros++
-      }
-    }
+    if (!resultado.success) relatarErros(arquivo, item?.id ?? item?.capituloId ?? `índice ${i}`, resultado)
   })
 }
 
-console.log(`\nValidação de schema (zod): ${totalItens} itens verificados em ${Object.keys(schemasPorArquivo).length} arquivos.`)
+// --- calculadoras: um objeto CalculatorDef por arquivo, um arquivo por calculadora ---
+let nCalculadoras = 0
+for (const nomeArquivo of readdirSync(DIR_CALCULATORS)) {
+  if (!nomeArquivo.endsWith('.json')) continue
+  nCalculadoras++
+  const caminho = join(DIR_CALCULATORS, nomeArquivo)
+  let dados
+  try {
+    dados = JSON.parse(readFileSync(caminho, 'utf8'))
+  } catch (e) {
+    console.error(`✗ calculators/${nomeArquivo} não parseia: ${e.message}`)
+    totalErros++
+    continue
+  }
+  totalItens++
+  const resultado = calculatorDefSchema.safeParse(dados)
+  if (!resultado.success) relatarErros(`calculators/${nomeArquivo}`, dados?.id ?? nomeArquivo, resultado)
+}
+
+console.log(
+  `\nValidação de schema (zod): ${totalItens} itens verificados em ${Object.keys(schemasPorArquivo).length + nCalculadoras} arquivos.`,
+)
 if (totalErros) {
   console.error(`\n✗ ${totalErros} erro(s) de schema.`)
   process.exit(1)

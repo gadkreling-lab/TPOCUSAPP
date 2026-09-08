@@ -1,4 +1,6 @@
-export type Severidade = 'normal' | 'limitrofe' | 'alterado'
+import type { Severidade } from '../content/types'
+
+export type { Severidade }
 
 const ESTILO: Record<Severidade, string> = {
   normal: 'bg-normal/15 text-normal border-normal/40',

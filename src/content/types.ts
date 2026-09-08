@@ -12,6 +12,13 @@ export type Modo = 'B' | 'M' | 'Doppler'
 export type Transdutor = 'setorial' | 'linear' | 'convexo'
 
 /**
+ * Selo de severidade clínica — vocabulário compartilhado entre o content pack
+ * (calculadoras, ARQUITETURA.md §2.7) e o design system (src/ui/Badge.tsx). Vive aqui
+ * porque é a camada de conteúdo/domínio que define o vocabulário; a UI consome.
+ */
+export type Severidade = 'normal' | 'limitrofe' | 'alterado'
+
+/**
  * Marca conteúdo que NÃO vem do ebook.
  * Presente só nos itens preenchidos a partir da literatura (ou do autor do curso).
  * `campos` lista exatamente quais campos daquele item têm origem externa.
