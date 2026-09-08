@@ -65,21 +65,17 @@ compressibilidade), ela enriqueceria o Atlas.
 ## Pergunta nova, específica do app (não estava em `gaps.md` porque o content pack não
 ## cobre calculadoras/protocolos executáveis)
 
-### 6. CASA — preciso do artigo do Gardner antes da Fase 4
-Seu spec já descreve a estrutura de alto nível (3 exames de ≤10 s durante checagem de
-pulso: CASA 1 tamponamento, CASA 2 sobrecarga/dilatação de VD, CASA 3 atividade cardíaca
-organizada). Isso é suficiente para eu montar o **esqueleto técnico** do protocolo
-(ids dos nós, timer de 10 s, o alerta "retome as compressões") na Fase 4, mas não é
-suficiente para o conteúdo clínico de cada nó — o que exatamente conta como "sobrecarga
-de VD compatível com TEP" num exame de 10 segundos, qual achado de cada exame leva a
-qual branch de conclusão, qual o texto de `justificativa`/`cuidado` de cada nó de
-conclusão.
-**Preciso:** o artigo original (Gardner KF et al., "The Cardiac Arrest Sonographic
-Assessment (CASA) exam" — ou a versão/adaptação que vocês usam no curso, se for
-diferente da publicação original) em `referencias/`. Sem ele, na Fase 4 eu construo só o
-esqueleto (nós vazios, `status: "pendente_validacao"`) e paro — não vou preencher
-`justificativa`/`cuidado` de conclusão de parada cardíaca a partir de conhecimento geral
-meu, mesmo rascunho.
+### 6. CASA — ✅ resolvido (artigos recebidos em 2026-09-08)
+Você enviou os dois artigos: **Gardner et al. 2017** (o protocolo original) e
+**Clattenburg et al. 2018** (o estudo de implementação, com os números de redução de
+pausa de RCP). Os dois foram salvos em `referencias/` e o conteúdo clínico do CASA já
+está em `src/content/protocols.json` → `id: "protocolo-casa"`, com todos os campos
+extraídos literalmente dos artigos e marcados via `fonteExterna` — nada foi completado
+de memória. O protocolo continua `"status": "pendente_validacao"` e **não deve aparecer
+para os alunos até você e seus sócios revisarem `VALIDACAO-CLINICA.md`**, que criei com
+a lista completa de pontos a confirmar. Isso adianta a curadoria de conteúdo da Fase 4;
+a máquina de estados que executa o protocolo no app (nós, avançar/voltar, timer visual)
+continua para a Fase 3/4, depois que o motor genérico de protocolos existir.
 
 ### 7. Índice Cardíaco (Mosteller) — confirmação, não lacuna
 Seu spec já dá a fórmula (SC = √(altura_cm × peso_kg / 3600)) e pede rótulo
@@ -91,27 +87,40 @@ fórmula de Mosteller como "do ebook" em nenhuma tela.
 
 ## Decisões de produto que preciso que você bata o martelo (não são lacuna de conteúdo)
 
-### 8. Navegação primária do app
-O `README-STARTER.md` original do content pack levantava isso e eu concordo que é uma
-decisão sua, não minha: o conteúdo suporta entrada por **janela**, **achado**,
-**patologia** ou **protocolo** igualmente bem. Sugestão (não decisão): tab bar inferior
-fixa com os 4 módulos do seu spec (Atlas / Calculadoras / Protocolos / Sessão), e dentro
-do Atlas o aluno escolhe por janela ou por achado via toggle — mas se você já tem uma
-preferência de fluxo (ex.: "aluno em plantão sempre entra por protocolo primeiro"), me
-diga antes da Fase 1 porque isso afeta a tela inicial.
+### 8. Navegação primária do app — ✅ decidido (delegado a mim)
+Você pediu para eu escolher o melhor considerando que o acesso é controlado (curso
+pago). Decisão: **tab bar inferior fixa com os 4 módulos** (Atlas / Calculadoras /
+Protocolos / Sessão), atrás da tela de acesso — ver a nova seção "Controle de acesso"
+em `ARQUITETURA.md`. Dentro do Atlas, o aluno escolhe por janela ou por achado via
+toggle. Mantenho essa como a navegação primária a menos que você peça outra coisa depois
+de ver o esqueleto na Fase 1.
 
-### 9. Deploy: Vercel ou Netlify
-O spec permite qualquer um dos dois. Vou seguir com **Vercel** por padrão na Fase 7 (mais
-comum para Vite) a menos que você já tenha conta/preferência em um dos dois — me avise
-se for Netlify.
+### 9. Deploy: Vercel ou Netlify — ainda aberto, seguindo com o padrão
+Você não respondeu este item. Continuo com **Vercel** por padrão (também porque o
+mecanismo de controle de acesso que desenhei usa Vercel Edge Functions — ver
+`ARQUITETURA.md`). Avise se preferir Netlify; o desenho do gate de acesso tem
+equivalente em Netlify Functions, então a mudança não é cara caso você prefira.
 
-### 10. `efast-pericardica-subxifoide` vs. `subxifoide`
-`windows.json` tem as duas entradas (mesma janela anatômica, uma no contexto de trauma,
-outra no contexto cardíaco), já linkadas por `verTambem`. Posso deixar as duas
-separadas no Atlas (mostra o mesmo lugar do corpo com "o que avaliar" diferente conforme
-o contexto de entrada) ou fundir numa única página com duas seções. Vou seguir com
-**duas entradas separadas** por padrão — é mais simples e reflete a estrutura do dado —
-mas avise se preferir fundido.
+### 10. `efast-pericardica-subxifoide` vs. `subxifoide` — ✅ resolvido e já executado
+Você autorizou fundir as duas em `subxifoide`. Feito: `windows.json` caiu de 25 para 24
+janelas, os campos de técnica do E-FAST (fonte: ACEP Sonoguide) foram preservados dentro
+da entrada fundida com `fonteExterna`, e as referências cruzadas em `protocols.json` e
+`images.json` foram atualizadas. A única divergência real entre as duas fontes — a
+orientação do marcador (esquerda no ebook, contexto cardíaco; direita/ombro direito na
+fonte externa, contexto E-FAST) — não foi escolhida a dedo: as duas ficaram registradas
+separadamente (`marcador` = ebook; `usoNoEfast` = fonte externa), porque são convenções
+válidas para contextos de transdutor diferentes, não um erro a corrigir.
+`node scripts/validate-content.mjs` continua limpo.
+
+### 11. Controle de acesso — ✅ decidido (delegado a mim), ver ARQUITETURA.md
+Curso pago → só gente autorizada acessa. Isso conflita em parte com o "sem backend"
+original, e resolvi com a mínima violação possível dessa regra: um gate de código de
+acesso validado por uma função serverless (Vercel Edge Function), que emite um token
+local de longa duração — depois disso o app volta a ser 100% offline como antes, sem
+telefonar pra casa a cada abertura. Desenho completo, trade-offs e uma limitação
+importante (isso não é DRM real — ver por quê) estão em `ARQUITETURA.md`, seção
+"Controle de acesso". Isso é a maior mudança de arquitetura desde a Fase 0 original;
+leia essa seção antes da Fase 1.
 
 ---
 
@@ -122,8 +131,7 @@ Em ordem de impacto no que falta construir:
 1. **`Ebook.pdf`** — se quiser que eu reconfira algum valor específico pessoalmente
    (opcional; o content pack já foi conferido, mas é a fonte de verdade formal do
    projeto e eu ainda não abri).
-2. **Artigo do Gardner et al. (CASA)** — bloqueia o conteúdo clínico da Fase 4 (o
-   esqueleto técnico não bloqueia).
+2. ~~Artigo do Gardner et al. (CASA)~~ — ✅ recebido, junto com o de Clattenburg 2018.
 3. **Referências do capítulo E-FAST**, se existirem — opcional, só enriquece
    rastreabilidade.
 4. **Fonte das estatísticas de sensibilidade/especificidade do E-FAST (pág. 65)** —
@@ -132,15 +140,18 @@ Em ordem de impacto no que falta construir:
    enriquece o Atlas.
 
 Nenhum destes bloqueia a Fase 1 (esqueleto) nem a Fase 2 (calculadoras) — as medidas de
-`measurements.json` estão completas e conferidas. O primeiro bloqueio real de conteúdo
-aparece na Fase 4 (CASA).
+`measurements.json` estão completas e conferidas.
 
 ---
 
 ## Resumo — o que eu preciso de você agora para seguir para a Fase 1
 
 - [ ] Confirmar que posso seguir para a Fase 1 com o content pack como está.
-- [ ] Responder itens 3, 4, 8, 9, 10 acima (ou dizer "segue com o padrão sugerido" em
-      cada um).
-- [ ] Quando puder, colocar o artigo do Gardner em `referencias/` — não precisa ser
-      agora, só antes da Fase 4.
+- [ ] Itens 3, 4 continuam abertos (FALLS fora da v1, janela apical 2 câmaras) — avise
+      se discordar do padrão que propus; senão sigo com ele.
+- [ ] **Ler a seção "Controle de acesso" em `ARQUITETURA.md` e confirmar que o desenho
+      (gate de código + Edge Function + token local) atende** — é a mudança mais
+      relevante desde a Fase 0 original e vale sua conferência antes de eu construir o
+      esqueleto na Fase 1.
+- [ ] Quando puder (e só antes da revisão do `VALIDACAO-CLINICA.md`, sem pressa),
+      revisar o conteúdo do CASA com seus sócios.

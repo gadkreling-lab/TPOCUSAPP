@@ -31,7 +31,12 @@ somente-leitura vindos de uma fonte externa.
 
 ## ⚠️ REGRA 2 — Nem todo conteúdo é do ebook
 
-21 itens foram preenchidos a partir da literatura porque o ebook é omisso neles.
+21 itens do content pack original foram preenchidos a partir da literatura porque o
+ebook é omisso neles, mais 2 desde 2026-09-08 (ver tabela abaixo: a janela `subxifoide`
+fundida com o E-FAST pericárdico, e o protocolo `protocolo-casa` inteiro, que não consta
+do ebook). `node scripts/validate-content.mjs` reporta a contagem exata (marca cada
+campo `fonteExterna`/`*FonteExterna`, não cada item — por isso o número que ele imprime
+é maior que a contagem de itens aqui).
 **Todo item preenchido carrega um campo `fonteExterna`** dizendo quais campos vieram de
 fora, de qual artigo e com qual link.
 
@@ -53,10 +58,11 @@ Onde há conteúdo externo:
 | Arquivo | Itens | Fonte |
 |---|---|---|
 | `protocols.json` → `protocolo-blue` | `perfis`, `pontosBlue`, `regrasDecisao` | Lichtenstein 2014 |
-| `windows.json` | 8 janelas `efast-*` | ACEP Sonoguide |
+| `windows.json` | 7 janelas `efast-*` restantes + a janela `subxifoide` (fundida com `efast-pericardica-subxifoide` em 2026-09-08) | ACEP Sonoguide |
 | `findings.json` | `consolidacao-subpleural`, `foguetes-vidro-fosco` | Volpicelli 2012, Lichtenstein 2014 |
 | `findings.json` | `sinal-da-praia` (`tipo: "autor"`) | autor do curso |
 | `glossary.json` | 9 entradas de perfis | Lichtenstein 2014 |
+| `protocols.json` → `protocolo-casa` (2026-09-08, `status: "pendente_validacao"`) | protocolo inteiro | Gardner 2017, Clattenburg 2018 |
 
 **Caso especial — `protocolo-blue`:** o campo `fluxograma` é a transcrição literal da
 Figura 16 do ebook; `regrasDecisao` é o algoritmo do artigo original. **As duas versões
@@ -94,13 +100,13 @@ Se encontrar um novo typo: corrija **e registre em `corrections.json`** no mesmo
 
 ```
 src/content/
-├── windows.json       25  janelas de aquisição (cardíaca, pulmonar, vascular, E-FAST)
+├── windows.json       24  janelas de aquisição (cardíaca, pulmonar, vascular, E-FAST)
 ├── findings.json      40  achados e artefatos
 ├── pathologies.json    8  perfis pulmonares (tabela págs. 58-59)
 ├── measurements.json  15  medidas quantitativas ← o arquivo mais sensível
 ├── glossary.json      71  siglas e termos
 ├── references.json     7  capítulos de referências bibliográficas
-├── protocols.json      3  BLUE, E-FAST, RUSH
+├── protocols.json      4  BLUE, E-FAST, RUSH, CASA (rascunho, status: "pendente_validacao")
 ├── images.json        54  catálogo das figuras
 ├── corrections.json   17  log de correções
 └── images/            54  figuras em WebP (2,8 MB)

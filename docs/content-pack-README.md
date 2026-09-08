@@ -106,13 +106,22 @@ Janelas de aquisição de imagem.
 **Composição (25 janelas):**
 - 6 cardíacas (págs. 5–17, 32)
 - 3 pulmonares (pág. 39) — anterior-superior, lateral, PLAPS
-- 8 do E-FAST (pág. 64) — **campos de técnica em `null`**, ver `gaps.md` §3
+- 7 do E-FAST (pág. 64) — **campos de técnica em `null`** nas 7 restantes, ver `gaps.md` §3
 - 4 venosas (págs. 73–79)
 - 4 arteriais (págs. 85–90) — aorta torácica + 3 porções da aorta abdominal
 
-**Nota:** `efast-pericardica-subxifoide` e `subxifoide` descrevem a mesma janela
-anatômica em contextos diferentes (protocolo de trauma vs. capítulo cardíaco). O item do
-E-FAST aponta para o cardíaco via `verTambem`. Decida no app se quer fundi-los.
+**Fundido (2026-09-08, autorizado pelo autor):** `efast-pericardica-subxifoide` e
+`subxifoide` descreviam a mesma janela anatômica em contextos diferentes (protocolo de
+trauma vs. capítulo cardíaco) e foram unidas numa única entrada, `subxifoide` — 24
+janelas no total agora, não 25. Nada foi perdido: os campos de técnica do E-FAST
+(`transdutorAlternativo`, `posicaoTransdutorDetalhada`, `profundidade`, um item extra em
+`comoOtimizar`, e o novo campo `usoNoEfast`) continuam na entrada fundida, marcados em
+`fonteExterna` exatamente como antes. A única divergência real entre as duas fontes — a
+orientação do marcador (esquerda no contexto cardíaco do ebook pág. 15; direita/ombro
+direito no contexto E-FAST da fonte externa) — foi preservada como duas informações
+distintas em vez de escolhida uma: `marcador` continua com a redação literal do ebook,
+e a orientação do E-FAST está descrita em `usoNoEfast`. `protocolo-efast.janelas[]` e
+`images.json` foram atualizados para apontar para `subxifoide`.
 
 **Nota sobre transdutor pulmonar:** o ebook diz "curvilíneo ou linear (útil para análise
 detalhada da pleura)". Mapeamos *curvilíneo* → `"convexo"` (valor do enum pedido) e

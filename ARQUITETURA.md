@@ -32,7 +32,9 @@ normalmente pediria de mim:
 - Conteúdo de fonte externa (21 itens: perfis do BLUE, BLUE-points, técnica das 8
   janelas do E-FAST, 2 achados pulmonares) já vem marcado com `fonteExterna` — o mesmo
   mecanismo de rastreabilidade que o projeto pede.
-- CASA **não está no content pack** — consistente com o app spec ("não está no ebook").
+- CASA **não estava no content pack original** — consistente com o app spec ("não está
+  no ebook"). Desde 2026-09-08 tem uma entrada de rascunho em `protocols.json`, extraída
+  dos dois artigos-fonte que você enviou — ver seção 2.3.
 
 Tratei este content pack como o ponto de partida da Fase 0, não como um substituto para
 ler o ebook: onde `gaps.md` já registra uma lacuna, listo abaixo em `PERGUNTAS.md` em vez
@@ -51,13 +53,17 @@ tpocus-app/
 ├── CLAUDE.md                      # regras do content pack (já existe, não mexer)
 ├── ARQUITETURA.md                 # este arquivo
 ├── PERGUNTAS.md                   # lacunas + materiais pendentes
-├── VALIDACAO-CLINICA.md           # criado na Fase 4, quando o CASA existir
+├── VALIDACAO-CLINICA.md           # já existe — CASA aguardando revisão dos sócios
 ├── docs/
 │   ├── content-pack-README.md     # spec do schema do content pack (já existe)
 │   └── gaps.md                    # lacunas do ebook (já existe)
 ├── referencias/                   # PDFs/artigos complementares que o autor enviar
+│   ├── gardner-2017-casa-exam.pdf
+│   └── clattenburg-2018-casa-implementation.pdf
 ├── scripts/
 │   └── validate-content.mjs       # validação estrutural do content/ (já existe)
+├── api/
+│   └── verificar-acesso.ts        # NOVO, Fase 1 — Vercel Edge Function, ver seção 6
 ├── public/
 │   ├── manifest.webmanifest
 │   └── icons/
@@ -65,13 +71,13 @@ tpocus-app/
 │   ├── content/                   # DADO — já existe, ver seção 2
 │   │   ├── types.ts
 │   │   ├── index.ts
-│   │   ├── *.json
+│   │   ├── *.json                 # inclui protocols.json com os 4 protocolos, CASA já incluso
 │   │   ├── images/                # 54 webp do ebook
 │   │   ├── calculators/           # NOVO — definições declarativas das calculadoras
 │   │   │   ├── types.ts
 │   │   │   └── *.json
-│   │   ├── protocols-engine/      # NOVO — nada aqui, o schema de protocolo já é genérico
-│   │   └── casa.json              # NOVO, Fase 4 — status: "pendente_validacao"
+│   │   └── protocol-flows/        # NOVO, Fase 3/4 — grafo de nós de execução, um arquivo
+│   │       └── *.json             # por protocolo (blue/efast/rush/casa), ver seção 2.2
 │   ├── engine/                    # motores genéricos, ver seção 3
 │   │   ├── protocol/              # máquina de estados do módulo 3
 │   │   └── calculator/            # motor de formulário + fórmula do módulo 2
@@ -81,6 +87,7 @@ tpocus-app/
 │   │   ├── protocols/             # módulo 3 (UI sobre o engine/protocol)
 │   │   └── session/                # módulo 4
 │   ├── storage/                   # IndexedDB (idb) — sessões salvas
+│   ├── auth/                      # NOVO, Fase 1 — token de acesso local, ver seção 6
 │   ├── ui/                        # design system: Button, NumberField, Badge, Tabs...
 │   ├── app/                       # rotas, layout, providers, disclaimer gate
 │   └── sw/                        # service worker (ou vite-plugin-pwa config)
@@ -197,17 +204,24 @@ Regra do CLAUDE.md de não misturar `fluxograma` (fonte: figura do ebook) com
 `indeterminadoProximo` obrigatório em todo nó de pergunta implementa o requisito "janela
 inadequada em TODO nó" — o zod falha o build se faltar.
 
-### 2.3 CASA (Fase 4)
+### 2.3 CASA — conteúdo já extraído (2026-09-08), execução ainda na Fase 4
 
-`src/content/casa.json` seguirá o mesmo `ProtocolFlow`, com um campo a mais no nível
-raiz: `"status": "pendente_validacao"`. A UI checa esse campo e — antes de renderizar
-qualquer conclusão diagnóstica do CASA — mostra um aviso permanente "conteúdo em
-validação clínica pelos sócios, não publicado". `VALIDACAO-CLINICA.md` será criado nessa
-fase, listando cada nó para revisão. Não vou escrever esse JSON com dados agora; a
-estrutura de 3 exames (tamponamento / VD-TEP / atividade organizada) já veio descrita no
-seu spec, então o *esqueleto* dos nós (rótulos, ids, timer de 10 s por nó) pode ser
-montado a partir disso — mas nenhum texto de "justificativa" ou "cuidado" clínico entra
-sem a fonte Gardner et al. em mãos. Ver PERGUNTAS.md.
+Você enviou os dois artigos-fonte (Gardner 2017 e Clattenburg 2018) antes da Fase 4, e o
+conteúdo descritivo já está pronto: `protocols.json` ganhou um 4º item,
+`id: "protocolo-casa"`, no mesmo formato dos outros três protocolos (objetivo, etapas,
+limitações, `fonteExterna` cobrindo o protocolo inteiro), mais campos específicos —
+`status: "pendente_validacao"`, `timerSegundos: 10`, `alertaRetomarCompressoes: true` —
+que o motor de protocolos vai ler na Fase 4 para desenhar o timer e o alerta "retome as
+compressões". `VALIDACAO-CLINICA.md` já existe, com a lista completa para os sócios
+revisarem antes de o protocolo sair de rascunho.
+
+O que **continua** para a Fase 3/4, porque depende do motor de protocolo genérico ainda
+não existir: o grafo de execução (`src/content/protocol-flows/casa.json`, nós
+pergunta→resposta→próximo, ver seção 2.2) que transforma as 3 `etapas` já descritas em
+telas navegáveis com avançar/voltar. A UI desse grafo checa `status` no `Protocol`
+correspondente e — antes de renderizar qualquer conclusão do CASA — mostra um aviso
+permanente "conteúdo em validação clínica pelos sócios, não publicado", herdado
+automaticamente de `protocolo-casa.avisoClinico`.
 
 ---
 
@@ -294,7 +308,96 @@ domínio (enums, FKs — conhecimento específico deste content pack), o outro v
 
 ---
 
-## 6. Design system (Fase 1)
+## 6. Controle de acesso (curso pago — decisão de 2026-09-08)
+
+Adicionado depois da Fase 0 original, a pedido: *"como é um curso pago, quero que
+somente pessoas autorizadas tenham acesso, escolha o melhor para essa situação."* Isso
+tensiona diretamente com "sem backend na v1" e "100% funcional offline" — as duas regras
+mais rígidas do spec original. Resolvo com a menor violação possível da primeira,
+preservando a segunda sem concessão.
+
+### O que decidi
+
+**Gate de código de acesso, validado uma vez por uma função serverless, que emite um
+token local de longa duração.** Depois da primeira validação, o app volta a ser 100%
+offline exatamente como desenhado — a função serverless não é chamada de novo a cada
+abertura.
+
+Fluxo:
+
+1. Primeira abertura do app (**precisa de rede** — é a única vez): tela de bloqueio pede
+   um código de acesso. Nenhum nome completo, e-mail ou dado pessoal é pedido aqui —
+   consistente com a Regra de sessão anônima do Módulo 4.
+2. O app chama uma Vercel Edge Function (`/api/verificar-acesso`) com o código.
+3. A função confere o código contra uma lista de códigos válidos (Vercel Edge
+   Config ou KV — editável sem redeploy, para você poder desativar um código vazado sem
+   recompilar o app) e, se válido, devolve um token assinado (HMAC, segredo só no
+   servidor) com validade longa (proponho 180 dias, renovável — ver abaixo).
+4. O app grava o token no IndexedDB. Em toda abertura seguinte, o app valida o token
+   **localmente** (verifica assinatura e expiração, sem rede) — só volta a chamar a
+   função se o token expirar ou não existir.
+5. Enquanto o token for válido, o app funciona 100% offline, sem excecão — a promessa de
+   UTI/emergência com wi-fi ruim continua valendo integralmente depois do primeiro
+   acesso.
+6. Quando online, o app pode tentar renovar o token silenciosamente perto do
+   vencimento (sem bloquear nada se falhar) — assim um aluno que abre o app com
+   frequência nunca vê a tela de bloqueio de novo, mas um código revogado para de
+   renovar e expira dentro do prazo.
+
+Revogação: remover o código da lista na Edge Config impede *novas* ativações e
+renovações, mas não derruba instantaneamente um token já emitido e ainda válido —
+trade-off aceito em troca de nunca exigir rede para abrir o app já ativado. Se quiser um
+corte mais agressivo, encurto a validade do token (ex.: 30 dias) à custa de mais
+renovações em background.
+
+### Por que não as outras opções
+
+- **Só checagem client-side (código comparado a um hash embutido no bundle), sem
+  servidor nenhum:** mantém "zero backend" literal, mas não é controle de acesso real —
+  qualquer pessoa com acesso ao bundle JS extrai ou contorna a checagem. Serve, no
+  máximo, como filtro contra compartilhamento casual do link, não como o "somente
+  autorizados" que você pediu.
+- **Auth completo (Clerk/Supabase Auth/Auth0, conta por aluno, login com senha):** dá
+  granularidade por aluno e revogação instantânea, mas é mais integração do que a v1
+  precisa, mais uma dependência externa, e mais fricção de onboarding para um app que
+  vai ser usado com uma mão enluvada. Fica como upgrade natural se o modelo de negócio
+  pedir contas individuais (ex.: analytics por aluno) — a arquitetura acima não fecha
+  essa porta, só não a abre agora.
+- **Servidor "de verdade" (Node/Express hospedado):** contradiz a decisão original de
+  não ter infraestrutura própria para manter. Edge Function é o meio-termo que Vercel e
+  Netlify já oferecem nativamente dentro do mesmo deploy estático — não é um servidor
+  que você precisa operar.
+
+### Limitação que preciso deixar explícita
+
+**Isso não é DRM.** Depois que o app é ativado, todo o conteúdo clínico (os JSONs, as
+54 imagens) já está no dispositivo, porque é exatamente isso que "100% funcional
+offline" exige. Um usuário tecnicamente capaz consegue extrair esse conteúdo do
+dispositivo autorizado, do mesmo jeito que conseguiria com o PDF do ebook. Proteção de
+conteúdo de verdade exigiria uma arquitetura sem bundle offline — servidor servindo
+conteúdo sob demanda, gate a cada requisição — o oposto do que você pediu como
+não-negociável. O gate que desenhei resolve o problema que a maioria das ferramentas
+desse tipo tem na prática (acesso não pago, link compartilhado informalmente), no mesmo
+espírito de honra do aviso já impresso no próprio ebook ("PROIBIDOS COMERCIALIZAÇÃO E
+COMPARTILHAMENTO") — não resolve extração deliberada por alguém disposto a inspecionar o
+app. Avise se isso muda a decisão.
+
+### O que isso muda na Fase 1
+
+- Novo: `api/verificar-acesso.ts` (Vercel Edge Function) e a configuração da lista de
+  códigos válidos (Edge Config).
+- Novo, no app: tela de bloqueio (antes até do disclaimer de uso do Módulo de segurança
+  clínica — o gate de acesso vem primeiro, o disclaimer clínico vem depois, no primeiro
+  uso já autenticado) e a lógica de token em `src/auth/` (verificação local, renovação
+  silenciosa).
+- Nenhuma mudança nos módulos 1–4 nem no content pack: o gate é uma camada antes da
+  navegação principal (tab bar), não dentro dela.
+- Continuo com **Vercel** como plataforma de deploy (Fase 7) — a Edge Function fica no
+  mesmo projeto, sem infraestrutura extra.
+
+---
+
+## 7. Design system (Fase 1)
 
 Tokens Tailwind mínimos: paleta escura por padrão (`dark:` como não-padrão seria
 invertido — decisão: `class="dark"` no `<html>` por padrão, toggle remove a classe),
@@ -308,7 +411,7 @@ vermelho com texto, não só cor — acessibilidade), `Tabs` (Como medir / Armad
 
 ---
 
-## 7. O que decidi sem perguntar (e por quê)
+## 8. O que decidi sem perguntar (e por quê)
 
 - **Roteador leve em vez de nenhum roteador**: o app tem navegação profunda o bastante
   (janela → medida → calculadora) para precisar de URLs endereçáveis, mas não precisa de
@@ -332,7 +435,7 @@ Essas são decisões de engenharia, não de conteúdo clínico — não estão e
 
 ---
 
-## 8. Ordem de execução — sem mudança em relação ao spec
+## 9. Ordem de execução — sem mudança em relação ao spec
 
 Fase 0 (este documento) → Fase 1 (esqueleto + PWA + design system + validação) →
 Fase 2 (calculadoras + testes) → Fase 3 (motor de protocolo + E-FAST + RUSH) →
