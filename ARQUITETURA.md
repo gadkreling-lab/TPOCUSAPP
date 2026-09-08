@@ -401,7 +401,32 @@ muda:
    servidor, o "prazo de tolerância" agora é o tempo de vida do token de sessão (curto,
    ver abaixo), não mais uma folga deliberada para uso sem rede.
 
-### Modelo de dados (Vercel KV) — sem mudança
+### Nota de implementação (Fase 1)
+
+Duas correções em relação ao que este documento descrevia antes de eu efetivamente
+construir o backend:
+
+- **"Vercel KV" foi descontinuado pela própria Vercel** durante a Fase 1 (o pacote
+  `@vercel/kv` está marcado deprecated no npm, recomendando migrar para Upstash Redis
+  direto). Troquei para **Upstash Redis via `@upstash/redis`**, sem mudar nada do
+  desenho: é o mesmo Redis gerenciado que já ficava por trás do Vercel KV, só o cliente
+  mudou. `api/_lib/kv.ts` isola essa escolha atrás de uma interface `KVStore` — se o
+  provedor mudar de novo, só esse arquivo muda.
+- **O token de sessão virou dois tokens**, não um: um **token de acesso** (~15 min,
+  Bearer de toda chamada a `/api/content/*`) e um **token de renovação** (só para
+  chamar `/api/renovar`, com `exp` igual a `expiraEm` do aluno — expira sozinho no
+  prazo certo, por construção da assinatura, mesmo sem consultar o KV). Isso não muda
+  a garantia descrita acima, só implementa com um token curto de fato circulando nas
+  chamadas de conteúdo (mais barato de verificar — só assinatura, sem round-trip) e um
+  token mais longo guardado localmente só para renovar. Testado em `tests/acesso.test.ts`.
+
+**Limitação conhecida, não resolvida nesta fase:** não há hoje um jeito de *estender*
+o prazo de um aluno já ativado sem tocar direto no KV — `duracaoDias` só é usado no
+momento da primeira ativação; mudar `duracaoDias` depois não recalcula `expiraEm`. Para
+a Fase 7 (tela administrativa), a extensão de prazo precisa ser uma operação própria
+(atualizar `expiraEm` direto), não só editar `duracaoDias`.
+
+### Modelo de dados (Upstash Redis, via `KVStore`)
 
 ```
 codigo:<código>  →  {
@@ -505,6 +530,14 @@ separada dos códigos de aluno (variável de ambiente, não fica no código-font
   do servidor + os *hooks* de fetch do lado do cliente), não dentro da lógica dos
   módulos.
 - Continuo com **Vercel** como plataforma de deploy — Functions + KV no mesmo projeto.
+
+**Status: construído nesta fase.** `api/ativar.ts`, `api/renovar.ts`, todos os
+`api/content/*.ts` (incluindo o binário de imagem), `src/auth/` e `src/queries/`
+existem, com 26 testes cobrindo o fluxo de acesso (ativação, renovação, transferência
+de aparelho, revogação, expiração, e a defesa em profundidade quando o KV diverge do
+token). A tela administrativa de códigos (geração/revogação) fica para a Fase 7, como
+planejado — por ora, códigos são criados chamando `criarCodigo()` diretamente (ver
+`api/_lib/acesso.ts`), sem UI.
 
 ---
 
