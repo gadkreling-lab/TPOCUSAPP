@@ -1,6 +1,7 @@
 import { Link, Route, Switch, useLocation } from 'wouter'
 import { AtlasScreen } from '../modules/atlas/AtlasScreen'
 import { CalculatorsScreen } from '../modules/calculators/CalculatorsScreen'
+import { CalculatorScreen } from '../modules/calculators/CalculatorScreen'
 import { ProtocolsScreen } from '../modules/protocols/ProtocolsScreen'
 import { SessionScreen } from '../modules/session/SessionScreen'
 import { ThemeToggle } from '../ui/ThemeToggle'
@@ -37,6 +38,7 @@ export function Shell() {
         <Switch>
           <Route path="/" component={AtlasScreen} />
           <Route path="/calculadoras" component={CalculatorsScreen} />
+          <Route path="/calculadoras/:id" component={CalculatorScreen} />
           <Route path="/protocolos" component={ProtocolsScreen} />
           <Route path="/sessao" component={SessionScreen} />
           <Route>
