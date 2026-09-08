@@ -3,9 +3,13 @@ import { iniciar, avancar, voltar, reiniciar, progresso, noAtualObjeto, estaConc
 import type { ProtocolFlow } from '../src/content/protocol-flows/types'
 import efastFlowJson from '../src/content/protocol-flows/efast.json'
 import rushFlowJson from '../src/content/protocol-flows/rush.json'
+import blueFlowJson from '../src/content/protocol-flows/blue.json'
+import casaFlowJson from '../src/content/protocol-flows/casa.json'
 
 const efastFlow = efastFlowJson as unknown as ProtocolFlow
 const rushFlow = rushFlowJson as unknown as ProtocolFlow
+const blueFlow = blueFlowJson as unknown as ProtocolFlow
+const casaFlow = casaFlowJson as unknown as ProtocolFlow
 
 // Flow sintético pequeno, só para testar o motor isolado do conteúdo real.
 const flowSintetico: ProtocolFlow = {
@@ -301,5 +305,133 @@ describe('protocol-flows reais — RUSH', () => {
     const no = noAtualObjeto(state, rushFlow)
     if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Colapsada')!)
     expect(state.noAtual).toBe('rush-conclusao-hipovolemico')
+  })
+})
+
+describe('protocol-flows reais — BLUE (Fase 4)', () => {
+  it('todo nó de pergunta tem opções e indeterminadoProximo apontando para nós existentes', () => {
+    for (const [id, no] of Object.entries(blueFlow.nos)) {
+      if (no.tipo !== 'pergunta') continue
+      expect(blueFlow.nos[no.indeterminadoProximo], `${id}.indeterminadoProximo`).toBeDefined()
+      for (const opcao of no.opcoes) {
+        expect(blueFlow.nos[opcao.proximo], `${id} -> "${opcao.label}"`).toBeDefined()
+      }
+    }
+  })
+
+  it('todos os desfechos do fluxograma da Figura 16 são alcançáveis a partir do noInicial', () => {
+    const alcancadas = conclusoesAlcancaveis(blueFlow)
+    expect(alcancadas).toEqual(
+      new Set([
+        'blue-conclusao-edema', // PRESENTE, Perfil B
+        'blue-conclusao-tep', // PRESENTE, Perfil A, Trombose Venosa
+        'blue-conclusao-pneumonia-plaps', // PRESENTE, Perfil A, Veias Livres, PLAPS
+        'blue-conclusao-dpoc-asma', // PRESENTE, Perfil A, Veias Livres, SEM PLAPS
+        'blue-conclusao-diminuido', // DIMINUÍDO
+        'blue-conclusao-pneumonia-abolido', // ABOLIDO, Perfil B
+        'blue-conclusao-pneumotorax', // ABOLIDO, Linhas A, Lung Point Sim
+        'blue-conclusao-aprofundar', // ABOLIDO, Linhas A, Lung Point Não
+        'blue-conclusao-indeterminado',
+      ]),
+    )
+  })
+
+  it('PRESENTE → Perfil A → Trombose Venosa → TEP (ramo mais profundo do fluxograma)', () => {
+    let state = iniciar(blueFlow.id, blueFlow.noInicial)
+    let no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Presente')!)
+    no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Perfil A')!)
+    no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Trombose Venosa')!)
+    expect(state.noAtual).toBe('blue-conclusao-tep')
+  })
+
+  it('ABOLIDO → Linhas A → Lung Point ausente → "Aprofundar o diagnóstico com outros métodos" (lacuna do próprio fluxograma, não interpolada)', () => {
+    let state = iniciar(blueFlow.id, blueFlow.noInicial)
+    let no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Abolido')!)
+    no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Linhas A')!)
+    no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Não')!)
+    expect(state.noAtual).toBe('blue-conclusao-aprofundar')
+    const conclusao = noAtualObjeto(state, blueFlow)
+    if (conclusao?.tipo === 'conclusao') expect(conclusao.confianca).toBe('baixa')
+  })
+
+  it('DIMINUÍDO leva direto à conclusão (é um ramo terminal único no fluxograma, sem sub-pergunta)', () => {
+    let state = iniciar(blueFlow.id, blueFlow.noInicial)
+    const no = noAtualObjeto(state, blueFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Diminuído')!)
+    expect(state.noAtual).toBe('blue-conclusao-diminuido')
+    expect(estaConcluido(state, blueFlow)).toBe(true)
+  })
+})
+
+describe('protocol-flows reais — CASA (Fase 4, rascunho pendente de validação)', () => {
+  it('todo nó de pergunta tem opções e indeterminadoProximo apontando para nós existentes', () => {
+    for (const [id, no] of Object.entries(casaFlow.nos)) {
+      if (no.tipo !== 'pergunta') continue
+      expect(casaFlow.nos[no.indeterminadoProximo], `${id}.indeterminadoProximo`).toBeDefined()
+      for (const opcao of no.opcoes) {
+        expect(casaFlow.nos[opcao.proximo], `${id} -> "${opcao.label}"`).toBeDefined()
+      }
+    }
+  })
+
+  it('as 3 etapas cronometradas são sequenciais: tamponamento → embolia → atividade', () => {
+    expect(casaFlow.noInicial).toBe('casa-01-tamponamento')
+    const etapa1 = casaFlow.nos['casa-01-tamponamento']
+    const etapa2 = casaFlow.nos['casa-02-embolia']
+    expect(etapa1.tipo).toBe('pergunta')
+    expect(etapa2.tipo).toBe('pergunta')
+    if (etapa1.tipo === 'pergunta') {
+      expect(etapa1.opcoes.find((o) => o.label.startsWith('Não'))?.proximo).toBe('casa-02-embolia')
+    }
+    if (etapa2.tipo === 'pergunta') {
+      expect(etapa2.opcoes.find((o) => o.label === 'Não')?.proximo).toBe('casa-03-atividade')
+    }
+  })
+
+  it('tamponamento presente na etapa 1 conclui sem passar pelas etapas 2 e 3', () => {
+    let state = iniciar(casaFlow.id, casaFlow.noInicial)
+    const no = noAtualObjeto(state, casaFlow)
+    if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label.startsWith('Sim'))!)
+    expect(state.noAtual).toBe('casa-conclusao-tamponamento')
+  })
+
+  it('as 3 etapas negativas levam à checagem de atividade cardíaca, e "standstill" tem confiança baixa', () => {
+    let state = iniciar(casaFlow.id, casaFlow.noInicial)
+    for (let i = 0; i < 2; i++) {
+      const no = noAtualObjeto(state, casaFlow)
+      if (no?.tipo === 'pergunta') state = avancar(state, no.opcoes.find((o) => o.label === 'Não')!)
+    }
+    expect(state.noAtual).toBe('casa-03-atividade')
+    const no = noAtualObjeto(state, casaFlow)
+    if (no?.tipo === 'pergunta') {
+      state = avancar(state, no.opcoes.find((o) => o.label.startsWith('Não'))!)
+    }
+    expect(state.noAtual).toBe('casa-conclusao-atividade-ausente')
+    const conclusao = noAtualObjeto(state, casaFlow)
+    if (conclusao?.tipo === 'conclusao') {
+      expect(conclusao.confianca).toBe('baixa')
+      // Requisito de segurança clínica: a ressuscitação nunca deve ser suspensa com base
+      // isolada neste achado — o texto precisa reforçar isso mesmo no branch mais grave.
+      expect(conclusao.cuidado).toMatch(/ressuscitação inicial deve ser tentada em todos os pacientes/)
+    }
+  })
+
+  it('todas as conclusões alcançáveis do CASA são as esperadas', () => {
+    const alcancadas = conclusoesAlcancaveis(casaFlow)
+    expect(alcancadas).toEqual(
+      new Set([
+        'casa-conclusao-tamponamento',
+        'casa-conclusao-embolia',
+        'casa-conclusao-atividade-presente',
+        'casa-conclusao-atividade-ausente',
+        'casa-conclusao-indeterminado',
+      ]),
+    )
   })
 })
