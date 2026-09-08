@@ -14,6 +14,7 @@ import type {
   Measurement,
 } from '../content/types'
 import type { CalculatorDef } from '../content/calculators/types'
+import type { ProtocolFlow } from '../content/protocol-flows/types'
 import { useEffect, useState } from 'react'
 import { useSessao } from '../auth/SessionProvider'
 import { ErroConteudo } from './client'
@@ -27,6 +28,7 @@ export const useMeasurements = (): EstadoConteudo<Measurement[]> => useConteudo<
 export const useGlossary = (): EstadoConteudo<GlossaryEntry[]> => useConteudo<GlossaryEntry[]>('glossary')
 export const useReferences = (): EstadoConteudo<ReferenceChapter[]> => useConteudo<ReferenceChapter[]>('references')
 export const useProtocols = (): EstadoConteudo<Protocol[]> => useConteudo<Protocol[]>('protocols')
+export const useProtocolFlows = (): EstadoConteudo<ProtocolFlow[]> => useConteudo<ProtocolFlow[]>('protocol-flows')
 export const useImagesCatalog = (): EstadoConteudo<ImagemEbook[]> => useConteudo<ImagemEbook[]>('images')
 
 /**

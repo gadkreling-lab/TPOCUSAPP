@@ -3,6 +3,7 @@ import { AtlasScreen } from '../modules/atlas/AtlasScreen'
 import { CalculatorsScreen } from '../modules/calculators/CalculatorsScreen'
 import { CalculatorScreen } from '../modules/calculators/CalculatorScreen'
 import { ProtocolsScreen } from '../modules/protocols/ProtocolsScreen'
+import { ProtocolFlowScreen } from '../modules/protocols/ProtocolFlowScreen'
 import { SessionScreen } from '../modules/session/SessionScreen'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
@@ -40,6 +41,7 @@ export function Shell() {
           <Route path="/calculadoras" component={CalculatorsScreen} />
           <Route path="/calculadoras/:id" component={CalculatorScreen} />
           <Route path="/protocolos" component={ProtocolsScreen} />
+          <Route path="/protocolos/:id" component={ProtocolFlowScreen} />
           <Route path="/sessao" component={SessionScreen} />
           <Route>
             <div className="p-4 text-base text-muted">Página não encontrada.</div>
