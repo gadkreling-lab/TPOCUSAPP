@@ -627,4 +627,51 @@ cm/FC 70 → VS 62,8 mL, DC ≈ 4,4 L/min) e as 3 lacunas reais do ebook (EPSS 7
 VCI mecânica 18%, Brockelsby 3 EIC) confirmadas como "não classificado", não
 interpoladas.
 
+### Fase 3 — status: concluída
+
+Motor de protocolo genérico (`src/engine/protocol/`) + `ProtocolFlow` (schema da seção
+2.2, sem alterações em relação ao esboço) + conteúdo executável de E-FAST e RUSH.
+
+- `avancar`/`voltar`/`reiniciar`/`progresso` implementados exatamente como esboçado: a
+  `trilha` (pilha) é a fonte de verdade de `voltar` — desempilha e devolve `noAtual`
+  para o `noId` gravado, nunca recalcula o grafo. `progresso` é a heurística proposta
+  (profundidade atual / profundidade média até uma conclusão, calculada por DFS sobre
+  o grafo do `ProtocolFlow`, com proteção contra ciclo acidental via um `Set` de
+  visitados por caminho, não global — para não subcontar ramos que voltam a passar por
+  um nó compartilhado).
+- **E-FAST**: as 8 janelas viram 8 nós de pergunta sequenciais (mesma ordem de
+  `protocolo-efast.janelas`), cada um com Sim/Não + `indeterminadoProximo` apontando
+  para a próxima janela (uma janela indeterminada não interrompe o exame). "Sim" leva a
+  uma conclusão específica (líquido livre — compartilhada entre as 3 janelas
+  intraperitoneais —, tamponamento, hemotórax D/E, pneumotórax D/E); 8× "Não" leva a
+  "E-FAST sem achados". Todo texto de pergunta/achadosDeApoio/justificativa/cuidado é
+  citação literal de `windows.json` (`oQueAvaliar`) e `protocols.json`
+  (`interpretacao`/`limitacoes`/`sinaisPulmonares`) — nenhum dos dois carrega
+  `fonteExterna` nesses campos, então nada precisou de selo nesta tela.
+- **RUSH**: segue a ordem Pump → Tank → Pipes de `protocolo-rush.elementos`, um nó por
+  achado de `oQueObservar`, cada achado positivo levando direto à conclusão de
+  `tiposDeChoque` correspondente (texto/condutaInicial citados literalmente); ao final
+  de Pump/Tank/Pipes sem achado, a conclusão é Distributivo (séptico) por exclusão,
+  com `confianca: 'baixa'` — é diagnóstico de exclusão do próprio RUSH, o exame não
+  confirma foco infeccioso sozinho. **Choque misto** (o requisito de
+  `diagnostico: string[]` da seção 3.1): modelado a partir do próprio exemplo citado em
+  `protocolo-rush.limitacoes` ("séptico com disfunção miocárdica") — depois de
+  confirmar hipocontratilidade, uma pergunta extra sobre contexto séptico associado
+  leva a uma conclusão com `diagnostico: ["Cardiogênico", "Distributivo (séptico)"]`,
+  que a UI mostra lado a lado, sem escolher um.
+- BLUE e CASA continuam de fora do `protocol-flows/` (Fase 4, como já previsto) — a
+  tela de Protocolos já busca `protocol-flows` e só oferece exame guiado para os ids
+  presentes ali; os outros dois aparecem na lista com o conteúdo descritivo existente e
+  um selo "Exame guiado em breve".
+- 17 testes novos (`tests/protocol.test.ts`): máquina de estados isolada de conteúdo
+  (flow sintético) + validação estrutural dos dois flows reais (todo `proximo`/
+  `indeterminadoProximo` aponta para nó existente) + todos os ramos de conclusão
+  alcançáveis do E-FAST real + os 4 caminhos-chave do RUSH real (negativo→distributivo,
+  cardiogênico isolado, cardiogênico+séptico→misto, VCI colapsada→hipovolêmico).
+  91 testes no total do projeto.
+- Verificação de DRM repetida com o bundle desta fase: `grep` por termos exclusivos do
+  novo conteúdo (ex.: "hepatorrenal", "Cardiogênico", "lung sliding", ids dos nós) no
+  `dist/assets/*.js` — zero ocorrências. `dist/sw.js` confirmado precacheando só o app
+  shell, com `denylist: [/^\/api\//]` na rota de navegação.
+
 Paro aqui para revisão antes de seguir para a Fase 3.
