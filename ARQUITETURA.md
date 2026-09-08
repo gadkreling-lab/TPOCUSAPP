@@ -674,4 +674,55 @@ Motor de protocolo genérico (`src/engine/protocol/`) + `ProtocolFlow` (schema d
   `dist/assets/*.js` — zero ocorrências. `dist/sw.js` confirmado precacheando só o app
   shell, com `denylist: [/^\/api\//]` na rota de navegação.
 
-Paro aqui para revisão antes de seguir para a Fase 3.
+### Fase 4 — status: concluída
+
+BLUE completo (execução guiada) + CASA rascunho (execução guiada), fechando os 4
+protocolos do Módulo 3 com o mesmo motor genérico da Fase 3 — nenhuma mudança no
+`src/engine/protocol/` nem no schema de `ProtocolFlow` foi necessária.
+
+- **BLUE**: `src/content/protocol-flows/blue.json` é a tradução direta de
+  `protocolo-blue.fluxograma` (a transcrição literal da Figura 16, pág. 60) em nós
+  pergunta/conclusão — raiz "DESLIZAMENTO PLEURAL" → Presente/Diminuído/Abolido, com
+  todos os sub-ramos e desfechos do próprio fluxograma preservados 1:1, inclusive a
+  lacuna real do ebook (Linhas A + Lung Point ausente → "Aprofundar o diagnóstico com
+  outros métodos", `confianca: 'baixa'`, sem inventar um diagnóstico). Deliberadamente
+  **não** usei `regrasDecisao` (fonte externa, artigo de Lichtenstein) para montar o
+  grafo — CLAUDE.md e a seção 2.2 são explícitos que as duas versões divergem e devem
+  conviver sem uma "corrigir" a outra; toda justificativa do flow cita o próprio
+  fluxograma do ebook, então nenhum selo de fonte externa foi necessário nesta tela.
+- **CASA**: `src/content/protocol-flows/casa.json` executa as 3 etapas cronometradas
+  (tamponamento → embolia pulmonar → atividade cardíaca) descritas em
+  `protocolo-casa.etapas`, citando `prevalencia`/`prognostico`/`conduta` literalmente —
+  incluindo o "cardiac tamponade" em inglês que já estava assim no `conduta` original
+  (Regra 4: transcrição, não filtrei/reescrevi um campo que já existia no content pack).
+  As `etapasAncilares` (pneumotórax hipertensivo, FAST) ficaram de fora do grafo porque
+  o próprio ebook as descreve como situacionais, fora da checagem de pulso cronometrada
+  — não fazem parte das "3 etapas" que a seção 2.3 pediu para virarem tela navegável.
+  O branch mais grave (`casa-conclusao-atividade-ausente`, ausência de atividade
+  cardíaca) repete no `cuidado` a frase do próprio artigo ("a ressuscitação inicial
+  deve ser tentada em todos os pacientes independentemente da atividade cardíaca
+  observada") — é o ponto do protocolo com maior risco de uma conclusão isolada de
+  POCUS influenciar indevidamente a decisão de suspender reanimação, e o requisito do
+  spec de nunca decidir isso sozinho já estava previsto desde a Fase 0.
+- **UI**: `ProtocolFlowScreen` ganhou um cronômetro de pausa (`TimerPausa`) e o selo de
+  fonte externa (`SourceTag`) para o protocolo inteiro quando `Protocol.fonteExterna`
+  existe — hoje só o CASA. O cronômetro é acionado por dado (`Protocol.timerSegundos`/
+  `alertaRetomarCompressoes`), não por um `if (id === 'protocolo-casa')` no código —
+  mesma disciplina de "conteúdo é dado" das fases anteriores. Reinicia a cada nó de
+  pergunta novo (cada etapa é uma pausa de checagem de pulso independente) e, ao
+  estourar o tempo, mostra "Retome as compressões agora" sem bloquear a resposta.
+- `ProtocolsScreen` não precisou de nenhuma mudança de código — já buscava
+  `protocol-flows` para decidir quais protocolos oferecem exame guiado, então BLUE e
+  CASA passaram a aparecer como executáveis assim que os JSONs entraram no ar.
+- 10 testes novos (`tests/protocol.test.ts`, 27 no arquivo, 101 no projeto): validação
+  estrutural dos dois flows reais, todos os 9 desfechos do fluxograma BLUE alcançáveis
+  a partir do `noInicial` (inclusive o ramo mais profundo, PRESENTE→Perfil A→Trombose
+  Venosa→TEP, e a lacuna do Lung Point ausente), e os 5 desfechos do CASA — incluindo o
+  teste que trava a frase de segurança clínica no branch de ausência de atividade
+  cardíaca.
+- DRM verificado de novo: `grep` no `dist/assets/*.js` por termos exclusivos do BLUE e
+  do CASA ("DESLIZAMENTO PLEURAL", "Lung Point", "PLAPS", "pericardiocentese",
+  "standstill", "cardiac tamponade", "Gardner", "Clattenburg", ids dos nós) — zero
+  ocorrências. `dist/sw.js` continua com `denylist: [/^\/api\//]`.
+
+Paro aqui para revisão antes de seguir para a Fase 5.
