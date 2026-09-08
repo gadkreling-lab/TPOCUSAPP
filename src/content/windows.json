@@ -141,9 +141,12 @@
     "nome": "Janela Subxifoide (Subcostal)",
     "categoria": "cardiaca",
     "transdutor": "setorial",
+    "transdutorAlternativo": "convexo — usado no contexto E-FAST/trauma (ambos aceitos, ver fonteExterna)",
     "posicaoPaciente": "Decúbito dorsal (supino). Flexionar os joelhos do paciente e pedir para fazer uma inspiração profunda pode ajudar.",
     "posicaoTransdutor": "Região subxifoide, deixando o transdutor paralelo à pele.",
+    "posicaoTransdutorDetalhada": "Região subxifoide, angulando o transdutor em direção ao ombro esquerdo (técnica de fonte externa para o contexto E-FAST/trauma).",
     "marcador": "Apontado para a esquerda do paciente.",
+    "profundidade": "No contexto E-FAST/trauma, aumentar a profundidade da imagem para melhor visualização (fonte externa).",
     "estruturasVisualizadas": [
       "Ventrículo esquerdo (VE)",
       "Ventrículo direito (VD)",
@@ -154,18 +157,40 @@
     "comoOtimizar": [
       "Flexionar os joelhos do paciente.",
       "Pedir ao paciente para fazer uma inspiração profunda.",
-      "Deixar o transdutor paralelo à pele."
+      "Deixar o transdutor paralelo à pele.",
+      "No contexto E-FAST/trauma, angular o transdutor em direção ao ombro esquerdo do paciente (fonte externa)."
     ],
     "errosComuns": [],
     "oQueAvaliar": [
       "Avaliação subjetiva da função do VE e do VD",
       "Pesquisa de derrame pericárdico e sinais de tamponamento"
     ],
+    "usoNoEfast": "Esta janela corresponde à janela pericárdica subxifoide do protocolo E-FAST (ebook, pág. 64), que lista a janela sem descrever técnica de aquisição própria. No contexto de trauma (E-FAST), a fonte externa orienta o marcador para o lado direito/ombro direito do paciente — diferente da orientação para a esquerda usada na avaliação cardíaca padrão (ebook, pág. 15, Figura 9). As duas convenções de marcador foram preservadas separadamente em vez de fundidas: 'marcador' mantém a redação literal do ebook (contexto cardíaco); a orientação do contexto E-FAST não substitui esse campo. Fusão de conteúdo autorizada pelo autor do curso em 2026-09-08 (antes: duas entradas separadas, 'subxifoide' e 'efast-pericardica-subxifoide', unidas nesta única janela).",
     "paginaEbook": 15,
     "paginasEbook": [
       15,
-      16
-    ]
+      16,
+      63,
+      64
+    ],
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutorAlternativo",
+        "posicaoTransdutorDetalhada",
+        "profundidade",
+        "comoOtimizar (item acrescentado, contexto E-FAST/trauma)",
+        "usoNoEfast"
+      ],
+      "nota": "Estes campos cobrem a técnica de aquisição da janela pericárdica subxifoide no contexto do E-FAST (ebook, págs. 63-65, que lista a janela sem descrever a técnica). Os demais campos desta janela (posicaoPaciente, posicaoTransdutor, marcador, estruturasVisualizadas, comoOtimizar originais, oQueAvaliar, transdutor) são do Ebook TPOCUS 3.0 (págs. 15-16, capítulo de Janelas Cardíacas) e não foram alterados.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
   },
   {
     "id": "subcostal-vci",
@@ -445,59 +470,6 @@
         "posicaoPaciente",
         "posicaoTransdutorDetalhada",
         "marcador",
-        "comoOtimizar (itens acrescentados)"
-      ],
-      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
-      "referenciaComplementar": {
-        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
-        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
-        "acesso": "livre"
-      }
-    }
-  },
-  {
-    "id": "efast-pericardica-subxifoide",
-    "nome": "E-FAST — Janela Pericárdica Subxifoide",
-    "categoria": "cardiaca",
-    "transdutor": "convexo",
-    "posicaoPaciente": "Decúbito dorsal (supino).",
-    "posicaoTransdutor": null,
-    "marcador": "Apontado para o lado direito ou para o ombro direito do paciente.",
-    "estruturasVisualizadas": [
-      "Pericárdio",
-      "Câmaras cardíacas"
-    ],
-    "comoOtimizar": [
-      "Para a técnica detalhada de aquisição, ver a janela subxifoide do capítulo de Janelas Cardíacas (páginas 15-16).",
-      "Angular o transdutor em direção ao ombro esquerdo do paciente."
-    ],
-    "errosComuns": [],
-    "oQueAvaliar": [
-      "Tamponamento cardíaco",
-      "Derrame pericárdico"
-    ],
-    "paginaEbook": 64,
-    "paginasEbook": [
-      63,
-      64
-    ],
-    "verTambem": [
-      "subxifoide"
-    ],
-    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
-    "posicaoTransdutorDetalhada": "Região subxifoide, angulando o transdutor em direção ao ombro esquerdo.",
-    "profundidade": "Aumentar a profundidade da imagem para melhor visualização.",
-    "fonteExterna": {
-      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
-      "url": "https://www.acep.org/sonoguide/basic/fast",
-      "acesso": "livre",
-      "campos": [
-        "transdutor",
-        "transdutorAlternativo",
-        "posicaoPaciente",
-        "posicaoTransdutorDetalhada",
-        "marcador",
-        "profundidade",
         "comoOtimizar (itens acrescentados)"
       ],
       "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",

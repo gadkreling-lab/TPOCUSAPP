@@ -239,7 +239,7 @@
       "efast-recesso-hepatorrenal",
       "efast-recesso-esplenorrenal",
       "efast-espaco-retrovesical",
-      "efast-pericardica-subxifoide",
+      "subxifoide",
       "efast-axilar-anterior-direita",
       "efast-hemiclavicular-anterior-direita",
       "efast-axilar-anterior-esquerda",
@@ -373,5 +373,111 @@
       68,
       69
     ]
+  },
+  {
+    "id": "protocolo-casa",
+    "nome": "Protocolo CASA (Cardiac Arrest Sonographic Assessment)",
+    "status": "pendente_validacao",
+    "autoria": "Gardner KF, Clattenburg EJ, Wroe P, Singh A, Mantuani D, Nagdev A — Departamento de Medicina de Emergência, Highland Hospital, Alameda Health System, Oakland, CA.",
+    "objetivo": "Identificar causas reversíveis de atividade elétrica sem pulso (AESP) de forma rápida e protocolizada, minimizando as interrupções da RCP durante as checagens de pulso.",
+    "contextoClinico": [
+      "Médicos emergencistas têm incorporado o POCUS na avaliação de pacientes em parada cardíaca para identificar causas reversíveis de AESP; o uso é recomendado pela American Heart Association.",
+      "O POCUS prolonga as pausas da RCP, o que impacta negativamente a sobrevida.",
+      "Protocolos de POCUS para parada cardíaca já propostos anteriormente eram considerados complexos e difíceis de aplicar.",
+      "O CASA é um protocolo de três etapas, baseado em evidências, simples e rápido, desenhado para identificar causas reversíveis de AESP minimizando as interrupções da RCP."
+    ],
+    "estrutura": [
+      "Três exames de POCUS, cada um com duração inferior a 10 segundos, realizados durante as checagens de pulso.",
+      "Recomenda-se que o responsável pela cronometragem anuncie em voz alta a duração de cada pausa.",
+      "Deve ser usado um transdutor setorial (cardíaco/phased array), e todas as imagens devem ser gravadas para revisão posterior.",
+      "O examinador deve usar a janela cardíaca ideal para o paciente; a janela subxifoide costuma ser preferível, pois pode ser realizada durante a RCP em andamento.",
+      "O CASA foi desenhado para um único operador, mas um segundo operador deve realizar o ultrassom quando possível — isso foi associado a interrupções mais curtas da RCP.",
+      "Entre cada uma das três pausas, a RCP prossegue por cerca de 2 minutos de suporte avançado de vida (ACLS).",
+      "A ordem das três etapas foi escolhida para espelhar a prevalência das etiologias. A avaliação da atividade cardíaca é deixada por último porque o valor prognóstico da ausência de atividade cardíaca melhora com um tempo maior de parada; além disso, uma pseudo-AESP tende a já ser visualizada na etapa 1, ao avaliar derrame pericárdico."
+    ],
+    "timerSegundos": 10,
+    "alertaRetomarCompressoes": true,
+    "recomendacaoTimer": "Além de seguir o protocolo CASA para limitar o uso do POCUS, um timer de 6 segundos (em vídeo ou operado pelo responsável pela cronometragem) pode servir como lembrete sonoro para retomar a RCP, dando tempo para reiniciar as compressões e manter as checagens de pulso em até 10 segundos. Uma contagem regressiva verbal de 10 segundos frequentemente é imprecisa, levando a falsa segurança e pausas prolongadas.",
+    "etapas": [
+      {
+        "numero": 1,
+        "nome": "Tamponamento cardíaco",
+        "duracaoMaxSegundos": 10,
+        "pergunta": "Há derrame pericárdico? Se presente, há sinais de tamponamento (ex.: colapso diastólico precoce do ventrículo direito)?",
+        "comoFazer": "Avaliar a presença de derrame pericárdico e, se presente, avaliar sinais de tamponamento como colapso diastólico precoce do ventrículo direito.",
+        "prevalencia": "O derrame pericárdico causando tamponamento cardíaco é a causa da parada em 4–15% dos pacientes.",
+        "prognostico": "Pacientes com tamponamento têm sobrevida até a alta hospitalar maior (15,4%) do que outras causas de AESP (1,3%).",
+        "conduta": "Se cardiac tamponade estiver presente, pericardiocentese deve ser fortemente considerada."
+      },
+      {
+        "numero": 2,
+        "nome": "Embolia pulmonar",
+        "duracaoMaxSegundos": 10,
+        "pergunta": "Há sinais de sobrecarga de câmaras direitas (ventrículo direito dilatado e ventrículo esquerdo comparativamente pequeno)?",
+        "comoFazer": "Avaliar sinais de sobrecarga do coração direito, como ventrículo direito dilatado e ventrículo esquerdo comparativamente pequeno.",
+        "prevalencia": "A embolia pulmonar é a causa da parada em 4,0–7,6% dos pacientes.",
+        "prognostico": "Esses pacientes têm sobrevida até a alta hospitalar maior (6,7%) do que outros pacientes em AESP (1,3%).",
+        "conduta": "Se sinais de sobrecarga de câmaras direitas estiverem presentes, a embolia pulmonar deve permanecer como consideração na causa da AESP."
+      },
+      {
+        "numero": 3,
+        "nome": "Atividade cardíaca",
+        "duracaoMaxSegundos": 10,
+        "pergunta": "Há atividade cardíaca global ou fibrilação visível?",
+        "comoFazer": "Avaliar a presença de atividade cardíaca global ou fibrilações.",
+        "significado": "A presença ou ausência de atividade cardíaca ao ecocardiograma à beira do leito fornece informação prognóstica útil em pacientes com AESP.",
+        "prognostico": "A ausência de atividade cardíaca indica pior prognóstico. Pacientes em AESP com parada cardíaca (standstill) ao ultrassom têm sobrevida até a alta hospitalar entre 0,0% e 0,6% — baixa, mas não zero; a ressuscitação inicial deve ser tentada em todos os pacientes independentemente da atividade cardíaca observada.",
+        "conduta": "Se atividade cardíaca estiver presente, reavaliar pulsos e pressão arterial e considerar iniciar vasopressores contínuos. Se nenhuma atividade cardíaca for observada, a utilidade de manter a ressuscitação deve ser revisada em conjunto com outros fatores prognósticos desfavoráveis, como ETCO2 baixo, tempo de parada prolongado e parada não testemunhada."
+      }
+    ],
+    "etapasAncilares": [
+      {
+        "nome": "Pneumotórax hipertensivo",
+        "momento": "Durante a RCP em andamento (não durante a pausa para checagem de pulso).",
+        "comoFazer": "Examinar o tórax anterior bilateral em busca de ausência de deslizamento pleural (lung sliding), indicando pneumotórax.",
+        "prevalencia": "Pneumotórax hipertensivo é causa extremamente rara de parada cardíaca não traumática e frequentemente pode ser diagnosticado clinicamente.",
+        "conduta": "Se um pneumotórax for detectado, descompressão por agulha ou toracostomia podem ser consideradas. Pneumotóraces pequenos e clinicamente insignificantes podem ocorrer por fraturas de costela durante a RCP, e podem não precisar de intervenção aguda."
+      },
+      {
+        "nome": "FAST (líquido livre)",
+        "momento": "Durante a RCP em andamento, conforme o cenário clínico indicar.",
+        "comoFazer": "Avaliar aneurisma roto de aorta abdominal ou gravidez ectópica pela pesquisa de líquido livre em exame FAST.",
+        "observacao": "Realizado caso a caso, conforme indicação clínica — não é uma etapa cronometrada obrigatória do protocolo."
+      }
+    ],
+    "exclusoesExplicitas": [
+      "A avaliação da veia cava inferior (VCI) e da hipovolemia foi intencionalmente excluída do exame CASA, pois fluidos intravenosos costumam ser administrados empiricamente na parada cardíaca, e espera-se que a VCI esteja distendida na maioria das paradas cardíacas devido ao fluxo anterógrado severamente limitado."
+    ],
+    "resultadosImplementacao": [
+      "Estudo pré/pós-intervenção, quase-experimental, em um único pronto-socorro urbano (~70.000 visitas/ano), com 38 ressuscitações pré-intervenção e 45 pós-intervenção filmadas e analisadas.",
+      "As checagens de pulso com pausa de RCP envolvendo POCUS foram, em média, 4,0 segundos mais curtas (IC95% 1,7–6,3) no período pós-intervenção em relação ao pré-intervenção; em regressão linear multivariável (ajustada para ano de residência, procedimento realizado durante a pausa, treinamento do assistente em fellowship de ultrassom e posicionamento do transdutor antes de parar a RCP), a redução associada à implementação do CASA foi de 3,3 segundos (IC95% 0,9–5,6).",
+      "A proporção de checagens de pulso com ultrassom com duração de até 10 segundos quase dobrou, de 10,8% para 19,1%.",
+      "Colocar o transdutor no tórax antes de interromper a RCP e contar com um médico assistente com treinamento em ultrassonografia de emergência (fellowship) também foram associados a pausas mais curtas (3,1 segundos cada).",
+      "Mesmo com o protocolo CASA, o uso de ultrassom continuou associado a checagens de pulso mais longas do que checagens sem ultrassom; os autores concluem que investigação contínua é necessária para determinar o melhor uso do ultrassom durante a parada cardíaca."
+    ],
+    "limitacoes": [
+      "O protocolo CASA foi desenvolvido para atividade elétrica sem pulso (AESP) / ritmos não chocáveis; os artigos-fonte não abordam o uso do protocolo em ritmos chocáveis (FV/TV sem pulso).",
+      "O estudo de implementação não foi randomizado, está sujeito a confundimento residual e a efeito Hawthorne, e foi realizado em um único centro (Highland Hospital, Oakland).",
+      "Os autores do estudo de implementação não conseguiram correlacionar os clipes de vídeo do POCUS às checagens de pulso individuais, então não há garantia de que os residentes executaram o protocolo na ordem prescrita."
+    ],
+    "avisoClinico": "Protocolo não publicado no Ebook TPOCUS 3.0 — conteúdo integralmente extraído de dois artigos fornecidos pelo autor do curso, apoiado em dados de um único centro (Highland Hospital, Oakland, CA). Rascunho pendente de validação clínica pelos sócios do curso antes de publicação para os alunos — ver VALIDACAO-CLINICA.md. Mesmo após validação, nenhuma conclusão deste protocolo substitui o julgamento clínico: toda interpretação deve ser integrada ao quadro clínico completo, e a decisão de suspender ou manter a ressuscitação nunca deve se basear isoladamente em um achado ultrassonográfico.",
+    "fonteExterna": {
+      "referencia": "Gardner KF, Clattenburg EJ, Wroe P, Singh A, Mantuani D, Nagdev A. The Cardiac Arrest Sonographic Assessment (CASA) exam – A standardized approach to the use of ultrasound in PEA. American Journal of Emergency Medicine. 2017.",
+      "url": "https://doi.org/10.1016/j.ajem.2017.08.052",
+      "doi": "10.1016/j.ajem.2017.08.052",
+      "acesso": "fornecido pelo autor do curso em 2026-09-08 — PDF em referencias/gardner-2017-casa-exam.pdf",
+      "campos": [
+        "todos os campos deste protocolo (protocolo inteiro não consta do Ebook TPOCUS 3.0)"
+      ],
+      "nota": "Rascunho pendente de validação clínica pelos sócios — ver VALIDACAO-CLINICA.md. Nada neste protocolo foi inferido ou completado de memória; tudo vem literalmente dos dois artigos citados.",
+      "referenciasComplementares": [
+        {
+          "referencia": "Clattenburg EJ, Wroe PC, Gardner K, Schultz C, Gelber J, Singh A, Nagdev A. Implementation of the Cardiac Arrest Sonographic Assessment (CASA) protocol for patients with cardiac arrest is associated with shorter CPR pulse checks. Resuscitation. 2018.",
+          "url": "https://doi.org/10.1016/j.resuscitation.2018.07.030",
+          "doi": "10.1016/j.resuscitation.2018.07.030",
+          "acesso": "fornecido pelo autor do curso em 2026-09-08 — PDF em referencias/clattenburg-2018-casa-implementation.pdf"
+        }
+      ]
+    }
   }
 ]
