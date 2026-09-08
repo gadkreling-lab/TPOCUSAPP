@@ -1,0 +1,195 @@
+{
+  "id": "protocolo-efast",
+  "noInicial": "efast-01-hepatorrenal",
+  "nos": {
+    "efast-01-hepatorrenal": {
+      "tipo": "pergunta",
+      "janela": "efast-recesso-hepatorrenal",
+      "pergunta": "No recesso hepatorrenal (espaço de Morrison), há líquido livre intracavitário (hemoperitônio) ou sinais de ruptura de órgão sólido?",
+      "achadosDeApoio": [
+        "Presença de líquido livre intracavitário (hemoperitônio)",
+        "Ruptura de órgãos sólidos"
+      ],
+      "imagemId": "p064-01",
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-liquido-livre" },
+        { "label": "Não", "proximo": "efast-02-esplenorrenal" }
+      ],
+      "indeterminadoProximo": "efast-02-esplenorrenal"
+    },
+    "efast-02-esplenorrenal": {
+      "tipo": "pergunta",
+      "janela": "efast-recesso-esplenorrenal",
+      "pergunta": "No recesso esplenorrenal, há líquido livre intracavitário (hemoperitônio) ou sinais de ruptura de órgão sólido?",
+      "achadosDeApoio": [
+        "Presença de líquido livre intracavitário (hemoperitônio)",
+        "Ruptura de órgãos sólidos"
+      ],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-liquido-livre" },
+        { "label": "Não", "proximo": "efast-03-retrovesical" }
+      ],
+      "indeterminadoProximo": "efast-03-retrovesical"
+    },
+    "efast-03-retrovesical": {
+      "tipo": "pergunta",
+      "janela": "efast-espaco-retrovesical",
+      "pergunta": "No espaço retrovesical (fundo de saco de Douglas), há líquido livre intracavitário (hemoperitônio)?",
+      "achadosDeApoio": [
+        "Presença de líquido livre intracavitário (hemoperitônio)"
+      ],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-liquido-livre" },
+        { "label": "Não", "proximo": "efast-04-subxifoide" }
+      ],
+      "indeterminadoProximo": "efast-04-subxifoide"
+    },
+    "efast-04-subxifoide": {
+      "tipo": "pergunta",
+      "janela": "subxifoide",
+      "pergunta": "Na janela subxifoide, há derrame pericárdico com sinais de tamponamento cardíaco?",
+      "achadosDeApoio": [
+        "Avaliação subjetiva da função do VE e do VD",
+        "Pesquisa de derrame pericárdico e sinais de tamponamento"
+      ],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-tamponamento" },
+        { "label": "Não", "proximo": "efast-05-hemotorax-direito" }
+      ],
+      "indeterminadoProximo": "efast-05-hemotorax-direito"
+    },
+    "efast-05-hemotorax-direito": {
+      "tipo": "pergunta",
+      "janela": "efast-axilar-anterior-direita",
+      "pergunta": "Na linha axilar anterior direita (transição fígado–pulmão–diafragma), há sinais de hemotórax direito?",
+      "achadosDeApoio": ["Hemotórax direito"],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-hemotorax-direito" },
+        { "label": "Não", "proximo": "efast-06-pneumotorax-direito" }
+      ],
+      "indeterminadoProximo": "efast-06-pneumotorax-direito"
+    },
+    "efast-06-pneumotorax-direito": {
+      "tipo": "pergunta",
+      "janela": "efast-hemiclavicular-anterior-direita",
+      "pergunta": "Na linha hemiclavicular anterior direita (3º–5º espaço intercostal), há sinais de pneumotórax direito?",
+      "achadosDeApoio": [
+        "Avaliação do pneumotórax direito",
+        "Deslizamento pleural (lung sliding) — presença afasta pneumotórax",
+        "Lung point — sinal altamente específico (cerca de 100%) para pneumotórax"
+      ],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-pneumotorax-direito" },
+        { "label": "Não", "proximo": "efast-07-hemotorax-esquerdo" }
+      ],
+      "indeterminadoProximo": "efast-07-hemotorax-esquerdo"
+    },
+    "efast-07-hemotorax-esquerdo": {
+      "tipo": "pergunta",
+      "janela": "efast-axilar-anterior-esquerda",
+      "pergunta": "Na linha axilar anterior esquerda (transição baço–pulmão–diafragma), há sinais de hemotórax esquerdo?",
+      "achadosDeApoio": ["Hemotórax esquerdo"],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-hemotorax-esquerdo" },
+        { "label": "Não", "proximo": "efast-08-pneumotorax-esquerdo" }
+      ],
+      "indeterminadoProximo": "efast-08-pneumotorax-esquerdo"
+    },
+    "efast-08-pneumotorax-esquerdo": {
+      "tipo": "pergunta",
+      "janela": "efast-hemiclavicular-anterior-esquerda",
+      "pergunta": "Na linha hemiclavicular anterior esquerda (3º–5º espaço intercostal), há sinais de pneumotórax esquerdo?",
+      "achadosDeApoio": [
+        "Avaliação do pneumotórax esquerdo",
+        "Deslizamento pleural (lung sliding) — presença afasta pneumotórax",
+        "Lung point — sinal altamente específico (cerca de 100%) para pneumotórax"
+      ],
+      "opcoes": [
+        { "label": "Sim", "proximo": "efast-conclusao-pneumotorax-esquerdo" },
+        { "label": "Não", "proximo": "efast-conclusao-negativo" }
+      ],
+      "indeterminadoProximo": "efast-conclusao-negativo"
+    },
+    "efast-conclusao-liquido-livre": {
+      "tipo": "conclusao",
+      "diagnostico": "E-FAST positivo — líquido livre intracavitário",
+      "confianca": "media",
+      "justificativa": "Um FAST positivo indica presença de líquido intracavitário. Estudos demonstram sensibilidade de 85% e especificidade de até 96% para o diagnóstico de sangramentos significativos.",
+      "proximosPassos": [
+        "Correlacionar com a estabilidade hemodinâmica do paciente.",
+        "Se instável: cirurgia imediata.",
+        "Se estável: tomografia computadorizada."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes. Apresenta limitações em detecção de lesões retroperitoneais e vísceras ocas."
+    },
+    "efast-conclusao-tamponamento": {
+      "tipo": "conclusao",
+      "diagnostico": "Suspeita de tamponamento cardíaco",
+      "confianca": "media",
+      "justificativa": "Derrame pericárdico com sinais de tamponamento identificado na janela subxifoide.",
+      "proximosPassos": [
+        "Correlacionar com a estabilidade hemodinâmica do paciente.",
+        "Se instável: cirurgia imediata.",
+        "Se estável: tomografia computadorizada."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes."
+    },
+    "efast-conclusao-hemotorax-direito": {
+      "tipo": "conclusao",
+      "diagnostico": "Suspeita de hemotórax direito",
+      "confianca": "media",
+      "justificativa": "Achados sugestivos de líquido pleural (hemotórax) na linha axilar anterior direita.",
+      "proximosPassos": [
+        "Correlacionar com a estabilidade hemodinâmica do paciente.",
+        "Se instável: cirurgia imediata.",
+        "Se estável: tomografia computadorizada."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes."
+    },
+    "efast-conclusao-hemotorax-esquerdo": {
+      "tipo": "conclusao",
+      "diagnostico": "Suspeita de hemotórax esquerdo",
+      "confianca": "media",
+      "justificativa": "Achados sugestivos de líquido pleural (hemotórax) na linha axilar anterior esquerda.",
+      "proximosPassos": [
+        "Correlacionar com a estabilidade hemodinâmica do paciente.",
+        "Se instável: cirurgia imediata.",
+        "Se estável: tomografia computadorizada."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes."
+    },
+    "efast-conclusao-pneumotorax-direito": {
+      "tipo": "conclusao",
+      "diagnostico": "Suspeita de pneumotórax direito",
+      "confianca": "media",
+      "justificativa": "A ausência de deslizamento pleural (lung sliding) levanta suspeita de pneumotórax. Quando identificável, o lung point é um sinal altamente específico (cerca de 100%) para o diagnóstico.",
+      "proximosPassos": [
+        "Correlacionar com a estabilidade hemodinâmica e respiratória do paciente.",
+        "Considerar radiografia ou tomografia de tórax conforme o quadro clínico."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes."
+    },
+    "efast-conclusao-pneumotorax-esquerdo": {
+      "tipo": "conclusao",
+      "diagnostico": "Suspeita de pneumotórax esquerdo",
+      "confianca": "media",
+      "justificativa": "A ausência de deslizamento pleural (lung sliding) levanta suspeita de pneumotórax. Quando identificável, o lung point é um sinal altamente específico (cerca de 100%) para o diagnóstico.",
+      "proximosPassos": [
+        "Correlacionar com a estabilidade hemodinâmica e respiratória do paciente.",
+        "Considerar radiografia ou tomografia de tórax conforme o quadro clínico."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes."
+    },
+    "efast-conclusao-negativo": {
+      "tipo": "conclusao",
+      "diagnostico": "E-FAST sem achados nas oito janelas avaliadas",
+      "confianca": "media",
+      "justificativa": "Nenhuma das oito janelas do E-FAST mostrou líquido livre, tamponamento, hemotórax ou sinais de pneumotórax. Estudos demonstram sensibilidade de 85% — um exame negativo não exclui lesão significativa.",
+      "proximosPassos": [
+        "Manter vigilância clínica e reavaliar conforme evolução do paciente.",
+        "Considerar repetir o exame ou outros métodos de imagem se a suspeita clínica persistir."
+      ],
+      "cuidado": "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes. Apresenta limitações em detecção de lesões retroperitoneais e vísceras ocas."
+    }
+  }
+}

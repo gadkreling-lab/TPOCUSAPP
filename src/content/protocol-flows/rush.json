@@ -1,0 +1,179 @@
+{
+  "id": "protocolo-rush",
+  "noInicial": "rush-pump-hipocontratilidade",
+  "nos": {
+    "rush-pump-hipocontratilidade": {
+      "tipo": "pergunta",
+      "janela": "apical-4-camaras",
+      "pergunta": "Avaliando a função ventricular global (Pump), há hipocontratilidade (disfunção ventricular)?",
+      "achadosDeApoio": ["Função ventricular global: Hipocontratilidade → choque cardiogênico."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-pump-misto-septico" },
+        { "label": "Não", "proximo": "rush-pump-derrame" }
+      ],
+      "indeterminadoProximo": "rush-pump-derrame"
+    },
+    "rush-pump-misto-septico": {
+      "tipo": "pergunta",
+      "janela": null,
+      "pergunta": "Some-se a isso um contexto clínico sugestivo de sepse (ex.: foco infeccioso, febre), com VCI variável a despeito da disfunção ventricular encontrada?",
+      "achadosDeApoio": ["Menor acurácia em choques mistos (ex: séptico com disfunção miocárdica)."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-misto" },
+        { "label": "Não", "proximo": "rush-conclusao-cardiogenico" }
+      ],
+      "indeterminadoProximo": "rush-conclusao-cardiogenico"
+    },
+    "rush-pump-derrame": {
+      "tipo": "pergunta",
+      "janela": "subxifoide",
+      "pergunta": "Há derrame pericárdico sugestivo de tamponamento cardíaco?",
+      "achadosDeApoio": ["Efusão pericárdica: Pode indicar tamponamento cardíaco."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-obstrutivo-tamponamento" },
+        { "label": "Não", "proximo": "rush-pump-dilatacao-vd" }
+      ],
+      "indeterminadoProximo": "rush-pump-dilatacao-vd"
+    },
+    "rush-pump-dilatacao-vd": {
+      "tipo": "pergunta",
+      "janela": "apical-4-camaras",
+      "pergunta": "Há dilatação do ventrículo direito, sugerindo sobrecarga aguda de câmaras direitas?",
+      "achadosDeApoio": ["Dilatação do ventrículo direito: Sugere embolia pulmonar maciça."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-obstrutivo-tep" },
+        { "label": "Não", "proximo": "rush-tank-vci" }
+      ],
+      "indeterminadoProximo": "rush-tank-vci"
+    },
+    "rush-tank-vci": {
+      "tipo": "pergunta",
+      "janela": "subcostal-vci",
+      "pergunta": "Avaliando a veia cava inferior (Tank), qual o padrão observado?",
+      "achadosDeApoio": [
+        "VCI colapsada → hipovolemia.",
+        "VCI distendida → congestão ou obstrução venosa."
+      ],
+      "opcoes": [
+        { "label": "Colapsada", "proximo": "rush-conclusao-hipovolemico" },
+        { "label": "Distendida", "proximo": "rush-tank-linhasb" },
+        { "label": "Variável, sem colapso nem distensão fixos", "proximo": "rush-tank-linhasb" }
+      ],
+      "indeterminadoProximo": "rush-tank-linhasb"
+    },
+    "rush-tank-linhasb": {
+      "tipo": "pergunta",
+      "janela": "pulmonar-anterior-superior",
+      "pergunta": "Há linhas B difusas (padrão de edema pulmonar) nos campos pulmonares?",
+      "achadosDeApoio": ["Linhas B → edema pulmonar."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-cardiogenico" },
+        { "label": "Não", "proximo": "rush-tank-pneumotorax" }
+      ],
+      "indeterminadoProximo": "rush-tank-pneumotorax"
+    },
+    "rush-tank-pneumotorax": {
+      "tipo": "pergunta",
+      "janela": "pulmonar-anterior-superior",
+      "pergunta": "Há ausência de deslizamento pleural (lung sliding), sugestiva de pneumotórax?",
+      "achadosDeApoio": ["Ausência de deslizamento pleural → pneumotórax."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-obstrutivo-pneumotorax" },
+        { "label": "Não", "proximo": "rush-tank-fast" }
+      ],
+      "indeterminadoProximo": "rush-tank-fast"
+    },
+    "rush-tank-fast": {
+      "tipo": "pergunta",
+      "janela": "efast-recesso-hepatorrenal",
+      "pergunta": "Há líquido livre (hemoperitônio) ao FAST, sugestivo de hemorragia intra-abdominal?",
+      "achadosDeApoio": ["Líquido livre → hemoperitônio ou hemorragia intra-abdominal."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-hipovolemico" },
+        { "label": "Não", "proximo": "rush-pipes-aorta" }
+      ],
+      "indeterminadoProximo": "rush-pipes-aorta"
+    },
+    "rush-pipes-aorta": {
+      "tipo": "pergunta",
+      "janela": "aorta-abdominal-proximal",
+      "pergunta": "O diâmetro da aorta abdominal está acima de 3 cm, sugestivo de aneurisma/dissecção?",
+      "achadosDeApoio": ["Aorta abdominal: Diâmetro >3 cm → aneurisma/dissecção."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-hipovolemico" },
+        { "label": "Não", "proximo": "rush-pipes-veias" }
+      ],
+      "indeterminadoProximo": "rush-pipes-veias"
+    },
+    "rush-pipes-veias": {
+      "tipo": "pergunta",
+      "janela": "venoso-femoral-comum",
+      "pergunta": "Há trombo venoso (TVP) em veias femorais ou poplíteas?",
+      "achadosDeApoio": ["Veias femorais e jugulares: Presença de trombo → choque obstrutivo."],
+      "opcoes": [
+        { "label": "Sim", "proximo": "rush-conclusao-obstrutivo-tep" },
+        { "label": "Não", "proximo": "rush-conclusao-distributivo" }
+      ],
+      "indeterminadoProximo": "rush-conclusao-distributivo"
+    },
+    "rush-conclusao-cardiogenico": {
+      "tipo": "conclusao",
+      "diagnostico": "Cardiogênico",
+      "confianca": "media",
+      "justificativa": "Achados RUSH compatíveis com choque cardiogênico: disfunção ventricular, VCI distendida, linhas B.",
+      "proximosPassos": ["Suporte inotrópico, tratamento da falência cardíaca"],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    },
+    "rush-conclusao-obstrutivo-tamponamento": {
+      "tipo": "conclusao",
+      "diagnostico": "Obstrutivo — tamponamento cardíaco",
+      "confianca": "media",
+      "justificativa": "Achados RUSH compatíveis com choque obstrutivo (tamponamento, TEP, pneumotórax) — neste caso, derrame pericárdico com sinais de tamponamento.",
+      "proximosPassos": ["Drenagem/anticoagulação conforme causa"],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    },
+    "rush-conclusao-obstrutivo-tep": {
+      "tipo": "conclusao",
+      "diagnostico": "Obstrutivo — suspeita de embolia pulmonar",
+      "confianca": "media",
+      "justificativa": "Achados RUSH compatíveis com choque obstrutivo (tamponamento, TEP, pneumotórax) — neste caso, dilatação do ventrículo direito e/ou trombose venosa profunda associadas.",
+      "proximosPassos": ["Drenagem/anticoagulação conforme causa"],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    },
+    "rush-conclusao-obstrutivo-pneumotorax": {
+      "tipo": "conclusao",
+      "diagnostico": "Obstrutivo — pneumotórax hipertensivo",
+      "confianca": "media",
+      "justificativa": "Ausência de lung sliding → pneumotórax hipertensivo. Achados RUSH compatíveis com choque obstrutivo (tamponamento, TEP, pneumotórax).",
+      "proximosPassos": ["Drenagem/anticoagulação conforme causa"],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    },
+    "rush-conclusao-hipovolemico": {
+      "tipo": "conclusao",
+      "diagnostico": "Hipovolêmico",
+      "confianca": "media",
+      "justificativa": "Achados RUSH compatíveis com choque hipovolêmico: VCI colapsada, câmaras pequenas, pulmões secos.",
+      "proximosPassos": ["Reposição volêmica, controle de sangramento"],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    },
+    "rush-conclusao-distributivo": {
+      "tipo": "conclusao",
+      "diagnostico": "Distributivo (séptico)",
+      "confianca": "baixa",
+      "justificativa": "Achados RUSH compatíveis com choque distributivo: coração hiperdinâmico, VCI variável. Sem achados de Pump, Tank ou Pipes explicando o choque por outra via — diagnóstico de exclusão pelo RUSH, que não estabelece por si só um foco infeccioso.",
+      "proximosPassos": ["Antibióticos, reposição volêmica, suporte vasopressor"],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    },
+    "rush-conclusao-misto": {
+      "tipo": "conclusao",
+      "diagnostico": ["Cardiogênico", "Distributivo (séptico)"],
+      "confianca": "baixa",
+      "justificativa": "Disfunção ventricular associada a um quadro clínico sugestivo de sepse é compatível com choque misto. O protocolo RUSH tem menor acurácia nessa situação (ex.: séptico com disfunção miocárdica).",
+      "proximosPassos": [
+        "Suporte inotrópico, tratamento da falência cardíaca",
+        "Antibióticos, reposição volêmica, suporte vasopressor"
+      ],
+      "cuidado": "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos — em choque misto, o RUSH sozinho não isola qual componente predomina."
+    }
+  }
+}
