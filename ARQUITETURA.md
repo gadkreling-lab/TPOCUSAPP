@@ -590,7 +590,41 @@ códigos + polimento + deploy).
 A Fase 1 ficou maior do que no spec original: além do esqueleto de navegação e design
 system, agora precisa entregar o backend inteiro de controle de acesso e busca de
 conteúdo (seções 4 e 6) antes de qualquer módulo fazer sentido — sem isso, não há como
-um módulo buscar dado nenhum para mostrar. Vou tratar isso como a primeira entrega da
-Fase 1, antes da navegação visual.
+um módulo buscar dado nenhum para mostrar. Tratei isso como a primeira entrega da
+Fase 1, antes da navegação visual. **Status: concluída.**
 
-Paro aqui para revisão antes de tocar em código (Fase 1).
+### Fase 2 — status: concluída
+
+O schema de `CalculatorDef` da seção 2.1 foi refinado durante a implementação, em
+relação ao esboço original deste documento:
+
+- `avisoCondicional` (singular) virou `avisosCondicionais` (array, avaliado em ordem,
+  primeiro que disparar vence) — o EPSS precisa de duas mensagens diferentes
+  (valvopatia vs. prótese mitral), não uma mensagem combinada.
+- `interpretacao: (valor) => {...}` do esboço original **não é serializável em JSON**
+  e violaria "conteúdo é dado, não código" — virou `faixas: FaixaInterpretacao[]`, cada
+  uma com `condicoes` (uma ou mais, todas em E lógico — o caso composto da VCI
+  espontânea cruza diâmetro E colapsabilidade) e `textoNaoClassificado` obrigatório
+  para quando nenhuma faixa bate, em vez de aproximar para a mais próxima (CLAUDE.md
+  Regra 1) — testado explicitamente para EPSS (7 e 13 mm exatos), VCI mecânica
+  (exatamente 18%) e Brockelsby (exatamente 3 espaços, o exemplo citado no próprio
+  CLAUDE.md).
+- `GateDef` separado do esboço original não existia de verdade — o gate da VCI
+  mecânica é só 4 campos `booleano` com `avisosCondicionais.modo: 'algumFalso'`, mesmo
+  mecanismo do EPSS (`modo: 'qualquerVerdadeiro'`). Um mecanismo só, dois usos.
+- Corrigido durante os testes: o motor arredonda cada resultado a 6 casas decimais
+  antes de classificar — sem isso, ruído de ponto flutuante do IEEE754 podia jogar um
+  valor clinicamente exato (ex.: exatamente 18%) para o lado errado de uma fronteira
+  dependendo da ordem das operações. Descoberto por um teste que falhou, não por
+  inspeção — ver tests/calculators.test.ts.
+- Corrigido durante os testes: um campo do formulário ainda não preenchido lançava um
+  erro que ia parar numa caixa vermelha na tela, antes mesmo do aluno terminar de
+  digitar. `ErroVariavelAusente` (subclasse de `ErroFormula`) agora distingue
+  "formulário incompleto" (omite o resultado em silêncio) de um erro de verdade.
+
+72 testes cobrindo as 6 calculadoras, incluindo o exemplo do ebook (TSVE 2 cm/VTI 20
+cm/FC 70 → VS 62,8 mL, DC ≈ 4,4 L/min) e as 3 lacunas reais do ebook (EPSS 7/13 mm,
+VCI mecânica 18%, Brockelsby 3 EIC) confirmadas como "não classificado", não
+interpoladas.
+
+Paro aqui para revisão antes de seguir para a Fase 3.
