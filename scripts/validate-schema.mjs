@@ -17,9 +17,11 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { schemasPorArquivo } from './content-schemas.mjs'
 import { calculatorDefSchema } from './calculator-schemas.mjs'
+import { protocolFlowSchema } from './protocol-flow-schemas.mjs'
 
 const DIR_CONTENT = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'content')
 const DIR_CALCULATORS = join(DIR_CONTENT, 'calculators')
+const DIR_PROTOCOL_FLOWS = join(DIR_CONTENT, 'protocol-flows')
 
 let totalItens = 0
 let totalErros = 0
@@ -74,8 +76,27 @@ for (const nomeArquivo of readdirSync(DIR_CALCULATORS)) {
   if (!resultado.success) relatarErros(`calculators/${nomeArquivo}`, dados?.id ?? nomeArquivo, resultado)
 }
 
+// --- protocol-flows: um ProtocolFlow por arquivo (grafo de execução do módulo 3) ---
+let nProtocolFlows = 0
+for (const nomeArquivo of readdirSync(DIR_PROTOCOL_FLOWS)) {
+  if (!nomeArquivo.endsWith('.json')) continue
+  nProtocolFlows++
+  const caminho = join(DIR_PROTOCOL_FLOWS, nomeArquivo)
+  let dados
+  try {
+    dados = JSON.parse(readFileSync(caminho, 'utf8'))
+  } catch (e) {
+    console.error(`✗ protocol-flows/${nomeArquivo} não parseia: ${e.message}`)
+    totalErros++
+    continue
+  }
+  totalItens++
+  const resultado = protocolFlowSchema.safeParse(dados)
+  if (!resultado.success) relatarErros(`protocol-flows/${nomeArquivo}`, dados?.id ?? nomeArquivo, resultado)
+}
+
 console.log(
-  `\nValidação de schema (zod): ${totalItens} itens verificados em ${Object.keys(schemasPorArquivo).length + nCalculadoras} arquivos.`,
+  `\nValidação de schema (zod): ${totalItens} itens verificados em ${Object.keys(schemasPorArquivo).length + nCalculadoras + nProtocolFlows} arquivos.`,
 )
 if (totalErros) {
   console.error(`\n✗ ${totalErros} erro(s) de schema.`)
