@@ -1,0 +1,237 @@
+[
+  {
+    "capitulo": "Janelas Básicas do Ecocardiograma",
+    "capituloId": "janelas-cardiacas",
+    "paginaEbook": 18,
+    "referencias": [
+      {
+        "ordem": null,
+        "citacao": "Cardiovascular Point of Care Ultrasound Workbook - American College of Cardiology. (n.d.). Retrieved March 24, 2025, from https://www.acc.org/About-ACC/Innovation/POCUS",
+        "url": "https://www.acc.org/About-ACC/Innovation/POCUS"
+      },
+      {
+        "ordem": null,
+        "citacao": "Guidelines for Performing a Comprehensive Transthoracic Echocardiographic Examination in Adults: Recommendations from the American Society of Echocardiography. (n.d.). Retrieved March 24, 2025, from https://www.asecho.org/guideline/guidelines-for-performing-a-comprehensive-transthoracic-echocardiographic-examination-in-adults/",
+        "url": "https://www.asecho.org/guideline/guidelines-for-performing-a-comprehensive-transthoracic-echocardiographic-examination-in-adults/"
+      },
+      {
+        "ordem": null,
+        "citacao": "Kirkpatrick, J. N., Panebianco, N., Díaz-Gómez, J. L., Adhikari, S., Bremer, M. L., Bronshteyn, Y. S., Damewood, S., Jankowski, M., Johri, A., H Kaplan, J. R., Kimura, B. J., Kort, S., Labovitz, A., Lu, J. C., Y Ma, I. W., Mayo, P. H., Mulvagh, S. L., Nikravan, S., Pai Cole, S., … Mae West, F. (2024). Recommendations for Cardiac Point-of-Care Ultrasound Nomenclature. Journal of the American Society of Echocardiography, 37, 809–819.",
+        "doi": "10.1016/j.echo.2024.05.001"
+      }
+    ]
+  },
+  {
+    "capitulo": "Medidas Básicas",
+    "capituloId": "medidas-basicas",
+    "paginaEbook": 35,
+    "referencias": [
+      {
+        "ordem": 1,
+        "citacao": "Aloia E, Cameli M, et al. TAPSE: an old but useful tool in different diseases. Int J Cardiol. 2016;225:177–83."
+      },
+      {
+        "ordem": 2,
+        "citacao": "Lang RM, Badano LP, et al. Recommendations for cardiac chamber quantification by echocardiography in adults: an update from the American Society of Echocardiography and the European Association of Cardiovascular Imaging. J Am Soc Echocardiogr. 2015;28(1):1–39.e12"
+      },
+      {
+        "ordem": 3,
+        "citacao": "Carvalho, Andressa Alves de; Carvalho, Wanessa Alves de; Botelho, Luis Fabio Barbosa; Melo, Marcelo Dantas Tavares de. Assessment of Left Ventricular Function by MAPSE (Mitral Annular Plane Systolic Excursion): Main Clinical Applications. Arq Bras Cardiol: Imagem cardiovasc., v. 38, n. 2, e20240105, May. 2025."
+      },
+      {
+        "ordem": 4,
+        "citacao": "Wang, Yong-Huai et al. \"Normal reference values for mitral annular plane systolic excursion by motion-mode and speckle tracking echocardiography: a prospective, multicentre, population-based study.\" European heart journal. Cardiovascular Imaging vol. 24,10 (2023): 1384-1393.",
+        "doi": "10.1093/ehjci/jead187"
+      },
+      {
+        "ordem": 5,
+        "citacao": "Massie BM, Schiller NB, Ratshin RA, Parmley WW. Mitral-septal separation: new echocardiographic index of left ventricular function. Am J Cardiol. 1977;39(7):1008–16."
+      },
+      {
+        "ordem": 6,
+        "citacao": "Lew W, Henning H, Schelbert H, Karliner JS. Assessment of mitral valve e point-septal separation as an index of left ventricular function in acute and chronic ischemic heart disease. Am J Cardiol. 1978;41(2):436."
+      },
+      {
+        "ordem": 7,
+        "citacao": "Saul T, Siadecki SD, Berkowitz R, Rose G, Matilsky D, Sauler A. M-mode ultrasound applications for the emergency medicine physician. J Emerg Med. 2015;49(5):686–92."
+      },
+      {
+        "ordem": 8,
+        "citacao": "Lee CW, Kory PD, Arntfield RT. Development of a fluid resuscitation protocol using inferior vena cava and lung ultrasound. J Crit Care. 2016;31(1):96–100."
+      }
+    ]
+  },
+  {
+    "capitulo": "Ultrassom Pulmonar",
+    "capituloId": "ultrassom-pulmonar",
+    "paginaEbook": 61,
+    "paginasEbook": [
+      61,
+      62
+    ],
+    "referencias": [
+      {
+        "ordem": 1,
+        "citacao": "Lichtenstein DA. BLUE-protocol and FALLS-protocol: two applications of lung ultrasound in the critically ill. 2015; 147: 1659-1670.",
+        "doi": "10.1378/chest.14-1313"
+      },
+      {
+        "ordem": 2,
+        "citacao": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1. Published 2014 Jan 9.",
+        "doi": "10.1186/2110-5820-4-1"
+      },
+      {
+        "ordem": 3,
+        "citacao": "Volpicelli G, et al. International evidence-based recommendations for point-of-care lung ultrasound. Intensive Care Med 2012; 38: 577–91."
+      },
+      {
+        "ordem": 4,
+        "citacao": "Diaz-Gomez JL, Sharif S, Ablordeppey E, et al. Society of Critical Care Medicine guidelines on adult critical care ultrasonography: focused update 2024. Crit Care Med. 2025;53(2):e447-e458."
+      },
+      {
+        "ordem": 5,
+        "citacao": "Kok, Tuinman, Haaksma. Lung ultrasound in Pneumonia: a guide for effective implementation. Intern Emerg Med. 2024 Dec 10.",
+        "doi": "10.1007/s11739-024-03807-0"
+      },
+      {
+        "ordem": 6,
+        "citacao": "Laursen CB, Cline A, Hallifax R, et al. European Respiratory Society statement on thoracic ultrasound. European Respiratory Journal 2021 57(3): 2001519.",
+        "doi": "10.1183/13993003.01519-2020"
+      },
+      {
+        "ordem": 7,
+        "citacao": "Beshara M, Bittner E, Goffi A, et al. Nuts and bolts of lung ultrasound: utility, scanning techniques, protocols, and findings in common pathologies. Crit Care. 2024 Oct 7;28(1):328.",
+        "doi": "10.1186/s13054-024-05102-y"
+      },
+      {
+        "ordem": 8,
+        "citacao": "Buda N, Mendrala K, Skoczyński S, et al., Basics of Point-of-Care Lung Ultrasonography. N Engl J Med 2023;389: e44.",
+        "doi": "10.1056/NEJMvcm2108203"
+      },
+      {
+        "ordem": 9,
+        "citacao": "Martinez Losas, P.; de Cortina Camarero, C.; Jimenez Loeches, S.; Cortés-Beringola, A.; Arnanz González, I.; Muñoz Aguilera, R. Introducción a la ecografía pulmonar para cardiólogos. Revista de Ecocardiografía Práctica y Otras Técnicas de Imagen Cardíaca, [S. l.], v. 8, n. 1, p. 1–9, 2025. Disponível em: https://imagenretic.org/RevEcocarPract/article/view/718.",
+        "doi": "10.37615/retic.v8n1a2",
+        "url": "https://imagenretic.org/RevEcocarPract/article/view/718"
+      },
+      {
+        "ordem": 10,
+        "citacao": "de Oliveira, R. R., Rodrigues, T. P., da Silva, P. S. D., Gomes, A. C., & Chammas, M. C. (2020). Lung ultrasound: an additional tool in COVID-19. Radiologia brasileira, 53(4), 241–251.",
+        "doi": "10.1590/0100-3984.2020.0051"
+      },
+      {
+        "ordem": 11,
+        "citacao": "Rocca, E., Zanza, C., Longhitano, Y., Piccolella, F., Romenskaya, T., Racca, F., Savioli, G., Saviano, A., Piccioni, A., & Mongodi, S. (2023). Lung Ultrasound in Critical Care and Emergency Medicine: Clinical Review. Advances in Respiratory Medicine, 91(3), 203-223.",
+        "doi": "10.3390/arm91030017"
+      },
+      {
+        "ordem": 12,
+        "citacao": "Demi, L., Wolfram, F., Klersy, C., De Silvestri, A., Ferretti, V.V., Muller, M., Miller, D., Feletti, F., Wełnicki, M., Buda, N., Skoczylas, A., Pomiecko, A., Damjanovic, D., Olszewski, R., Kirkpatrick, A.W., Breitkreutz, R., Mathis, G., Soldati, G., Smargiassi, A., Inchingolo, R. and Perrone, T. (2023), New International Guidelines and Consensus on the Use of Lung Ultrasound. J Ultrasound Med, 42: 309-344.",
+        "doi": "10.1002/jum.16088"
+      },
+      {
+        "ordem": 13,
+        "citacao": "Goffi, A., Kruisselbrink, R. & Volpicelli, G. The sound of air: point-of-care lung ultrasound in perioperative medicine. Can J Anesth/J Can Anesth 65, 399–416 (2018).",
+        "doi": "10.1007/s12630-018-1062-x"
+      },
+      {
+        "ordem": 14,
+        "citacao": "Marini TJ, Rubens DJ, Zhao YT, Weis J, O'Connor TP, Novak WH, Kaproth-Joslin KA. Lung Ultrasound: The Essentials. Radiol Cardiothorac Imaging. 2021 Apr 29;3(2):e200564. PMID: 33969313; PMCID: PMC8098095.",
+        "doi": "10.1148/ryct.2021200564"
+      },
+      {
+        "ordem": 15,
+        "citacao": "Bhoil R, Ahluwalia A, Chopra R, Surya M, Bhoil S. Signs and lines in lung ultrasound. J Ultrason. 2021 Aug 16;21(86):e225-e233. Epub 2021 Sep 9. PMID: 34540277; PMCID: PMC8439137.",
+        "doi": "10.15557/JoU.2021.0036"
+      }
+    ]
+  },
+  {
+    "capitulo": "Protocolo E-FAST",
+    "capituloId": "protocolo-efast",
+    "paginaEbook": null,
+    "referencias": [],
+    "observacao": "O capítulo E-FAST (páginas 63-65) não apresenta lista de referências bibliográficas no ebook."
+  },
+  {
+    "capitulo": "Protocolo RUSH",
+    "capituloId": "protocolo-rush",
+    "paginaEbook": 69,
+    "referencias": [
+      {
+        "ordem": null,
+        "citacao": "Perera P, Mailhot T, Riley D, Mandavia D. The RUSH Exam: Rapid Ultrasound in Shock in the Evaluation of the Critically Ill. Emerg Med Clin North Am. 2010;28(1):29-56."
+      }
+    ]
+  },
+  {
+    "capitulo": "Ultrassom Vascular",
+    "capituloId": "ultrassom-vascular",
+    "paginaEbook": 95,
+    "referencias": [
+      {
+        "ordem": null,
+        "citacao": "Kang, S.Y., Jo, I.J., Heo, S. et al. Emergency medicine residents' learning curve in diagnosing deep vein thrombosis with 3-point venous point-of-care ultrasound. Int J Emerg Med 17, 75 (2024).",
+        "doi": "10.1186/s12245-024-00645-x"
+      },
+      {
+        "ordem": null,
+        "citacao": "D'Oria M, Girardi L, Amgad A, Sherif M, Piffaretti G, Ruaro B, Calvagna C, Dueppers P, Lepidi S, Donadini MP. Expert-Based Narrative Review on Compression UltraSonography (CUS) for Diagnosis and Follow-Up of Deep Venous Thrombosis (DVT). Diagnostics. 2025; 15(1):82.",
+        "doi": "10.3390/diagnostics15010082"
+      },
+      {
+        "ordem": null,
+        "citacao": "Varrias D, Palaiodimos L, Balasubramanian P, Barrera CA, Nauka P, Arfaras-Melainis A, Zamora C, Zavras P, Napolitano M, Gulani P, et al. The Use of Point-of-Care Ultrasound (POCUS) in the Diagnosis of Deep Vein Thrombosis. Journal of Clinical Medicine. 2021; 10(17):3903.",
+        "doi": "10.3390/jcm10173903"
+      },
+      {
+        "ordem": null,
+        "citacao": "Blaivas, M., Lambert, M., Harwood, R., Wood, J., Konicki, J. (2000). Lower-extremity Doppler for Deep Venous Thrombosis—Can Emergency Physicians Be Accurate and Fast? Academic Emergency Medicine 7(2), 120-126.",
+        "doi": "10.1111/j.1553-2712.2000.tb00512.x"
+      },
+      {
+        "ordem": null,
+        "citacao": "Zitek, J., Baydoun, J., Baird, J. (2013). Tools for the Clinician: The Essentials of Bedside (ED or ICU) Ultrasound for Deep Vein Thrombosis. Current Emergency and Hospital Medicine Reports 1(2), 65-70.",
+        "doi": "10.1007/s40138-013-0016-4"
+      },
+      {
+        "ordem": null,
+        "citacao": "Nishigami, K. Use of aortic point-of-care ultrasound in conventional and emergent echocardiography. J Med Ultrasonics 49, 655–661 (2022).",
+        "doi": "10.1007/s10396-021-01151-w"
+      },
+      {
+        "ordem": null,
+        "citacao": "Kristine Jeffers, Seshidar Tekmal, Melissa Myers, Ultrasound of the Aorta, Emergency Medicine Clinics of North America, Volume 42, Issue 4, 2024, Pages 791-803, ISSN 0733-8627, ISBN 9780443246807.",
+        "doi": "10.1016/j.emc.2024.05.005",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0733862724000622"
+      }
+    ]
+  },
+  {
+    "capitulo": "Material Complementar — Sugestões de Leituras",
+    "capituloId": "material-complementar",
+    "paginaEbook": 96,
+    "referencias": [
+      {
+        "ordem": null,
+        "citacao": "DÍAZ-GÓMEZ, José L. et al. Society of critical care medicine guidelines on adult critical care ultrasonography: focused update 2024. Critical care medicine, v. 53, n. 2, p. e447-e458, 2025.",
+        "doi": "10.1097/CCM.0000000000006530"
+      },
+      {
+        "ordem": null,
+        "citacao": "MONGODI, Silvia et al. ESICM—ESPNIC international expert consensus on quantitative lung ultrasound in intensive care. Intensive Care Medicine, p. 1-28, 2025.",
+        "doi": "10.1007/s00134-025-07932-y"
+      },
+      {
+        "ordem": null,
+        "citacao": "MÜLLER-WIRTZ, Lukas Martin et al. Teaching Medical Students Rapid Ultrasound for shock and hypotension (RUSH): learning outcomes and clinical performance in a proof-of-concept study. BMC Medical Education, v. 24, n. 1, p. 360, 2024.",
+        "doi": "10.1186/s12909-024-05331-3"
+      },
+      {
+        "ordem": null,
+        "citacao": "SILVA, Ana Cláudia da; BONATO, Fabiana Oliveira Bastos; BASTOS, Marcus Gomes. Conventional physical examination extended by bedside ultrasound: a new paradigm in nephrological practice. Brazilian Journal of Nephrology, v. 43, n. 3, p. 445-449, 2020.",
+        "url": "https://www.scielo.br/j/jbn/a/Wnvj6rvSwfLqFySJFytp8Nk/?format=pdf&lang=en"
+      }
+    ]
+  }
+]

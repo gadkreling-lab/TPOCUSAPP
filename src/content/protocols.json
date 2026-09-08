@@ -1,0 +1,377 @@
+[
+  {
+    "id": "protocolo-blue",
+    "nome": "Protocolo BLUE",
+    "autoria": "Desenvolvido por Lichtenstein e colaboradores.",
+    "objetivo": "Diagnóstico diferencial da causa da insuficiência respiratória aguda do paciente.",
+    "descricaoTextual": [
+      "A investigação de patologias pulmonares através da ultrassonografia, em especial no POCUS, é facilmente realizada quando utilizado o algoritmo do Protocolo Blue.",
+      "Este protocolo segue alguns passos do exame ultrassonográfico pulmonar sendo obrigatoriamente iniciado pela análise do deslizamento pleural.",
+      "O próximo passo é analisar o parênquima pulmonar e a identificação de artefatos sugestivos das patologias.",
+      "E por fim, a depender das hipóteses diagnósticas aventadas, análise de outras modalidades ultrassonográficas são necessárias, tais como: cardíaca e vascular."
+    ],
+    "fluxograma": {
+      "origemDados": "Transcrição literal dos rótulos da Figura 16 (página 60). Nenhum passo foi inferido ou completado.",
+      "figura": "Figura 16 – Protocolo Blue desenvolvido por Lichtenstein e colaboradores. Adaptado de: Martinez Losas, P. et al., 2025.",
+      "raiz": "DESLIZAMENTO PLEURAL",
+      "ramos": [
+        {
+          "condicao": "PRESENTE",
+          "subRamos": [
+            {
+              "perfil": "Perfil B",
+              "desfecho": "Edema Pulmonar",
+              "proximosPassos": []
+            },
+            {
+              "perfil": "Perfil A",
+              "desfecho": "Avaliação Venosa",
+              "proximosPassos": [
+                {
+                  "condicao": "Trombose Venosa",
+                  "desfecho": "TEP"
+                },
+                {
+                  "condicao": "Veias Livres",
+                  "subRamos": [
+                    {
+                      "condicao": "PLAPS",
+                      "desfecho": "Pneumonia"
+                    },
+                    {
+                      "condicao": "SEM PLAPS",
+                      "desfecho": "DPOC/ Asma"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "condicao": "DIMINUÍDO",
+          "subRamos": [
+            {
+              "perfil": "Perfil A/B ou C",
+              "desfecho": "Pneumonia",
+              "proximosPassos": []
+            }
+          ]
+        },
+        {
+          "condicao": "ABOLIDO",
+          "subRamos": [
+            {
+              "perfil": "Perfil B",
+              "desfecho": "Pneumonia",
+              "proximosPassos": []
+            },
+            {
+              "perfil": "Linhas A",
+              "desfecho": "Lung Point",
+              "proximosPassos": [
+                {
+                  "condicao": "Sim",
+                  "desfecho": "Pneumotórax"
+                },
+                {
+                  "condicao": "Não",
+                  "desfecho": "Aprofundar o diagnóstico com outros métodos"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lacunas": [
+      "Resolvido: os perfis, os BLUE-points e as regras de decisão foram preenchidos a partir de Lichtenstein 2014 e estão marcados como fonte externa. O campo fluxograma continua sendo a transcrição literal da Figura 16 do ebook."
+    ],
+    "paginaEbook": 60,
+    "perfis": [
+      {
+        "id": "perfil-a",
+        "nome": "Perfil A",
+        "definicao": "Deslizamento pleural anterior presente associado a linhas A.",
+        "citacaoOriginal": "The A-profile associates anterior lung-sliding with A-lines.",
+        "significado": "Padrão anterior compatível com pulmão aerado. No algoritmo do BLUE, obriga a prosseguir para a análise venosa (TVP) e, se as veias estiverem livres, para a pesquisa de PLAPS."
+      },
+      {
+        "id": "perfil-a-linha",
+        "nome": "Perfil A' (A-linha)",
+        "definicao": "Perfil A com deslizamento pleural abolido.",
+        "citacaoOriginal": "The A'-profile is an A-profile with abolished lung-sliding.",
+        "significado": "Perfil A' associado a lung point é específico de pneumotórax."
+      },
+      {
+        "id": "perfil-b",
+        "nome": "Perfil B",
+        "definicao": "Deslizamento pleural anterior presente associado a foguetes pulmonares (lung rockets).",
+        "citacaoOriginal": "The B-profile associates anterior lung-sliding with lung-rockets.",
+        "significado": "Sugere edema pulmonar hemodinâmico agudo, com 97% de sensibilidade e 95% de especificidade."
+      },
+      {
+        "id": "perfil-b-linha",
+        "nome": "Perfil B' (B-linha)",
+        "definicao": "Perfil B com deslizamento pleural abolido.",
+        "citacaoOriginal": "The B'-profile is a B-profile with abolished lung-sliding.",
+        "significado": "Perfil típico de pneumonia."
+      },
+      {
+        "id": "perfil-a-b",
+        "nome": "Perfil A/B",
+        "definicao": "Meio perfil A em um pulmão e meio perfil B no outro (assimetria entre os hemitórax).",
+        "citacaoOriginal": "The A/B profile is a half A-profile at one lung, a half B-profile at another.",
+        "significado": "Perfil típico de pneumonia."
+      },
+      {
+        "id": "perfil-c",
+        "nome": "Perfil C",
+        "definicao": "Consolidação pulmonar anterior, independentemente do tamanho e do número. Linha pleural espessada e irregular é um equivalente.",
+        "citacaoOriginal": "The C-profile indicates anterior lung consolidation, regardless of size and number. A thickened, irregular pleural line is an equivalent.",
+        "significado": "Perfil típico de pneumonia."
+      },
+      {
+        "id": "perfil-plaps",
+        "nome": "Perfil PLAPS",
+        "definicao": "Designa Síndrome Alveolar e/ou Pleural Póstero-Lateral (PosteroLateral Alveolar and/or Pleural Syndrome).",
+        "citacaoOriginal": "The PLAPS-profile designates PosteroLateral Alveolar and/or Pleural Syndrome.",
+        "significado": "Pesquisado após a detecção de um perfil A e de rede venosa livre. Perfil A + PLAPS (A-V-PLAPS) é típico de pneumonia; perfil A sem TVP e sem PLAPS (\"nude profile\") sugere asma grave ou DPOC exacerbada."
+      }
+    ],
+    "perfisFonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "doi": "10.1186/2110-5820-4-1",
+      "acesso": "livre (open access)",
+      "nota": "As definições dos perfis NÃO constam do Ebook TPOCUS 3.0 — o fluxograma da Figura 16 (pág. 60) usa os rótulos \"Perfil A\", \"Perfil B\" e \"Perfil A/B ou C\" sem defini-los em nenhum ponto do texto. Foram preenchidas a partir do artigo do autor do protocolo. O campo citacaoOriginal traz a frase literal em inglês.",
+      "campos": [
+        "perfis"
+      ]
+    },
+    "pontosBlue": {
+      "tecnica": "Duas mãos posicionadas sobre o tórax, de tamanho equivalente ao das mãos do paciente, com a mão superior tocando a clavícula e os polegares excluídos, correspondem à localização do pulmão e permitem definir três pontos padronizados.",
+      "citacaoOriginal": "Two hands placed this way (size equivalent to the patient's hands, upper hand touching the clavicle, thumbs excluded) correspond to the location of the lung, and allow three standardized points to be defined. The upper-BLUE-point is at the middle of the upper hand. The lower-BLUE-point is at the middle of the lower palm. The PLAPS-point is defined by the intersection of: a horizontal line at the level of the lower BLUE-point; a vertical line at the posterior axillary line.",
+      "pontos": [
+        {
+          "id": "upper-blue-point",
+          "nome": "Upper BLUE-point (ponto BLUE superior)",
+          "localizacao": "No meio da mão superior (na raiz dos dedos médio e anular).",
+          "detalheComplementar": "A mão superior é aplicada com o dedo mínimo tocando a borda inferior da clavícula e as pontas dos dedos tocando a linha média."
+        },
+        {
+          "id": "lower-blue-point",
+          "nome": "Lower BLUE-point (ponto BLUE inferior)",
+          "localizacao": "No meio da palma da mão inferior.",
+          "detalheComplementar": "A mão inferior é aplicada logo abaixo da mão superior. Os polegares não contam."
+        },
+        {
+          "id": "plaps-point",
+          "nome": "PLAPS-point",
+          "localizacao": "Na interseção de uma linha horizontal no nível do lower BLUE-point com uma linha vertical na linha axilar posterior.",
+          "detalheComplementar": "O mais posterior possível em direção à linha axilar posterior, com o paciente mantido em decúbito dorsal."
+        }
+      ]
+    },
+    "pontosBlueFonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "doi": "10.1186/2110-5820-4-1",
+      "acesso": "livre (open access)",
+      "referenciaComplementar": {
+        "referencia": "Lichtenstein DA, Mezière GA. The BLUE-points: three standardized points used in the BLUE-protocol for ultrasound assessment of the lung in acute respiratory failure. Crit Ultrasound J. 2011;3:109-110.",
+        "url": "https://theultrasoundjournal.springeropen.com/articles/10.1007/s13089-011-0066-3",
+        "doi": "10.1007/s13089-011-0066-3",
+        "acesso": "livre (open access)"
+      },
+      "nota": "Os marcos anatômicos dos BLUE-points NÃO constam do Ebook TPOCUS 3.0 — a Figura 1 (pág. 39) é uma fotografia sem texto, e o corpo do capítulo descreve apenas \"anterior-superior bilateral\", \"lateral bilateral\" e \"posterior-inferior bilateral (PLAPS-point)\". O campo detalheComplementar vem do artigo dedicado de 2011 (Crit Ultrasound J).",
+      "campos": [
+        "pontosBlue"
+      ]
+    },
+    "regrasDecisao": [
+      {
+        "perfil": "Perfil B",
+        "diagnostico": "Edema pulmonar hemodinâmico agudo",
+        "citacaoOriginal": "The B-profile suggests acute hemodynamic pulmonary edema with 97% sensitivity and 95% specificity."
+      },
+      {
+        "perfil": "Perfil B', Perfil A/B, Perfil C, Perfil A-V-PLAPS",
+        "diagnostico": "Pneumonia",
+        "citacaoOriginal": "The B'-profile, A/B-profile, C-profile, and A-V-PLAPS profile are typical profiles indicating pneumonia."
+      },
+      {
+        "perfil": "Perfil A sem TVP e sem PLAPS (\"nude profile\")",
+        "diagnostico": "Asma grave ou DPOC exacerbada",
+        "citacaoOriginal": "An A-profile without DVT or PLAPS (the nude profile) is likely to be severe asthma or exacerbated COPD."
+      },
+      {
+        "perfil": "Perfil A associado a TVP",
+        "diagnostico": "Tromboembolismo pulmonar",
+        "citacaoOriginal": "The A-profile associated with DVT provides an 81% sensitivity and 99% specificity for pulmonary embolism."
+      },
+      {
+        "perfil": "Perfil A' com lung point",
+        "diagnostico": "Pneumotórax",
+        "citacaoOriginal": "The A'-profile and a lung-point is specific to pneumothorax."
+      }
+    ],
+    "regrasDecisaoFonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "doi": "10.1186/2110-5820-4-1",
+      "acesso": "livre (open access)",
+      "nota": "As regras de decisão e os valores de acurácia NÃO constam do Ebook TPOCUS 3.0. O fluxograma da Figura 16 (pág. 60), transcrito em fluxograma, é a versão do ebook e permanece inalterado.",
+      "campos": [
+        "regrasDecisao"
+      ]
+    }
+  },
+  {
+    "id": "protocolo-efast",
+    "nome": "Protocolo E-FAST (Extended Focused Assessment with Sonography in Trauma)",
+    "autoria": null,
+    "objetivo": "Avaliação imediata de pacientes com trauma. O FAST detecta tamponamento cardíaco, hemoperitônio e ruptura de órgãos sólidos. O protocolo EFAST inclui todas as janelas do FAST e adiciona quatro novas áreas de avaliação torácica, totalizando oito janelas ultrassonográficas.",
+    "contexto": [
+      "O trauma é a principal causa de morte em pacientes com menos de 45 anos no Brasil, sendo responsável por cerca de um terço das internações em unidades de terapia intensiva."
+    ],
+    "janelas": [
+      "efast-recesso-hepatorrenal",
+      "efast-recesso-esplenorrenal",
+      "efast-espaco-retrovesical",
+      "efast-pericardica-subxifoide",
+      "efast-axilar-anterior-direita",
+      "efast-hemiclavicular-anterior-direita",
+      "efast-axilar-anterior-esquerda",
+      "efast-hemiclavicular-anterior-esquerda"
+    ],
+    "vantagens": [
+      "Rapidez na execução (aproximadamente 3 minutos)",
+      "Ausência de radiação",
+      "Aplicabilidade à beira do leito",
+      "Alta reprodutibilidade",
+      "Substitui o lavado peritoneal diagnóstico",
+      "Diagnóstico rápido e seguro sem exposição à radiação",
+      "Aplicabilidade em locais sem acesso à tomografia",
+      "Possibilidade de monitoramento contínuo e repetitivo"
+    ],
+    "limitacoes": [
+      "Não substitui o exame clínico nem adia intervenções cirúrgicas urgentes",
+      "Apresenta limitações em detecção de lesões retroperitoneais e vísceras ocas"
+    ],
+    "interpretacao": [
+      "O EFAST é indicado tanto para pacientes estáveis quanto instáveis hemodinamicamente.",
+      "Um FAST positivo indica presença de líquido intracavitário, orientando: cirurgia imediata, se o paciente estiver instável; tomografia computadorizada, se houver estabilidade clínica.",
+      "Estudos demonstram sensibilidade de 85% e especificidade de até 96%, destacando sua confiabilidade no diagnóstico de sangramentos significativos."
+    ],
+    "sinaisPulmonares": [
+      "Deslizamento pleural (Lung Sliding) — presença afasta pneumotórax.",
+      "Linhas A e B — artefatos usados na análise da aeração pulmonar.",
+      "Lung Point — sinal altamente específico (cerca de 100%) para pneumotórax."
+    ],
+    "paginaEbook": 63,
+    "paginasEbook": [
+      63,
+      64,
+      65
+    ]
+  },
+  {
+    "id": "protocolo-rush",
+    "nome": "Protocolo RUSH (Rapid Ultrasound in Shock and Hypotension)",
+    "autoria": "Desenvolvido por Phillips Perera e colaboradores.",
+    "objetivo": "Identificar a origem do choque em poucos minutos.",
+    "conceitoCentral": "O protocolo RUSH é baseado na analogia do sistema circulatório como uma máquina hidráulica: \"Pump, Tank e Pipes\".",
+    "elementos": [
+      {
+        "elemento": "Pump (Bomba)",
+        "analogia": "Coração",
+        "objetivo": "Avaliar a Função Cardíaca",
+        "exemplosAchados": "Disfunção ventricular, tamponamento",
+        "janelas": [
+          "Subxifoide",
+          "Paraesternal longa e curta",
+          "Apical de quatro câmaras"
+        ],
+        "oQueObservar": [
+          "Função ventricular global: Hipocontratilidade → choque cardiogênico.",
+          "Efusão pericárdica: Pode indicar tamponamento cardíaco.",
+          "Dilatação do ventrículo direito: Sugere embolia pulmonar maciça."
+        ]
+      },
+      {
+        "elemento": "Tank (Reservatório)",
+        "analogia": "Volume intravascular e os compartimentos corporais",
+        "objetivo": "Avaliar volemia e presença de fluido extravascular",
+        "exemplosAchados": "Hemorragia, pneumotórax, congestão pulmonar",
+        "janelas": [
+          "Veia cava inferior (VCI)",
+          "Pulmões",
+          "Abdome e pelve (FAST exam)"
+        ],
+        "oQueObservar": [
+          "VCI colapsada → hipovolemia.",
+          "VCI distendida → congestão ou obstrução venosa.",
+          "Linhas B → edema pulmonar.",
+          "Ausência de deslizamento pleural → pneumotórax.",
+          "Líquido livre → hemoperitônio ou hemorragia intra-abdominal."
+        ]
+      },
+      {
+        "elemento": "Pipes (Tubos)",
+        "analogia": "Vasos Sanguíneos",
+        "objetivo": "Avaliar integridade e fluxo dos grandes vasos",
+        "exemplosAchados": "Aneurisma, dissecção, trombose",
+        "janelas": [
+          "Aorta abdominal",
+          "Veias femorais e jugulares",
+          "Pulmões (novamente)"
+        ],
+        "oQueObservar": [
+          "Aorta abdominal: Diâmetro >3 cm → aneurisma/dissecção.",
+          "Veias femorais e jugulares: Presença de trombo → choque obstrutivo.",
+          "Pulmões: Ausência de \"lung sliding\" → pneumotórax hipertensivo."
+        ]
+      }
+    ],
+    "tiposDeChoque": [
+      {
+        "tipo": "Hipovolêmico",
+        "achadosRush": "VCI colapsada, câmaras pequenas, pulmões secos",
+        "condutaInicial": "Reposição volêmica, controle de sangramento"
+      },
+      {
+        "tipo": "Cardiogênico",
+        "achadosRush": "Disfunção ventricular, VCI distendida, linhas B",
+        "condutaInicial": "Suporte inotrópico, tratamento da falência cardíaca"
+      },
+      {
+        "tipo": "Obstrutivo",
+        "achadosRush": "Tamponamento, TEP, pneumotórax",
+        "condutaInicial": "Drenagem/anticoagulação conforme causa"
+      },
+      {
+        "tipo": "Distributivo (séptico)",
+        "achadosRush": "Coração hiperdinâmico, VCI variável",
+        "condutaInicial": "Antibióticos, reposição volêmica, suporte vasopressor"
+      }
+    ],
+    "beneficios": [
+      "Avaliação rápida (3–5 minutos) em pacientes críticos.",
+      "Integração imediata com o raciocínio clínico.",
+      "Evita atrasos em diagnósticos fatais como: Tamponamento cardíaco, Aneurisma de aorta abdominal, Embolia pulmonar maciça, Pneumotórax hipertensivo."
+    ],
+    "limitacoes": [
+      "Exige treinamento adequado em ultrassonografia.",
+      "Menor acurácia em choques mistos (ex: séptico com disfunção miocárdica).",
+      "Resultados devem ser integrados com o exame clínico e outros métodos diagnósticos."
+    ],
+    "paginaEbook": 66,
+    "paginasEbook": [
+      66,
+      67,
+      68,
+      69
+    ]
+  }
+]

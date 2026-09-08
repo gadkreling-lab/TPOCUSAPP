@@ -1,0 +1,134 @@
+[
+  {
+    "id": "pneumotorax",
+    "nome": "Pneumotórax",
+    "achados": [
+      "Sem deslizamento pulmonar/sinal de código de barras",
+      "Ponto pulmonar (patognomônico)",
+      "Linhas A bilaterais (reflexo da pleura parietal)",
+      "Pneumotórax traumático – posição de varredura será na zona anterior (onde o ar se acumula) com paciente em decúbito dorsal",
+      "Pneumotórax espontâneo e não traumático - examinar os lobos superiores com o paciente sentado.",
+      "Pneumotórax hipertensivo – ausência de deslizamento pleural em todos os campos pulmonares e instabilidade clínica."
+    ],
+    "findingsRelacionados": [
+      "ausencia-deslizamento-pleural",
+      "sinal-codigo-de-barras",
+      "lung-point",
+      "linhas-a"
+    ],
+    "paginaEbook": 58
+  },
+  {
+    "id": "pneumonia",
+    "nome": "Pneumonia",
+    "achados": [
+      "Consolidação ou \"hepatização do pulmão\"",
+      "Consolidações subpleurais",
+      "Sinal de \"fragmento\"",
+      "Linhas B unilaterais ou bilaterais",
+      "Possível pequeno derrame pleural",
+      "Redução do deslizamento pulmonar devido à pleura espessada em casos graves",
+      "Broncogramas aéreos dinâmicos (atelectasia tem broncogramas estáticos)"
+    ],
+    "findingsRelacionados": [
+      "hepatizacao-pulmonar",
+      "consolidacao-subpleural",
+      "sinal-de-fragmentacao",
+      "linhas-b",
+      "derrame-pleural",
+      "broncograma-dinamico"
+    ],
+    "paginaEbook": 58
+  },
+  {
+    "id": "edema-pulmonar-cardiogenico",
+    "nome": "Edema Pulmonar Cardiogênico",
+    "achados": [
+      "Linhas B disseminadas e bilaterais",
+      "Deslizamento pulmonar normal",
+      "Possível derrame bilateral dependendo da gravidade"
+    ],
+    "findingsRelacionados": [
+      "linhas-b",
+      "deslizamento-pleural",
+      "derrame-pleural"
+    ],
+    "paginaEbook": 58
+  },
+  {
+    "id": "sdra",
+    "nome": "Síndrome do Desconforto Respiratório Agudo",
+    "achados": [
+      "Linha pleural espessada e irregular com deslizamento pulmonar normal",
+      "Linhas B bilaterais ou unilaterais (processo inflamatório). Os achados em ambos os hemitórax costumam ser diferentes e as alterações são irregulares, diferentemente do que ocorre com as linhas B de origem cardíaca.",
+      "A piora do quadro se manifesta com linhas B que convergem e se tornam indistinguíveis, produzindo uma imagem de pulmão branco."
+    ],
+    "findingsRelacionados": [
+      "linha-pleural-espessada-irregular",
+      "linhas-b",
+      "pulmao-branco"
+    ],
+    "paginaEbook": 59
+  },
+  {
+    "id": "dpoc-asma",
+    "nome": "DPOC ou Asma",
+    "achados": [
+      "Linhas A bilaterais (descartar a presença de trombose venosa profunda)",
+      "Redução do deslizamento pulmonar",
+      "Na presença de Blebs pulmonares subpleurais é possível haver ausência de deslizamento pleural na região analisada, sem a presença de ponto pulmonar"
+    ],
+    "findingsRelacionados": [
+      "linhas-a",
+      "blebs-subpleurais"
+    ],
+    "paginaEbook": 59
+  },
+  {
+    "id": "embolia-pulmonar",
+    "nome": "Embolia Pulmonar",
+    "achados": [
+      "Linhas A bilaterais",
+      "Trombose venosa profunda nas extremidades superiores ou inferiores",
+      "Aumento do ventrículo direito (EP maciça/submaciça)",
+      "Pode haver infarto pulmonar - imagens hipoecoicas em forma de cunha triangular subpleural com bordas inicialmente mal definidas, mas que se tornam mais definidas com o tempo."
+    ],
+    "findingsRelacionados": [
+      "linhas-a",
+      "veia-nao-compressivel",
+      "infarto-pulmonar-cunha"
+    ],
+    "paginaEbook": 59
+  },
+  {
+    "id": "atelectasia",
+    "nome": "Atelectasia",
+    "achados": [
+      "Ausência de deslizamento pleural com presença do sinal da praia no modo M",
+      "Presença do pulso pulmonar",
+      "Sinal da água viva na presença de derrame pleural"
+    ],
+    "findingsRelacionados": [
+      "ausencia-deslizamento-pleural",
+      "sinal-da-praia",
+      "pulso-pulmonar",
+      "sinal-da-agua-viva",
+      "broncograma-estatico"
+    ],
+    "paginaEbook": 59
+  },
+  {
+    "id": "contusao-pulmonar",
+    "nome": "Contusão Pulmonar",
+    "achados": [
+      "Deslizamento pleural presente",
+      "Presença de linhas B focais localizada na área do trauma (perda da integridade vascular com extravasamento de sangue para interstício pulmonar)",
+      "Pode haver lesões intratorácicas (fraturas de costelas, pneumotórax e hemotórax) ou extratorácicas."
+    ],
+    "findingsRelacionados": [
+      "deslizamento-pleural",
+      "linhas-b"
+    ],
+    "paginaEbook": 59
+  }
+]

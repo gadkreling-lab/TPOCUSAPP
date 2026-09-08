@@ -1,0 +1,972 @@
+[
+  {
+    "id": "paraesternal-longitudinal",
+    "nome": "Janela Paraesternal Longitudinal (Eixo Longo)",
+    "categoria": "cardiaca",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito lateral esquerdo, com o braço esquerdo atrás da cabeça, sempre que possível.",
+    "posicaoTransdutor": "Terceiro ou quarto espaço intercostal, à esquerda do esterno.",
+    "marcador": "Orientado para o ombro direito do paciente, aproximadamente na posição de 10 ou 11 horas.",
+    "estruturasVisualizadas": [
+      "Ventrículo esquerdo (VE)",
+      "Ventrículo direito (VD)",
+      "Átrio esquerdo (AE)",
+      "Aorta (Ao)",
+      "Valva aórtica",
+      "Valva mitral",
+      "Aorta ascendente",
+      "Via de saída do ventrículo esquerdo (TSVE)"
+    ],
+    "comoOtimizar": [
+      "A depender do biotipo do paciente (ex.: longilíneo), pode ser necessário subir ou descer um espaço intercostal para otimização da imagem acústica.",
+      "Posicionar o aparelho à esquerda do paciente (também é possível realizar à direita do paciente).",
+      "Selecionar o preset adequado para imagem cardíaca.",
+      "O examinador deve estar à esquerda do paciente."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Tamanho e função do ventrículo esquerdo",
+      "Alterações grosseiras na valva aórtica, valva mitral ou aorta ascendente",
+      "Presença de derrame pericárdico",
+      "Medida da via de saída do ventrículo esquerdo (TSVE), utilizada para o cálculo do débito cardíaco",
+      "Aquisição do EPSS (modo M sobre a ponta da cúspide anterior da valva mitral)"
+    ],
+    "paginaEbook": 7,
+    "paginasEbook": [
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "paraesternal-transversal",
+    "nome": "Janela Paraesternal Transversal (Eixo Curto)",
+    "categoria": "cardiaca",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito lateral esquerdo.",
+    "posicaoTransdutor": "A partir da posição da janela paraesternal longitudinal (eixo longo), o transdutor é rotacionado 90° no sentido horário, posicionando o feixe perpendicular ao eixo longo do ventrículo esquerdo. Com um movimento de báscula (superior e inferior) é possível visualizar cortes em diferentes níveis.",
+    "marcador": "Orientado para o ombro esquerdo do paciente.",
+    "estruturasVisualizadas": [
+      "Ventrículo esquerdo (VE)",
+      "Ventrículo direito (VD)",
+      "Músculos papilares (nível mais apical)",
+      "Cúspides da valva mitral (nível intermediário)",
+      "Válvulas da valva aórtica (nível mais superior)",
+      "Átrio esquerdo (AE)",
+      "Átrio direito (AD)",
+      "Valva tricúspide",
+      "Valva pulmonar",
+      "Artéria pulmonar",
+      "Septo interventricular"
+    ],
+    "comoOtimizar": [
+      "Usar o movimento de báscula (superior e inferior) para percorrer os diferentes níveis: papilares, valva mitral e valva aórtica.",
+      "Manter o feixe perpendicular ao eixo longo do ventrículo esquerdo."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Avaliação da função ventricular global e segmentar",
+      "Avaliação do tamanho do VD em relação ao VE",
+      "Movimento paradoxal de septo interventricular"
+    ],
+    "paginaEbook": 9,
+    "paginasEbook": [
+      9,
+      10,
+      11
+    ]
+  },
+  {
+    "id": "apical-4-camaras",
+    "nome": "Janela Apical 4 Câmaras",
+    "categoria": "cardiaca",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito lateral esquerdo.",
+    "posicaoTransdutor": "Região do ictus palpado. Ajustar a profundidade para focar na visão apical 4 câmaras do VE. Rotacionar o transdutor para otimizar a visualização do ventrículo direito.",
+    "marcador": "Orientado em direção ao leito.",
+    "estruturasVisualizadas": [
+      "Ventrículo esquerdo (VE)",
+      "Ventrículo direito (VD)",
+      "Átrio esquerdo (AE)",
+      "Átrio direito (AD)",
+      "Valva mitral",
+      "Valva tricúspide"
+    ],
+    "comoOtimizar": [
+      "Ajustar a profundidade para focar na visão apical 4 câmaras do VE.",
+      "Rotacionar o transdutor para otimizar a visualização do ventrículo direito."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Avaliação visual da função do VE e do VD",
+      "Avaliação das valvas mitral e tricúspide",
+      "Identificação de derrame pericárdico",
+      "Aquisição do MAPSE (modo M sobre o anel mitral lateral ou septal)",
+      "Aquisição do TAPSE (modo M sobre o anel lateral da valva tricúspide)"
+    ],
+    "paginaEbook": 12,
+    "paginasEbook": [
+      12,
+      13
+    ]
+  },
+  {
+    "id": "apical-5-camaras",
+    "nome": "Janela Apical 5 Câmaras",
+    "categoria": "cardiaca",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito lateral esquerdo.",
+    "posicaoTransdutor": "A partir do posicionamento da janela apical 4 câmaras, inclinar levemente a ponta do transdutor em direção cranial, com movimento de báscula (ou o cabo do transdutor em direção aos pés do paciente).",
+    "marcador": "Não especificado no ebook (mantém-se a partir da janela apical 4 câmaras).",
+    "estruturasVisualizadas": [
+      "Via de saída do ventrículo esquerdo (TSVE)",
+      "Valva aórtica",
+      "Ventrículo esquerdo (VE)"
+    ],
+    "comoOtimizar": [
+      "Não há uma 5ª câmara: trata-se da visualização da via de saída do VE e da valva aórtica."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Medida do VTI do TSVE com Doppler pulsado (PW), para cálculo do volume sistólico e do débito cardíaco"
+    ],
+    "paginaEbook": 14,
+    "paginasEbook": [
+      14,
+      27
+    ]
+  },
+  {
+    "id": "subxifoide",
+    "nome": "Janela Subxifoide (Subcostal)",
+    "categoria": "cardiaca",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito dorsal (supino). Flexionar os joelhos do paciente e pedir para fazer uma inspiração profunda pode ajudar.",
+    "posicaoTransdutor": "Região subxifoide, deixando o transdutor paralelo à pele.",
+    "marcador": "Apontado para a esquerda do paciente.",
+    "estruturasVisualizadas": [
+      "Ventrículo esquerdo (VE)",
+      "Ventrículo direito (VD)",
+      "Átrio esquerdo (AE)",
+      "Átrio direito (AD)",
+      "Pericárdio"
+    ],
+    "comoOtimizar": [
+      "Flexionar os joelhos do paciente.",
+      "Pedir ao paciente para fazer uma inspiração profunda.",
+      "Deixar o transdutor paralelo à pele."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Avaliação subjetiva da função do VE e do VD",
+      "Pesquisa de derrame pericárdico e sinais de tamponamento"
+    ],
+    "paginaEbook": 15,
+    "paginasEbook": [
+      15,
+      16
+    ]
+  },
+  {
+    "id": "subcostal-vci",
+    "nome": "Janela Subcostal para Veia Cava Inferior (VCI)",
+    "categoria": "cardiaca",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito dorsal.",
+    "posicaoTransdutor": "A partir da janela subxifoide, rotação de 90º no sentido anti-horário até visualizar a VCI entrando no átrio direito. Medir a VCI a cerca de 2 cm da junção com o átrio direito.",
+    "marcador": "Direcionado ao queixo do paciente.",
+    "estruturasVisualizadas": [
+      "Veia cava inferior (VCI)",
+      "Átrio direito (AD)",
+      "Veias hepáticas"
+    ],
+    "comoOtimizar": [
+      "Realizar a medida em modo bidimensional (B-mode).",
+      "Registrar o diâmetro máximo (inspiração) e mínimo (expiração).",
+      "É possível medir o diâmetro da VCI, assim como sua variabilidade, pelo modo M.",
+      "Importante identificar a VCI entrando no AD."
+    ],
+    "errosComuns": [
+      "Pode-se confundir aorta com VCI; certifique-se de observar as veias hepáticas entrando na cava e que a cava adentra o átrio direito."
+    ],
+    "oQueAvaliar": [
+      "Diâmetro máximo e mínimo da VCI",
+      "Índice de colapsabilidade (ventilação espontânea)",
+      "Índice de distensibilidade (ventilação mecânica)",
+      "Estimativa de responsividade a volume"
+    ],
+    "paginaEbook": 32,
+    "paginasEbook": [
+      16,
+      17,
+      32
+    ]
+  },
+  {
+    "id": "pulmonar-anterior-superior",
+    "nome": "Ponto Pulmonar Anterior–Superior (bilateral)",
+    "categoria": "pulmonar",
+    "transdutor": "convexo",
+    "transdutorAlternativo": "linear (útil para análise detalhada da pleura)",
+    "posicaoPaciente": "Preferencialmente decúbito dorsal; também são possíveis as posições lateralizada e sentado.",
+    "posicaoTransdutor": "Transdutor posicionado longitudinalmente sobre o espaço intercostal, para obter um plano sagital.",
+    "marcador": "Voltado para a cabeça do paciente.",
+    "estruturasVisualizadas": [
+      "Parede torácica",
+      "Costela superior",
+      "Costela inferior",
+      "Linha pleural entre elas",
+      "Sombra acústica de ambas as costelas",
+      "Linhas A"
+    ],
+    "comoOtimizar": [
+      "Aparelho posicionado à destra do paciente.",
+      "Configurado para exame pulmonar ou abdominal.",
+      "Modo 2D/B.",
+      "Marcador de direção sinalizado no canto superior direito do monitor.",
+      "Inicialmente o ajuste da profundidade deve ser superficial para avaliar a pleura e posteriormente aprofundado para estudo do parênquima.",
+      "Identificar o sinal da asa do morcego para orientação anatômica."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Deslizamento pleural",
+      "Linhas A",
+      "Linhas B",
+      "Pesquisa de pneumotórax (no pneumotórax traumático o ar se acumula na zona anterior com o paciente em decúbito dorsal)"
+    ],
+    "paginaEbook": 39,
+    "paginasEbook": [
+      38,
+      39,
+      40
+    ]
+  },
+  {
+    "id": "pulmonar-lateral",
+    "nome": "Ponto Pulmonar Lateral (bilateral)",
+    "categoria": "pulmonar",
+    "transdutor": "convexo",
+    "transdutorAlternativo": "linear (útil para análise detalhada da pleura)",
+    "posicaoPaciente": "Preferencialmente decúbito dorsal; também são possíveis as posições lateralizada e sentado.",
+    "posicaoTransdutor": "Transdutor posicionado longitudinalmente sobre o espaço intercostal, para obter um plano sagital.",
+    "marcador": "Voltado para a cabeça do paciente.",
+    "estruturasVisualizadas": [
+      "Parede torácica",
+      "Costelas e suas sombras acústicas",
+      "Linha pleural",
+      "Linhas A"
+    ],
+    "comoOtimizar": [
+      "Ajuste inicial de profundidade superficial para a pleura, depois aprofundado para o parênquima.",
+      "Identificar o sinal da asa do morcego para orientação anatômica."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Deslizamento pleural",
+      "Linhas A e linhas B",
+      "É normal que linhas B apareçam isoladamente (<3 por espaço intercostal), especialmente nas bases, região póstero-lateral e campo médio"
+    ],
+    "paginaEbook": 39,
+    "paginasEbook": [
+      39,
+      47
+    ]
+  },
+  {
+    "id": "pulmonar-plaps",
+    "nome": "Ponto Pulmonar Posterior–Inferior (PLAPS-point / ponto frêmito-diafragmático)",
+    "categoria": "pulmonar",
+    "transdutor": "convexo",
+    "transdutorAlternativo": "linear (útil para análise detalhada da pleura)",
+    "posicaoPaciente": "Preferencialmente decúbito dorsal; também são possíveis as posições lateralizada e sentado.",
+    "posicaoTransdutor": "Transdutor posicionado longitudinalmente sobre o espaço intercostal, na região posterior-inferior, para obter um plano sagital.",
+    "marcador": "Voltado para a cabeça do paciente.",
+    "estruturasVisualizadas": [
+      "Diafragma",
+      "Fígado (à direita) / baço (à esquerda)",
+      "Lobos inferiores",
+      "Linha pleural",
+      "Linha pulmonar (pleura visceral)",
+      "Coluna vertebral"
+    ],
+    "comoOtimizar": [
+      "Ao analisar o diafragma deve-se detectar a regularidade da pleura.",
+      "Ajustar a profundidade para o estudo do parênquima."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Sinal da cortina (desaparecimento do diafragma e do fígado à medida que o pulmão se expande durante a inspiração)",
+      "Derrame pleural (maior sensibilidade e especificidade diagnóstica neste ponto)",
+      "Consolidação pulmonar",
+      "Sinal do quadrilátero e sinal sinusoidal",
+      "Sinal da coluna vertebral",
+      "Sinal da água-viva",
+      "Sinal do plâncton"
+    ],
+    "paginaEbook": 39,
+    "paginasEbook": [
+      39,
+      41,
+      53,
+      54,
+      55,
+      56
+    ]
+  },
+  {
+    "id": "efast-recesso-hepatorrenal",
+    "nome": "E-FAST — Recesso Hepatorrenal (Espaço de Morrison)",
+    "categoria": "abdominal",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": null,
+    "marcador": "Apontado em direção cranial (corte coronal). Para o corte intercostal oblíquo, rotacionar levemente no sentido anti-horário, com o marcador voltado para a axila posterior.",
+    "estruturasVisualizadas": [
+      "Fígado",
+      "Rim direito",
+      "Recesso hepatorrenal"
+    ],
+    "comoOtimizar": [
+      "Para avaliar hemotórax à direita, deslizar o transdutor em direção cranial a partir desta janela até visualizar o diafragma."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Presença de líquido livre intracavitário (hemoperitônio)",
+      "Ruptura de órgãos sólidos"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      63,
+      64,
+      65
+    ],
+    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
+    "posicaoTransdutorDetalhada": "Linha axilar média, aproximadamente no 8º ao 11º espaço intercostal.",
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-recesso-esplenorrenal",
+    "nome": "E-FAST — Recesso Esplenorrenal",
+    "categoria": "abdominal",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": null,
+    "marcador": "Apontado em direção cranial; em seguida rotacionar levemente no sentido horário, com o marcador voltado para a axila posterior.",
+    "estruturasVisualizadas": [
+      "Baço",
+      "Rim esquerdo",
+      "Recesso esplenorrenal"
+    ],
+    "comoOtimizar": [
+      "A janela esplenorrenal é mais posterior e mais cranial do que a hepatorrenal.",
+      "Para avaliar hemotórax à esquerda, o diafragma é visualizado nesta mesma janela, logo acima do baço."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Presença de líquido livre intracavitário (hemoperitônio)",
+      "Ruptura de órgãos sólidos"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      64
+    ],
+    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
+    "posicaoTransdutorDetalhada": "Linha axilar posterior, aproximadamente no 6º ao 9º espaço intercostal.",
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-espaco-retrovesical",
+    "nome": "E-FAST — Espaço Retrovesical (fundo de saco de Douglas)",
+    "categoria": "abdominal",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": null,
+    "marcador": "No corte longitudinal, apontado em direção cranial. No corte transversal, apontado para o lado direito do paciente.",
+    "estruturasVisualizadas": [
+      "Bexiga",
+      "Fundo de saco de Douglas"
+    ],
+    "comoOtimizar": [
+      "Avaliar sempre nos dois planos (longitudinal e transversal)."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Presença de líquido livre intracavitário (hemoperitônio)"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      64
+    ],
+    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
+    "posicaoTransdutorDetalhada": "Linha média, logo acima do osso púbico. Avaliar em dois planos: longitudinal e, girando o transdutor 90°, transversal.",
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-pericardica-subxifoide",
+    "nome": "E-FAST — Janela Pericárdica Subxifoide",
+    "categoria": "cardiaca",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": null,
+    "marcador": "Apontado para o lado direito ou para o ombro direito do paciente.",
+    "estruturasVisualizadas": [
+      "Pericárdio",
+      "Câmaras cardíacas"
+    ],
+    "comoOtimizar": [
+      "Para a técnica detalhada de aquisição, ver a janela subxifoide do capítulo de Janelas Cardíacas (páginas 15-16).",
+      "Angular o transdutor em direção ao ombro esquerdo do paciente."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Tamponamento cardíaco",
+      "Derrame pericárdico"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      63,
+      64
+    ],
+    "verTambem": [
+      "subxifoide"
+    ],
+    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
+    "posicaoTransdutorDetalhada": "Região subxifoide, angulando o transdutor em direção ao ombro esquerdo.",
+    "profundidade": "Aumentar a profundidade da imagem para melhor visualização.",
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "profundidade",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-axilar-anterior-direita",
+    "nome": "E-FAST — Linha Axilar Anterior Direita (transição fígado–pulmão–diafragma)",
+    "categoria": "pulmonar",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": "Linha axilar anterior direita.",
+    "marcador": "Apontado em direção cranial, ou voltado para a axila posterior no corte intercostal oblíquo.",
+    "estruturasVisualizadas": [
+      "Fígado",
+      "Diafragma",
+      "Pulmão direito"
+    ],
+    "comoOtimizar": [
+      "O sinal da coluna vertebral acima do diafragma indica derrame/hemotórax."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Hemotórax direito"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      64
+    ],
+    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
+    "posicaoTransdutorDetalhada": "A partir da janela hepatorrenal, deslizar o transdutor em direção cranial até obter a visualização do diafragma e procurar líquido pleural acima dele.",
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-hemiclavicular-anterior-direita",
+    "nome": "E-FAST — Linha Hemiclavicular Anterior Direita (3º–5º espaço intercostal)",
+    "categoria": "pulmonar",
+    "transdutor": "linear",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": "Linha hemiclavicular anterior direita, 3º–5º espaço intercostal.",
+    "marcador": "Posição longitudinal, apontado em direção cranial.",
+    "estruturasVisualizadas": [
+      "Linha pleural",
+      "Linhas A",
+      "Linhas B"
+    ],
+    "comoOtimizar": [
+      "Para procurar o lung point, rotacionar o transdutor para o plano transverso e deslizar lateralmente."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Avaliação do pneumotórax direito",
+      "Deslizamento pleural (lung sliding) — presença afasta pneumotórax",
+      "Lung point — sinal altamente específico (cerca de 100%) para pneumotórax"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      64,
+      65
+    ],
+    "transdutorAlternativo": "convexo ou setorial (aceitos, porém o linear de alta frequência é preferido)",
+    "posicaoTransdutorDetalhada": "Parede torácica anterior, linha hemiclavicular, 2º ao 4º espaço intercostal (o ebook indica 3º ao 5º espaço intercostal).",
+    "profundidade": "Reduzir a profundidade para no máximo cerca de 4 a 6 cm.",
+    "fonteExterna": {
+      "referencia": "Alerhand S, Gulalp B. Lung. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/lung",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "profundidade",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-axilar-anterior-esquerda",
+    "nome": "E-FAST — Linha Axilar Anterior Esquerda (transição baço–pulmão–diafragma)",
+    "categoria": "pulmonar",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": "Linha axilar anterior esquerda.",
+    "marcador": "Apontado em direção cranial, ou voltado para a axila posterior no corte intercostal oblíquo.",
+    "estruturasVisualizadas": [
+      "Baço",
+      "Diafragma",
+      "Pulmão esquerdo"
+    ],
+    "comoOtimizar": [
+      "O sinal da coluna vertebral acima do diafragma indica derrame/hemotórax."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Hemotórax esquerdo"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      64
+    ],
+    "transdutorAlternativo": "setorial (phased array) — ambos aceitos",
+    "posicaoTransdutorDetalhada": "A partir da janela esplenorrenal; o diafragma é visualizado logo acima do baço, e procura-se líquido pleural acima dele.",
+    "fonteExterna": {
+      "referencia": "Rowland-Fisher A, Reardon RF. FAST. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/fast",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "efast-hemiclavicular-anterior-esquerda",
+    "nome": "E-FAST — Linha Hemiclavicular Anterior Esquerda (3º–5º espaço intercostal)",
+    "categoria": "pulmonar",
+    "transdutor": "linear",
+    "posicaoPaciente": "Decúbito dorsal (supino).",
+    "posicaoTransdutor": "Linha hemiclavicular anterior esquerda, 3º–5º espaço intercostal.",
+    "marcador": "Posição longitudinal, apontado em direção cranial.",
+    "estruturasVisualizadas": [
+      "Linha pleural",
+      "Linhas A",
+      "Linhas B"
+    ],
+    "comoOtimizar": [
+      "Para procurar o lung point, rotacionar o transdutor para o plano transverso e deslizar lateralmente."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Avaliação do pneumotórax esquerdo",
+      "Deslizamento pleural (lung sliding) — presença afasta pneumotórax",
+      "Lung point — sinal altamente específico (cerca de 100%) para pneumotórax"
+    ],
+    "paginaEbook": 64,
+    "paginasEbook": [
+      64,
+      65
+    ],
+    "transdutorAlternativo": "convexo ou setorial (aceitos, porém o linear de alta frequência é preferido)",
+    "posicaoTransdutorDetalhada": "Parede torácica anterior, linha hemiclavicular, 2º ao 4º espaço intercostal (o ebook indica 3º ao 5º espaço intercostal).",
+    "profundidade": "Reduzir a profundidade para no máximo cerca de 4 a 6 cm.",
+    "fonteExterna": {
+      "referencia": "Alerhand S, Gulalp B. Lung. Sonoguide. American College of Emergency Physicians; 2021.",
+      "url": "https://www.acep.org/sonoguide/basic/lung",
+      "acesso": "livre",
+      "campos": [
+        "transdutor",
+        "transdutorAlternativo",
+        "posicaoPaciente",
+        "posicaoTransdutorDetalhada",
+        "marcador",
+        "profundidade",
+        "comoOtimizar (itens acrescentados)"
+      ],
+      "nota": "Estes campos NÃO constam do Ebook TPOCUS 3.0 (págs. 63-65), que apenas lista as oito janelas do E-FAST sem descrever a técnica de aquisição. O campo posicaoTransdutor preserva a redação do ebook; posicaoTransdutorDetalhada é a técnica da fonte externa.",
+      "referenciaComplementar": {
+        "referencia": "Bloom BA, Gibbons RC. Focused Assessment With Sonography for Trauma. In: StatPearls. StatPearls Publishing; 2023.",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470479/",
+        "acesso": "livre"
+      }
+    }
+  },
+  {
+    "id": "venoso-femoral-comum",
+    "nome": "Ponto Venoso 1 — Veia Femoral Comum / Junção Safeno-Femoral",
+    "categoria": "vascular",
+    "transdutor": "linear",
+    "posicaoPaciente": "Decúbito dorsal, membro inferior a ser examinado posicionado em abdução, rotação externa e com o joelho flexionado aproximadamente 30° (\"posição de perna de sapo\").",
+    "posicaoTransdutor": "Transversalmente (eixo latero-lateral) sobre o membro inferior, ao longo do ligamento inguinal, deslocando-se lentamente em direção à porção caudal do paciente. Varredura de 1 a 2 cm acima e abaixo da junção safeno-femoral.",
+    "marcador": "Voltado sempre para a posição medial do paciente.",
+    "estruturasVisualizadas": [
+      "Veia femoral comum (VFC) — mais medial",
+      "Artéria femoral comum (AFC) — mais lateral",
+      "Veia safena magna (VS)",
+      "Imagem da \"cabeça do Mickey Mouse\" (VFC central, arco da veia safena medial e AFC lateral)"
+    ],
+    "comoOtimizar": [
+      "Aparelho preferencialmente à destra do paciente.",
+      "Configurado para exame vascular.",
+      "Modo 2D/B.",
+      "Marcador de direção sinalizado no canto superior direito do monitor.",
+      "Ajuste da profundidade superficial para melhor visualização do vaso.",
+      "Aplicar pressão até que ocorra a compressão leve da artéria, identificada pela sua propriedade pulsátil."
+    ],
+    "errosComuns": [
+      "Se o operador não aplicar pressão suficiente ou se o transdutor não estiver perpendicular, isso pode levar a falsos positivos para TVP.",
+      "Tromboflebite superficial: as veias superficiais NÃO acompanham as artérias, enquanto as veias profundas o fazem. Armadilha mais provável em pacientes obesos cujas veias superficiais estão dilatadas.",
+      "Linfonodos podem se assemelhar a coágulo (estrutura oval hipoecoica com centro hiperecoico).",
+      "Pseudoaneurismas podem ser confundidos; com Doppler colorido observa-se o \"Sinal Yin-Yang\"."
+    ],
+    "oQueAvaliar": [
+      "Compressibilidade da veia",
+      "Visualização direta do coágulo",
+      "Trombose venosa profunda (TVP)"
+    ],
+    "paginaEbook": 76,
+    "paginasEbook": [
+      73,
+      75,
+      76,
+      77,
+      78
+    ]
+  },
+  {
+    "id": "venoso-femoral-bifurcacao",
+    "nome": "Ponto Venoso 2 — Bifurcação da Veia Femoral Comum (veia femoral profunda e veia femoral)",
+    "categoria": "vascular",
+    "transdutor": "linear",
+    "posicaoPaciente": "Decúbito dorsal, membro inferior em abdução, rotação externa e joelho flexionado aproximadamente 30° (\"posição de perna de sapo\").",
+    "posicaoTransdutor": "Transversalmente (eixo latero-lateral), 1 a 2 cm acima e abaixo da bifurcação da veia femoral comum na veia femoral profunda e na veia femoral (superficial). Localizada aproximadamente nos dois terços inferiores da coxa.",
+    "marcador": "Voltado sempre para a posição medial do paciente.",
+    "estruturasVisualizadas": [
+      "Veia femoral comum (VFC) se ramificando",
+      "Veia femoral profunda",
+      "Veia femoral (anteriormente denominada veia femoral superficial)",
+      "Artéria femoral (AF) — adjacente e lateralmente à veia femoral profunda"
+    ],
+    "comoOtimizar": [
+      "Ajuste da profundidade superficial para melhor visualização do vaso.",
+      "Aplicar pressão até a compressão leve da artéria, identificada pela sua propriedade pulsátil."
+    ],
+    "errosComuns": [
+      "Se a compressão for insuficiente, podem ocorrer falsos positivos.",
+      "Tromboflebite superficial pode ser confundida com TVP."
+    ],
+    "oQueAvaliar": [
+      "Compressibilidade da veia",
+      "Visualização direta do coágulo",
+      "Trombose venosa profunda (TVP)"
+    ],
+    "paginaEbook": 76,
+    "paginasEbook": [
+      73,
+      76,
+      79
+    ]
+  },
+  {
+    "id": "venoso-popliteo",
+    "nome": "Ponto Venoso 3 — Veia Poplítea até a Trifurcação",
+    "categoria": "vascular",
+    "transdutor": "linear",
+    "posicaoPaciente": "Decúbito dorsal, membro inferior em abdução, rotação externa e joelho flexionado aproximadamente 30° (\"posição de perna de sapo\").",
+    "posicaoTransdutor": "Prega posterior do joelho, entre os dois tendões isquiotibiais; varredura de 2 cm acima e abaixo para encontrar a veia poplítea. A análise deve ser realizada até a trifurcação.",
+    "marcador": "Voltado sempre para a posição medial do paciente.",
+    "estruturasVisualizadas": [
+      "Veia poplítea (VP) — mais superior",
+      "Artéria poplítea (AP) — inferior",
+      "Trifurcação entre as veias tibial anterior, fibular e tibial posterior"
+    ],
+    "comoOtimizar": [
+      "A análise de toda a veia poplítea deve ser realizada até a trifurcação; essa junção sinaliza o fim do exame."
+    ],
+    "errosComuns": [
+      "Cisto de Baker: cisto cheio de líquido na bursa poplítea; aparece como massa circular anecoica com bordas bem definidas, tanto na visão longitudinal quanto na transversal, sem fluxo ao Doppler colorido."
+    ],
+    "oQueAvaliar": [
+      "Compressibilidade da veia",
+      "Visualização direta do coágulo",
+      "Trombose venosa profunda (TVP)"
+    ],
+    "paginaEbook": 76,
+    "paginasEbook": [
+      73,
+      76,
+      79,
+      82
+    ]
+  },
+  {
+    "id": "venoso-membro-contralateral",
+    "nome": "Ponto Venoso 4 — Membro Contralateral",
+    "categoria": "vascular",
+    "transdutor": "linear",
+    "posicaoPaciente": "Decúbito dorsal, membro inferior em abdução, rotação externa e joelho flexionado aproximadamente 30° (\"posição de perna de sapo\").",
+    "posicaoTransdutor": "Repetir a sequência de compressão nos mesmos pontos do membro contralateral.",
+    "marcador": "Voltado sempre para a posição medial do paciente.",
+    "estruturasVisualizadas": [
+      "Veia femoral comum",
+      "Bifurcação femoral",
+      "Veia poplítea"
+    ],
+    "comoOtimizar": [],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Trombose venosa profunda (TVP) contralateral"
+    ],
+    "paginaEbook": 76,
+    "paginasEbook": [
+      76
+    ]
+  },
+  {
+    "id": "aorta-toracica-supraesternal",
+    "nome": "Aorta Torácica — Incisura Supraesternal",
+    "categoria": "vascular",
+    "transdutor": "setorial",
+    "posicaoPaciente": "Decúbito dorsal, com a cabeceira da cama plana, joelhos preferencialmente fletidos, e o pescoço estendido.",
+    "posicaoTransdutor": "Incisura supraesternal, oferecendo uma visão longitudinal da aorta torácica.",
+    "marcador": "Voltado ligeiramente no sentido horário (15-20°) em direção ao ombro esquerdo do paciente.",
+    "estruturasVisualizadas": [
+      "Aorta ascendente",
+      "Tronco braquiocefálico",
+      "Artéria carótida comum esquerda",
+      "Artéria subclávia esquerda",
+      "Trecho inicial da aorta descendente"
+    ],
+    "comoOtimizar": [
+      "Configurar o preset para exame cardíaco.",
+      "Modo 2D/B.",
+      "Marcador de direção sinalizado no canto superior direito da tela.",
+      "Ajuste da profundidade inicialmente entre 10 a 15 cm.",
+      "Utilizar Doppler colorido: fluxo em vermelho (em direção à sonda) na aorta ascendente e em azul (na direção oposta à sonda) na aorta descendente."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Aneurisma da aorta torácica",
+      "Dissecção aórtica Stanford A",
+      "Regurgitação aórtica (fluxo sanguíneo diastólico retrógrado do arco aórtico ao Doppler)"
+    ],
+    "paginaEbook": 86,
+    "paginasEbook": [
+      85,
+      86,
+      91,
+      93
+    ]
+  },
+  {
+    "id": "aorta-abdominal-proximal",
+    "nome": "Aorta Abdominal — Porção Proximal",
+    "categoria": "vascular",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal com a cabeceira da cama plana e preferencialmente de joelhos fletidos para ajudar no relaxamento dos músculos abdominais.",
+    "posicaoTransdutor": "Eixo curto (corte transversal), logo abaixo do processo xifoide e ligeiramente à esquerda da linha média do paciente. Com giro do transdutor em 90º no sentido horário obtém-se o plano sagital (eixo longo).",
+    "marcador": "Voltado para a direita do paciente no eixo curto; voltado para a cabeça do paciente no eixo longo.",
+    "estruturasVisualizadas": [
+      "Aorta abdominal — círculo pulsátil, hipoecoico e de parede espessa, logo acima do corpo vertebral, ligeiramente à direita da linha média na tela (à esquerda do paciente)",
+      "Veia cava inferior — tão circular quanto a aorta, à esquerda da linha média na tela (à direita do paciente), geralmente colapsa com a respiração",
+      "Corpo vertebral",
+      "Sinal da gaivota"
+    ],
+    "comoOtimizar": [
+      "Configurado (preset) para exame abdominal.",
+      "Modo 2D/B.",
+      "Ajuste da profundidade inicialmente entre 10 a 15 cm.",
+      "Idealmente, primeiro obter a imagem no eixo curto e, com auxílio das duas mãos, realizar a rotação do transdutor.",
+      "O transdutor deve obrigatoriamente estar perpendicular à parede da aorta para realizar a mensuração do diâmetro anteroposterior de forma correta e precisa.",
+      "Com auxílio da ferramenta de congelamento da imagem (freeze), aferir a distância entre as paredes externas em seu diâmetro máximo.",
+      "Obter, se possível, uma medida anteroposterior e uma medida transversal.",
+      "Se gases intestinais dificultarem: aplicar pressão constante sobre o abdome e movimentar o transdutor sobre o eixo crânio-caudal para deslocar os gases; se persistir, posicionar o paciente em decúbito lateral esquerdo."
+    ],
+    "errosComuns": [
+      "Confundir a aorta com a veia cava inferior — a aorta é pulsátil, de parede espessa e não colapsa com a respiração.",
+      "Transdutor não perpendicular à parede da aorta compromete a mensuração do diâmetro anteroposterior."
+    ],
+    "oQueAvaliar": [
+      "Diâmetro máximo (parede externa a parede externa)",
+      "Aneurisma de aorta abdominal",
+      "Trombo intramural",
+      "Dissecção (lâmina intimal / flap)"
+    ],
+    "paginaEbook": 88,
+    "paginasEbook": [
+      85,
+      87,
+      88,
+      90
+    ]
+  },
+  {
+    "id": "aorta-abdominal-medial",
+    "nome": "Aorta Abdominal — Porção Medial",
+    "categoria": "vascular",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal com a cabeceira da cama plana e preferencialmente de joelhos fletidos.",
+    "posicaoTransdutor": "Eixo curto (corte transversal). A porção média da aorta abdominal não apresenta marcos anatômicos distintos; estende-se aproximadamente da artéria mesentérica superior até o nível das artérias renais.",
+    "marcador": "Voltado para a direita do paciente no eixo curto; voltado para a cabeça do paciente no eixo longo.",
+    "estruturasVisualizadas": [
+      "Aorta abdominal (porção média)",
+      "Artéria mesentérica superior",
+      "Nível das artérias renais"
+    ],
+    "comoOtimizar": [
+      "Transdutor perpendicular à parede da aorta para mensuração correta do diâmetro anteroposterior."
+    ],
+    "errosComuns": [
+      "Ausência de marcos anatômicos distintos nessa porção."
+    ],
+    "oQueAvaliar": [
+      "Aferição do diâmetro médio",
+      "Aneurisma de aorta abdominal"
+    ],
+    "paginaEbook": 89,
+    "paginasEbook": [
+      87,
+      89
+    ]
+  },
+  {
+    "id": "aorta-abdominal-distal",
+    "nome": "Aorta Abdominal — Porção Distal",
+    "categoria": "vascular",
+    "transdutor": "convexo",
+    "posicaoPaciente": "Decúbito dorsal com a cabeceira da cama plana e preferencialmente de joelhos fletidos.",
+    "posicaoTransdutor": "Eixo curto (corte transversal), à medida que o transdutor se aproxima da cicatriz umbilical. Estende-se do nível das artérias renais até a bifurcação ilíaca.",
+    "marcador": "Voltado para a direita do paciente no eixo curto; voltado para a cabeça do paciente no eixo longo.",
+    "estruturasVisualizadas": [
+      "Aorta abdominal distal",
+      "Bifurcação nas artérias ilíacas direita e esquerda"
+    ],
+    "comoOtimizar": [
+      "É nesse ponto que a aorta está mais superficial e de fácil visualização para realizar a aferição do diâmetro médio.",
+      "Mais abaixo da cicatriz umbilical é possível visualizar a divisão em dois vasos mais estreitos (artérias ilíacas)."
+    ],
+    "errosComuns": [],
+    "oQueAvaliar": [
+      "Aferição do diâmetro médio",
+      "Aneurisma de aorta abdominal",
+      "Aneurisma de artéria ilíaca (diâmetro ≥ 1,5 cm)"
+    ],
+    "paginaEbook": 89,
+    "paginasEbook": [
+      87,
+      89,
+      90
+    ]
+  }
+]

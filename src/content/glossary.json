@@ -1,0 +1,651 @@
+[
+  {
+    "id": "pocus",
+    "sigla": "POCUS",
+    "termo": "Point of Care Ultrasound / Ultrassom Point of Care",
+    "definicao": "Ultrassom à beira-leito. O POCUS Cardíaco baseia-se em um protocolo de imagens específicas para investigar uma determinada condição ou doença (ex.: tamponamento cardíaco, disfunção ventricular). Exige um grau moderado de treinamento.",
+    "categoria": "geral",
+    "paginaEbook": 5
+  },
+  {
+    "id": "efau",
+    "sigla": "EFAU",
+    "termo": "Exame Físico Assistido por Ultrassom",
+    "definicao": "No Exame Físico Assistido por USG (EFAU), a imagem tem o objetivo de aprimorar o exame clínico à beira do leito, geralmente para uma avaliação binária (presença ou ausência de anormalidades cardiovasculares), tendo suas informações registradas no prontuário como parte do exame físico. O uso do EFAU requer um treinamento de menor tempo e complexidade.",
+    "categoria": "geral",
+    "paginaEbook": 5
+  },
+  {
+    "id": "usg",
+    "sigla": "USG",
+    "termo": "Ultrassonografia",
+    "definicao": "Ultrassonografia / ultrassom.",
+    "categoria": "geral",
+    "paginaEbook": 5
+  },
+  {
+    "id": "ve",
+    "sigla": "VE",
+    "termo": "Ventrículo esquerdo",
+    "definicao": "Ventrículo esquerdo.",
+    "categoria": "cardiaca",
+    "paginaEbook": 8
+  },
+  {
+    "id": "vd",
+    "sigla": "VD",
+    "termo": "Ventrículo direito",
+    "definicao": "Ventrículo direito.",
+    "categoria": "cardiaca",
+    "paginaEbook": 8
+  },
+  {
+    "id": "ae",
+    "sigla": "AE",
+    "termo": "Átrio esquerdo",
+    "definicao": "Átrio esquerdo.",
+    "categoria": "cardiaca",
+    "paginaEbook": 8
+  },
+  {
+    "id": "ad",
+    "sigla": "AD",
+    "termo": "Átrio direito",
+    "definicao": "Átrio direito.",
+    "categoria": "cardiaca",
+    "paginaEbook": 10
+  },
+  {
+    "id": "ao",
+    "sigla": "Ao",
+    "termo": "Aorta",
+    "definicao": "Aorta. Na legenda da figura da página 91, \"Ao\" designa o arco da aorta.",
+    "categoria": "cardiaca",
+    "paginaEbook": 8
+  },
+  {
+    "id": "feve",
+    "sigla": "FEVE",
+    "termo": "Fração de Ejeção do Ventrículo Esquerdo",
+    "definicao": "Fração de ejeção do ventrículo esquerdo, estimada de forma qualitativa (preservada ou diminuída) ou objetivada por meio do EPSS e do MAPSE.",
+    "categoria": "cardiaca",
+    "paginaEbook": 21
+  },
+  {
+    "id": "fe",
+    "sigla": "FE",
+    "termo": "Fração de Ejeção",
+    "definicao": "Fração de ejeção.",
+    "categoria": "cardiaca",
+    "paginaEbook": 20
+  },
+  {
+    "id": "epss",
+    "sigla": "EPSS",
+    "termo": "E-point septal separation",
+    "definicao": "Forma útil para estimar a Fração de Ejeção do Ventrículo Esquerdo (FEVE), através da janela paraesternal eixo longo. Quanto maior a aproximação do folheto anterior da valva mitral ao septo interventricular, maior será a FEVE. Quanto menor essa distância, maior será a FEVE.",
+    "categoria": "medida",
+    "paginaEbook": 21
+  },
+  {
+    "id": "ponto-e",
+    "sigla": "Ponto E",
+    "termo": "Ponto E",
+    "definicao": "Pico de abertura inicial da cúspide anterior da valva mitral.",
+    "categoria": "medida",
+    "paginaEbook": 22
+  },
+  {
+    "id": "mapse",
+    "sigla": "MAPSE",
+    "termo": "Mitral Annular Plane Systolic Excursion",
+    "definicao": "Excursão sistólica do plano anular mitral. Reflete a contração longitudinal do ventrículo esquerdo. Apresenta boa correlação com a FEVE e tem rápida aquisição.",
+    "categoria": "medida",
+    "paginaEbook": 24
+  },
+  {
+    "id": "tapse",
+    "sigla": "TAPSE",
+    "termo": "Transannular Plane Systolic Excursion",
+    "definicao": "Avalia o movimento longitudinal do plano lateral do anel da tricúspide durante a sístole, no modo M, através da janela apical 4 câmaras. Técnica prática para avaliar a função sistólica do VD.",
+    "categoria": "medida",
+    "paginaEbook": 29
+  },
+  {
+    "id": "tsve",
+    "sigla": "TSVE",
+    "termo": "Trato de saída do ventrículo esquerdo",
+    "definicao": "Trato (ou via) de saída do ventrículo esquerdo. Medido na janela paraesternal eixo longo, geralmente logo abaixo da valva aórtica aberta, durante a sístole. Valor de referência: 1,7 – 2,3 cm.",
+    "categoria": "medida",
+    "paginaEbook": 26
+  },
+  {
+    "id": "vti",
+    "sigla": "VTI",
+    "termo": "Velocity Time Integral",
+    "definicao": "Representa a distância percorrida pelo sangue em cada batimento. Medido com Doppler pulsado (PW) na janela apical de cinco câmaras. Valor de referência: 18-25 cm.",
+    "categoria": "medida",
+    "paginaEbook": 27
+  },
+  {
+    "id": "pw",
+    "sigla": "PW",
+    "termo": "Doppler pulsado",
+    "definicao": "Doppler pulsado, utilizado para registrar o VTI do TSVE.",
+    "categoria": "medida",
+    "paginaEbook": 27
+  },
+  {
+    "id": "vs",
+    "sigla": "VS",
+    "termo": "Volume Sistólico",
+    "definicao": "Volume sistólico. VS = Área do TSVE × VTI do TSVE. Valor de referência: 70 – 140 ml/batimento. (Obs.: na página 78 a sigla VS designa a veia safena.)",
+    "categoria": "medida",
+    "paginaEbook": 27
+  },
+  {
+    "id": "dc",
+    "sigla": "DC",
+    "termo": "Débito Cardíaco",
+    "definicao": "Débito cardíaco. DC = VS × FC. Valor de referência: 4 – 7 L/min.",
+    "categoria": "medida",
+    "paginaEbook": 27
+  },
+  {
+    "id": "fc",
+    "sigla": "FC",
+    "termo": "Frequência Cardíaca",
+    "definicao": "Número de batimentos por minuto (bpm).",
+    "categoria": "medida",
+    "paginaEbook": 27
+  },
+  {
+    "id": "vci",
+    "sigla": "VCI",
+    "termo": "Veia Cava Inferior",
+    "definicao": "Veia cava inferior. Estudos anteriores sugerem correlação do seu diâmetro durante o ciclo respiratório com a responsividade ao volume.",
+    "categoria": "cardiaca",
+    "paginaEbook": 31
+  },
+  {
+    "id": "vr",
+    "sigla": "VR",
+    "termo": "Responsividade ao volume",
+    "definicao": "A responsividade ao volume (VR) é o aumento do volume sistólico (VS) com um bolus de fluido.",
+    "categoria": "medida",
+    "paginaEbook": 31
+  },
+  {
+    "id": "fa",
+    "sigla": "FA",
+    "termo": "Fibrilação Atrial",
+    "definicao": "Fibrilação atrial. Interfere na confiabilidade do EPSS (avaliar em 3 a 5 batimentos e fazer a média) e do VTI (média de 3 a 5 batimentos).",
+    "categoria": "cardiaca",
+    "paginaEbook": 23
+  },
+  {
+    "id": "pvc",
+    "sigla": "PVCs",
+    "termo": "Extrassístoles ventriculares (premature ventricular contractions)",
+    "definicao": "Citado como critério de exclusão para o índice de distensibilidade da VCI: ritmo cardíaco regular (sem FA ou PVCs frequentes).",
+    "categoria": "cardiaca",
+    "paginaEbook": 34
+  },
+  {
+    "id": "modo-m",
+    "sigla": "Modo M",
+    "termo": "Modo de movimento",
+    "definicao": "Análise de um ponto específico em movimento. Utilizado para EPSS, MAPSE, TAPSE, sinal da praia, sinal do código de barras e sinal sinusoidal.",
+    "categoria": "geral",
+    "paginaEbook": 42
+  },
+  {
+    "id": "modo-b",
+    "sigla": "Modo B / 2D",
+    "termo": "Modo bidimensional",
+    "definicao": "Modo bidimensional (B-mode), usado como modo padrão de aquisição das imagens.",
+    "categoria": "geral",
+    "paginaEbook": 32
+  },
+  {
+    "id": "plaps",
+    "sigla": "PLAPS",
+    "termo": "PLAPS-point (ponto frêmito/diafragmático)",
+    "definicao": "Ponto pulmonar posterior–inferior bilateral, também chamado ponto frêmito/diafragmático. Os derrames pleurais são mais bem visualizados a partir do ponto PLAPS (maior sensibilidade e especificidade diagnóstica), onde os lobos inferiores são visualizados.",
+    "categoria": "pulmonar",
+    "paginaEbook": 39
+  },
+  {
+    "id": "linhas-a-glos",
+    "sigla": "Linhas A",
+    "termo": "Linhas A",
+    "definicao": "Linhas adjacentes, paralelas e equidistantes ao diafragma; são as reverberações (eco) da pleura identificada pelo transdutor.",
+    "categoria": "pulmonar",
+    "paginaEbook": 41
+  },
+  {
+    "id": "linhas-b-glos",
+    "sigla": "Linhas B",
+    "termo": "Linhas B",
+    "definicao": "Artefatos de reverberação na forma de linhas hiperecoicas verticais da linha pleural até o final da imagem ultrassonográfica, sem diminuição da densidade.",
+    "categoria": "pulmonar",
+    "paginaEbook": 47
+  },
+  {
+    "id": "linhas-z-glos",
+    "sigla": "Linhas Z",
+    "termo": "Linhas Z (falsas linhas B)",
+    "definicao": "Artefatos que se iniciam na pleura, mal definidos, curtos, que seguem o sentido anteroposterior, não apagam as linhas A e não alcançam toda a extensão do campo pulmonar avaliado. Não têm significado patológico.",
+    "categoria": "pulmonar",
+    "paginaEbook": 48
+  },
+  {
+    "id": "lung-sliding",
+    "sigla": "Lung Sliding",
+    "termo": "Deslizamento pleural",
+    "definicao": "Linha hiperecoica fina movendo-se adjacente e horizontalmente à linha pleural com movimentos respiratórios; corresponde ao deslizamento da pleura visceral sobre a pleura parietal durante a ventilação.",
+    "categoria": "pulmonar",
+    "paginaEbook": 41
+  },
+  {
+    "id": "lung-point-glos",
+    "sigla": "Lung Point",
+    "termo": "Ponto pulmonar",
+    "definicao": "Local de descolamento da pleura visceral e parietal; transição do deslizamento para a ausência de deslizamento. Patognomônico e 100% específico para pneumotórax.",
+    "categoria": "pulmonar",
+    "paginaEbook": 45
+  },
+  {
+    "id": "hepatizacao",
+    "sigla": "—",
+    "termo": "Hepatização pulmonar",
+    "definicao": "Consolidação densa e extensa com perda da relação ar-líquido, com ecogenicidade semelhante à do fígado.",
+    "categoria": "pulmonar",
+    "paginaEbook": 49
+  },
+  {
+    "id": "balik",
+    "sigla": "—",
+    "termo": "Fórmula de Balik",
+    "definicao": "Estimativa do volume do derrame pleural: Volume Pleural (mL) = distância (mm) x 20.",
+    "categoria": "medida",
+    "paginaEbook": 57
+  },
+  {
+    "id": "brockelsby",
+    "sigla": "—",
+    "termo": "Método de Brockelsby",
+    "definicao": "Quantificação prática do derrame pleural pelo número de espaços intercostais acometidos.",
+    "categoria": "medida",
+    "paginaEbook": 57
+  },
+  {
+    "id": "protocolo-blue",
+    "sigla": "BLUE",
+    "termo": "Protocolo BLUE",
+    "definicao": "Algoritmo desenvolvido por Lichtenstein e colaboradores para o diagnóstico diferencial da causa da insuficiência respiratória aguda do paciente. Inicia-se obrigatoriamente pela análise do deslizamento pleural.",
+    "categoria": "protocolo",
+    "paginaEbook": 60
+  },
+  {
+    "id": "fast",
+    "sigla": "FAST",
+    "termo": "Focused Assessment with Sonography for Trauma",
+    "definicao": "Protocolo para avaliação imediata de pacientes com trauma; detecta tamponamento cardíaco, hemoperitônio e ruptura de órgãos sólidos.",
+    "categoria": "protocolo",
+    "paginaEbook": 63
+  },
+  {
+    "id": "efast",
+    "sigla": "E-FAST",
+    "termo": "Extended Focused Assessment with Sonography in Trauma",
+    "definicao": "Inclui todas as janelas do FAST e adiciona quatro novas áreas de avaliação torácica, totalizando oito janelas ultrassonográficas.",
+    "categoria": "protocolo",
+    "paginaEbook": 64
+  },
+  {
+    "id": "rush",
+    "sigla": "RUSH",
+    "termo": "Rapid Ultrasound in Shock and Hypotension",
+    "definicao": "Protocolo desenvolvido por Phillips Perera e colaboradores. Serve para identificar a origem do choque em poucos minutos, baseado na analogia \"Pump, Tank e Pipes\".",
+    "categoria": "protocolo",
+    "paginaEbook": 66
+  },
+  {
+    "id": "pump",
+    "sigla": "Pump",
+    "termo": "Pump (Bomba)",
+    "definicao": "Elemento do RUSH correspondente ao coração; objetivo de avaliar a função cardíaca. Exemplos de achados: disfunção ventricular, tamponamento.",
+    "categoria": "protocolo",
+    "paginaEbook": 66
+  },
+  {
+    "id": "tank",
+    "sigla": "Tank",
+    "termo": "Tank (Reservatório)",
+    "definicao": "Elemento do RUSH correspondente ao volume intravascular e aos compartimentos corporais; objetivo de avaliar volemia e presença de fluido extravascular. Exemplos de achados: hemorragia, pneumotórax, congestão pulmonar.",
+    "categoria": "protocolo",
+    "paginaEbook": 66
+  },
+  {
+    "id": "pipes",
+    "sigla": "Pipes",
+    "termo": "Pipes (Tubos)",
+    "definicao": "Elemento do RUSH correspondente aos vasos sanguíneos; objetivo de avaliar integridade e fluxo dos grandes vasos. Exemplos de achados: aneurisma, dissecção, trombose.",
+    "categoria": "protocolo",
+    "paginaEbook": 66
+  },
+  {
+    "id": "tvp",
+    "sigla": "TVP",
+    "termo": "Trombose Venosa Profunda",
+    "definicao": "A presença de TVP está associada a alta morbidade e mortalidade devido ao risco de desenvolvimento de TEP. Diagnosticada pelo USG por visualização direta do coágulo, não compressibilidade da veia ou Doppler colorido.",
+    "categoria": "vascular",
+    "paginaEbook": 71
+  },
+  {
+    "id": "tep",
+    "sigla": "TEP",
+    "termo": "Tromboembolismo Pulmonar",
+    "definicao": "Tromboembolismo pulmonar. Entre 90 a 95% dos êmbolos pulmonares originam-se da TVP de membros inferiores; entre 50 e 82% dos casos de TVP apresentam TEP associado.",
+    "categoria": "vascular",
+    "paginaEbook": 70
+  },
+  {
+    "id": "ep",
+    "sigla": "EP",
+    "termo": "Embolia Pulmonar",
+    "definicao": "Embolia pulmonar. Citada na tabela de perfis pulmonares (EP maciça/submaciça cursa com aumento do ventrículo direito).",
+    "categoria": "pulmonar",
+    "paginaEbook": 59
+  },
+  {
+    "id": "vfc",
+    "sigla": "VFC",
+    "termo": "Veia Femoral Comum",
+    "definicao": "Veia femoral comum, localizada mais medialmente em relação à artéria femoral comum.",
+    "categoria": "vascular",
+    "paginaEbook": 73
+  },
+  {
+    "id": "afc",
+    "sigla": "AFC / CFA",
+    "termo": "Artéria Femoral Comum",
+    "definicao": "Artéria femoral comum, localizada mais lateralmente em relação à veia femoral comum. Na legenda da figura da página 74 aparece como CFA (common femoral artery).",
+    "categoria": "vascular",
+    "paginaEbook": 74
+  },
+  {
+    "id": "cfv",
+    "sigla": "CFV",
+    "termo": "Common Femoral Vein",
+    "definicao": "Veia femoral comum (abreviatura usada na legenda da figura da página 74).",
+    "categoria": "vascular",
+    "paginaEbook": 74
+  },
+  {
+    "id": "af",
+    "sigla": "AF",
+    "termo": "Artéria Femoral",
+    "definicao": "Artéria femoral, adjacente e lateral à veia femoral profunda.",
+    "categoria": "vascular",
+    "paginaEbook": 79
+  },
+  {
+    "id": "vp",
+    "sigla": "VP",
+    "termo": "Veia Poplítea",
+    "definicao": "Veia poplítea, visualizada mais superiormente em relação à artéria poplítea.",
+    "categoria": "vascular",
+    "paginaEbook": 79
+  },
+  {
+    "id": "ap",
+    "sigla": "AP",
+    "termo": "Artéria Poplítea",
+    "definicao": "Artéria poplítea, visualizada inferiormente à veia poplítea.",
+    "categoria": "vascular",
+    "paginaEbook": 79
+  },
+  {
+    "id": "veia-safena",
+    "sigla": "VS (veia safena)",
+    "termo": "Veia Safena Magna",
+    "definicao": "Veia safena magna; seu arco compõe a imagem da \"cabeça do Mickey Mouse\" junto à VFC e à AFC.",
+    "categoria": "vascular",
+    "paginaEbook": 78
+  },
+  {
+    "id": "cus",
+    "sigla": "CUS",
+    "termo": "Compression UltraSonography",
+    "definicao": "Ultrassonografia de compressão (termo presente na referência bibliográfica de D'Oria M, 2025).",
+    "categoria": "vascular",
+    "paginaEbook": 95
+  },
+  {
+    "id": "aaa",
+    "sigla": "—",
+    "termo": "Aneurisma de Aorta Abdominal",
+    "definicao": "Definido como diâmetro da aorta abdominal ≥ 3 cm ou aumento > 50% no diâmetro da aorta, sendo os infrarrenais com maior prevalência (85% dos casos).",
+    "categoria": "vascular",
+    "paginaEbook": 90
+  },
+  {
+    "id": "stanford",
+    "sigla": "—",
+    "termo": "Classificação de Stanford",
+    "definicao": "Classificação da dissecção de aorta mais utilizada: Tipo A envolve a aorta ascendente e pode progredir para o arco aórtico e a aorta toracoabdominal; Tipo B tem origem distal à artéria subclávia esquerda e pode envolver a aorta torácica descendente ou a aorta toracoabdominal.",
+    "categoria": "vascular",
+    "paginaEbook": 93
+  },
+  {
+    "id": "imh",
+    "sigla": "IMH",
+    "termo": "Hematoma Intramural",
+    "definicao": "Intramural hematoma. Espessamento crescente da parede aórtica > 5 mm; sinal indireto de dissecção da aorta ascendente.",
+    "categoria": "vascular",
+    "paginaEbook": 92
+  },
+  {
+    "id": "tl-fl",
+    "sigla": "TL / FL",
+    "termo": "Lúmen verdadeiro / Lúmen falso",
+    "definicao": "TL: lúmen verdadeiro (true lumen); FL: lúmen falso (false lumen). Abreviaturas usadas na legenda da figura de dissecção de aorta abdominal.",
+    "categoria": "vascular",
+    "paginaEbook": 94
+  },
+  {
+    "id": "lcca-lscl",
+    "sigla": "LCCA / LSCL",
+    "termo": "Artéria carótida comum esquerda / Artéria subclávia esquerda",
+    "definicao": "LCCA: artéria carótida comum esquerda; LSCL: artéria subclávia esquerda. Abreviaturas da legenda da figura da página 91.",
+    "categoria": "vascular",
+    "paginaEbook": 91
+  },
+  {
+    "id": "plef",
+    "sigla": "PLEF",
+    "termo": "Derrame pleural",
+    "definicao": "Pleural effusion — abreviatura usada nas legendas das figuras adaptadas de Bhoil R, 2021.",
+    "categoria": "pulmonar",
+    "paginaEbook": 54
+  },
+  {
+    "id": "sdra-glos",
+    "sigla": "SDRA",
+    "termo": "Síndrome do Desconforto Respiratório Agudo",
+    "definicao": "Síndrome do desconforto respiratório agudo.",
+    "categoria": "pulmonar",
+    "paginaEbook": 59
+  },
+  {
+    "id": "dpoc",
+    "sigla": "DPOC",
+    "termo": "Doença Pulmonar Obstrutiva Crônica",
+    "definicao": "Doença pulmonar obstrutiva crônica.",
+    "categoria": "pulmonar",
+    "paginaEbook": 59
+  },
+  {
+    "id": "uti",
+    "sigla": "UTI",
+    "termo": "Unidade de Terapia Intensiva",
+    "definicao": "Unidade de terapia intensiva.",
+    "categoria": "geral",
+    "paginaEbook": 6
+  },
+  {
+    "id": "perfil-a",
+    "sigla": "Perfil A",
+    "termo": "Perfil A (A-profile)",
+    "definicao": "Deslizamento pleural anterior presente associado a linhas A.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "perfil-a-linha",
+    "sigla": "Perfil A'",
+    "termo": "Perfil A' (A-prime profile)",
+    "definicao": "Perfil A com deslizamento pleural abolido. Associado a lung point, é específico de pneumotórax.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "perfil-b",
+    "sigla": "Perfil B",
+    "termo": "Perfil B (B-profile)",
+    "definicao": "Deslizamento pleural anterior presente associado a foguetes pulmonares (lung rockets). Sugere edema pulmonar hemodinâmico agudo (sensibilidade 97%, especificidade 95%).",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "perfil-b-linha",
+    "sigla": "Perfil B'",
+    "termo": "Perfil B' (B-prime profile)",
+    "definicao": "Perfil B com deslizamento pleural abolido. Perfil típico de pneumonia.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "perfil-a-b",
+    "sigla": "Perfil A/B",
+    "termo": "Perfil A/B",
+    "definicao": "Meio perfil A em um pulmão e meio perfil B no outro. Perfil típico de pneumonia.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "perfil-c",
+    "sigla": "Perfil C",
+    "termo": "Perfil C (C-profile)",
+    "definicao": "Consolidação pulmonar anterior, independentemente do tamanho e do número. Linha pleural espessada e irregular é um equivalente. Perfil típico de pneumonia.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "perfil-plaps",
+    "sigla": "Perfil PLAPS",
+    "termo": "Perfil PLAPS",
+    "definicao": "Designa Síndrome Alveolar e/ou Pleural Póstero-Lateral (PosteroLateral Alveolar and/or Pleural Syndrome). Pesquisado após a detecção de um perfil A com rede venosa livre.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "nude-profile",
+    "sigla": "Nude profile",
+    "termo": "Nude profile (perfil desnudo)",
+    "definicao": "Perfil A sem TVP e sem PLAPS. Sugere asma grave ou DPOC exacerbada.",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  },
+  {
+    "id": "lung-rockets",
+    "sigla": "Lung rockets",
+    "termo": "Foguetes pulmonares (lung rockets)",
+    "definicao": "Três ou mais linhas B em um mesmo espaço intercostal. Até 3-4 linhas são chamadas foguetes septais (correlacionam-se com linhas B de Kerley); o dobro desse número são os foguetes em vidro fosco (correlacionam-se com áreas de vidro fosco na tomografia).",
+    "categoria": "protocolo",
+    "paginaEbook": 60,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "campos": [
+        "definicao"
+      ],
+      "nota": "Termo usado no fluxograma da Figura 16 do Ebook TPOCUS 3.0 (pág. 60) mas NÃO definido em nenhum ponto do texto do ebook. Definição preenchida a partir de Lichtenstein 2014."
+    }
+  }
+]

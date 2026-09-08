@@ -1,0 +1,506 @@
+[
+  {
+    "id": "epss",
+    "nome": "EPSS — E-point septal separation",
+    "janela": "paraesternal-longitudinal",
+    "modo": "M",
+    "passosAquisicao": [
+      "Janela acústica: Paraesternal longitudinal, com boa visualização do folheto anterior da valva mitral.",
+      "Modo M: Ativar o modo M e posicionar a linha de amostragem sobre a ponta da cúspide anterior da valva mitral.",
+      "Ajustes: Garantir boa definição das estruturas e alinhamento perpendicular ao septo interventricular.",
+      "Identificar o ponto E (pico de abertura inicial da cúspide anterior da valva mitral).",
+      "Identificar o septo interventricular.",
+      "Medir a distância mínima entre o ponto E e o septo interventricular (em milímetros)."
+    ],
+    "formula": null,
+    "unidades": "mm",
+    "referencias": [
+      {
+        "faixa": "<7 mm",
+        "interpretacao": "Normal (FEVE 55–70%)"
+      },
+      {
+        "faixa": ">7 e <13 mm",
+        "interpretacao": "Disfunção moderada (FEVE 30–50%)",
+        "faixaOriginalEbook": ">7 and <13 mm"
+      },
+      {
+        "faixa": "> 13 mm",
+        "interpretacao": "Disfunção grave (FEVE <30%)",
+        "interpretacaoOriginalEbook": "Disfunção Severe (FEVE <30%)"
+      }
+    ],
+    "armadilhas": [
+      "Fibrilação Atrial: O EPSS deve ser avaliado em diferentes batimentos, sendo realizada uma média dos valores de 3 a 5 medidas.",
+      "Valvopatias: nessas situações, o EPSS não deve ser a medida de escolha.",
+      "Prótese valvar mitral: o EPSS não deve ser usado nessa situação."
+    ],
+    "prerequisitos": [
+      "Boa visualização do folheto anterior da valva mitral na janela paraesternal longitudinal.",
+      "Alinhamento perpendicular ao septo interventricular."
+    ],
+    "paginaEbook": 23,
+    "paginasEbook": [
+      21,
+      22,
+      23
+    ],
+    "notaFidelidade": "Valores numéricos idênticos ao ebook (pág. 23). Foram corrigidos apenas o conector \"and\" → \"e\" e a palavra \"Severe\" → \"grave\"; o texto original está preservado em faixaOriginalEbook / interpretacaoOriginalEbook. Ver corrections.json."
+  },
+  {
+    "id": "mapse",
+    "nome": "MAPSE — Mitral Annular Plane Systolic Excursion (Excursão sistólica do plano anular mitral)",
+    "janela": "apical-4-camaras",
+    "modo": "M",
+    "passosAquisicao": [
+      "Use a janela apical de quatro câmaras.",
+      "Coloque o cursor do modo M sobre o anel mitral lateral (ou septal, dependendo do protocolo), alinhando-o com o movimento longitudinal do ventrículo esquerdo.",
+      "Ative o modo M e registre o traçado do movimento do anel mitral durante o ciclo cardíaco.",
+      "Meça a distância entre o ponto mais baixo (diástole) e o ponto mais alto (sístole) do movimento do anel mitral."
+    ],
+    "formula": null,
+    "unidades": "mm",
+    "referencias": [
+      {
+        "faixa": "≥ 10 mm",
+        "interpretacao": "Normal"
+      },
+      {
+        "faixa": "entre 8 e 10 mm",
+        "interpretacao": "Limítrofe"
+      },
+      {
+        "faixa": "< 8 mm",
+        "interpretacao": "Reduzido, indicando possível disfunção sistólica longitudinal do ventrículo esquerdo"
+      }
+    ],
+    "armadilhas": [],
+    "prerequisitos": [
+      "O MAPSE pode ser medido em quatro localizações no plano atrioventricular, sendo paredes septal, lateral, anterior e posterior, visualizadas nas janelas apicais de quatro e duas câmaras, porém, em geral, deve ser medida a partir do anel mitral septal e lateral."
+    ],
+    "paginaEbook": 25,
+    "paginasEbook": [
+      24,
+      25
+    ]
+  },
+  {
+    "id": "tapse",
+    "nome": "TAPSE — Transannular Plane Systolic Excursion",
+    "janela": "apical-4-camaras",
+    "modo": "M",
+    "passosAquisicao": [
+      "Obtenha a janela apical de quatro câmaras.",
+      "Ative o modo M (modo de movimento) no ecocardiograma.",
+      "Alinhe o cursor M com o anel lateral da valva tricúspide (junção do anel tricúspide com a parede livre do ventrículo direito).",
+      "Registre o movimento do anel tricúspide durante o ciclo cardíaco.",
+      "Meça a excursão máxima do anel tricúspide da diástole para a sístole (distância vertical máxima entre os pontos mais baixos e mais altos do movimento do anel)."
+    ],
+    "formula": null,
+    "unidades": "mm",
+    "referencias": [
+      {
+        "faixa": "<17 mm",
+        "interpretacao": "Disfunção"
+      }
+    ],
+    "armadilhas": [],
+    "prerequisitos": [
+      "O TAPSE avalia o movimento longitudinal do plano lateral do anel da tricúspide durante a sístole, no modo M, através da janela apical 4 câmaras."
+    ],
+    "paginaEbook": 30,
+    "paginasEbook": [
+      29,
+      30
+    ]
+  },
+  {
+    "id": "tsve-diametro",
+    "nome": "Diâmetro do TSVE (trato de saída do ventrículo esquerdo)",
+    "janela": "paraesternal-longitudinal",
+    "modo": "B",
+    "passosAquisicao": [
+      "Use a janela paraesternal eixo longo.",
+      "Meça o diâmetro interno do TSVE, geralmente logo abaixo da valva aórtica aberta, durante a sístole."
+    ],
+    "formula": null,
+    "unidades": "cm",
+    "referencias": [
+      {
+        "faixa": "1,7 – 2,3 cm",
+        "interpretacao": "Valor de referência"
+      }
+    ],
+    "armadilhas": [],
+    "prerequisitos": [],
+    "paginaEbook": 28,
+    "paginasEbook": [
+      26,
+      28
+    ]
+  },
+  {
+    "id": "tsve-area",
+    "nome": "Área do TSVE",
+    "janela": "paraesternal-longitudinal",
+    "modo": "B",
+    "passosAquisicao": [
+      "Obtenha o diâmetro do trato de saída do ventrículo esquerdo (TSVE) na janela paraesternal eixo longo.",
+      "Calcule a área do TSVE."
+    ],
+    "formula": "Área = π × (diâmetro/2)²",
+    "unidades": "cm²",
+    "referencias": [],
+    "armadilhas": [],
+    "prerequisitos": [
+      "Medida do diâmetro do TSVE"
+    ],
+    "paginaEbook": 26,
+    "paginasEbook": [
+      26,
+      28
+    ],
+    "exemploEbook": "Diâmetro do TSVE: 2 cm → Área do TSVE: 3,14 × (1)² = 3,14 cm²"
+  },
+  {
+    "id": "vti-tsve",
+    "nome": "VTI do TSVE (Velocity Time Integral)",
+    "janela": "apical-5-camaras",
+    "modo": "Doppler",
+    "passosAquisicao": [
+      "Use Doppler pulsado (PW) na janela apical de cinco câmaras.",
+      "Posicione o cursor no TSVE e pressione o PW para registrar o VTI, que representa a distância percorrida pelo sangue em cada batimento."
+    ],
+    "formula": null,
+    "unidades": "cm",
+    "referencias": [
+      {
+        "faixa": "18-25 cm",
+        "interpretacao": "Valor de referência"
+      }
+    ],
+    "armadilhas": [
+      "Fibrilação Atrial: Meça 3 a 5 batimentos e calcule a média dos VTI."
+    ],
+    "prerequisitos": [],
+    "paginaEbook": 27,
+    "paginasEbook": [
+      27,
+      28
+    ],
+    "dicas": [
+      "VTI como ferramenta para avaliar efetividade de medidas: O VTI é o valor que vai mudar ao longo do tempo, sendo o TSVE fixo. Então após medidas (como volume, inotrópico etc), o VTI é a medida que deve ser calculada de forma seriada para avaliar a efetividade das intervenções."
+    ]
+  },
+  {
+    "id": "volume-sistolico",
+    "nome": "Volume Sistólico (VS)",
+    "janela": "paraesternal-longitudinal + apical-5-camaras",
+    "modo": "Doppler",
+    "passosAquisicao": [
+      "Obtenha o diâmetro do TSVE na janela paraesternal eixo longo e calcule sua área.",
+      "Meça o VTI do TSVE com Doppler pulsado (PW) na janela apical de cinco câmaras.",
+      "Calcule o volume sistólico."
+    ],
+    "formula": "VS = Área do TSVE × VTI do TSVE",
+    "unidades": "mL/batimento",
+    "referencias": [
+      {
+        "faixa": "70 – 140 ml/batimento",
+        "interpretacao": "Valor de referência"
+      }
+    ],
+    "armadilhas": [],
+    "prerequisitos": [
+      "Área do TSVE",
+      "VTI do TSVE"
+    ],
+    "paginaEbook": 27,
+    "paginasEbook": [
+      27,
+      28
+    ],
+    "exemploEbook": "VS = 3,14 × 20 = 62,8 mL"
+  },
+  {
+    "id": "debito-cardiaco",
+    "nome": "Débito Cardíaco (DC)",
+    "janela": "paraesternal-longitudinal + apical-5-camaras",
+    "modo": "Doppler",
+    "passosAquisicao": [
+      "Obtenha o diâmetro do trato de saída do ventrículo esquerdo (TSVE) na janela paraesternal eixo longo.",
+      "Calcule a área do TSVE: Área = π × (diâmetro/2)².",
+      "Meça o VTI do TSVE com Doppler pulsado (PW) na janela apical de cinco câmaras.",
+      "Calcule o volume sistólico (VS): VS = Área do TSVE × VTI do TSVE.",
+      "Multiplique pelo número de batimentos por minuto (FC)."
+    ],
+    "formula": "Débito cardíaco (DC) = VS × FC",
+    "unidades": "L/min",
+    "referencias": [
+      {
+        "faixa": "4 – 7 L/min",
+        "interpretacao": "Valor de referência"
+      }
+    ],
+    "armadilhas": [
+      "Fibrilação Atrial: Meça 3 a 5 batimentos e calcule a média dos VTI."
+    ],
+    "prerequisitos": [
+      "Volume sistólico (VS)",
+      "Frequência cardíaca (FC)"
+    ],
+    "paginaEbook": 27,
+    "paginasEbook": [
+      26,
+      27,
+      28
+    ],
+    "exemploEbook": "Diâmetro do TSVE: 2 cm; Área do TSVE: 3,14 × (1)² = 3,14 cm²; VTI do TSVE: 20 cm; VS = 3,14 × 20 = 62,8 mL; FC: 70 bpm; DC = 62,8 × 70 = 4.396 mL/min ou 4,4 L/min"
+  },
+  {
+    "id": "vci-diametro",
+    "nome": "Diâmetro da Veia Cava Inferior (VCI)",
+    "janela": "subcostal-vci",
+    "modo": "B",
+    "passosAquisicao": [
+      "Paciente em decúbito dorsal.",
+      "Use a janela subcostal (abaixo do apêndice xifoide).",
+      "Rotacione o transdutor no sentido anti-horário até visualizar a VCI entrando no átrio direito.",
+      "Meça a VCI a cerca de 2 cm da junção com o átrio direito.",
+      "Realize a medida em modo bidimensional (B-mode).",
+      "Registre o diâmetro máximo (inspiração) e mínimo (expiração)."
+    ],
+    "formula": null,
+    "unidades": "cm",
+    "referencias": [
+      {
+        "faixa": "VCI < 2,1 cm com colapso > 50%",
+        "interpretacao": "Sugere volemia adequada ou hipovolemia"
+      },
+      {
+        "faixa": "VCI > 2,1 cm com colapso < 50%",
+        "interpretacao": "Sugere hipervolemia ou pressão venosa central elevada"
+      }
+    ],
+    "armadilhas": [
+      "Pode-se confundir aorta com VCI; certifique-se de observar as veias hepáticas entrando na cava e que a cava adentra o átrio direito.",
+      "O diâmetro e o grau de colapso da VCI são influenciados pelo esforço respiratório de um paciente acordado.",
+      "A quantidade de suporte pressórico de um ventilador pode impactar a variação da VCI.",
+      "Pacientes com hiperinsuflação pulmonar crônica, insuficiência cardíaca direita e aumento da pressão intra-abdominal terão uma colapsabilidade da VCI imprecisa.",
+      "Como existem muitas situações em que o delta da VCI pode falhar em prever a responsividade a fluidos, o delta da VCI deve ser usado em contexto com outras medições de volume."
+    ],
+    "prerequisitos": [],
+    "paginaEbook": 33,
+    "paginasEbook": [
+      31,
+      32,
+      33,
+      34
+    ]
+  },
+  {
+    "id": "vci-indice-colapsabilidade",
+    "nome": "Índice de Colapsabilidade da VCI (ventilação espontânea)",
+    "janela": "subcostal-vci",
+    "modo": "B",
+    "passosAquisicao": [
+      "Paciente em decúbito dorsal, janela subcostal.",
+      "Rotacione o transdutor no sentido anti-horário até visualizar a VCI entrando no átrio direito.",
+      "Meça a VCI a cerca de 2 cm da junção com o átrio direito, em modo bidimensional (B-mode).",
+      "Registre o diâmetro máximo (inspiração) e mínimo (expiração).",
+      "Aplique a fórmula."
+    ],
+    "formula": "[(diâmetro máximo – diâmetro mínimo) / diâmetro máximo] × 100%",
+    "unidades": "%",
+    "referencias": [
+      {
+        "faixa": "VCI < 2,1 cm com colapso > 50%",
+        "interpretacao": "Sugere volemia adequada ou hipovolemia"
+      },
+      {
+        "faixa": "VCI > 2,1 cm com colapso < 50%",
+        "interpretacao": "Sugere hipervolemia ou pressão venosa central elevada"
+      }
+    ],
+    "armadilhas": [
+      "O diâmetro e o grau de colapso da VCI são influenciados pelo esforço respiratório de um paciente acordado.",
+      "Pacientes com hiperinsuflação pulmonar crônica, insuficiência cardíaca direita e aumento da pressão intra-abdominal terão uma colapsabilidade da VCI imprecisa.",
+      "Essa correlação não é perfeita, sendo importante que esses dados não sejam usados isoladamente, mas em conjunto com outros dados clínicos do paciente."
+    ],
+    "prerequisitos": [
+      "Ventilação espontânea (durante a respiração espontânea, a VCI colapsa com a inspiração)."
+    ],
+    "paginaEbook": 33,
+    "paginasEbook": [
+      31,
+      32,
+      33,
+      34
+    ]
+  },
+  {
+    "id": "vci-indice-distensibilidade",
+    "nome": "Índice de Distensibilidade da VCI (ventilação mecânica)",
+    "janela": "subcostal-vci",
+    "modo": "B",
+    "passosAquisicao": [
+      "Paciente em decúbito dorsal, janela subcostal.",
+      "Rotacione o transdutor no sentido anti-horário até visualizar a VCI entrando no átrio direito.",
+      "Meça a VCI a cerca de 2 cm da junção com o átrio direito, em modo bidimensional (B-mode).",
+      "Registre o diâmetro máximo (inspiração) e mínimo (expiração).",
+      "Aplique a fórmula."
+    ],
+    "formula": "[(diâmetro máximo – diâmetro mínimo) / diâmetro mínimo] × 100%",
+    "unidades": "%",
+    "referencias": [
+      {
+        "faixa": "> 18%",
+        "interpretacao": "Sugere responsividade à reposição volêmica"
+      },
+      {
+        "faixa": "< 18%",
+        "interpretacao": "Sugere baixa responsividade à reposição volêmica"
+      }
+    ],
+    "armadilhas": [
+      "A quantidade de suporte pressórico de um ventilador pode impactar a variação da VCI.",
+      "Se qualquer um desses critérios falhar, a variação da cava pode não refletir a pré-carga real.",
+      "Como existem muitas situações em que o delta da VCI pode falhar em prever a responsividade a fluidos, o delta da VCI deve ser usado em contexto com outras medições de volume."
+    ],
+    "prerequisitos": [
+      "O paciente está em ventilação controlada;",
+      "Volume corrente ≥8 mL/kg;",
+      "Sem esforço inspiratório;",
+      "Ritmo cardíaco regular (sem FA ou PVCs frequentes)."
+    ],
+    "paginaEbook": 33,
+    "paginasEbook": [
+      31,
+      32,
+      33,
+      34
+    ]
+  },
+  {
+    "id": "formula-balik",
+    "nome": "Fórmula de Balik (estimativa do volume do derrame pleural)",
+    "janela": "pulmonar-plaps",
+    "modo": "B",
+    "passosAquisicao": [
+      "Paciente em decúbito dorsal.",
+      "Aferir o diâmetro máximo do derrame (em milímetros) entre o diafragma e a base do pulmão.",
+      "Multiplicar esse número por 20."
+    ],
+    "formula": "Volume Pleural (mL) = distância (mm) x 20",
+    "unidades": "mL (distância em mm)",
+    "referencias": [],
+    "armadilhas": [],
+    "prerequisitos": [
+      "Paciente em decúbito dorsal."
+    ],
+    "paginaEbook": 57
+  },
+  {
+    "id": "metodo-brockelsby",
+    "nome": "Método de Brockelsby (quantificação do derrame pleural por espaços intercostais)",
+    "janela": "pulmonar-plaps",
+    "modo": "B",
+    "passosAquisicao": [
+      "Contar o número de espaços intercostais ocupados pelo derrame pleural."
+    ],
+    "formula": null,
+    "unidades": "nº de espaços intercostais / mL",
+    "referencias": [
+      {
+        "faixa": "1 espaço intercostal",
+        "interpretacao": "Derrame leve, <500 mL"
+      },
+      {
+        "faixa": "2 espaços intercostais",
+        "interpretacao": "Derrame moderado, 500-1000 mL"
+      },
+      {
+        "faixa": "> 3 espaços intercostais",
+        "interpretacao": "Derrame grave, >1000 mL"
+      }
+    ],
+    "armadilhas": [],
+    "prerequisitos": [],
+    "paginaEbook": 57,
+    "notaFidelidade": "Transcrito exatamente como no ebook (texto e tabela da página 57). O ebook não define a classificação para exatamente 3 espaços intercostais — ver gaps.md."
+  },
+  {
+    "id": "aorta-diametro",
+    "nome": "Diâmetro da Aorta Abdominal",
+    "janela": "aorta-abdominal-proximal",
+    "modo": "B",
+    "passosAquisicao": [
+      "Paciente em decúbito dorsal com a cabeceira da cama plana e preferencialmente de joelhos fletidos.",
+      "Visualização no eixo curto (corte transversal) com o transdutor abdominal e o index voltado para a direita do paciente.",
+      "O transdutor deve obrigatoriamente estar perpendicular à parede da aorta para realizar a mensuração do diâmetro anteroposterior de forma correta e precisa.",
+      "Com auxílio da ferramenta de congelamento da imagem (freeze), aferir a distância entre as paredes externas em seu diâmetro máximo.",
+      "Obter, se possível, uma medida anteroposterior e uma medida transversal.",
+      "Repetir a medida nas três porções: proximal, medial e distal."
+    ],
+    "formula": null,
+    "unidades": "cm",
+    "referencias": [
+      {
+        "faixa": "cerca de 2,0 cm",
+        "interpretacao": "Dimensão normal da aorta"
+      },
+      {
+        "faixa": "≥ 3 cm ou aumento > 50% no diâmetro da aorta",
+        "interpretacao": "Aneurisma da aorta abdominal, sendo os infrarrenais com maior prevalência (85% dos casos)"
+      },
+      {
+        "faixa": "≥ 1,5 cm",
+        "interpretacao": "Aneurisma de artéria ilíaca — \"Para as artérias ilíacas a definição é diâmetro ≥ 1,5 cm\" (pág. 90)"
+      },
+      {
+        "faixa": "≥3 cm",
+        "interpretacao": "Aneurisma fusiforme — \"São caracterizados por um alargamento do diâmetro da aorta ≥3 cm\" (pág. 89)"
+      },
+      {
+        "faixa": ">3 cm",
+        "interpretacao": "Aneurisma/dissecção — critério do protocolo RUSH: \"Diâmetro >3 cm → aneurisma/dissecção\" (pág. 68)"
+      }
+    ],
+    "armadilhas": [
+      "Confundir a aorta com a veia cava inferior.",
+      "Gases intestinais podem dificultar a visualização correta do vaso: aplicar pressão constante sobre o abdome e movimentar o transdutor sobre o eixo crânio-caudal para deslocar os gases; se persistir, posicionar o paciente em decúbito lateral esquerdo.",
+      "Transdutor não perpendicular à parede da aorta compromete a mensuração."
+    ],
+    "prerequisitos": [
+      "Medição do vaso nas três localizações (proximal, medial e distal) — a identificação de aneurisma de aorta abdominal por ultrassom apresenta sensibilidade e especificidade superiores a 90% quando utilizada essa técnica."
+    ],
+    "paginaEbook": 90,
+    "paginasEbook": [
+      68,
+      85,
+      87,
+      88,
+      89,
+      90
+    ]
+  },
+  {
+    "id": "espessamento-parede-aortica",
+    "nome": "Espessamento da Parede Aórtica (hematoma intramural)",
+    "janela": null,
+    "modo": "B",
+    "passosAquisicao": [],
+    "formula": null,
+    "unidades": "mm",
+    "referencias": [
+      {
+        "faixa": "> 5 mm",
+        "interpretacao": "Hematoma intramural (IMH) — sinal indireto de dissecção da aorta ascendente. \"Espessamento crescente da parede aórtica > 5 mm\" (legenda da figura, pág. 92)"
+      }
+    ],
+    "armadilhas": [],
+    "prerequisitos": [],
+    "paginaEbook": 92,
+    "notaFidelidade": "O ebook apresenta este valor APENAS na legenda da figura da página 92 (\"Espessamento crescente da parede aórtica > 5 mm\"). Não há no ebook passos de aquisição nem janela especificada para esta medida — por isso passosAquisicao está vazio e janela é null. Ver gaps.md."
+  }
+]

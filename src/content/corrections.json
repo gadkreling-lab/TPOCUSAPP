@@ -1,0 +1,155 @@
+[
+  {
+    "arquivo": "findings.json",
+    "itemId": "ausencia-deslizamento-pleural",
+    "campo": "diagnosticosAssociados[2]",
+    "original": "Entubação seletiva",
+    "corrigido": "Intubação seletiva",
+    "paginaEbook": 43,
+    "tipo": "padronização"
+  },
+  {
+    "arquivo": "findings.json",
+    "itemId": "derrame-pleural",
+    "campo": "descricao",
+    "original": "anecoisa",
+    "corrigido": "anecoica",
+    "paginaEbook": 53,
+    "tipo": "ortografia"
+  },
+  {
+    "arquivo": "findings.json",
+    "itemId": "sinal-da-agua-viva",
+    "campo": "descricao",
+    "original": "é visualizado a imagem",
+    "corrigido": "é visualizada a imagem",
+    "paginaEbook": 55,
+    "tipo": "concordância"
+  },
+  {
+    "arquivo": "findings.json",
+    "itemId": "sinal-do-plancton",
+    "campo": "descricao",
+    "original": "movimentam lentamente e giratório em forma de turbilhão",
+    "corrigido": "movimentam lentamente e giratoriamente em forma de turbilhão",
+    "paginaEbook": 56,
+    "tipo": "concordância"
+  },
+  {
+    "arquivo": "findings.json",
+    "itemId": "aneurisma-sacular",
+    "campo": "significadoClinico",
+    "original": "camda íntima",
+    "corrigido": "camada íntima",
+    "paginaEbook": 89,
+    "tipo": "ortografia"
+  },
+  {
+    "arquivo": "pathologies.json",
+    "itemId": "pneumonia",
+    "campo": "achados[4]",
+    "original": "derrame plural",
+    "corrigido": "derrame pleural",
+    "paginaEbook": 58,
+    "tipo": "ortografia"
+  },
+  {
+    "arquivo": "pathologies.json",
+    "itemId": "dpoc-asma",
+    "campo": "achados[2]",
+    "original": "sem a presença ponto pulmonar)",
+    "corrigido": "sem a presença de ponto pulmonar",
+    "paginaEbook": 59,
+    "tipo": "gramática/parêntese"
+  },
+  {
+    "arquivo": "pathologies.json",
+    "itemId": "contusao-pulmonar",
+    "campo": "achados[2]",
+    "original": "lesões intratorácicas fraturas de costelas, pneumotórax e hemotórax)",
+    "corrigido": "lesões intratorácicas (fraturas de costelas, pneumotórax e hemotórax)",
+    "paginaEbook": 59,
+    "tipo": "parêntese"
+  },
+  {
+    "arquivo": "measurements.json",
+    "itemId": "epss",
+    "campo": "referencias[1].faixa",
+    "original": ">7 and <13 mm",
+    "corrigido": ">7 e <13 mm",
+    "paginaEbook": 23,
+    "tipo": "idioma"
+  },
+  {
+    "arquivo": "measurements.json",
+    "itemId": "epss",
+    "campo": "referencias[2].interpretacao",
+    "original": "Disfunção Severe",
+    "corrigido": "Disfunção grave",
+    "paginaEbook": 23,
+    "tipo": "idioma"
+  },
+  {
+    "arquivo": "measurements.json",
+    "itemId": "epss",
+    "campo": "armadilhas[2]",
+    "original": "o EPSS não dever ser usado",
+    "corrigido": "o EPSS não deve ser usado",
+    "paginaEbook": 23,
+    "tipo": "gramática"
+  },
+  {
+    "arquivo": "measurements.json",
+    "itemId": "vti-tsve",
+    "campo": "dicas[0]",
+    "original": "a medida que ser calculada",
+    "corrigido": "a medida que deve ser calculada",
+    "paginaEbook": 28,
+    "tipo": "gramática"
+  },
+  {
+    "arquivo": "references.json",
+    "itemId": "janelas-cardiacas",
+    "campo": "referencias[2].citacao",
+    "original": "D ıaz-G omez",
+    "corrigido": "Díaz-Gómez",
+    "paginaEbook": 18,
+    "tipo": "codificação"
+  },
+  {
+    "arquivo": "references.json",
+    "itemId": "ultrassom-pulmonar",
+    "campo": "referencias[0].citacao",
+    "original": "critically ll",
+    "corrigido": "critically ill",
+    "paginaEbook": 61,
+    "tipo": "referência"
+  },
+  {
+    "arquivo": "references.json",
+    "itemId": "ultrassom-pulmonar",
+    "campo": "referencias[4].citacao",
+    "original": "Pneumonía",
+    "corrigido": "Pneumonia",
+    "paginaEbook": 61,
+    "tipo": "referência"
+  },
+  {
+    "arquivo": "references.json",
+    "itemId": "ultrassom-pulmonar",
+    "campo": "referencias[8].citacao",
+    "original": "Martinez losas, P.; de cortina camarero, C.; jimenez loeches, S.; cortés-beringola, A.; arnanz gonzález, I.; muñoz aguilera, R.",
+    "corrigido": "Martinez Losas, P.; de Cortina Camarero, C.; Jimenez Loeches, S.; Cortés-Beringola, A.; Arnanz González, I.; Muñoz Aguilera, R.",
+    "paginaEbook": 62,
+    "tipo": "capitalização"
+  },
+  {
+    "arquivo": "images.json",
+    "itemId": "p039-01",
+    "campo": "legendaEbook",
+    "original": "pulmomar",
+    "corrigido": "pulmonar",
+    "paginaEbook": 39,
+    "tipo": "ortografia"
+  }
+]

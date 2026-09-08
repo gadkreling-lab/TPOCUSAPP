@@ -1,0 +1,1163 @@
+[
+  {
+    "id": "p006-01",
+    "arquivo": "fig-p006-01.webp",
+    "paginaEbook": 6,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Janelas Cardíacas — Etapas da avaliação",
+    "categoria": "cardiaca",
+    "largura": 313,
+    "altura": 323,
+    "bytes": 18268,
+    "windowIds": [],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p007-01",
+    "arquivo": "fig-p007-01.webp",
+    "paginaEbook": 7,
+    "figuraNumero": 1,
+    "legendaEbook": "Figura 1: localização do transdutor no 3º ou 4º espaço intercostal, paraesternal esquerdo, com o marcador orientado para o ombro direito do paciente, para aquisição da janela paraesternal eixo longo",
+    "secaoEbook": "Janela Paraesternal Longitudinal (Eixo Longo)",
+    "categoria": "cardiaca",
+    "largura": 479,
+    "altura": 586,
+    "bytes": 35014,
+    "windowIds": [
+      "paraesternal-longitudinal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p008-01",
+    "arquivo": "fig-p008-01.webp",
+    "paginaEbook": 8,
+    "figuraNumero": 2,
+    "legendaEbook": "Figura 2: Janela Paraesternal, Longitudinal (eixo longo). Adaptado de Patrick J. Lynch, via Wikimedia Commons, licença CC BY-SA 2.5. AE: átrio esquerdo. Ao: Aorta. VE: ventrículo esquerdo. VD: ventrículo direito",
+    "secaoEbook": "Janela Paraesternal Longitudinal (Eixo Longo)",
+    "categoria": "cardiaca",
+    "largura": 1387,
+    "altura": 544,
+    "bytes": 50346,
+    "windowIds": [
+      "paraesternal-longitudinal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p009-01",
+    "arquivo": "fig-p009-01.webp",
+    "paginaEbook": 9,
+    "figuraNumero": 3,
+    "legendaEbook": "Figura 3: localização do transdutor no 3º ou 4º espaço intercostal, paraesternal esquerdo, com o marcador orientado para o ombro esquerdo do paciente, para aquisição da janela paraesternal eixo curto.",
+    "secaoEbook": "Janela Transversal (Eixo Curto)",
+    "categoria": "cardiaca",
+    "largura": 522,
+    "altura": 639,
+    "bytes": 39218,
+    "windowIds": [
+      "paraesternal-transversal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p010-01",
+    "arquivo": "fig-p010-01.webp",
+    "paginaEbook": 10,
+    "figuraNumero": 4,
+    "legendaEbook": "Figura 4: Janela Paraesternal, transversal (eixo curto). Adaptado de Patrick J. Lynch, via Wikimedia Commons, licença CC BY-SA 2.5. AE: átrio esquerdo. AD: átrio direito. VE: ventrículo esquerdo. VD: ventrículo direito",
+    "secaoEbook": "Janela Transversal (Eixo Curto)",
+    "categoria": "cardiaca",
+    "largura": 1351,
+    "altura": 946,
+    "bytes": 80368,
+    "windowIds": [
+      "paraesternal-transversal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p011-01",
+    "arquivo": "fig-p011-01.webp",
+    "paginaEbook": 11,
+    "figuraNumero": 5,
+    "legendaEbook": "Figura 5: Eixo transversal (eixo curto) ao nível da valva mitral. Acervo pessoal dos autores.",
+    "secaoEbook": "Janela Transversal (Eixo Curto)",
+    "categoria": "cardiaca",
+    "largura": 1380,
+    "altura": 884,
+    "bytes": 35036,
+    "windowIds": [
+      "paraesternal-transversal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p012-01",
+    "arquivo": "fig-p012-01.webp",
+    "paginaEbook": 12,
+    "figuraNumero": 6,
+    "legendaEbook": "Figura 6: localização do transdutor no apex, com o marcador orientado para o leito, para aquisição da janela 4 câmaras",
+    "secaoEbook": "Janela Apical 4 Câmaras",
+    "categoria": "cardiaca",
+    "largura": 512,
+    "altura": 628,
+    "bytes": 37362,
+    "windowIds": [
+      "apical-4-camaras"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p013-01",
+    "arquivo": "fig-p013-01.webp",
+    "paginaEbook": 13,
+    "figuraNumero": 7,
+    "legendaEbook": "Figura 7: Janela Apical, 4 câmaras. Adaptado de Patrick J. Lynch, via Wikimedia Commons, licença CC BY-SA 2.5. AE: átrio esquerdo. AD: átrio direito. VE: ventrículo esquerdo. VD: ventrículo direito.",
+    "secaoEbook": "Janela Apical 4 Câmaras",
+    "categoria": "cardiaca",
+    "largura": 1399,
+    "altura": 747,
+    "bytes": 78164,
+    "windowIds": [
+      "apical-4-camaras"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p014-01",
+    "arquivo": "fig-p014-01.webp",
+    "paginaEbook": 14,
+    "figuraNumero": 8,
+    "legendaEbook": "Figura 8: Janela apical 5 câmaras com visualização da via de saída do VE e da Valva Aórtica. VE: ventrículo esquerdo. Acervo pessoal dos autores.",
+    "secaoEbook": "Janela Apical 5 Câmaras",
+    "categoria": "cardiaca",
+    "largura": 1230,
+    "altura": 825,
+    "bytes": 40254,
+    "windowIds": [
+      "apical-5-camaras"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p015-01",
+    "arquivo": "fig-p015-01.webp",
+    "paginaEbook": 15,
+    "figuraNumero": 9,
+    "legendaEbook": "Figura 9: localização do transdutor subxifoide, com o marcador orientado para à esquerda do paciente, para aquisição da janela subcostal.",
+    "secaoEbook": "Janela Subxifoide",
+    "categoria": "cardiaca",
+    "largura": 657,
+    "altura": 802,
+    "bytes": 50288,
+    "windowIds": [
+      "subxifoide"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p016-01",
+    "arquivo": "fig-p016-01.webp",
+    "paginaEbook": 16,
+    "figuraNumero": 10,
+    "legendaEbook": "Figura 10: Janela Subcostal. Adaptado de Patrick J. Lynch, via Wikimedia Commons, licença CC BY-SA 2.5. AE: átrio esquerdo. AD: átrio direito. VE: ventrículo esquerdo. VD: ventrículo direito",
+    "secaoEbook": "Janela Subxifoide",
+    "categoria": "cardiaca",
+    "largura": 1299,
+    "altura": 704,
+    "bytes": 67560,
+    "windowIds": [
+      "subxifoide"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p017-01",
+    "arquivo": "fig-p017-01.webp",
+    "paginaEbook": 17,
+    "figuraNumero": 11,
+    "legendaEbook": "Figura 11: Janela costal mostrando a veia cava inferior entrando no átrio direito. Acervo pessoal dos autores.",
+    "secaoEbook": "Janela Subxifoide — Veia Cava Inferior",
+    "categoria": "cardiaca",
+    "largura": 1303,
+    "altura": 955,
+    "bytes": 38650,
+    "windowIds": [
+      "subcostal-vci"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p023-01",
+    "arquivo": "fig-p023-01.webp",
+    "paginaEbook": 23,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Medidas Básicas — EPSS (valores de referência)",
+    "categoria": "medida",
+    "largura": 1147,
+    "altura": 868,
+    "bytes": 112090,
+    "windowIds": [
+      "paraesternal-longitudinal"
+    ],
+    "findingIds": [],
+    "measurementIds": [
+      "epss"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p025-01",
+    "arquivo": "fig-p025-01.webp",
+    "paginaEbook": 25,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Medidas Básicas — MAPSE (valores de referência)",
+    "categoria": "medida",
+    "largura": 1207,
+    "altura": 924,
+    "bytes": 108554,
+    "windowIds": [
+      "apical-4-camaras"
+    ],
+    "findingIds": [],
+    "measurementIds": [
+      "mapse"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p026-01",
+    "arquivo": "fig-p026-01.webp",
+    "paginaEbook": 26,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Débito Cardíaco — diâmetro do TSVE",
+    "categoria": "medida",
+    "largura": 638,
+    "altura": 775,
+    "bytes": 36890,
+    "windowIds": [
+      "paraesternal-longitudinal"
+    ],
+    "findingIds": [],
+    "measurementIds": [
+      "tsve-diametro",
+      "tsve-area"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p027-01",
+    "arquivo": "fig-p027-01.webp",
+    "paginaEbook": 27,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Débito Cardíaco — VTI do TSVE",
+    "categoria": "medida",
+    "largura": 1022,
+    "altura": 776,
+    "bytes": 57446,
+    "windowIds": [
+      "apical-5-camaras"
+    ],
+    "findingIds": [],
+    "measurementIds": [
+      "vti-tsve",
+      "volume-sistolico",
+      "debito-cardiaco"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p030-01",
+    "arquivo": "fig-p030-01.webp",
+    "paginaEbook": 30,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Função do Ventrículo Direito — TAPSE",
+    "categoria": "medida",
+    "largura": 693,
+    "altura": 504,
+    "bytes": 48940,
+    "windowIds": [
+      "apical-4-camaras"
+    ],
+    "findingIds": [],
+    "measurementIds": [
+      "tapse"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p032-01",
+    "arquivo": "fig-p032-01.webp",
+    "paginaEbook": 32,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Veia Cava Inferior — como medir",
+    "categoria": "medida",
+    "largura": 1253,
+    "altura": 839,
+    "bytes": 74834,
+    "windowIds": [
+      "subcostal-vci"
+    ],
+    "findingIds": [],
+    "measurementIds": [
+      "vci-diametro",
+      "vci-indice-colapsabilidade",
+      "vci-indice-distensibilidade"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p036-01",
+    "arquivo": "fig-p036-01.webp",
+    "paginaEbook": 36,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Pulmonar — introdução",
+    "categoria": "pulmonar",
+    "largura": 825,
+    "altura": 977,
+    "bytes": 56126,
+    "windowIds": [],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p039-01",
+    "arquivo": "fig-p039-01.webp",
+    "paginaEbook": 39,
+    "figuraNumero": 1,
+    "legendaEbook": "Figura 1 – Pontos pulmonares anatômicos para a realização o exame POCUS pulmonar, modificado de Lichtenstein, Annals of Intensive Care, 2014, 4:1",
+    "secaoEbook": "Ultrassom Pulmonar — Técnica de Realização",
+    "categoria": "pulmonar",
+    "largura": 1052,
+    "altura": 500,
+    "bytes": 41754,
+    "windowIds": [
+      "pulmonar-anterior-superior",
+      "pulmonar-lateral",
+      "pulmonar-plaps"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p039-02",
+    "arquivo": "fig-p039-02.webp",
+    "paginaEbook": 39,
+    "figuraNumero": 2,
+    "legendaEbook": "Figura 2 – Posição vertical e longitudinal transdutor do ultrassom entre duas costelas para visualização do campo pulmonar entre ambos. Adapatado de Buda N, et.al., 2023)",
+    "secaoEbook": "Ultrassom Pulmonar — Técnica de Realização",
+    "categoria": "pulmonar",
+    "largura": 732,
+    "altura": 499,
+    "bytes": 17490,
+    "windowIds": [
+      "pulmonar-anterior-superior",
+      "pulmonar-lateral",
+      "pulmonar-plaps"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p040-01",
+    "arquivo": "fig-p040-01.webp",
+    "paginaEbook": 40,
+    "figuraNumero": 3,
+    "legendaEbook": "Figura 3 – Orientação anatômica do exame ultrassonográfico pulmonar no corte longitudinal no Modo B. A: Sinal do morcego. B: Demonstram-se os achados anatômicos correspondentes ao chamado sinal do morcego. Costelas (setas laranjas) e suas respectivas sombras acústicas (asteriscos). A pleura é hiperecogênica e identificada entre as costelas (seta vermelha). Linha A (seta azul) é paralela à pleura e origina-se do fenômeno de reverberação pleural. As asas do morcego correspondem tanto às costelas quanto às suas sombras acústicas, e a cabeça do morcego, ao eco pleural. Adaptado de: de Oliveira, R.R., et al., 2020.",
+    "secaoEbook": "Ultrassom Pulmonar — Orientação durante o exame",
+    "categoria": "pulmonar",
+    "largura": 1400,
+    "altura": 620,
+    "bytes": 49292,
+    "windowIds": [],
+    "findingIds": [
+      "sinal-asa-morcego",
+      "linhas-a"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p041-01",
+    "arquivo": "fig-p041-01.webp",
+    "paginaEbook": 41,
+    "figuraNumero": 3,
+    "legendaEbook": "Figura 3 – Adaptado de: de Oliveira, R.R., et al., 2020.",
+    "secaoEbook": "Ultrassom Pulmonar — Pleura (linhas A)",
+    "categoria": "pulmonar",
+    "largura": 599,
+    "altura": 640,
+    "bytes": 25762,
+    "windowIds": [],
+    "findingIds": [
+      "linhas-a",
+      "deslizamento-pleural"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p042-01",
+    "arquivo": "fig-p042-01.webp",
+    "paginaEbook": 42,
+    "figuraNumero": 4,
+    "legendaEbook": "Figura 4 - US pulmonar no modo M demonstra a representação de duas dimensões no corte longitudinal. A: Sinal da praia. B: Analogia ao sinal da “areia da praia” e “ondas do mar”. Acima da linha pleural (setas), os tecidos superficiais sem movimentação são visualizados na forma de linhas paralelas à pleura, aspecto semelhante a “ondas do mar” (colchetes azuis). Abaixo da linha pleural obtém-se uma imagem artefatual do deslizamento pleural semelhante a “areia da praia” (colchetes brancos). O conjunto desses achados é conhecido como “sinal da praia”. Adaptado de: de Oliveira, R.R., et al., 2020.",
+    "secaoEbook": "Ultrassom Pulmonar — Pleura (modo M)",
+    "categoria": "pulmonar",
+    "largura": 1400,
+    "altura": 553,
+    "bytes": 38326,
+    "windowIds": [],
+    "findingIds": [
+      "sinal-da-praia"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p044-01",
+    "arquivo": "fig-p044-01.webp",
+    "paginaEbook": 44,
+    "figuraNumero": 5,
+    "legendaEbook": "Figura 5 - US pulmonar no modo B no corte longitudinal demonstrando na imagem a esquerda a representação da ausência do deslizamento das pleuras. Na imagem a direita o modo M o sinal do código de barra. Adaptado de: Lichtenstein D.A., 2014.",
+    "secaoEbook": "Ultrassom Pulmonar — Ausência de deslizamento pleural",
+    "categoria": "pulmonar",
+    "largura": 1283,
+    "altura": 891,
+    "bytes": 89072,
+    "windowIds": [],
+    "findingIds": [
+      "sinal-codigo-de-barras",
+      "ausencia-deslizamento-pleural"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p046-01",
+    "arquivo": "fig-p046-01.webp",
+    "paginaEbook": 46,
+    "figuraNumero": 6,
+    "legendaEbook": "Figura 6 - US pulmonar no modo B no corte longitudinal demonstrando na imagem a esquerda a representação da ausência do deslizamento das pleuras. Na imagem a direita o modo M o sinal do código de barra e o ponto pulmonar (seta) patognomônico de pneumotórax. Adaptado de: Lichtenstein D.A., 2014.",
+    "secaoEbook": "Ultrassom Pulmonar — Pneumotórax",
+    "categoria": "pulmonar",
+    "largura": 1341,
+    "altura": 1002,
+    "bytes": 141566,
+    "windowIds": [],
+    "findingIds": [
+      "lung-point",
+      "sinal-codigo-de-barras"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [
+      "pneumotorax"
+    ],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p047-01",
+    "arquivo": "fig-p047-01.webp",
+    "paginaEbook": 47,
+    "figuraNumero": 7,
+    "legendaEbook": "Figura 7 - US pulmonar no modo B. A: Representação com as marcações correspondentes às linhas A, B e pleural. A linha B (asteriscos) representa artefatos hiperecogênicos, verticais e que percorrem todo o campo anteroposterior avaliado. Uma importante característica é o fato de apagarem as linhas A (seta amarela) ao se cruzarem (X). A linha pleural mostra-se como linha hiperecogênica (seta vermelha). Adaptado de: de Oliveira, R.R., et al., 2020.",
+    "secaoEbook": "Ultrassom Pulmonar — Alterações Intersticiais",
+    "categoria": "pulmonar",
+    "largura": 911,
+    "altura": 670,
+    "bytes": 22020,
+    "windowIds": [],
+    "findingIds": [
+      "linhas-b",
+      "linhas-a"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p048-01",
+    "arquivo": "fig-p048-01.webp",
+    "paginaEbook": 48,
+    "figuraNumero": 8,
+    "legendaEbook": "Figura 8 - US pulmonar no modo B no corte longitudinal demonstrando na imagem a esquerda a imagem de quatro a cinco linhas B descritas como “rabo de cometa”. Ao centro uma confluência de linhas B chamadas “foguetes em vidro fosco”. A direita é possível ver as linhas Z que não são definidas como linhas B e sim “falsas linhas B”. Elas não têm significado patológico, são artefatos que se iniciam na pleura, mal definidas, curtas, que seguem o sentido anteroposterior, não apagam as linhas A (setas) e além de não alcançarem toda a extensão do campo pulmonar avaliado. Adaptado de: Lichtenstein D.A., 2014.",
+    "secaoEbook": "Ultrassom Pulmonar — Linhas B patológicas",
+    "categoria": "pulmonar",
+    "largura": 1367,
+    "altura": 374,
+    "bytes": 34124,
+    "windowIds": [],
+    "findingIds": [
+      "linhas-b",
+      "rabo-de-cometa",
+      "foguetes-vidro-fosco",
+      "linhas-z"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p049-01",
+    "arquivo": "fig-p049-01.webp",
+    "paginaEbook": 49,
+    "figuraNumero": 9,
+    "legendaEbook": "Figura 9 – US pulmonar no modo B no corte longitudinal demonstrando na imagem a consolidação pulmonar. A esquerda a imagem de uma consolidação maciça (transdutor no ponto PLAPS) invade todo o lobo inferior esquerdo (hepatização pulmonar). Não há tecido pulmonar aerado presente. A borda profunda está na linha mediastinal (setas). O padrão é semelhante ao tecido, semelhante ao baço (S). Na imagem da direita uma consolidação do lobo médio, que não invade todo o lobo. Isso gera um limite fragmentado entre a consolidação e o pulmão aerado subjacente (setas): “sinal de fragmentação” bastante específico de consolidação pulmonar. Adaptado de: Lichtenstein D.A., 2014.",
+    "secaoEbook": "Ultrassom Pulmonar — Alterações bronco-alveolares",
+    "categoria": "pulmonar",
+    "largura": 1333,
+    "altura": 501,
+    "bytes": 58844,
+    "windowIds": [],
+    "findingIds": [
+      "hepatizacao-pulmonar",
+      "sinal-de-fragmentacao"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [
+      "pneumonia"
+    ],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p051-01",
+    "arquivo": "fig-p051-01.webp",
+    "paginaEbook": 51,
+    "figuraNumero": 10,
+    "legendaEbook": "Figura 10 – US pulmonar no modo B no corte longitudinal demonstrando na imagem a broncograma pulmonar. A representação esquemática dos aerobroncogramas dinâmicos (asteriscos) na avaliação em tempo real em meio a consolidação pulmonar (seta vermelha). Suas características modificam-se durante as fases do ciclo respiratório característico de pneumonia. Quando esse broncograma não é dinâmico (movimento) durante o ciclo respiratório é considerado estático caracterizando uma atelectasia. Adaptado de: de Oliveira, R.R., et al., 2020.",
+    "secaoEbook": "Ultrassom Pulmonar — Broncograma dinâmico",
+    "categoria": "pulmonar",
+    "largura": 1326,
+    "altura": 531,
+    "bytes": 49988,
+    "windowIds": [],
+    "findingIds": [
+      "broncograma-dinamico",
+      "broncograma-aereo"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [
+      "pneumonia"
+    ],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p052-01",
+    "arquivo": "fig-p052-01.webp",
+    "paginaEbook": 52,
+    "figuraNumero": 11,
+    "legendaEbook": "Figura 11 - US pulmonar no modo B no corte longitudinal no terço inferior do hemitórax direito demonstrando na imagem o broncograma aéreo estático típico de atelectasia pulmonar (seta vermelha) e derrame pleural (seta amarela). Há redução volumétrica do segmento pulmonar típico da (círculo). Adaptado de: de Oliveira, R.R., et al., 2020.",
+    "secaoEbook": "Ultrassom Pulmonar — Broncograma estático",
+    "categoria": "pulmonar",
+    "largura": 1343,
+    "altura": 579,
+    "bytes": 42002,
+    "windowIds": [],
+    "findingIds": [
+      "broncograma-estatico"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [
+      "atelectasia"
+    ],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p053-01",
+    "arquivo": "fig-p053-01.webp",
+    "paginaEbook": 53,
+    "figuraNumero": 12,
+    "legendaEbook": "Figura 12 - US pulmonar no modo B no corte longitudinal no terço inferior do hemitórax esquerdo (PLAPS) demonstrando o derrame pleural (imagem da esquerda e central). Abaixo da linha pleural pode-se observar uma linha regular e aproximadamente paralela à linha pleural: a linha pulmonar, indicando a pleura visceral (setas). Essa linha, juntamente com a linha pleural e a sombra das costelas, apresenta uma espécie de quadrado (sinal do quadrilátero). Imagem da direita o US pulmonar no modo M no corte longitudinal no terço inferior do hemitórax esquerdo (PLAPS) demonstrando o derrame pleural. O movimento da linha pulmonar (setas brancas) em direção à linha pleural (setas pretas) na inspiração (sinal sinusoidal). Adaptado de: Lichtenstein D.A., 2014.",
+    "secaoEbook": "Ultrassom Pulmonar — Derrame pleural",
+    "categoria": "pulmonar",
+    "largura": 1395,
+    "altura": 520,
+    "bytes": 63602,
+    "windowIds": [
+      "pulmonar-plaps"
+    ],
+    "findingIds": [
+      "derrame-pleural",
+      "sinal-do-quadrilatero",
+      "sinal-sinusoidal"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p054-01",
+    "arquivo": "fig-p054-01.webp",
+    "paginaEbook": 54,
+    "figuraNumero": 13,
+    "legendaEbook": "Figura 13 - US pulmonar no modo B no corte longitudinal no terço inferior do hemitórax direito demonstrando o derrame pleural e a coluna vertebral acima do diafragma (setas) - Sinal da coluna vertebral. Normalmente, os corpos vertebrais não são aparentes na US pulmonar L – fígado; K – rim; PLEF – derrame pleural. Adaptado de: Bhoil R, 2021.",
+    "secaoEbook": "Ultrassom Pulmonar — Sinal da coluna vertebral",
+    "categoria": "pulmonar",
+    "largura": 1022,
+    "altura": 780,
+    "bytes": 31094,
+    "windowIds": [],
+    "findingIds": [
+      "sinal-da-coluna-vertebral",
+      "derrame-pleural"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p055-01",
+    "arquivo": "fig-p055-01.webp",
+    "paginaEbook": 55,
+    "figuraNumero": 14,
+    "legendaEbook": "Figura 14 - US pulmonar no modo B no corte longitudinal no terço inferior do hemitórax direito demonstrando o pulmão colapsado (seta), que aparece como uma água-viva em movimento na ultrassonografia em tempo real (Jellyfish sign). L – fígado; PLEF – derrame pleural. Adaptado de: Bhoil R, 2021.",
+    "secaoEbook": "Ultrassom Pulmonar — Sinal da água-viva",
+    "categoria": "pulmonar",
+    "largura": 1220,
+    "altura": 939,
+    "bytes": 45446,
+    "windowIds": [],
+    "findingIds": [
+      "sinal-da-agua-viva"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [
+      "atelectasia"
+    ],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p056-01",
+    "arquivo": "fig-p056-01.webp",
+    "paginaEbook": 56,
+    "figuraNumero": 15,
+    "legendaEbook": "Figura 15 - US pulmonar no modo B no corte longitudinal no terço inferior do hemitórax direito demonstrando múltiplos focos pontuados no derrame pleural representando detritos flutuantes (sinal do plâncton). L – fígado; PLEF – derrame pleural. Adaptado de: Bhoil R, 2021.",
+    "secaoEbook": "Ultrassom Pulmonar — Sinal do plâncton",
+    "categoria": "pulmonar",
+    "largura": 987,
+    "altura": 758,
+    "bytes": 38280,
+    "windowIds": [],
+    "findingIds": [
+      "sinal-do-plancton"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p060-01",
+    "arquivo": "fig-p060-01.webp",
+    "paginaEbook": 60,
+    "figuraNumero": 16,
+    "legendaEbook": "Figura 16 – Protocolo Blue desenvolvido por Lichtenstein e colaboradores. Adaptado de: Martinez Losas, P. et al., 2025.",
+    "secaoEbook": "Ultrassom Pulmonar — Protocolo BLUE",
+    "categoria": "protocolo",
+    "largura": 1394,
+    "altura": 779,
+    "bytes": 58620,
+    "windowIds": [],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [
+      "protocolo-blue"
+    ],
+    "formato": "webp"
+  },
+  {
+    "id": "p064-01",
+    "arquivo": "fig-p064-01.webp",
+    "paginaEbook": 64,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Protocolo E-FAST — As Janelas Ultrassonográficas do EFAST",
+    "categoria": "protocolo",
+    "largura": 1001,
+    "altura": 1331,
+    "bytes": 91868,
+    "windowIds": [
+      "efast-recesso-hepatorrenal",
+      "efast-recesso-esplenorrenal",
+      "efast-espaco-retrovesical",
+      "efast-pericardica-subxifoide",
+      "efast-axilar-anterior-direita",
+      "efast-hemiclavicular-anterior-direita",
+      "efast-axilar-anterior-esquerda",
+      "efast-hemiclavicular-anterior-esquerda"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [
+      "protocolo-efast"
+    ],
+    "formato": "webp"
+  },
+  {
+    "id": "p073-01",
+    "arquivo": "fig-p073-01.webp",
+    "paginaEbook": 73,
+    "figuraNumero": 1,
+    "legendaEbook": "Figura 1 – Representação anatômica da venografia dos membros inferiores e os 3 pontos de varredura principais indicados no Protocolo para Ultrassonografia Venosa à Beira do Leito (POCUS). Varredura craniocaudal: (S1) veia femoral comum até a bifurcação da veia safena magna, (S2) segmento proximal das veias femorais superficial e profunda e (S3) veia poplítea até a trifurcação. As barras pretas indicam as áreas de varredura obrigatória para a POCUS. Uma barra cinza indica uma região adicional que requer maior esforço de varredura.",
+    "secaoEbook": "Ultrassom Vascular — POCUS venoso",
+    "categoria": "vascular",
+    "largura": 1400,
+    "altura": 1005,
+    "bytes": 52198,
+    "windowIds": [
+      "venoso-femoral-comum",
+      "venoso-femoral-bifurcacao",
+      "venoso-popliteo"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p074-01",
+    "arquivo": "fig-p074-01.webp",
+    "paginaEbook": 74,
+    "figuraNumero": 2,
+    "legendaEbook": "Figura 2 – Venografia de membros inferiores em Modo B no corte transversal. Veia femoral comum não compressível devido à trombose, identificada durante a compressão da sonda. Abreviaturas: CFA: arteria femoral comum; CFV: veia femoral comum. Adaptado de: Kang, S.Y, 2024",
+    "secaoEbook": "Ultrassom Vascular — POCUS venoso",
+    "categoria": "vascular",
+    "largura": 1323,
+    "altura": 1425,
+    "bytes": 99762,
+    "windowIds": [
+      "venoso-femoral-comum"
+    ],
+    "findingIds": [
+      "veia-nao-compressivel"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p075-01",
+    "arquivo": "fig-p075-01.webp",
+    "paginaEbook": 75,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Técnica de realização (posição de perna de sapo)",
+    "categoria": "vascular",
+    "largura": 1127,
+    "altura": 1091,
+    "bytes": 57862,
+    "windowIds": [
+      "venoso-femoral-comum",
+      "venoso-femoral-bifurcacao",
+      "venoso-popliteo"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p076-01",
+    "arquivo": "fig-p076-01.webp",
+    "paginaEbook": 76,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Realização do exame (pontos de compressão)",
+    "categoria": "vascular",
+    "largura": 1400,
+    "altura": 567,
+    "bytes": 74222,
+    "windowIds": [
+      "venoso-femoral-comum",
+      "venoso-femoral-bifurcacao",
+      "venoso-popliteo",
+      "venoso-membro-contralateral"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p076-02",
+    "arquivo": "fig-p076-02.webp",
+    "paginaEbook": 76,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Realização do exame (pontos de compressão)",
+    "categoria": "vascular",
+    "largura": 1387,
+    "altura": 713,
+    "bytes": 31534,
+    "windowIds": [
+      "venoso-femoral-comum",
+      "venoso-femoral-bifurcacao",
+      "venoso-popliteo",
+      "venoso-membro-contralateral"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p078-01",
+    "arquivo": "fig-p078-01.webp",
+    "paginaEbook": 78,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Análise da Veia Femoral Comum",
+    "categoria": "vascular",
+    "largura": 608,
+    "altura": 450,
+    "bytes": 27422,
+    "windowIds": [
+      "venoso-femoral-comum"
+    ],
+    "findingIds": [
+      "cabeca-mickey-mouse"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p078-02",
+    "arquivo": "fig-p078-02.webp",
+    "paginaEbook": 78,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Análise da Veia Femoral Comum (analogia da “cabeça do Mickey Mouse”)",
+    "categoria": "vascular",
+    "largura": 449,
+    "altura": 410,
+    "bytes": 13504,
+    "windowIds": [
+      "venoso-femoral-comum"
+    ],
+    "findingIds": [
+      "cabeca-mickey-mouse"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p079-01",
+    "arquivo": "fig-p079-01.webp",
+    "paginaEbook": 79,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Análise da Veia Femoral",
+    "categoria": "vascular",
+    "largura": 993,
+    "altura": 610,
+    "bytes": 54814,
+    "windowIds": [
+      "venoso-femoral-bifurcacao"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p079-02",
+    "arquivo": "fig-p079-02.webp",
+    "paginaEbook": 79,
+    "figuraNumero": null,
+    "legendaEbook": "Na figura à Esquerda é possível ver a relação anatômica da artéria poplítea e a veia poplítea sem a compressão dos vasos. A figura à Direita mostra o diâmetro residual da veia poplítea não compressível (diâmetro máximo do trombo venoso). Adaptado de: D’Oria M, 2025",
+    "secaoEbook": "Ultrassom Vascular — Análise da Veia Poplítea",
+    "categoria": "vascular",
+    "largura": 896,
+    "altura": 656,
+    "bytes": 49934,
+    "windowIds": [
+      "venoso-popliteo"
+    ],
+    "findingIds": [
+      "veia-nao-compressivel"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p080-01",
+    "arquivo": "fig-p080-01.webp",
+    "paginaEbook": 80,
+    "figuraNumero": 4,
+    "legendaEbook": "Venografia de membros inferiores em Modo B no corte transversal. Trombo ecogênico visível na veia poplítea direita. Abaixo da veia a artéria poplítea direita. Adaptado de: Varrias D., 2021.",
+    "secaoEbook": "Ultrassom e TVP — Visualização direta do coágulo",
+    "categoria": "vascular",
+    "largura": 574,
+    "altura": 667,
+    "bytes": 27704,
+    "windowIds": [
+      "venoso-popliteo"
+    ],
+    "findingIds": [
+      "visualizacao-direta-coagulo"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p080-02",
+    "arquivo": "fig-p080-02.webp",
+    "paginaEbook": 80,
+    "figuraNumero": 5,
+    "legendaEbook": "Venografia de membros inferiores em Modo B no corte transversal. Trombo ecogênico visível na veia femoral distal esquerda (artéria femoral na parte superior da veia). Adaptado de: Varrias D., 2021.",
+    "secaoEbook": "Ultrassom e TVP — Visualização direta do coágulo",
+    "categoria": "vascular",
+    "largura": 574,
+    "altura": 616,
+    "bytes": 24914,
+    "windowIds": [
+      "venoso-femoral-bifurcacao"
+    ],
+    "findingIds": [
+      "visualizacao-direta-coagulo"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p086-01",
+    "arquivo": "fig-p086-01.webp",
+    "paginaEbook": 86,
+    "figuraNumero": null,
+    "legendaEbook": null,
+    "secaoEbook": "Ultrassom Vascular — Aorta torácica (incisura supraesternal)",
+    "categoria": "vascular",
+    "largura": 897,
+    "altura": 791,
+    "bytes": 40740,
+    "windowIds": [
+      "aorta-toracica-supraesternal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p088-01",
+    "arquivo": "fig-p088-01.webp",
+    "paginaEbook": 88,
+    "figuraNumero": null,
+    "legendaEbook": "US abdominal vista transversal da aorta abdominal proximal com o \"sinal da gaivota\". Adaptado de: Kristine J, 2024.",
+    "secaoEbook": "Ultrassom Vascular — Aorta abdominal porção proximal",
+    "categoria": "vascular",
+    "largura": 917,
+    "altura": 1003,
+    "bytes": 34174,
+    "windowIds": [
+      "aorta-abdominal-proximal"
+    ],
+    "findingIds": [],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p090-01",
+    "arquivo": "fig-p090-01.webp",
+    "paginaEbook": 90,
+    "figuraNumero": null,
+    "legendaEbook": "US abdominal vista transversal da aorta abdominal com aneurisma e trombo intramural. Adaptado de: Kristine J, 2024.",
+    "secaoEbook": "Ultrassom Vascular — Aneurisma de Aorta",
+    "categoria": "vascular",
+    "largura": 909,
+    "altura": 891,
+    "bytes": 27836,
+    "windowIds": [],
+    "findingIds": [
+      "aneurisma-fusiforme"
+    ],
+    "measurementIds": [
+      "aorta-diametro"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p091-01",
+    "arquivo": "fig-p091-01.webp",
+    "paginaEbook": 91,
+    "figuraNumero": null,
+    "legendaEbook": "Ecocardiografia em posição supraesternal em Modo B no corte longitudinal. Visualização de aneurisma sacular do arco aórtico. Abreviações: Ao: arco da aorta; LCCA: artéria carótida comum esquerda; LSCL: artéria subclávia esquerda, Aneu: aneurisma. Adaptado de: Nishigami, K, 2022.",
+    "secaoEbook": "Ultrassom Vascular — Aneurisma sacular do arco aórtico",
+    "categoria": "vascular",
+    "largura": 1307,
+    "altura": 895,
+    "bytes": 30702,
+    "windowIds": [
+      "aorta-toracica-supraesternal"
+    ],
+    "findingIds": [
+      "aneurisma-sacular"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p092-01",
+    "arquivo": "fig-p092-01.webp",
+    "paginaEbook": 92,
+    "figuraNumero": null,
+    "legendaEbook": "Visualização de hematoma intramural, sinal indireto de dissecção da aorta ascendente. Espessamento crescente da parede aórtica > 5 mm (esquerda) e um sinal de fluxo em cores no lúmen verdadeiro (direita). Abreviações: IMH: hematoma intramural. Adaptado de: Nishigami, K, 2022.",
+    "secaoEbook": "Ultrassom Vascular — Dissecção da aorta",
+    "categoria": "vascular",
+    "largura": 984,
+    "altura": 693,
+    "bytes": 53638,
+    "windowIds": [],
+    "findingIds": [
+      "hematoma-intramural"
+    ],
+    "measurementIds": [
+      "espessamento-parede-aortica"
+    ],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  },
+  {
+    "id": "p094-01",
+    "arquivo": "fig-p094-01.webp",
+    "paginaEbook": 94,
+    "figuraNumero": null,
+    "legendaEbook": "US abdominal na visualização do eixo curto (corte transversal) em Modo B. Visualização de dissecção de aorta abdominal mostrando uma aba na aorta (esquerda). Sinais de fluxo em cores no lúmen verdadeiro e na entrada (seta) são vistos na imagem Doppler em cores (direita). Abreviações: TL: lúmen verdadeiro; FL: lúmen falso. Adaptado de: Nishigami, K, 2022.",
+    "secaoEbook": "Ultrassom Vascular — Dissecção da aorta",
+    "categoria": "vascular",
+    "largura": 1297,
+    "altura": 861,
+    "bytes": 59980,
+    "windowIds": [
+      "aorta-abdominal-proximal"
+    ],
+    "findingIds": [
+      "lamina-intimal-flap"
+    ],
+    "measurementIds": [],
+    "pathologyIds": [],
+    "protocolIds": [],
+    "formato": "webp"
+  }
+]

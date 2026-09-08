@@ -1,0 +1,725 @@
+[
+  {
+    "id": "sinal-asa-morcego",
+    "nome": "Sinal da Asa do Morcego (sinal do morcego)",
+    "modo": "B",
+    "descricao": "Orientação anatômica do exame ultrassonográfico pulmonar no corte longitudinal. Composto por: parede torácica, costela superior, costela inferior, linha pleural entre elas e sombra acústica de ambas as costelas. As asas do morcego correspondem tanto às costelas quanto às suas sombras acústicas, e a cabeça do morcego, ao eco pleural. A pleura é hiperecogênica e identificada entre as costelas.",
+    "significadoClinico": "Sinal de orientação: confirma que o transdutor está corretamente posicionado no espaço intercostal a ser estudado, permitindo identificar a linha pleural.",
+    "diagnosticosAssociados": [],
+    "armadilhas": [],
+    "paginaEbook": 40
+  },
+  {
+    "id": "deslizamento-pleural",
+    "nome": "Deslizamento Pleural (Lung Sliding)",
+    "modo": "B",
+    "descricao": "Uma linha hiperecoica fina movendo-se adjacente e horizontalmente à linha pleural com os movimentos respiratórios. Este efeito corresponde ao deslizamento da pleura visceral sobre a pleura parietal durante a ventilação.",
+    "significadoClinico": "Se houver deslizamento pulmonar, é possível descartar pneumotórax com 100% de sensibilidade. No E-FAST, sua presença afasta pneumotórax.",
+    "diagnosticosAssociados": [
+      "Exclusão de pneumotórax"
+    ],
+    "armadilhas": [
+      "A presença de deslizamento pulmonar apenas descarta pneumotórax naquele ponto específico que se está examinando. Certifique-se de maximizar sua sensibilidade examinando vários pontos do tórax."
+    ],
+    "paginaEbook": 41,
+    "paginasEbook": [
+      41,
+      43,
+      65
+    ]
+  },
+  {
+    "id": "ausencia-deslizamento-pleural",
+    "nome": "Ausência de Deslizamento Pleural",
+    "modo": "B",
+    "descricao": "Não observação do movimento da pleura visceral sobre a parietal durante a ventilação.",
+    "significadoClinico": "Quando o deslizamento pleural não é observado, a principal suspeita clínica deve ser a presença de pneumotórax, embora não seja um sinal patognomônico. A ausência de deslizamento pulmonar pode ter muitas causas, sendo o pneumotórax uma delas.",
+    "diagnosticosAssociados": [
+      "Pneumotórax",
+      "Atelectasia",
+      "Intubação seletiva",
+      "Neoplasia",
+      "Enfisema pulmonar",
+      "Consolidação subpleural grave",
+      "Pleurodese química",
+      "Estados infecciosos ou inflamatórios agudos",
+      "Doenças pulmonares fibróticas",
+      "Síndrome do desconforto respiratório agudo",
+      "Hemotórax"
+    ],
+    "armadilhas": [
+      "Não é sinal patognomônico de pneumotórax: diversas patologias e características clínicas em que não haja ventilação pulmonar podem gerar o não deslizamento pleural."
+    ],
+    "paginaEbook": 43
+  },
+  {
+    "id": "linhas-a",
+    "nome": "Linhas A",
+    "modo": "B",
+    "descricao": "Linhas adjacentes, paralelas e equidistantes ao diafragma, visualizadas após a identificação do deslizamento pleural. São as reverberações (eco) da pleura identificada pelo transdutor. A linha A é paralela à pleura e origina-se do fenômeno de reverberação pleural.",
+    "significadoClinico": "Representam o padrão de aeração pulmonar normal. No pneumotórax, as linhas A da pleura parietal estão presentes.",
+    "diagnosticosAssociados": [
+      "Padrão pulmonar aerado normal",
+      "Pneumotórax (linhas A bilaterais, reflexo da pleura parietal)",
+      "DPOC ou Asma (linhas A bilaterais)",
+      "Embolia pulmonar (linhas A bilaterais)"
+    ],
+    "armadilhas": [
+      "As linhas B apagam (borram) as linhas A ao se cruzarem."
+    ],
+    "paginaEbook": 41,
+    "paginasEbook": [
+      40,
+      41,
+      45,
+      58,
+      59
+    ]
+  },
+  {
+    "id": "linhas-b",
+    "nome": "Linhas B",
+    "modo": "B",
+    "descricao": "Artefatos de reverberação na forma de linhas hiperecoicas verticais que vão da linha pleural até o final da imagem ultrassonográfica, sem diminuição da densidade. São decorrentes da alteração na impedância líquido-ar, quando os septos interlobulares e o tecido pulmonar edemaciado enchem-se de líquido. Movem-se em massa com a respiração. Para serem consideradas patológicas devem obrigatoriamente: apresentar mais de 3 linhas B por campo; parecer raios, hiperecoicos e verticais (denominado \"rabo de cometa\"); emanar da linha pleural; mover com o deslizamento dos pulmões; estender até a periferia do campo distante; e apagar as linhas A.",
+    "significadoClinico": "Indicam alterações intersticiais — acúmulo de líquido (exsudativo ou transudativo) no interstício pulmonar, gerando edema pulmonar.",
+    "diagnosticosAssociados": [
+      "Edema pulmonar cardiogênico (linhas B disseminadas e bilaterais)",
+      "Síndrome do Desconforto Respiratório Agudo",
+      "Pneumonia (linhas B unilaterais ou bilaterais)",
+      "Contusão pulmonar (linhas B focais localizadas na área do trauma)"
+    ],
+    "armadilhas": [
+      "É normal que apareçam isoladamente (<3 por espaço intercostal), especialmente nas bases, região póstero-lateral e campo médio. Menos de 3 linhas B em um único campo de visão geralmente são consideradas normais.",
+      "Pacientes com cicatrização crônica dos septos devido à fibrose pulmonar, infecções antigas ou doença pulmonar intersticial apresentam septos cronicamente alargados/espessados, que também criam linhas B, mesmo sem etiologia de edema pulmonar.",
+      "Não confundir com linhas Z (\"falsas linhas B\")."
+    ],
+    "paginaEbook": 47,
+    "paginasEbook": [
+      47,
+      48
+    ]
+  },
+  {
+    "id": "linhas-z",
+    "nome": "Linhas Z (\"falsas linhas B\")",
+    "modo": "B",
+    "descricao": "Artefatos que se iniciam na pleura, mal definidos, curtos, que seguem o sentido anteroposterior, não apagam as linhas A e não alcançam toda a extensão do campo pulmonar avaliado.",
+    "significadoClinico": "Não têm significado patológico. Não são definidas como linhas B.",
+    "diagnosticosAssociados": [],
+    "armadilhas": [
+      "Podem ser confundidas com linhas B; a distinção está em não apagarem as linhas A e não alcançarem toda a extensão do campo pulmonar."
+    ],
+    "paginaEbook": 48
+  },
+  {
+    "id": "foguetes-vidro-fosco",
+    "nome": "Foguetes em Vidro Fosco (ground-glass rockets)",
+    "modo": "B",
+    "descricao": "Padrão de foguetes pulmonares (lung rockets) em que as linhas B são mais numerosas e mais próximas entre si, quase confluentes. Lichtenstein define os foguetes pulmonares como três ou mais linhas B em um mesmo espaço intercostal e distingue dois padrões pelo número de linhas: os foguetes septais, com até 3 a 4 linhas, que correspondem às linhas B de Kerley (septos interlobulares espessados); e os foguetes em vidro fosco, com o dobro desse número, que correspondem a áreas de vidro fosco na tomografia.",
+    "significadoClinico": "Indicam maior perda de aeração do que os foguetes septais. A progressão foguetes septais → foguetes em vidro fosco → \"pulmão branco\" acompanha a gravidade do comprometimento intersticial e alveolar. Os foguetes pulmonares correlacionam-se com síndrome intersticial com 93% de acurácia tendo as alterações alvéolo-intersticiais radiográficas como referência, e acurácia plena usando a tomografia.",
+    "diagnosticosAssociados": [
+      "Síndrome intersticial",
+      "Edema pulmonar cardiogênico (perfil B do protocolo BLUE)",
+      "Doença pulmonar intersticial"
+    ],
+    "armadilhas": [
+      "A síndrome intersticial é inespecífica: a densidade do interstício aumenta não só por líquido, mas também por fibrose, inflamação e outras causas.",
+      "O número e o espaçamento das linhas B dependem do equipamento e dos ajustes (frequência, foco, ângulo de incidência); a contagem é, na melhor das hipóteses, semiquantitativa.",
+      "A nomenclatura de foguetes septais (B7) e em vidro fosco (B3) é da escola de Lichtenstein e NÃO foi adotada pelos consensos internacionais mais recentes (Volpicelli 2012, Demi 2023).",
+      "As distâncias de 7 mm e 3 mm entre as linhas B, muito citadas em revisões, não constam do artigo de Lichtenstein de 2014, que define os dois padrões pelo NÚMERO de linhas; além disso essas medidas são contestadas, pois o lóbulo pulmonar secundário mede cerca de 10 a 25 mm."
+    ],
+    "paginaEbook": 48,
+    "fonteExterna": {
+      "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+      "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+      "acesso": "livre",
+      "referenciasComplementares": [
+        {
+          "referencia": "B-lines: Transthoracic chest ultrasound signs useful in assessment of interstitial lung diseases. Ann Thorac Med. 2014;9(2):99-103.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4005169/",
+          "acesso": "livre"
+        }
+      ],
+      "campos": [
+        "nome",
+        "descricao",
+        "significadoClinico",
+        "diagnosticosAssociados",
+        "armadilhas"
+      ],
+      "nota": "O Ebook TPOCUS 3.0 nomeia o achado apenas na legenda da Figura 8 (pág. 48), como \"uma confluência de linhas B chamadas foguetes em vidro fosco\", sem defini-lo. Definição preenchida a partir da literatura, que CONFIRMA a redação do ebook: foguetes em vidro fosco são as linhas B mais numerosas e confluentes.",
+      "citacoesOriginais": [
+        "Three or more B-lines between two ribs are called lung-rockets. (Lichtenstein 2014)",
+        "Up to 3-4 B-lines are called septal rockets, correlated with Kerley B-lines. Twice as many, called ground-glass rockets, correlate with ground-glass areas. (Lichtenstein 2014)",
+        "Lung-rockets correlate with interstitial syndrome with 93% accuracy using alveolar-interstitial radiographic changes as reference, and full accuracy using CT. (Lichtenstein 2014)",
+        "Multiple B-lines 7 mm apart are caused by thickened interlobular septa, characterizing interstitial edema, while B-lines 3 mm or less apart are caused by ground glass areas characterizing alveolar edema. (Ann Thorac Med 2014)"
+      ]
+    }
+  },
+  {
+    "id": "rabo-de-cometa",
+    "nome": "Rabo de Cometa",
+    "modo": "B",
+    "descricao": "Denominação do aspecto das linhas B patológicas: parecem raios, hiperecoicos e verticais.",
+    "significadoClinico": "Um dos critérios obrigatórios para que as linhas B sejam consideradas patológicas.",
+    "diagnosticosAssociados": [],
+    "armadilhas": [],
+    "paginaEbook": 48
+  },
+  {
+    "id": "sinal-da-praia",
+    "nome": "Sinal da Praia",
+    "modo": "M",
+    "descricao": "No modo M, acima da linha pleural os tecidos superficiais sem movimentação são visualizados na forma de linhas paralelas à pleura, aspecto semelhante a \"ondas do mar\"; abaixo da linha pleural obtém-se uma imagem artefatual do deslizamento pleural semelhante a \"areia da praia\". As linhas superiores representam os tecidos acima da pleura e os grânulos representam o ar abaixo. O conjunto desses achados é conhecido como \"sinal da praia\".",
+    "significadoClinico": "Indica deslizamento pleural normal.",
+    "diagnosticosAssociados": [
+      "Deslizamento pleural normal",
+      "Atelectasia (ausência de deslizamento pleural com presença do sinal da praia no modo M — tabela de perfis, pág. 59)"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 42,
+    "paginasEbook": [
+      42,
+      59
+    ],
+    "fonteExterna": {
+      "referencia": "Definição fornecida pelo autor do curso (Gabriel Kreling).",
+      "tipo": "autor",
+      "campos": [
+        "significadoClinico",
+        "diagnosticosAssociados[0]"
+      ],
+      "nota": "O Ebook TPOCUS 3.0 descreve a aparência do sinal da praia (pág. 42) mas não enuncia seu significado clínico em texto. Definição fornecida pelo autor."
+    }
+  },
+  {
+    "id": "sinal-codigo-de-barras",
+    "nome": "Sinal do Código de Barras (sinal da estratosfera)",
+    "modo": "M",
+    "descricao": "Linhas paralelas de espessura variável que refletem a ausência de parênquima pulmonar na imagem ultrassonográfica.",
+    "significadoClinico": "Corrobora a interpretação de ausência de deslizamento pleural.",
+    "diagnosticosAssociados": [
+      "Pneumotórax"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 44,
+    "paginasEbook": [
+      44,
+      58
+    ]
+  },
+  {
+    "id": "lung-point",
+    "nome": "Ponto Pulmonar (Lung Point)",
+    "modo": "B",
+    "descricao": "Achado presente no pneumotórax não maciço, que corresponde ao local de descolamento da pleura visceral e parietal. É a transição do deslizamento (ausência de pneumotórax) para a ausência de deslizamento (presença do pneumotórax). Com o auxílio do modo M localizado exatamente no ponto pulmonar, é visualizada uma imagem de praia normal que se transforma em uma imagem de código de barras.",
+    "significadoClinico": "Patognomônico de pneumotórax. Embora difícil de encontrar, um ponto pulmonar é 100% específico para a avaliação de um pneumotórax. No E-FAST, é descrito como sinal altamente específico (cerca de 100%) para pneumotórax. O sinal do ponto do pulmão também ajuda a quantificar a extensão de um pneumotórax.",
+    "diagnosticosAssociados": [
+      "Pneumotórax"
+    ],
+    "armadilhas": [
+      "Presente apenas no pneumotórax não maciço.",
+      "Embora difícil de encontrar."
+    ],
+    "paginaEbook": 45,
+    "paginasEbook": [
+      45,
+      46,
+      58,
+      65
+    ]
+  },
+  {
+    "id": "pulso-pulmonar",
+    "nome": "Pulso Pulmonar",
+    "modo": "B",
+    "descricao": "Movimento vertical da linha pleural sincronizado com o pulso cardíaco.",
+    "significadoClinico": "Indica a junção de ambas as pleuras, descartando assim pneumotórax nesse ponto.",
+    "diagnosticosAssociados": [
+      "Exclusão de pneumotórax no ponto avaliado",
+      "Apneia",
+      "Intubação seletiva",
+      "Atelectasia"
+    ],
+    "armadilhas": [
+      "Condições clínicas como apneia e intubação seletiva podem gerar esse sinal."
+    ],
+    "paginaEbook": 45,
+    "paginasEbook": [
+      45,
+      59
+    ]
+  },
+  {
+    "id": "sinal-da-cortina",
+    "nome": "Sinal da Cortina",
+    "modo": "B",
+    "descricao": "Nas bases pulmonares (PLAPS), observa-se o desaparecimento do diafragma e do fígado à medida que o pulmão se expande durante a inspiração em tempo real.",
+    "significadoClinico": "Achado observado na análise da pleura nas bases pulmonares durante a respiração.",
+    "diagnosticosAssociados": [],
+    "armadilhas": [],
+    "paginaEbook": 41
+  },
+  {
+    "id": "hepatizacao-pulmonar",
+    "nome": "Hepatização Pulmonar",
+    "modo": "B",
+    "descricao": "Consolidação densa e extensa com perda da relação ar-líquido, gerando ecogenicidade semelhante à do fígado. No exame ultrassonográfico as consolidações são descritas como uma intensa confluência de linhas B gerando áreas hiperecoicas.",
+    "significadoClinico": "Padrão de consolidação pulmonar, decorrente da confluência do líquido intersticial associado ao comprometimento bronco-alveolar.",
+    "diagnosticosAssociados": [
+      "Pneumonia",
+      "Atelectasia por obstrução das vias aéreas (ex.: tampão mucoso)",
+      "Compressão extrínseca (ex.: derrame pleural volumoso)"
+    ],
+    "armadilhas": [
+      "A consolidação também pode ser consequência de atelectasia por obstrução das vias aéreas ou compressão extrínseca, não apenas de pneumonia."
+    ],
+    "paginaEbook": 49,
+    "paginasEbook": [
+      49,
+      50,
+      58
+    ]
+  },
+  {
+    "id": "sinal-de-fragmentacao",
+    "nome": "Sinal de Fragmentação (sinal de \"fragmento\")",
+    "modo": "B",
+    "descricao": "A fronteira na qual o fluido ou o tecido pulmonar cheio de pus encontra o ar parece uma borda ecoica irregular. Gera um limite fragmentado entre a consolidação e o pulmão aerado subjacente.",
+    "significadoClinico": "Bastante específico de consolidação pulmonar.",
+    "diagnosticosAssociados": [
+      "Consolidação pulmonar",
+      "Pneumonia"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 49,
+    "paginasEbook": [
+      49,
+      58
+    ]
+  },
+  {
+    "id": "broncograma-aereo",
+    "nome": "Broncograma Aéreo",
+    "modo": "B",
+    "descricao": "Ocorre quando os bronquíolos retêm conteúdo aéreo, mas são circundados por parênquima consolidado (ocupado por exsudato, células inflamatórias ou edema). O contraste entre o ar intrabrônquico e o tecido consolidado cria uma interface gás-líquido que permite a visualização dos bronquíolos como estruturas anecoicas ou hipoecoicas, lineares ou ramificadas dentro da consolidação.",
+    "significadoClinico": "Indica consolidação com bronquíolos preenchidos por ar.",
+    "diagnosticosAssociados": [
+      "Consolidação pulmonar",
+      "Pneumonia",
+      "Atelectasia"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 50,
+    "observacao": "O ebook descreve separadamente as formas dinâmica (pág. 51) e estática (pág. 52) do broncograma; ver os itens broncograma-dinamico e broncograma-estatico."
+  },
+  {
+    "id": "broncograma-fluido",
+    "nome": "Broncograma Fluido",
+    "modo": "B",
+    "descricao": "Ocorre quando os brônquios estão preenchidos por líquido, sangue, secreções ou pus e são visíveis como estruturas tubulares ou ramificadas, com paredes hiperecoicas e conteúdo anecoico ou hipoecoico.",
+    "significadoClinico": "Indica bronquíolos preenchidos por conteúdo líquido dentro de parênquima patológico.",
+    "diagnosticosAssociados": [
+      "Pneumonias",
+      "Abscessos pulmonares",
+      "Outras infecções do parênquima pulmonar"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 50
+  },
+  {
+    "id": "broncograma-dinamico",
+    "nome": "Broncograma Dinâmico",
+    "modo": "B",
+    "descricao": "Quando o broncograma se move em sincronia com o ciclo respiratório. Suas características modificam-se durante as fases do ciclo respiratório.",
+    "significadoClinico": "Geralmente observado em pneumonias, nas quais os bronquíolos permanecem pérvios e o parênquima, embora consolidado, é potencialmente reversível. Não é observado em atelectasias completas, onde o colapso oclui os bronquíolos.",
+    "diagnosticosAssociados": [
+      "Pneumonia"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 51,
+    "paginasEbook": [
+      51,
+      58
+    ]
+  },
+  {
+    "id": "broncograma-estatico",
+    "nome": "Broncograma Estático",
+    "modo": "B",
+    "descricao": "O conteúdo dos bronquíolos permanece imóvel durante a respiração, sugerindo obstrução distal; ar está aprisionado.",
+    "significadoClinico": "Geralmente observado em consolidações avançadas ou necróticas, em atelectasias obstrutivas ou em processos não ventilatórios, como tumores, indicando pior prognóstico funcional. Quando o broncograma não é dinâmico durante o ciclo respiratório é considerado estático, caracterizando uma atelectasia.",
+    "diagnosticosAssociados": [
+      "Atelectasia",
+      "Consolidações avançadas ou necróticas",
+      "Tumores"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 52,
+    "paginasEbook": [
+      51,
+      52,
+      58
+    ]
+  },
+  {
+    "id": "derrame-pleural",
+    "nome": "Derrame Pleural",
+    "modo": "B",
+    "descricao": "Ocorre quando transudato ou exsudato se acumula na base dos pulmões. São mais bem visualizados a partir do ponto PLAPS (maior sensibilidade e especificidade diagnóstica), onde os lobos inferiores são visualizados. A imagem ultrassonográfica é visualizada de diversas formas a depender das características deste líquido, podendo ser anecoica ou hipoecoica.",
+    "significadoClinico": "O POCUS tem mais de 90% de sensibilidade e especificidade para a detecção de derrames pleurais.",
+    "diagnosticosAssociados": [
+      "Derrame pleural",
+      "Hemotórax",
+      "Pneumonia (possível pequeno derrame pleural)",
+      "Edema pulmonar cardiogênico (possível derrame bilateral dependendo da gravidade)"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 53
+  },
+  {
+    "id": "sinal-do-quadrilatero",
+    "nome": "Sinal do Quadrilátero",
+    "modo": "B",
+    "descricao": "Observa-se uma imagem quadrada hipo ou anecoica, delimitada pela linha pleural (pleura parietal) acima, sombras costais lateralmente e a linha pulmonar (pleura visceral) abaixo.",
+    "significadoClinico": "Sinal de derrame pleural.",
+    "diagnosticosAssociados": [
+      "Derrame pleural"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 56,
+    "paginasEbook": [
+      53,
+      56
+    ]
+  },
+  {
+    "id": "sinal-sinusoidal",
+    "nome": "Sinal Sinusoidal",
+    "modo": "M",
+    "descricao": "Através da ferramenta do Modo M, o movimento ondulatório da linha pulmonar (pleura visceral) em direção à linha pleural (pleura parietal) durante a respiração gera a imagem que se assemelha a uma onda sinusoidal. Isso é gerado pela variação da distância interpleural durante o ciclo respiratório.",
+    "significadoClinico": "Sinal de derrame pleural. É equivalente a uma visualização em modo M do sinal da água-viva.",
+    "diagnosticosAssociados": [
+      "Derrame pleural"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 56,
+    "paginasEbook": [
+      53,
+      56
+    ]
+  },
+  {
+    "id": "sinal-da-coluna-vertebral",
+    "nome": "Sinal da Coluna Vertebral",
+    "modo": "B",
+    "descricao": "Em um pulmão normal a imagem ultrassonográfica da coluna vertebral é visualizada até a borda do diafragma, mas nunca passando por ele, porque o ar do pulmão acima do diafragma impede a passagem de ondas sonoras. Em derrames pleurais as ondas sonoras podem passar pelo líquido pleural (aumento de transmissão ultrassonográfica), permitindo que a coluna seja vista acima do diafragma.",
+    "significadoClinico": "Sinal de derrame pleural. Normalmente, os corpos vertebrais não são aparentes na US pulmonar.",
+    "diagnosticosAssociados": [
+      "Derrame pleural"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 54
+  },
+  {
+    "id": "sinal-da-agua-viva",
+    "nome": "Sinal da Água-viva (Jellyfish sign)",
+    "modo": "B",
+    "descricao": "Em pulmões comprometidos por intensa consolidação ou atelectasia compressiva (colapso pulmonar), é visualizada a imagem de um \"braço de água-viva\" flutuando no derrame. O pulmão colapsado aparece como uma água-viva em movimento na ultrassonografia em tempo real.",
+    "significadoClinico": "Indica pulmão colapsado por consolidação intensa ou atelectasia compressiva na presença de derrame pleural.",
+    "diagnosticosAssociados": [
+      "Derrame pleural",
+      "Atelectasia compressiva",
+      "Consolidação intensa"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 55,
+    "paginasEbook": [
+      55,
+      56,
+      59
+    ]
+  },
+  {
+    "id": "sinal-do-plancton",
+    "nome": "Sinal do Plâncton",
+    "modo": "B",
+    "descricao": "Detritos hiperecoicos que se movimentam lentamente e giratoriamente em forma de turbilhão dentro do derrame pleural (múltiplos focos pontuados no derrame pleural representando detritos flutuantes).",
+    "significadoClinico": "Característico do derrame pleural exsudativo.",
+    "diagnosticosAssociados": [
+      "Derrame pleural exsudativo"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 56
+  },
+  {
+    "id": "pulmao-branco",
+    "nome": "Pulmão Branco",
+    "modo": "B",
+    "descricao": "Linhas B que convergem e se tornam indistinguíveis, produzindo uma imagem de pulmão branco.",
+    "significadoClinico": "Manifesta a piora do quadro na Síndrome do Desconforto Respiratório Agudo.",
+    "diagnosticosAssociados": [
+      "Síndrome do Desconforto Respiratório Agudo"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 59
+  },
+  {
+    "id": "consolidacao-subpleural",
+    "nome": "Consolidações Subpleurais",
+    "modo": "B",
+    "descricao": "Área subpleural com perda de aeração, que aparece como região hipoecogênica (\"eco-pobre\") ou com ecotextura tecidual semelhante à do fígado, sempre em contato direto com a linha pleural — a ultrassonografia só detecta lesões que alcançam a pleura. A margem profunda pode ser irregular e serrilhada (sinal de fragmentação / linha fractal) ou regular. Broncogramas aéreos, broncogramas líquidos e o padrão vascular dentro da consolidação ajudam a definir a causa.",
+    "significadoClinico": "Achado inespecífico quanto à etiologia. As causas mais reconhecidas são lesões inflamatórias/infecciosas (pneumonia), atelectasia, infarto pulmonar por tromboembolia e lesões metastáticas subpleurais; também ocorrem em contusão pulmonar e neoplasia. No infarto pulmonar as lesões costumam ser de base pleural, triangulares/em cunha ou arredondadas, hipoecogênicas e homogêneas.",
+    "diagnosticosAssociados": [
+      "Pneumonia",
+      "Atelectasia",
+      "Infarto pulmonar / tromboembolia pulmonar",
+      "Lesões metastáticas subpleurais",
+      "Contusão pulmonar"
+    ],
+    "armadilhas": [
+      "A ultrassonografia não exclui doença que não alcança a pleura: consolidações centrais, cercadas de pulmão aerado, são invisíveis — limitação importante em tumores.",
+      "O achado é inespecífico; atelectasias dependentes (dorso de pacientes ventilados, obesos) imitam pneumonia. Use o broncograma aéreo dinâmico (pneumonia) versus estático ou broncograma líquido (atelectasia) para diferenciar.",
+      "Não existe limiar de tamanho consensual. As diretrizes internacionais recomendam relatar a dimensão em milímetros em vez de \"pequena\" ou \"grande\"; limiares como 1 cm são convenções de estudos isolados.",
+      "A sensibilidade depende do sítio, do tamanho da lesão e do tempo dedicado ao exame."
+    ],
+    "paginaEbook": 58,
+    "fonteExterna": {
+      "referencia": "Volpicelli G, et al. International evidence-based recommendations for point-of-care lung ultrasound. Intensive Care Med. 2012;38:577-591.",
+      "url": "https://link.springer.com/article/10.1007/s00134-012-2513-4",
+      "acesso": "livre",
+      "referenciasComplementares": [
+        {
+          "referencia": "Demi L, et al. New International Guidelines and Consensus on the Use of Lung Ultrasound. J Ultrasound Med. 2023;42:309-344.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10086956/",
+          "acesso": "livre"
+        },
+        {
+          "referencia": "Lichtenstein DA. Lung ultrasound in the critically ill. Ann Intensive Care. 2014;4(1):1.",
+          "url": "https://link.springer.com/article/10.1186/2110-5820-4-1",
+          "acesso": "livre"
+        },
+        {
+          "referencia": "Gargani L, Volpicelli G. How I do it: Lung ultrasound. Cardiovasc Ultrasound. 2014;12:25.",
+          "url": "https://link.springer.com/article/10.1186/1476-7120-12-25",
+          "acesso": "livre"
+        }
+      ],
+      "campos": [
+        "descricao",
+        "significadoClinico",
+        "armadilhas",
+        "diagnosticosAssociados"
+      ],
+      "nota": "O Ebook TPOCUS 3.0 apenas cita \"Consolidações subpleurais\" como item da tabela de perfis patológicos (pág. 58), sem defini-lo. Definição preenchida a partir da literatura.",
+      "citacoesOriginais": [
+        "The sonographic sign of lung consolidation is a subpleural echo-poor region or one with tissue-like echotexture. (Volpicelli 2012)",
+        "LUS has high accuracy in recognition of subpleural consolidation. Subpleural consolidations best known in LUS are: inflammatory lesions, atelectasis, infarction, and metastatic subpleural lesions. (Demi 2023, Statement 11)",
+        "Report the details on the spatial resolution of the imaging system and implement quantitative instead of qualitative characterizations, that is, provide the actual size in millimeter rather than qualitative descriptions ('small,' 'large,' or similar). (Demi 2023, Statement 4)",
+        "Lung consolidations touch the wall in 98% of cases (Lichtenstein 2014)"
+      ]
+    }
+  },
+  {
+    "id": "infarto-pulmonar-cunha",
+    "nome": "Infarto Pulmonar (imagem em cunha triangular subpleural)",
+    "modo": "B",
+    "descricao": "Imagens hipoecoicas em forma de cunha triangular subpleural com bordas inicialmente mal definidas, mas que se tornam mais definidas com o tempo.",
+    "significadoClinico": "Pode estar presente na embolia pulmonar.",
+    "diagnosticosAssociados": [
+      "Embolia pulmonar",
+      "Infarto pulmonar"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 59
+  },
+  {
+    "id": "linha-pleural-espessada-irregular",
+    "nome": "Linha Pleural Espessada e Irregular",
+    "modo": "B",
+    "descricao": "Espessamento e irregularidade da linha pleural, com deslizamento pulmonar normal.",
+    "significadoClinico": "Achado associado à Síndrome do Desconforto Respiratório Agudo. Na pneumonia grave pode haver redução do deslizamento pulmonar devido à pleura espessada.",
+    "diagnosticosAssociados": [
+      "Síndrome do Desconforto Respiratório Agudo",
+      "Pneumonia (casos graves)"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 59,
+    "paginasEbook": [
+      58,
+      59
+    ]
+  },
+  {
+    "id": "blebs-subpleurais",
+    "nome": "Blebs Pulmonares Subpleurais",
+    "modo": "B",
+    "descricao": "Na presença de blebs pulmonares subpleurais é possível haver ausência de deslizamento pleural na região analisada, sem a presença de ponto pulmonar.",
+    "significadoClinico": "Pode simular pneumotórax na análise do deslizamento pleural em pacientes com DPOC ou asma.",
+    "diagnosticosAssociados": [
+      "DPOC",
+      "Asma"
+    ],
+    "armadilhas": [
+      "Ausência de deslizamento pleural sem ponto pulmonar — não confundir com pneumotórax."
+    ],
+    "paginaEbook": 59
+  },
+  {
+    "id": "veia-nao-compressivel",
+    "nome": "Não Compressibilidade da Veia",
+    "modo": "B",
+    "descricao": "Ao aplicar pressão com o transdutor até que a artéria se comprima levemente e a veia se comprima completamente, provavelmente não há TVP naquele local. No entanto, se ao aplicar pressão suficiente para comprimir a artéria a veia não se comprimir completamente, essa é considerada uma veia \"não compressível\".",
+    "significadoClinico": "Método indireto de diagnóstico com maior sensibilidade e especificidade, que chega a ter uma acurácia muito próxima ao padrão ouro (visualização direta do coágulo). É provável que o paciente tenha um coágulo naquela região.",
+    "diagnosticosAssociados": [
+      "Trombose venosa profunda (TVP)"
+    ],
+    "armadilhas": [
+      "Se o operador não aplicar pressão suficiente ou se o transdutor não estiver perpendicular, isso pode levar a falsos positivos para TVP.",
+      "Tromboflebite superficial: veias superficiais NÃO acompanham as artérias; mais provável em pacientes obesos com veias superficiais dilatadas.",
+      "Cisto de Baker: massa circular anecoica com bordas bem definidas, sem fluxo ao Doppler colorido.",
+      "Linfonodos: estrutura oval hipoecoica com centro hiperecoico; em corte longitudinal é circunscrita e não tubular, e desaparece rapidamente à varredura.",
+      "Pseudoaneurismas: imagens anecoicas ou hipoecoicas, às vezes com ecos em movimento; ao Doppler colorido apresentam o \"Sinal Yin-Yang\".",
+      "Risco teórico e raro de desalojar um coágulo e causar uma embolia pulmonar com a compressão."
+    ],
+    "paginaEbook": 81,
+    "paginasEbook": [
+      77,
+      80,
+      81,
+      82,
+      83
+    ]
+  },
+  {
+    "id": "visualizacao-direta-coagulo",
+    "nome": "Visualização Direta do Coágulo",
+    "modo": "B",
+    "descricao": "Visualização direta do coágulo ecogênico no ultrassom. Trombos agudos podem não ser visíveis, pois são anecoicos ou hipoecoicos e tendem a estar próximos às bordas do lúmen. À medida que o trombo envelhece, ele se torna mais ecogênico e se retrai das paredes da veia, facilitando sua detecção por ultrassonografia.",
+    "significadoClinico": "Considerado o método de maior acurácia e padrão ouro para o diagnóstico de TVP pelo ultrassom.",
+    "diagnosticosAssociados": [
+      "Trombose venosa profunda (TVP)"
+    ],
+    "armadilhas": [
+      "Ao procurar coágulos, não confie apenas na visualização direta e certifique-se sempre de realizar a técnica de compressão para não deixar passar nenhuma TVP aguda."
+    ],
+    "paginaEbook": 80
+  },
+  {
+    "id": "cabeca-mickey-mouse",
+    "nome": "Cabeça do Mickey Mouse",
+    "modo": "B",
+    "descricao": "\"Junção ultrassonográfica\" formada, cerca de dois centímetros distalmente ao corte inicial da veia femoral comum, pela VFC (central) com o arco da veia safena (VS) medial e a AFC (lateral).",
+    "significadoClinico": "Referência anatômica para identificação correta da junção safeno-femoral no POCUS venoso.",
+    "diagnosticosAssociados": [],
+    "armadilhas": [],
+    "paginaEbook": 78
+  },
+  {
+    "id": "doppler-colorido-tvp",
+    "nome": "Aumento do Fluxo Venoso ao Doppler Colorido",
+    "modo": "Doppler",
+    "descricao": "Ao aumentar o fluxo venoso comprimindo a perna distalmente ao local da varredura e com auxílio do Doppler colorido, se não houver TVP haverá um aumento do fluxo venoso de forma homogênea. Se não houver aumento homogêneo do fluxo venoso, poderá haver TVP.",
+    "significadoClinico": "Considerado o método com menor precisão diagnóstica para TVP. O aumento homogêneo sugere que não há trombo oclusivo entre o local da compressão e a varredura.",
+    "diagnosticosAssociados": [
+      "Trombose venosa profunda (TVP)"
+    ],
+    "armadilhas": [
+      "A adição do sistema Doppler colorido não melhora o desempenho diagnóstico do exame quando se trata de TVP proximal, mas é útil na identificação de veias distais, na avaliação de veias não compressíveis e auxilia na melhor caracterização do tipo de trombose, diferenciando entre oclusão total ou parcial."
+    ],
+    "paginaEbook": 81,
+    "paginasEbook": [
+      72,
+      81
+    ]
+  },
+  {
+    "id": "sinal-yin-yang",
+    "nome": "Sinal Yin-Yang",
+    "modo": "Doppler",
+    "descricao": "Com o Doppler colorido, é possível observar o movimento circular do sangue dentro da cavidade do pseudoaneurisma. Na sístole, o sangue flui em direção à cavidade do pseudoaneurisma (vermelho), enquanto na diástole o sangue retorna em direção ao lúmen arterial (azul).",
+    "significadoClinico": "Identifica pseudoaneurisma — ruptura parcial da parede de uma artéria, levando a uma protrusão da artéria com acúmulo de sangue periarterial.",
+    "diagnosticosAssociados": [
+      "Pseudoaneurisma"
+    ],
+    "armadilhas": [
+      "Pseudoaneurismas podem ser confundidos com TVP por se assemelharem a vasos não compressíveis (imagens anecoicas ou hipoecoicas, às vezes com ecos em movimento).",
+      "Esses locais podem infeccionar e liberar êmbolos."
+    ],
+    "paginaEbook": 83
+  },
+  {
+    "id": "lamina-intimal-flap",
+    "nome": "Lâmina Intimal (flap intimal)",
+    "modo": "B",
+    "descricao": "Presença de uma lâmina intimal no lúmen aórtico. Na dissecção, uma ruptura na camada íntima da artéria permite que o sangue, sob altas pressões sistólicas, disseque ao longo da camada média da artéria, criando um \"falso lúmen\" na aorta.",
+    "significadoClinico": "É utilizada para diagnosticar dissecção aórtica por ultrassom. O diagnóstico ultrassonográfico da dissecção de aorta tem altíssima especificidade (99 a 100%), no entanto sua sensibilidade é reduzida (67-80%).",
+    "diagnosticosAssociados": [
+      "Dissecção aórtica"
+    ],
+    "armadilhas": [
+      "A ausência de \"flap\" intimal no exame ultrassonográfico não exclui a dissecção aórtica.",
+      "A sensibilidade é reduzida (67-80%) devido à incapacidade precisa de verificação de todos os planos do vaso, em especial da aorta torácica, com maior probabilidade de ocorrer a doença.",
+      "A angiotomografia computadorizada e o ecocardiograma transesofágico permanecem o padrão ouro para o diagnóstico de dissecção aórtica."
+    ],
+    "paginaEbook": 93,
+    "paginasEbook": [
+      92,
+      93,
+      94
+    ]
+  },
+  {
+    "id": "hematoma-intramural",
+    "nome": "Hematoma Intramural (IMH)",
+    "modo": "B",
+    "descricao": "Espessamento crescente da parede aórtica > 5 mm, com sinal de fluxo em cores no lúmen verdadeiro.",
+    "significadoClinico": "Sinal indireto de dissecção da aorta ascendente.",
+    "diagnosticosAssociados": [
+      "Dissecção da aorta ascendente"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 92
+  },
+  {
+    "id": "regurgitacao-aortica-doppler",
+    "nome": "Regurgitação Aórtica na Dissecção de Aorta",
+    "modo": "Doppler",
+    "descricao": "Fluxo sanguíneo diastólico retrógrado do arco aórtico visualizado com Doppler.",
+    "significadoClinico": "Achado de regurgitação aórtica associado à dissecção da aorta.",
+    "diagnosticosAssociados": [
+      "Dissecção aórtica",
+      "Regurgitação aórtica"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 93
+  },
+  {
+    "id": "aneurisma-fusiforme",
+    "nome": "Aneurisma Fusiforme",
+    "modo": "B",
+    "descricao": "Dilatações circunferenciais simétricas de um vaso. São caracterizados por um alargamento do diâmetro da aorta ≥3 cm.",
+    "significadoClinico": "São muito mais comuns do que os aneurismas saculares, mas têm menor probabilidade de causar sintomas.",
+    "diagnosticosAssociados": [
+      "Aneurisma de aorta"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 89
+  },
+  {
+    "id": "aneurisma-sacular",
+    "nome": "Aneurisma Sacular",
+    "modo": "B",
+    "descricao": "Formam-se como protrusões assimétricas da parede da aorta e são visualizados como uma bolsa hipoecoica na parede da aorta.",
+    "significadoClinico": "Classificação morfológica de aneurisma. Os aneurismas são resultado de uma fragilidade da camada íntima da artéria (geralmente devido à arteriosclerose) que resulta em uma dilatação patológica da aorta.",
+    "diagnosticosAssociados": [
+      "Aneurisma de aorta"
+    ],
+    "armadilhas": [],
+    "paginaEbook": 89,
+    "paginasEbook": [
+      89,
+      91
+    ]
+  }
+]
