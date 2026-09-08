@@ -2,8 +2,14 @@
 
 Fase 0. Decisões técnicas antes de escrever qualquer componente. Este documento não
 descreve UI — descreve como o conteúdo clínico entra no app, como os quatro módulos
-compartilham motores genéricos, e o que precisa existir para o offline funcionar de
-verdade.
+compartilham motores genéricos, e como o acesso é controlado.
+
+> **Atualização de 2026-09-08:** o requisito original de "100% funcional offline" foi
+> **revogado pelo autor**, em favor de controle de acesso real (DRM): *"Acho que podemos
+> abrir mão do offline para termos DRM."* Isso muda a arquitetura de forma estrutural —
+> ver seção 4. Onde o resto deste documento ainda falar em "offline" como requisito, é
+> texto histórico que a seção 4 substitui; não removi essas menções do meio do documento
+> para não perder o raciocínio de por que a decisão original existia.
 
 ---
 
@@ -62,14 +68,23 @@ tpocus-app/
 │   └── clattenburg-2018-casa-implementation.pdf
 ├── scripts/
 │   └── validate-content.mjs       # validação estrutural do content/ (já existe)
-├── api/
-│   ├── ativar.ts                  # NOVO, Fase 1 — Vercel Edge Function, ver seção 6
-│   └── confirmar.ts               # NOVO, Fase 1 — Vercel Edge Function, ver seção 6
+├── api/                            # NOVO — backend real (auth + conteúdo), ver seções 4 e 6
+│   ├── ativar.ts                  # ativação de código + emissão de sessão
+│   ├── renovar.ts                 # renovação silenciosa do token de acesso
+│   ├── admin/                     # tela administrativa (Fase 7) — gerar/listar/revogar códigos
+│   └── content/                   # conteúdo clínico servido sob demanda, autenticado
+│       ├── windows.ts
+│       ├── findings.ts
+│       ├── measurements.ts
+│       ├── protocols.ts
+│       ├── calculators.ts
+│       ├── protocol-flows.ts
+│       └── images/[arquivo].ts    # serve o binário da imagem, atrás do mesmo gate
 ├── public/
 │   ├── manifest.webmanifest
 │   └── icons/
 ├── src/
-│   ├── content/                   # DADO — já existe, ver seção 2
+│   ├── content/                   # DADO, só de SERVIDOR — nunca importado pelo cliente, ver seção 4
 │   │   ├── types.ts
 │   │   ├── index.ts
 │   │   ├── *.json                 # inclui protocols.json com os 4 protocolos, CASA já incluso
@@ -82,16 +97,19 @@ tpocus-app/
 │   ├── engine/                    # motores genéricos, ver seção 3
 │   │   ├── protocol/              # máquina de estados do módulo 3
 │   │   └── calculator/            # motor de formulário + fórmula do módulo 2
+│   ├── queries/                   # NOVO — hooks de busca (fetch autenticado a /api/content/*),
+│   │   │                          # a única forma dos módulos alcançarem conteúdo, ver seção 4
+│   │   └── cache.ts               # cache em memória por sessão (nunca em disco)
 │   ├── modules/
 │   │   ├── atlas/                 # módulo 1
 │   │   ├── calculators/           # módulo 2 (UI sobre o engine/calculator)
 │   │   ├── protocols/             # módulo 3 (UI sobre o engine/protocol)
 │   │   └── session/                # módulo 4
-│   ├── storage/                   # IndexedDB (idb) — sessões salvas
-│   ├── auth/                      # NOVO, Fase 1 — token de acesso local, ver seção 6
+│   ├── storage/                   # IndexedDB (idb) — só sessões de exame salvas pelo aluno
+│   ├── auth/                      # NOVO, Fase 1 — sessão (token de acesso + renovação), ver seção 6
 │   ├── ui/                        # design system: Button, NumberField, Badge, Tabs...
 │   ├── app/                       # rotas, layout, providers, disclaimer gate
-│   └── sw/                        # service worker (ou vite-plugin-pwa config)
+│   └── sw/                        # service worker — só app shell, ver seção 4
 ├── tests/
 │   └── engine/calculator/*.test.ts
 ├── index.html
@@ -271,25 +289,71 @@ não conteúdo novo.
 
 ---
 
-## 4. PWA offline — como isso fica 100% funcional
+## 4. Sem offline — conteúdo clínico servido sob demanda, com DRM real
 
-Decisão: **`vite-plugin-pwa`**, modo `injectManifest` só se o Workbox padrão
-(`generateSW`) não cobrir algum caso; começo por `generateSW`, que já resolve:
+**Decisão de 2026-09-08, revoga a seção original deste documento.** O conteúdo clínico
+(os 9 JSONs + as imagens de `src/content/`) **deixa de ir para o bundle do cliente**.
+Ele passa a viver só no servidor (as mesmas funções serverless do controle de acesso) e
+é servido tela a tela, autenticado a cada requisição. Sem download completo do conteúdo
+para o dispositivo, não há o que extrair de um dispositivo autorizado — essa é a
+diferença entre o gate de acesso da seção 6 (decide *quem entra*) e isto (decide *o que
+esse alguém consegue tirar do app*).
 
-- Precache de todo o build (JS/CSS/HTML) + `src/content/images/*.webp` (2,8 MB — cabe
-  tranquilamente no precache; nada de cache sob demanda para essas imagens, porque a
-  primeira vez que o aluno abre uma janela em plantão precisa funcionar mesmo sem ter
-  visitado aquela tela antes).
-- `registerType: 'autoUpdate'` com um toast discreto "nova versão disponível" — não forço
-  reload no meio de um exame.
-- Manifest com ícones (192/512, maskable), `display: 'standalone'`, `theme_color` escuro
-  (modo escuro é o padrão do produto).
-- Teste de aceitação da Fase 1: build, `vite preview`, DevTools → Offline, navegar pelos
-  4 módulos e abrir uma calculadora sem erro de rede.
+### O que isso muda, tecnicamente
 
-IndexedDB (`idb`) fica isolado do content pack: sessões salvas (`db: tpocus-sessoes`,
-store `sessoes`, chave `id` uuid) nunca tocam `src/content/*.json`, que é somente-leitura
-em runtime.
+- **`src/content/*.json` e `src/content/images/` passam a ser conteúdo só de
+  servidor.** As funções em `api/` importam esses arquivos diretamente (mesmo
+  mecanismo de hoje — `import windows from '../src/content/windows.json'` — só que agora
+  dentro de uma Vercel Function, nunca dentro do bundle Vite). **Nenhum código do
+  cliente (`src/modules/`, `src/engine/`, `src/ui/`) importa `src/content/*` direto** —
+  isso é uma regra de build, não só de convenção: vou configurar o Vite para falhar o
+  build se algum módulo do cliente importar algo de `src/content/*.json`
+  (`vite-plugin-*` de restrição de import, ou um teste estático simples que faz `grep`
+  nos bundles gerados por padrões de string do conteúdo — decido o mecanismo exato na
+  Fase 1, mas o objetivo é que um erro de import vire falha de build, não um vazamento
+  descoberto depois).
+- **Cada módulo busca o que precisa via API, autenticado pelo token de sessão** (o mesmo
+  da seção 6): `GET /api/content/windows`, `/api/content/measurements/:id`,
+  `/api/content/protocols/:id`, `/api/content/images/:arquivo` (esta última serve o
+  binário da imagem, também atrás do gate — nunca um link estático público). O servidor
+  recusa qualquer requisição sem sessão válida, com o mesmo tratamento de prazo e
+  aparelho da seção 6.
+- **Cache em memória, por sessão de app aberto — nunca em disco.** Uma vez buscado
+  durante aquela sessão, o conteúdo fica em memória (estado do React/um cache client-side
+  em RAM) para não refazer a mesma requisição a cada troca de tela — isso preserva
+  fluidez de navegação dentro de um exame em andamento. Fechar o app (ou uma
+  instabilidade de rede prolongada) limpa esse cache; a próxima abertura busca de novo.
+  Nada disso vai para IndexedDB, `localStorage` ou cache do service worker.
+- **`vite-plugin-pwa` continua existindo, só que reduzido ao *app shell*:** o manifest
+  (ícone, "adicionar à tela inicial", `display: 'standalone'`) continua — o app continua
+  instalável, isso não se perde. O service worker faz precache só do HTML/CSS/JS da
+  interface (código, não dado clínico) para abrir rápido; **não** faz precache de
+  `src/content/*` porque esse conteúdo não existe mais no cliente para ser cacheado.
+- **Resiliência a instabilidade breve de rede (não é "offline"):** dentro de uma sessão
+  já autenticada, uma queda de conexão de alguns segundos/minutos (elevador, parede
+  grossa de UTI) não derruba um cálculo ou passo de protocolo em andamento, porque o
+  conteúdo já buscado está em memória. O que não existe mais é abrir o app do zero, ou
+  navegar para uma tela nunca visitada naquela sessão, sem rede. Isso é uma troca
+  deliberada: menos resiliente a uma queda de rede prolongada do que a promessa original
+  de offline completo, e mais forte em garantir que só quem tem acesso válido usa o
+  conteúdo — na ordem de prioridade que você definiu.
+- **IndexedDB (`idb`) continua existindo, só que exclusivamente para as sessões de exame
+  salvas pelo aluno** (Módulo 4 — débito cardíaco calculado, achados de protocolo,
+  texto de evolução). Isso é dado gerado pelo aluno, não conteúdo do curso — nunca
+  precisou estar atrás do gate de DRM, e continua funcionando por completo mesmo sem
+  rede (não há razão para exigir conexão para reabrir uma sessão que o próprio aluno já
+  salvou no aparelho dele).
+
+### O que eu preciso confirmar com você antes da Fase 1
+
+Isso é a minha recomendação, não uma pergunta em aberto do tipo "escolha você" — mas é
+grande o suficiente para eu registrar o raciocínio em vez de simplesmente assumir: o
+cache em memória por sessão (em vez de zero cache, buscando tudo a cada troca de tela)
+é o que torna o app usável em uso clínico real, sem reabrir a porta que você acabou de
+fechar (nada persiste em disco, então não há bundle offline para extrair). Se você
+preferir zero cache — toda tela sempre busca de novo, mesmo dentro da mesma sessão — o
+app fica mais lento (mais requisições) sem ganho real de segurança adicional; não vou
+fazer isso a menos que você peça.
 
 ---
 
@@ -309,50 +373,35 @@ domínio (enums, FKs — conhecimento específico deste content pack), o outro v
 
 ---
 
-## 6. Controle de acesso (curso pago — decisão de 2026-09-08, revisada em seguida)
+## 6. Controle de acesso (curso pago — decisão de 2026-09-08, revisada duas vezes)
 
-Adicionado depois da Fase 0 original. Primeira instrução: *"como é um curso pago, quero
-que somente pessoas autorizadas tenham acesso, escolha o melhor para essa situação."*
-Segunda instrução, que **substitui a ordem de prioridade** da primeira versão deste
-desenho: *"Mais inegociável que o offline é a garantia que somente quem for autorizado a
-usar use e pelo tempo limitado que vamos definir."*
+Histórico das três instruções, porque cada uma mudou o desenho de forma real:
 
-Isso muda o desenho de forma real, não cosmética. A primeira versão deste documento
-tratava o acesso como uma camada fina na frente de um app que continuava 100% offline
-por padrão (token que renova sozinho enquanto online, nunca bloqueia se a rede falhar).
-Isso não dá a garantia que você pediu agora: um token que "renova pra sempre enquanto
-online" não impõe prazo nenhum, e um app que "nunca bloqueia offline" não consegue negar
-acesso a alguém cujo prazo terminou mas que simplesmente nunca mais abriu o app perto de
-um wi-fi. Com acesso > offline na ordem de prioridade, o desenho abaixo aceita que o app
-**pode, em situações específicas e limitadas, exigir rede para continuar funcionando** —
-o que antes eu tinha descartado.
+1. *"como é um curso pago, quero que somente pessoas autorizadas tenham acesso, escolha
+   o melhor para essa situação"* → gate de código, app continuava 100% offline depois de
+   ativado (token de longa duração, renovação silenciosa).
+2. *"Mais inegociável que o offline é a garantia que somente quem for autorizado a usar
+   use e pelo tempo limitado que vamos definir"* → token de longa duração descartado (não
+   impunha prazo real); desenhei um esquema de tolerância offline de 7 dias com
+   confirmação periódica, com 3 parâmetros que você confirmou (prazo por aluno desde a
+   ativação, 1 aparelho por código, tolerância de 7 dias).
+3. *"Acho que podemos abrir mão do offline para termos DRM"* → **isto torna o esquema de
+   tolerância de 7 dias desnecessário**, não só possível de simplificar. Se o conteúdo
+   nunca fica no dispositivo (seção 4), toda requisição de conteúdo já passa pelo
+   servidor — o controle de acesso não precisa mais tolerar dias sem verificar; ele
+   verifica a cada requisição, em tempo real. O resultado é ao mesmo tempo **mais simples
+   de implementar** e **mais forte** do que o desenho da instrução 2.
 
-Três decisões de produto que você confirmou (recomendações que eu havia proposto):
+Os 3 parâmetros de produto continuam exatamente os mesmos, só a mecânica de imposição
+muda:
 
-1. **Prazo por aluno, contado a partir da ativação** (não por turma com data fixa nem
-   um híbrido) — cada código, ao ser ativado pela primeira vez, define seu próprio prazo
-   individual.
-2. **Tolerância offline de 7 dias** — o app funciona sem rede por até 7 dias seguidos
-   sem confirmar que o acesso continua válido; passado isso, exige reconectar antes de
-   continuar.
-3. **1 aparelho ativo por código** — ativar em um aparelho novo desloga o anterior (o
-   aparelho antigo perde acesso na próxima vez que tentar confirmar, dentro do prazo de
-   tolerância de 7 dias).
+1. **Prazo por aluno, contado a partir da ativação.**
+2. **1 aparelho ativo por código**, com transferência automática ao ativar em outro.
+3. ~~Tolerância offline de 7 dias~~ — **superada**: como toda tela pede conteúdo ao
+   servidor, o "prazo de tolerância" agora é o tempo de vida do token de sessão (curto,
+   ver abaixo), não mais uma folga deliberada para uso sem rede.
 
-### Isso deixa de ser "sem backend" — e está certo que seja
-
-Guardar "quando este código foi ativado", "em qual aparelho" e "quando foi confirmado
-pela última vez" é **estado que muda**, não configuração estática — não dá para
-resolver com uma lista de códigos válidos somente leitura (Edge Config), que era
-suficiente na primeira versão. Isso exige um banco de chave-valor com escrita barata e
-frequente: **Vercel KV** (Redis gerenciado, nativo da mesma plataforma de deploy,
-sem servidor para você operar). Ainda não é "um servidor" no sentido que o spec original
-queria evitar — não há processo rodando, não há infraestrutura para atualizar ou
-monitorar — mas é, com todas as letras, mais backend do que "zero". Registro isso aqui
-com destaque porque é a mudança mais significativa em relação ao spec original desde a
-Fase 0, e decorre diretamente da sua segunda instrução.
-
-### Modelo de dados (Vercel KV)
+### Modelo de dados (Vercel KV) — sem mudança
 
 ```
 codigo:<código>  →  {
@@ -360,110 +409,102 @@ codigo:<código>  →  {
   ativadoEm:             timestamp | null
   expiraEm:               timestamp | null   // = ativadoEm + duracaoDias, calculado na ativação
   deviceId:               string  | null      // identificador aleatório gerado pelo app, não PII
-  ultimaConfirmacaoEm:  timestamp | null
+  ultimaRenovacaoEm:    timestamp | null
   revogado:               boolean             // corte manual, ex.: aluno pediu reembolso
 }
 ```
 
-`deviceId` é um UUID aleatório gerado pelo app na primeira execução e guardado no
-IndexedDB — não identifica a pessoa, só o aparelho, e não é pedido ao aluno (mantém a
-Regra de sessão anônima do Módulo 4: nenhum nome completo, e-mail ou dado pessoal entra
-nesse fluxo).
+`deviceId`: UUID aleatório gerado pelo app na primeira execução, guardado localmente —
+não identifica a pessoa, só o aparelho (mantém a Regra de sessão anônima do Módulo 4).
 
 ### Fluxo
 
-**Ativação (primeira vez, precisa de rede):**
-1. Tela de bloqueio pede o código de acesso.
-2. App gera (ou recupera, se já existir) seu `deviceId` local e chama
-   `POST /api/ativar { codigo, deviceId }`.
-3. Servidor:
-   - Código inexistente ou revogado → recusa, mensagem clara.
-   - Código nunca ativado → grava `ativadoEm = agora`, `expiraEm = agora + duracaoDias`,
-     `deviceId = este aparelho`; devolve token assinado.
-   - Código já ativado **neste mesmo `deviceId`** (reinstalação no mesmo aparelho) →
-     apenas devolve um token novo, sem mexer em `ativadoEm`/`expiraEm`.
-   - Código já ativado **em outro `deviceId`** → **transfere**: atualiza `deviceId` para
-     este aparelho (o antigo perde acesso na próxima confirmação dele) e devolve token
-     novo. Não há necessidade de ação manual sua para "aluno trocou de celular" — o
-     efeito colateral é que o aparelho antigo é deslogado, o que é o comportamento
-     pedido.
-4. Token: assinado (HMAC, segredo só no servidor), carrega `deviceId` e
-   `exp = mínimo(agora + 7 dias, expiraEm)`. Guardado no IndexedDB.
+**Ativação (`POST /api/ativar { codigo, deviceId }`):**
+- Código inexistente ou revogado → recusa.
+- Código nunca ativado → grava `ativadoEm = agora`, `expiraEm = agora + duracaoDias`,
+  `deviceId = este aparelho`.
+- Já ativado neste mesmo `deviceId` → só emite sessão nova.
+- Já ativado em outro `deviceId` → **transfere** (o aparelho antigo perde acesso na
+  próxima vez que precisar renovar — em minutos, não em dias, ver abaixo).
+- Sucesso → devolve um **token de acesso de vida curta** (proponho 15 minutos — usado
+  como Bearer em toda chamada a `/api/content/*`) e um **token de renovação** (vida mais
+  longa, mas sempre limitado por `expiraEm`).
 
-**Toda abertura do app depois disso:**
-- Token ainda válido (assinatura ok, `exp` no futuro) → app abre offline, sem rede
-  nenhuma. Isso é o que preserva a experiência de plantão com wi-fi ruim dentro da
-  janela de 7 dias.
-- Token expirado (passou o `exp`, seja porque bateu os 7 dias sem confirmar, seja porque
-  `expiraEm` do aluno chegou) → app **exige rede** e chama
-  `POST /api/confirmar { token }`:
-  - `deviceId` do token bate com o gravado no servidor, código não revogado, e
-    `agora < expiraEm` → grava `ultimaConfirmacaoEm = agora`, devolve token novo com
-    `exp = mínimo(agora + 7 dias, expiraEm)`. App volta a funcionar offline por mais um
-    ciclo de até 7 dias.
-  - `agora >= expiraEm` → recusa definitivamente. Tela mostra "seu acesso expirou em
-    [data]", sem ambiguidade — este é o corte que garante o prazo.
-  - `deviceId` não bate (foi ativado em outro aparelho depois) → recusa com mensagem
-    distinta: "este código foi ativado em outro aparelho".
-  - Sem conexão nenhuma no momento da confirmação → app informa "verifique sua conexão
-    para continuar" e tenta de novo quando a rede voltar; **não apaga nada localmente**,
-    só bloqueia a tela até confirmar — evita que uma falha de rede destrua a sessão de
-    um aluno em pleno plantão, mas também não deixa o app abrir sem confirmar.
+**A cada requisição de conteúdo (`/api/content/windows`, `/measurements/:id`,
+`/protocols/:id`, `/images/:arquivo`, etc.):** o servidor valida a assinatura e a
+expiração do token de acesso. Isso é barato (verificação de assinatura, sem ler o KV) e
+acontece **em toda tela**, não só na abertura do app — é isso que torna o controle de
+acesso real DRM, não só um gate na porta de entrada.
 
-Note o efeito prático da janela de 7 dias: um aluno em uma sequência de plantões sem
-wi-fi continua com acesso pleno; um código revogado ou expirado para de funcionar em no
-máximo 7 dias mesmo que o aparelho nunca mais veja rede alguma depois disso — a garantia
-que você pediu tem um limite temporal claro e conhecido (7 dias), não é "condicional a
-o aluno ficar online".
+**Renovação silenciosa (`POST /api/renovar`), disparada pelo app pouco antes do token de
+acesso expirar, enquanto o app está em uso:**
+- `deviceId` do token de renovação bate com o gravado no servidor, código não revogado,
+  `agora < expiraEm` → emite um novo token de acesso de 15 minutos. Transparente para o
+  aluno.
+- `agora >= expiraEm` → recusa definitivamente. App mostra "seu acesso expirou em
+  [data]" e trava — sem ambiguidade, sem tolerância residual.
+- `deviceId` não bate (ativado em outro aparelho depois) → recusa com "este código foi
+  ativado em outro aparelho".
+- Revogado manualmente → mesma recusa definitiva, efetiva na próxima renovação (no
+  máximo ~15 minutos depois da revogação, o tempo de vida do token de acesso ainda
+  válido).
+- Sem conexão no momento da renovação → o app usa o que já está em memória daquela
+  sessão (seção 4) até o token de acesso expirar; passado isso, qualquer tela nova exige
+  reconectar. Não é uma "folga de dias", é resiliência a uma queda breve.
 
 ### Por que não as outras opções
 
-- **Token de longa duração, renovação silenciosa "para sempre" enquanto online** — a
-  versão anterior deste desenho. Descartada: não impõe prazo real, e um token que nunca
-  bloqueia offline não corta acesso de quem simplesmente parou de reconectar. Não
-  atende a nova prioridade.
-- **Só checagem client-side (código comparado a um hash embutido no bundle), sem
-  servidor:** mantém "zero backend" literal, mas não é controle de acesso real —
-  qualquer pessoa com acesso ao bundle JS extrai ou contorna a checagem, e não há como
-  impor prazo nem limite de aparelho sem estado do lado do servidor. Não atende a nova
-  prioridade de jeito nenhum.
-- **Auth completo (Clerk/Supabase Auth/Auth0, conta por aluno, login com senha):**
-  resolveria tudo isso e mais (recuperação de conta, múltiplos e-mails), mas é mais
-  integração e mais fricção de onboarding do que o problema pede — o modelo de código +
-  1 dispositivo já entrega prazo real e exclusividade de uso sem pedir dado pessoal
-  nenhum do aluno. Fica como upgrade natural se o negócio precisar de contas
-  individuais mais tarde; o modelo de dados acima não fecha essa porta.
+- **Tolerância offline de dias com confirmação periódica** — o desenho da instrução 2.
+  Superado, não porque estivesse errado, mas porque deixou de ser necessário: ele
+  existia para cobrir uso sem rede prolongado, que não existe mais como requisito.
+  Mantê-lo teria sido uma garantia mais fraca (~7 dias de janela) sem necessidade,
+  quando o cenário sem offline permite um corte de minutos.
+- **Só checagem client-side, sem servidor:** nunca foi real controle de acesso, e agora
+  nem faz sentido cogitar — com o conteúdo já vivendo só no servidor (seção 4), a
+  autenticação por requisição é a peça que faz o DRM funcionar.
+- **Auth completo (Clerk/Supabase Auth/Auth0):** continua sendo mais integração do que o
+  problema pede — o modelo de código + 1 dispositivo entrega prazo real, exclusividade
+  de uso e agora também DRM de conteúdo, sem pedir dado pessoal do aluno. Upgrade natural
+  se o negócio precisar de contas individuais depois; o modelo de dados não fecha essa
+  porta.
 
-### Limitação que continua valendo, com o desenho atualizado
+### O que isso garante agora, com todas as letras
 
-**Isso ainda não é DRM de conteúdo**, mesmo com a garantia de acesso mais forte: dentro
-da janela de até 7 dias offline, o conteúdo clínico já baixado (JSONs + imagens)
-continua no dispositivo, e alguém tecnicamente capaz consegue extraí-lo enquanto o
-acesso estiver ativo — do mesmo jeito que conseguiria com o PDF do ebook. O que este
-desenho garante com solidez é o que você pediu: **quem não tem código válido não entra,
-e quem tinha para de conseguir usar o app em até 7 dias após o prazo acabar ou o código
-ser revogado.** Isso é diferente de impedir a extração do conteúdo por alguém já
-autorizado e disposto a inspecionar o app — essa segunda garantia exigiria abrir mão do
-offline por completo (conteúdo nunca baixado, servido sob demanda a cada tela), o que
-você não pediu e que reintroduziria exatamente o problema que a exigência de offline
-resolve (app inútil em UTI com wi-fi ruim). Avise se isso muda a decisão.
+- **Quem não tem código válido não entra** — sem exceção, sem período de tolerância.
+- **Quem tinha acesso e teve o prazo esgotado, ou foi revogado, perde a capacidade de
+  buscar qualquer conteúdo novo em até ~15 minutos** — não mais dias.
+- **O conteúdo clínico nunca fica persistido no dispositivo** — nada em IndexedDB,
+  `localStorage` ou cache do service worker contém `windows.json`, `measurements.json`
+  etc. O que existe é o que está em memória da sessão ativa (limpo ao fechar o app).
+  Extrair conteúdo do app exigiria interceptar tráfego de rede autenticado em tempo
+  real, não copiar um arquivo do dispositivo — um patamar de proteção bem mais alto do
+  que a v1 original tinha, e o que "abrir mão do offline para termos DRM" comprou.
+
+### Geração e revogação de códigos — decisão delegada a mim
+
+Você não tem preferência ("o que for melhor"). Decido: **uma tela administrativa
+simples, não um script.** Motivo: agora que o projeto já envolve backend real (KV +
+Functions servindo conteúdo autenticado), o custo incremental de uma tela protegida por
+senha de administrador é pequeno, e quem for gerar/revogar código no dia a dia
+provavelmente não é eu nem alguém confortável rodando um script — pode ser você ou
+alguém da operação do curso. A tela (Fase 7, junto do deploy) faz três coisas: gerar N
+códigos novos com uma `duracaoDias` definida na hora, listar códigos com status
+(não ativado / ativo até [data] / expirado / revogado), e revogar um código
+individualmente. Fica atrás do mesmo mecanismo de auth, com uma senha de administrador
+separada dos códigos de aluno (variável de ambiente, não fica no código-fonte).
 
 ### O que isso muda na Fase 1
 
-- Novo: `api/ativar.ts` e `api/confirmar.ts` (Vercel Edge Functions) + o KV namespace de
-  códigos.
+- Novo: `api/ativar.ts` e `api/renovar.ts` (Vercel Functions) + o KV namespace de
+  códigos — junto com os endpoints de conteúdo da seção 4 (`api/content/*`), que agora
+  fazem parte do mesmo backend de autenticação.
 - Novo, no app: tela de bloqueio (antes do disclaimer de uso do Módulo de segurança
-  clínica — o gate de acesso vem primeiro, o disclaimer clínico vem depois, no primeiro
-  uso já autenticado) e a lógica de token/deviceId/confirmação em `src/auth/`.
-- Novo, operacional (fora do app, mas necessário para o lançamento): uma forma de você
-  gerar códigos em lote com `duracaoDias` definido por você, e revogar um código
-  individualmente (suporte a "aluno pediu reembolso" / "perdeu o celular"). Planejo isso
-  como um script simples contra a API do Vercel KV, não um painel — decido o formato
-  exato na Fase 1, mas avise se preferir uma tela administrativa em vez de script.
-- Nenhuma mudança nos módulos 1–4 nem no content pack: o gate é uma camada antes da
-  navegação principal (tab bar), não dentro dela.
-- Continuo com **Vercel** como plataforma de deploy (Fase 7) — Edge Functions + KV ficam
-  no mesmo projeto, sem infraestrutura extra para operar.
+  clínica) e a lógica de sessão (token de acesso + renovação silenciosa) em `src/auth/`.
+- Nenhuma mudança nos módulos 1–4 nem no formato do content pack: o gate e a busca de
+  conteúdo ficam nas camadas de acesso (`src/auth/`) e de dados (`src/content/` do lado
+  do servidor + os *hooks* de fetch do lado do cliente), não dentro da lógica dos
+  módulos.
+- Continuo com **Vercel** como plataforma de deploy — Functions + KV no mesmo projeto.
 
 ---
 
@@ -505,11 +546,18 @@ Essas são decisões de engenharia, não de conteúdo clínico — não estão e
 
 ---
 
-## 9. Ordem de execução — sem mudança em relação ao spec
+## 9. Ordem de execução — Fase 1 cresceu, o resto não mudou
 
-Fase 0 (este documento) → Fase 1 (esqueleto + PWA + design system + validação) →
-Fase 2 (calculadoras + testes) → Fase 3 (motor de protocolo + E-FAST + RUSH) →
-Fase 4 (BLUE completo + CASA rascunho) → Fase 5 (Atlas + busca) → Fase 6 (sessão de
-exame) → Fase 7 (polimento + deploy).
+Fase 0 (este documento) → **Fase 1 (esqueleto + backend de acesso/conteúdo + app shell
+instalável + design system + validação)** → Fase 2 (calculadoras + testes) → Fase 3
+(motor de protocolo + E-FAST + RUSH) → Fase 4 (BLUE completo + CASA rascunho) →
+Fase 5 (Atlas + busca) → Fase 6 (sessão de exame) → Fase 7 (tela administrativa de
+códigos + polimento + deploy).
+
+A Fase 1 ficou maior do que no spec original: além do esqueleto de navegação e design
+system, agora precisa entregar o backend inteiro de controle de acesso e busca de
+conteúdo (seções 4 e 6) antes de qualquer módulo fazer sentido — sem isso, não há como
+um módulo buscar dado nenhum para mostrar. Vou tratar isso como a primeira entrega da
+Fase 1, antes da navegação visual.
 
 Paro aqui para revisão antes de tocar em código (Fase 1).

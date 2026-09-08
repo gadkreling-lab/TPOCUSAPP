@@ -112,25 +112,31 @@ separadamente (`marcador` = ebook; `usoNoEfast` = fonte externa), porque são co
 válidas para contextos de transdutor diferentes, não um erro a corrigir.
 `node scripts/validate-content.mjs` continua limpo.
 
-### 11. Controle de acesso — ✅ fechado (você definiu a prioridade e os 3 parâmetros)
-Você corrigiu minha primeira tentativa: acesso controlado é **mais inegociável que
-offline**, não o contrário. Redesenhei com isso em mente e você confirmou os 3
-parâmetros que eu havia recomendado:
+### 11. Controle de acesso — ✅ fechado, com uma terceira revisão (offline abandonado)
+Histórico rápido, porque passou por três versões:
+1. Gate de código, app 100% offline depois de ativado.
+2. Você: acesso > offline na prioridade → redesenhei com prazo por aluno desde a
+   ativação, 1 aparelho por código, e uma tolerância de 7 dias sem rede antes de travar.
+3. Você: **"Acho que podemos abrir mão do offline para termos DRM."** Isso não só
+   permite quanto **simplifica** o desenho — se o conteúdo nunca fica no dispositivo
+   (nenhum JSON/imagem clínica é baixado; tudo é buscado do servidor tela a tela,
+   autenticado a cada requisição), a "tolerância de 7 dias" deixa de fazer sentido: o
+   controle de acesso passa a ser verificado em tempo real, a cada tela, com um token
+   de sessão de vida curta (~15 min) em vez de uma janela de dias.
 
-- **Prazo por aluno**, contado a partir da ativação de cada código (não por turma).
-- **Tolerância offline de 7 dias** — passado isso sem confirmar online, o app trava até
-  reconectar.
-- **1 aparelho ativo por código** — ativar em um novo desloga o anterior.
+Resultado final: DRM real (o conteúdo clínico nunca é persistido no aparelho — extrair
+o app não copia o curso, ao contrário do PDF do ebook), prazo por aluno e 1 aparelho por
+código continuam exatamente como você pediu, e um código revogado ou expirado para de
+funcionar em minutos, não em dias. **Isso muda a Fase 1 de forma grande**: o app deixa
+de ser uma SPA estática com PWA offline e passa a precisar de um backend real (Vercel
+Functions + KV) servindo conteúdo autenticado antes de qualquer módulo funcionar —
+detalhe completo em `ARQUITETURA.md`, seções 4 e 6. A instalabilidade como PWA
+(ícone na tela inicial) continua existindo; só o funcionamento sem rede que se foi.
 
-Isso deixou de ser "sem backend com uma exceção pequena" e passou a exigir estado real
-(Vercel KV: quando cada código foi ativado, em qual aparelho, quando foi confirmado pela
-última vez) — é a maior mudança de arquitetura desde a Fase 0 original. Desenho
-completo (modelo de dados, fluxo de ativação/confirmação, o que acontece sem rede, e a
-limitação que continua valendo — isto não impede extração de conteúdo por alguém já
-autorizado, só impede que quem não tem código ou cujo prazo acabou continue usando)
-estão em `ARQUITETURA.md`, seção 6. Falta só um detalhe operacional, não de arquitetura:
-como você quer gerar/revogar códigos (script simples ou uma tela) — decido isso na
-Fase 1 a menos que você já tenha preferência.
+**Geração/revogação de códigos:** você não tinha preferência, decidi — uma tela
+administrativa simples (Fase 7), não um script, porque agora que já existe backend
+mesmo, o custo incremental é pequeno e quem for operar isso no dia a dia
+provavelmente não vai querer rodar comando nenhum.
 
 ---
 
@@ -159,9 +165,9 @@ Nenhum destes bloqueia a Fase 1 (esqueleto) nem a Fase 2 (calculadoras) — as m
 - [ ] Confirmar que posso seguir para a Fase 1 com o content pack como está.
 - [ ] Itens 3, 4 continuam abertos (FALLS fora da v1, janela apical 2 câmaras) — avise
       se discordar do padrão que propus; senão sigo com ele.
-- [ ] Controle de acesso: prioridade, prazo por aluno, tolerância de 7 dias e 1
-      aparelho por código já estão confirmados. Só falta dizer se prefere **gerar/
-      revogar códigos por script ou por uma tela administrativa** — se não responder,
-      sigo com script simples na Fase 1.
+- [x] Controle de acesso: prioridade (acesso > offline), prazo por aluno, DRM real (sem
+      offline), 1 aparelho por código e geração/revogação por tela administrativa —
+      tudo decidido. Nada pendente aqui além de você ler `ARQUITETURA.md` seções 4 e 6
+      antes de eu começar a Fase 1, já que é a mudança de maior impacto no projeto.
 - [ ] Quando puder (e só antes da revisão do `VALIDACAO-CLINICA.md`, sem pressa),
       revisar o conteúdo do CASA com seus sócios.
