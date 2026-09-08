@@ -63,7 +63,8 @@ tpocus-app/
 ├── scripts/
 │   └── validate-content.mjs       # validação estrutural do content/ (já existe)
 ├── api/
-│   └── verificar-acesso.ts        # NOVO, Fase 1 — Vercel Edge Function, ver seção 6
+│   ├── ativar.ts                  # NOVO, Fase 1 — Vercel Edge Function, ver seção 6
+│   └── confirmar.ts               # NOVO, Fase 1 — Vercel Edge Function, ver seção 6
 ├── public/
 │   ├── manifest.webmanifest
 │   └── icons/
@@ -308,92 +309,161 @@ domínio (enums, FKs — conhecimento específico deste content pack), o outro v
 
 ---
 
-## 6. Controle de acesso (curso pago — decisão de 2026-09-08)
+## 6. Controle de acesso (curso pago — decisão de 2026-09-08, revisada em seguida)
 
-Adicionado depois da Fase 0 original, a pedido: *"como é um curso pago, quero que
-somente pessoas autorizadas tenham acesso, escolha o melhor para essa situação."* Isso
-tensiona diretamente com "sem backend na v1" e "100% funcional offline" — as duas regras
-mais rígidas do spec original. Resolvo com a menor violação possível da primeira,
-preservando a segunda sem concessão.
+Adicionado depois da Fase 0 original. Primeira instrução: *"como é um curso pago, quero
+que somente pessoas autorizadas tenham acesso, escolha o melhor para essa situação."*
+Segunda instrução, que **substitui a ordem de prioridade** da primeira versão deste
+desenho: *"Mais inegociável que o offline é a garantia que somente quem for autorizado a
+usar use e pelo tempo limitado que vamos definir."*
 
-### O que decidi
+Isso muda o desenho de forma real, não cosmética. A primeira versão deste documento
+tratava o acesso como uma camada fina na frente de um app que continuava 100% offline
+por padrão (token que renova sozinho enquanto online, nunca bloqueia se a rede falhar).
+Isso não dá a garantia que você pediu agora: um token que "renova pra sempre enquanto
+online" não impõe prazo nenhum, e um app que "nunca bloqueia offline" não consegue negar
+acesso a alguém cujo prazo terminou mas que simplesmente nunca mais abriu o app perto de
+um wi-fi. Com acesso > offline na ordem de prioridade, o desenho abaixo aceita que o app
+**pode, em situações específicas e limitadas, exigir rede para continuar funcionando** —
+o que antes eu tinha descartado.
 
-**Gate de código de acesso, validado uma vez por uma função serverless, que emite um
-token local de longa duração.** Depois da primeira validação, o app volta a ser 100%
-offline exatamente como desenhado — a função serverless não é chamada de novo a cada
-abertura.
+Três decisões de produto que você confirmou (recomendações que eu havia proposto):
 
-Fluxo:
+1. **Prazo por aluno, contado a partir da ativação** (não por turma com data fixa nem
+   um híbrido) — cada código, ao ser ativado pela primeira vez, define seu próprio prazo
+   individual.
+2. **Tolerância offline de 7 dias** — o app funciona sem rede por até 7 dias seguidos
+   sem confirmar que o acesso continua válido; passado isso, exige reconectar antes de
+   continuar.
+3. **1 aparelho ativo por código** — ativar em um aparelho novo desloga o anterior (o
+   aparelho antigo perde acesso na próxima vez que tentar confirmar, dentro do prazo de
+   tolerância de 7 dias).
 
-1. Primeira abertura do app (**precisa de rede** — é a única vez): tela de bloqueio pede
-   um código de acesso. Nenhum nome completo, e-mail ou dado pessoal é pedido aqui —
-   consistente com a Regra de sessão anônima do Módulo 4.
-2. O app chama uma Vercel Edge Function (`/api/verificar-acesso`) com o código.
-3. A função confere o código contra uma lista de códigos válidos (Vercel Edge
-   Config ou KV — editável sem redeploy, para você poder desativar um código vazado sem
-   recompilar o app) e, se válido, devolve um token assinado (HMAC, segredo só no
-   servidor) com validade longa (proponho 180 dias, renovável — ver abaixo).
-4. O app grava o token no IndexedDB. Em toda abertura seguinte, o app valida o token
-   **localmente** (verifica assinatura e expiração, sem rede) — só volta a chamar a
-   função se o token expirar ou não existir.
-5. Enquanto o token for válido, o app funciona 100% offline, sem excecão — a promessa de
-   UTI/emergência com wi-fi ruim continua valendo integralmente depois do primeiro
-   acesso.
-6. Quando online, o app pode tentar renovar o token silenciosamente perto do
-   vencimento (sem bloquear nada se falhar) — assim um aluno que abre o app com
-   frequência nunca vê a tela de bloqueio de novo, mas um código revogado para de
-   renovar e expira dentro do prazo.
+### Isso deixa de ser "sem backend" — e está certo que seja
 
-Revogação: remover o código da lista na Edge Config impede *novas* ativações e
-renovações, mas não derruba instantaneamente um token já emitido e ainda válido —
-trade-off aceito em troca de nunca exigir rede para abrir o app já ativado. Se quiser um
-corte mais agressivo, encurto a validade do token (ex.: 30 dias) à custa de mais
-renovações em background.
+Guardar "quando este código foi ativado", "em qual aparelho" e "quando foi confirmado
+pela última vez" é **estado que muda**, não configuração estática — não dá para
+resolver com uma lista de códigos válidos somente leitura (Edge Config), que era
+suficiente na primeira versão. Isso exige um banco de chave-valor com escrita barata e
+frequente: **Vercel KV** (Redis gerenciado, nativo da mesma plataforma de deploy,
+sem servidor para você operar). Ainda não é "um servidor" no sentido que o spec original
+queria evitar — não há processo rodando, não há infraestrutura para atualizar ou
+monitorar — mas é, com todas as letras, mais backend do que "zero". Registro isso aqui
+com destaque porque é a mudança mais significativa em relação ao spec original desde a
+Fase 0, e decorre diretamente da sua segunda instrução.
+
+### Modelo de dados (Vercel KV)
+
+```
+codigo:<código>  →  {
+  duracaoDias:          number   // definido por você ao gerar o código, ex.: 180
+  ativadoEm:             timestamp | null
+  expiraEm:               timestamp | null   // = ativadoEm + duracaoDias, calculado na ativação
+  deviceId:               string  | null      // identificador aleatório gerado pelo app, não PII
+  ultimaConfirmacaoEm:  timestamp | null
+  revogado:               boolean             // corte manual, ex.: aluno pediu reembolso
+}
+```
+
+`deviceId` é um UUID aleatório gerado pelo app na primeira execução e guardado no
+IndexedDB — não identifica a pessoa, só o aparelho, e não é pedido ao aluno (mantém a
+Regra de sessão anônima do Módulo 4: nenhum nome completo, e-mail ou dado pessoal entra
+nesse fluxo).
+
+### Fluxo
+
+**Ativação (primeira vez, precisa de rede):**
+1. Tela de bloqueio pede o código de acesso.
+2. App gera (ou recupera, se já existir) seu `deviceId` local e chama
+   `POST /api/ativar { codigo, deviceId }`.
+3. Servidor:
+   - Código inexistente ou revogado → recusa, mensagem clara.
+   - Código nunca ativado → grava `ativadoEm = agora`, `expiraEm = agora + duracaoDias`,
+     `deviceId = este aparelho`; devolve token assinado.
+   - Código já ativado **neste mesmo `deviceId`** (reinstalação no mesmo aparelho) →
+     apenas devolve um token novo, sem mexer em `ativadoEm`/`expiraEm`.
+   - Código já ativado **em outro `deviceId`** → **transfere**: atualiza `deviceId` para
+     este aparelho (o antigo perde acesso na próxima confirmação dele) e devolve token
+     novo. Não há necessidade de ação manual sua para "aluno trocou de celular" — o
+     efeito colateral é que o aparelho antigo é deslogado, o que é o comportamento
+     pedido.
+4. Token: assinado (HMAC, segredo só no servidor), carrega `deviceId` e
+   `exp = mínimo(agora + 7 dias, expiraEm)`. Guardado no IndexedDB.
+
+**Toda abertura do app depois disso:**
+- Token ainda válido (assinatura ok, `exp` no futuro) → app abre offline, sem rede
+  nenhuma. Isso é o que preserva a experiência de plantão com wi-fi ruim dentro da
+  janela de 7 dias.
+- Token expirado (passou o `exp`, seja porque bateu os 7 dias sem confirmar, seja porque
+  `expiraEm` do aluno chegou) → app **exige rede** e chama
+  `POST /api/confirmar { token }`:
+  - `deviceId` do token bate com o gravado no servidor, código não revogado, e
+    `agora < expiraEm` → grava `ultimaConfirmacaoEm = agora`, devolve token novo com
+    `exp = mínimo(agora + 7 dias, expiraEm)`. App volta a funcionar offline por mais um
+    ciclo de até 7 dias.
+  - `agora >= expiraEm` → recusa definitivamente. Tela mostra "seu acesso expirou em
+    [data]", sem ambiguidade — este é o corte que garante o prazo.
+  - `deviceId` não bate (foi ativado em outro aparelho depois) → recusa com mensagem
+    distinta: "este código foi ativado em outro aparelho".
+  - Sem conexão nenhuma no momento da confirmação → app informa "verifique sua conexão
+    para continuar" e tenta de novo quando a rede voltar; **não apaga nada localmente**,
+    só bloqueia a tela até confirmar — evita que uma falha de rede destrua a sessão de
+    um aluno em pleno plantão, mas também não deixa o app abrir sem confirmar.
+
+Note o efeito prático da janela de 7 dias: um aluno em uma sequência de plantões sem
+wi-fi continua com acesso pleno; um código revogado ou expirado para de funcionar em no
+máximo 7 dias mesmo que o aparelho nunca mais veja rede alguma depois disso — a garantia
+que você pediu tem um limite temporal claro e conhecido (7 dias), não é "condicional a
+o aluno ficar online".
 
 ### Por que não as outras opções
 
+- **Token de longa duração, renovação silenciosa "para sempre" enquanto online** — a
+  versão anterior deste desenho. Descartada: não impõe prazo real, e um token que nunca
+  bloqueia offline não corta acesso de quem simplesmente parou de reconectar. Não
+  atende a nova prioridade.
 - **Só checagem client-side (código comparado a um hash embutido no bundle), sem
-  servidor nenhum:** mantém "zero backend" literal, mas não é controle de acesso real —
-  qualquer pessoa com acesso ao bundle JS extrai ou contorna a checagem. Serve, no
-  máximo, como filtro contra compartilhamento casual do link, não como o "somente
-  autorizados" que você pediu.
-- **Auth completo (Clerk/Supabase Auth/Auth0, conta por aluno, login com senha):** dá
-  granularidade por aluno e revogação instantânea, mas é mais integração do que a v1
-  precisa, mais uma dependência externa, e mais fricção de onboarding para um app que
-  vai ser usado com uma mão enluvada. Fica como upgrade natural se o modelo de negócio
-  pedir contas individuais (ex.: analytics por aluno) — a arquitetura acima não fecha
-  essa porta, só não a abre agora.
-- **Servidor "de verdade" (Node/Express hospedado):** contradiz a decisão original de
-  não ter infraestrutura própria para manter. Edge Function é o meio-termo que Vercel e
-  Netlify já oferecem nativamente dentro do mesmo deploy estático — não é um servidor
-  que você precisa operar.
+  servidor:** mantém "zero backend" literal, mas não é controle de acesso real —
+  qualquer pessoa com acesso ao bundle JS extrai ou contorna a checagem, e não há como
+  impor prazo nem limite de aparelho sem estado do lado do servidor. Não atende a nova
+  prioridade de jeito nenhum.
+- **Auth completo (Clerk/Supabase Auth/Auth0, conta por aluno, login com senha):**
+  resolveria tudo isso e mais (recuperação de conta, múltiplos e-mails), mas é mais
+  integração e mais fricção de onboarding do que o problema pede — o modelo de código +
+  1 dispositivo já entrega prazo real e exclusividade de uso sem pedir dado pessoal
+  nenhum do aluno. Fica como upgrade natural se o negócio precisar de contas
+  individuais mais tarde; o modelo de dados acima não fecha essa porta.
 
-### Limitação que preciso deixar explícita
+### Limitação que continua valendo, com o desenho atualizado
 
-**Isso não é DRM.** Depois que o app é ativado, todo o conteúdo clínico (os JSONs, as
-54 imagens) já está no dispositivo, porque é exatamente isso que "100% funcional
-offline" exige. Um usuário tecnicamente capaz consegue extrair esse conteúdo do
-dispositivo autorizado, do mesmo jeito que conseguiria com o PDF do ebook. Proteção de
-conteúdo de verdade exigiria uma arquitetura sem bundle offline — servidor servindo
-conteúdo sob demanda, gate a cada requisição — o oposto do que você pediu como
-não-negociável. O gate que desenhei resolve o problema que a maioria das ferramentas
-desse tipo tem na prática (acesso não pago, link compartilhado informalmente), no mesmo
-espírito de honra do aviso já impresso no próprio ebook ("PROIBIDOS COMERCIALIZAÇÃO E
-COMPARTILHAMENTO") — não resolve extração deliberada por alguém disposto a inspecionar o
-app. Avise se isso muda a decisão.
+**Isso ainda não é DRM de conteúdo**, mesmo com a garantia de acesso mais forte: dentro
+da janela de até 7 dias offline, o conteúdo clínico já baixado (JSONs + imagens)
+continua no dispositivo, e alguém tecnicamente capaz consegue extraí-lo enquanto o
+acesso estiver ativo — do mesmo jeito que conseguiria com o PDF do ebook. O que este
+desenho garante com solidez é o que você pediu: **quem não tem código válido não entra,
+e quem tinha para de conseguir usar o app em até 7 dias após o prazo acabar ou o código
+ser revogado.** Isso é diferente de impedir a extração do conteúdo por alguém já
+autorizado e disposto a inspecionar o app — essa segunda garantia exigiria abrir mão do
+offline por completo (conteúdo nunca baixado, servido sob demanda a cada tela), o que
+você não pediu e que reintroduziria exatamente o problema que a exigência de offline
+resolve (app inútil em UTI com wi-fi ruim). Avise se isso muda a decisão.
 
 ### O que isso muda na Fase 1
 
-- Novo: `api/verificar-acesso.ts` (Vercel Edge Function) e a configuração da lista de
-  códigos válidos (Edge Config).
-- Novo, no app: tela de bloqueio (antes até do disclaimer de uso do Módulo de segurança
+- Novo: `api/ativar.ts` e `api/confirmar.ts` (Vercel Edge Functions) + o KV namespace de
+  códigos.
+- Novo, no app: tela de bloqueio (antes do disclaimer de uso do Módulo de segurança
   clínica — o gate de acesso vem primeiro, o disclaimer clínico vem depois, no primeiro
-  uso já autenticado) e a lógica de token em `src/auth/` (verificação local, renovação
-  silenciosa).
+  uso já autenticado) e a lógica de token/deviceId/confirmação em `src/auth/`.
+- Novo, operacional (fora do app, mas necessário para o lançamento): uma forma de você
+  gerar códigos em lote com `duracaoDias` definido por você, e revogar um código
+  individualmente (suporte a "aluno pediu reembolso" / "perdeu o celular"). Planejo isso
+  como um script simples contra a API do Vercel KV, não um painel — decido o formato
+  exato na Fase 1, mas avise se preferir uma tela administrativa em vez de script.
 - Nenhuma mudança nos módulos 1–4 nem no content pack: o gate é uma camada antes da
   navegação principal (tab bar), não dentro dela.
-- Continuo com **Vercel** como plataforma de deploy (Fase 7) — a Edge Function fica no
-  mesmo projeto, sem infraestrutura extra.
+- Continuo com **Vercel** como plataforma de deploy (Fase 7) — Edge Functions + KV ficam
+  no mesmo projeto, sem infraestrutura extra para operar.
 
 ---
 

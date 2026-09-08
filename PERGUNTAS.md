@@ -112,15 +112,25 @@ separadamente (`marcador` = ebook; `usoNoEfast` = fonte externa), porque são co
 válidas para contextos de transdutor diferentes, não um erro a corrigir.
 `node scripts/validate-content.mjs` continua limpo.
 
-### 11. Controle de acesso — ✅ decidido (delegado a mim), ver ARQUITETURA.md
-Curso pago → só gente autorizada acessa. Isso conflita em parte com o "sem backend"
-original, e resolvi com a mínima violação possível dessa regra: um gate de código de
-acesso validado por uma função serverless (Vercel Edge Function), que emite um token
-local de longa duração — depois disso o app volta a ser 100% offline como antes, sem
-telefonar pra casa a cada abertura. Desenho completo, trade-offs e uma limitação
-importante (isso não é DRM real — ver por quê) estão em `ARQUITETURA.md`, seção
-"Controle de acesso". Isso é a maior mudança de arquitetura desde a Fase 0 original;
-leia essa seção antes da Fase 1.
+### 11. Controle de acesso — ✅ fechado (você definiu a prioridade e os 3 parâmetros)
+Você corrigiu minha primeira tentativa: acesso controlado é **mais inegociável que
+offline**, não o contrário. Redesenhei com isso em mente e você confirmou os 3
+parâmetros que eu havia recomendado:
+
+- **Prazo por aluno**, contado a partir da ativação de cada código (não por turma).
+- **Tolerância offline de 7 dias** — passado isso sem confirmar online, o app trava até
+  reconectar.
+- **1 aparelho ativo por código** — ativar em um novo desloga o anterior.
+
+Isso deixou de ser "sem backend com uma exceção pequena" e passou a exigir estado real
+(Vercel KV: quando cada código foi ativado, em qual aparelho, quando foi confirmado pela
+última vez) — é a maior mudança de arquitetura desde a Fase 0 original. Desenho
+completo (modelo de dados, fluxo de ativação/confirmação, o que acontece sem rede, e a
+limitação que continua valendo — isto não impede extração de conteúdo por alguém já
+autorizado, só impede que quem não tem código ou cujo prazo acabou continue usando)
+estão em `ARQUITETURA.md`, seção 6. Falta só um detalhe operacional, não de arquitetura:
+como você quer gerar/revogar códigos (script simples ou uma tela) — decido isso na
+Fase 1 a menos que você já tenha preferência.
 
 ---
 
@@ -149,9 +159,9 @@ Nenhum destes bloqueia a Fase 1 (esqueleto) nem a Fase 2 (calculadoras) — as m
 - [ ] Confirmar que posso seguir para a Fase 1 com o content pack como está.
 - [ ] Itens 3, 4 continuam abertos (FALLS fora da v1, janela apical 2 câmaras) — avise
       se discordar do padrão que propus; senão sigo com ele.
-- [ ] **Ler a seção "Controle de acesso" em `ARQUITETURA.md` e confirmar que o desenho
-      (gate de código + Edge Function + token local) atende** — é a mudança mais
-      relevante desde a Fase 0 original e vale sua conferência antes de eu construir o
-      esqueleto na Fase 1.
+- [ ] Controle de acesso: prioridade, prazo por aluno, tolerância de 7 dias e 1
+      aparelho por código já estão confirmados. Só falta dizer se prefere **gerar/
+      revogar códigos por script ou por uma tela administrativa** — se não responder,
+      sigo com script simples na Fase 1.
 - [ ] Quando puder (e só antes da revisão do `VALIDACAO-CLINICA.md`, sem pressa),
       revisar o conteúdo do CASA com seus sócios.
