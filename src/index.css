@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tokens de cor — modo escuro é o padrão do produto (sala de exame com luz baixa).
+ * :root define o tema claro; .dark sobrescreve. Ver tailwind.config.ts.
+ * Valores em "R G B" (sem vírgula) para o padrão de opacidade do Tailwind funcionar
+ * (rgb(var(--x) / <alpha-value>)).
+ */
+:root {
+  --color-bg: 248 250 252;
+  --color-surface: 255 255 255;
+  --color-fg: 15 23 42;
+  --color-muted: 100 116 139;
+  --color-border: 226 232 240;
+  --color-accent: 3 105 161;
+  --color-accent-fg: 255 255 255;
+  --color-normal: 22 163 74;
+  --color-limitrofe: 161 98 7;
+  --color-alterado: 220 38 38;
+}
+
+.dark {
+  --color-bg: 11 18 32;
+  --color-surface: 19 28 46;
+  --color-fg: 226 232 240;
+  --color-muted: 148 163 184;
+  --color-border: 36 50 68;
+  --color-accent: 125 211 252;
+  --color-accent-fg: 8 26 43;
+  --color-normal: 74 222 128;
+  --color-limitrofe: 250 204 21;
+  --color-alterado: 248 113 113;
+}
+
+html {
+  color-scheme: dark;
+}
+html:not(.dark) {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+/* Alvo de toque mínimo em todo elemento interativo — requisito de produto. */
+button,
+a[role='button'],
+input,
+select,
+textarea {
+  min-height: 2.75rem;
+}
