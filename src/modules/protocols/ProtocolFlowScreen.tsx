@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'wouter'
 import { useProtocolFlows, useProtocols, useWindows } from '../../queries/hooks'
 import type { ProtocolFlow } from '../../content/protocol-flows/types'
@@ -14,6 +14,7 @@ import {
   type ProtocolState,
 } from '../../engine/protocol'
 import { Button } from '../../ui/Button'
+import { SourceTag } from '../../ui/SourceTag'
 
 export function ProtocolFlowScreen() {
   const params = useParams<{ id: string }>()
@@ -128,6 +129,10 @@ function ExecucaoProtocolo({
         </div>
       )}
 
+      {/* CLAUDE.md Regra 2: todo protocolo com fonteExterna precisa do selo visível, sem
+          exceção — o CASA inteiro vem de Gardner 2017/Clattenburg 2018, não do ebook. */}
+      {protocolo?.fonteExterna && <SourceTag fonte={protocolo.fonteExterna} />}
+
       <div aria-hidden="true" className="h-2 w-full overflow-hidden rounded-full bg-border">
         <div className="h-full rounded-full bg-accent transition-[width]" style={{ width: `${pct}%` }} />
       </div>
@@ -144,6 +149,13 @@ function ExecucaoProtocolo({
 
       {no.tipo === 'pergunta' ? (
         <div className="space-y-3 rounded-xl border border-border bg-surface p-4">
+          {protocolo?.timerSegundos != null && (
+            <TimerPausa
+              segundos={protocolo.timerSegundos}
+              mostrarAlerta={!!protocolo.alertaRetomarCompressoes}
+              chave={state.noAtual}
+            />
+          )}
           {no.janela && nomesJanela.has(no.janela) && (
             <p className="text-sm text-muted">Janela: {nomesJanela.get(no.janela)}</p>
           )}
@@ -236,6 +248,40 @@ function ExecucaoProtocolo({
           a conduta.
         </p>
       )}
+    </div>
+  )
+}
+
+/**
+ * Cronômetro de pausa — só aparece quando o `Protocol` correspondente declara
+ * `timerSegundos` (hoje só o CASA, via dado, não por id hardcoded: ARQUITETURA.md §2.3
+ * — o motor lê o campo, não decide "é o CASA" no código). Reinicia a cada nó novo
+ * (`chave` = id do nó atual) porque cada pergunta é uma pausa de checagem de pulso
+ * independente. Ao estourar o tempo, se `alertaRetomarCompressoes` estiver marcado,
+ * mostra o lembrete de retomar as compressões — nunca bloqueia a resposta.
+ */
+function TimerPausa({ segundos, mostrarAlerta, chave }: { segundos: number; mostrarAlerta: boolean; chave: string }) {
+  const [decorrido, setDecorrido] = useState(0)
+
+  useEffect(() => {
+    setDecorrido(0)
+    const id = setInterval(() => setDecorrido((s) => s + 1), 1000)
+    return () => clearInterval(id)
+  }, [chave])
+
+  const estourou = decorrido >= segundos
+
+  return (
+    <div
+      role="timer"
+      aria-live="polite"
+      className={[
+        'rounded-lg border p-3 text-sm',
+        estourou ? 'border-alterado/40 bg-alterado/10 text-alterado' : 'border-border bg-border/20 text-muted',
+      ].join(' ')}
+    >
+      <p className="font-semibold">{estourou ? `Pausa ≥ ${segundos}s` : `Pausa: ${decorrido}s / ${segundos}s`}</p>
+      {estourou && mostrarAlerta && <p className="mt-1">Retome as compressões agora.</p>}
     </div>
   )
 }
