@@ -180,13 +180,25 @@ export interface RamoFluxograma {
   proximosPassos?: RamoFluxograma[]
 }
 
-export interface Protocol extends Rastreavel {
+export interface Protocol {
   id: string
   nome: string
   autoria: string | null
   objetivo: string
+  /**
+   * Ausente (ou null) em protocolos que não vêm do ebook (ex.: CASA — ver `status`
+   * e `fonteExterna` abaixo). Diferente do `null` de Rastreavel ("o ebook não diz"):
+   * aqui o protocolo inteiro não é do ebook, então não há página nenhuma a citar.
+   */
+  paginaEbook?: number | null
+  paginasEbook?: number[]
   descricaoTextual?: string[]
   limitacoes?: string[]
+
+  /** Marca um protocolo como rascunho não publicado, pendente de revisão clínica. Ver VALIDACAO-CLINICA.md. */
+  status?: 'pendente_validacao'
+  /** Fonte externa do protocolo inteiro (protocolos 100% fora do ebook, ex.: CASA). */
+  fonteExterna?: FonteExterna
 
   /** BLUE — transcrição literal da Figura 16 do ebook. NÃO fundir com regrasDecisao. */
   fluxograma?: {
@@ -231,6 +243,37 @@ export interface Protocol extends Rastreavel {
     condutaInicial: string
   }[]
   beneficios?: string[]
+
+  /** CASA — rascunho, ver `status`. Todo o conteúdo abaixo vem de fonteExterna, nunca do ebook. */
+  contextoClinico?: string[]
+  estrutura?: string[]
+  /** Duração máxima recomendada de cada etapa do exame, em segundos (Gardner 2017: <10s). */
+  timerSegundos?: number
+  /** Se true, a UI deve exibir um alerta visual de "retome as compressões" ao fim do timer. */
+  alertaRetomarCompressoes?: boolean
+  recomendacaoTimer?: string
+  etapas?: {
+    numero: number
+    nome: string
+    duracaoMaxSegundos: number
+    pergunta: string
+    comoFazer: string
+    prevalencia?: string
+    significado?: string
+    prognostico?: string
+    conduta: string
+  }[]
+  etapasAncilares?: {
+    nome: string
+    momento: string
+    comoFazer: string
+    prevalencia?: string
+    conduta?: string
+    observacao?: string
+  }[]
+  exclusoesExplicitas?: string[]
+  resultadosImplementacao?: string[]
+  avisoClinico?: string
 }
 
 // ---------------------------------------------------------------- images
