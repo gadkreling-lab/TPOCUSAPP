@@ -13,12 +13,14 @@ import type {
   Window,
   Measurement,
 } from '../content/types'
+import type { CalculatorDef } from '../content/calculators/types'
 import { useEffect, useState } from 'react'
 import { useSessao } from '../auth/SessionProvider'
 import { ErroConteudo } from './client'
 import { useConteudo, type EstadoConteudo } from './useConteudo'
 
 export const useWindows = (): EstadoConteudo<Window[]> => useConteudo<Window[]>('windows')
+export const useCalculators = (): EstadoConteudo<CalculatorDef[]> => useConteudo<CalculatorDef[]>('calculators')
 export const useFindings = (): EstadoConteudo<Finding[]> => useConteudo<Finding[]>('findings')
 export const usePathologies = (): EstadoConteudo<Pathology[]> => useConteudo<Pathology[]>('pathologies')
 export const useMeasurements = (): EstadoConteudo<Measurement[]> => useConteudo<Measurement[]>('measurements')
