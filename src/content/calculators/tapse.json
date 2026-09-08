@@ -1,0 +1,49 @@
+{
+  "id": "tapse",
+  "nome": "TAPSE",
+  "paginaEbook": 30,
+  "campos": [
+    {
+      "id": "tapseMedido",
+      "label": "TAPSE",
+      "tipo": "numero",
+      "unidade": "mm",
+      "min": 0,
+      "max": 40,
+      "step": 0.1
+    }
+  ],
+  "resultados": [
+    {
+      "id": "tapseInterpretado",
+      "label": "TAPSE",
+      "unidade": "mm",
+      "formula": "tapseMedido",
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "tapseInterpretado", "operador": "<", "valor": 17 }],
+          "texto": "Disfunção sistólica do ventrículo direito.",
+          "severidade": "alterado",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "tapseInterpretado", "operador": ">=", "valor": 17 }],
+          "texto": "Sem disfunção sistólica do ventrículo direito pelo critério do ebook (ponto de corte < 17 mm).",
+          "severidade": "normal",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "Fora da faixa avaliada pelo ebook.",
+      "origem": "ebook",
+      "paginaEbook": 30
+    }
+  ],
+  "comoMedir": [
+    "Obtenha a janela apical de quatro câmaras.",
+    "Ative o modo M (modo de movimento) no ecocardiograma.",
+    "Alinhe o cursor M com o anel lateral da valva tricúspide (junção do anel tricúspide com a parede livre do ventrículo direito).",
+    "Registre o movimento do anel tricúspide durante o ciclo cardíaco.",
+    "Meça a excursão máxima do anel tricúspide da diástole para a sístole (distância vertical máxima entre os pontos mais baixos e mais altos do movimento do anel)."
+  ],
+  "armadilhas": []
+}

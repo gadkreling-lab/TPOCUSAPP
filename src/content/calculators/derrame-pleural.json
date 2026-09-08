@@ -1,0 +1,71 @@
+{
+  "id": "derrame-pleural",
+  "nome": "Derrame Pleural",
+  "paginaEbook": 57,
+  "campos": [
+    {
+      "id": "distanciaBalik",
+      "label": "Distância máxima entre diafragma e base pulmonar",
+      "tipo": "numero",
+      "unidade": "mm",
+      "min": 0,
+      "max": 200,
+      "step": 1
+    },
+    {
+      "id": "espacosBrockelsby",
+      "label": "Espaços intercostais ocupados pelo derrame",
+      "tipo": "numero",
+      "unidade": "EIC",
+      "min": 1,
+      "max": 10,
+      "step": 1
+    }
+  ],
+  "resultados": [
+    {
+      "id": "volumeBalik",
+      "label": "Volume estimado (fórmula de Balik)",
+      "unidade": "mL",
+      "formula": "distanciaBalik * 20",
+      "faixas": [],
+      "textoNaoClassificado": "Estimativa direta pela fórmula de Balik — sem faixa de gravidade própria. Use o método de Brockelsby para uma classificação por gravidade.",
+      "origem": "ebook",
+      "paginaEbook": 57
+    },
+    {
+      "id": "classificacaoBrockelsby",
+      "label": "Classificação (método de Brockelsby)",
+      "unidade": "EIC",
+      "formula": "espacosBrockelsby",
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "classificacaoBrockelsby", "operador": "igual", "valor": 1 }],
+          "texto": "Derrame leve, <500 mL.",
+          "severidade": "normal",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "classificacaoBrockelsby", "operador": "igual", "valor": 2 }],
+          "texto": "Derrame moderado, 500–1000 mL.",
+          "severidade": "limitrofe",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "classificacaoBrockelsby", "operador": ">", "valor": 3 }],
+          "texto": "Derrame grave, >1000 mL.",
+          "severidade": "alterado",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "O ebook classifica 1, 2 e mais de 3 espaços intercostais — exatamente 3 espaços não tem classificação definida (lacuna do próprio ebook, não interpolada). Considere usar a fórmula de Balik ou reavaliar.",
+      "origem": "ebook",
+      "paginaEbook": 57
+    }
+  ],
+  "comoMedir": [
+    "Balik: paciente em decúbito dorsal; aferir o diâmetro máximo do derrame (em milímetros) entre o diafragma e a base do pulmão; multiplicar esse número por 20.",
+    "Brockelsby: contar o número de espaços intercostais ocupados pelo derrame pleural."
+  ],
+  "armadilhas": []
+}

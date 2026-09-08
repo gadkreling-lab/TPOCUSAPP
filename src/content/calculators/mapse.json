@@ -1,0 +1,59 @@
+{
+  "id": "mapse",
+  "nome": "MAPSE",
+  "paginaEbook": 25,
+  "campos": [
+    {
+      "id": "mapseMedido",
+      "label": "MAPSE",
+      "tipo": "numero",
+      "unidade": "mm",
+      "min": 0,
+      "max": 40,
+      "step": 0.1
+    }
+  ],
+  "resultados": [
+    {
+      "id": "mapseInterpretado",
+      "label": "MAPSE",
+      "unidade": "mm",
+      "formula": "mapseMedido",
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "mapseInterpretado", "operador": ">=", "valor": 10 }],
+          "texto": "Normal.",
+          "severidade": "normal",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [
+            { "variavel": "mapseInterpretado", "operador": ">=", "valor": 8 },
+            { "variavel": "mapseInterpretado", "operador": "<", "valor": 10 }
+          ],
+          "texto": "Limítrofe.",
+          "severidade": "limitrofe",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "mapseInterpretado", "operador": "<", "valor": 8 }],
+          "texto": "Reduzido, indicando possível disfunção sistólica longitudinal do ventrículo esquerdo.",
+          "severidade": "alterado",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "Fora da faixa avaliada pelo ebook.",
+      "origem": "ebook",
+      "paginaEbook": 25
+    }
+  ],
+  "comoMedir": [
+    "Use a janela apical de quatro câmaras.",
+    "Coloque o cursor do modo M sobre o anel mitral lateral (ou septal, dependendo do protocolo), alinhando-o com o movimento longitudinal do ventrículo esquerdo.",
+    "Ative o modo M e registre o traçado do movimento do anel mitral durante o ciclo cardíaco.",
+    "Meça a distância entre o ponto mais baixo (diástole) e o ponto mais alto (sístole) do movimento do anel mitral."
+  ],
+  "armadilhas": [
+    "O MAPSE pode ser medido em quatro localizações no plano atrioventricular (paredes septal, lateral, anterior e posterior), mas em geral deve ser medido a partir do anel mitral septal e lateral."
+  ]
+}

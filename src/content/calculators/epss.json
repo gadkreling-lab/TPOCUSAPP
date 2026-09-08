@@ -1,0 +1,84 @@
+{
+  "id": "epss",
+  "nome": "EPSS — Estimativa de FEVE",
+  "paginaEbook": 23,
+  "campos": [
+    {
+      "id": "epssMedido",
+      "label": "EPSS",
+      "tipo": "numero",
+      "unidade": "mm",
+      "min": 0,
+      "max": 40,
+      "step": 0.1
+    },
+    {
+      "id": "valvopatia",
+      "label": "Paciente com valvopatia",
+      "tipo": "booleano",
+      "padrao": false
+    },
+    {
+      "id": "proteseMitral",
+      "label": "Prótese valvar mitral",
+      "tipo": "booleano",
+      "padrao": false
+    }
+  ],
+  "resultados": [
+    {
+      "id": "feveEstimativa",
+      "label": "EPSS — estimativa de FEVE",
+      "unidade": "mm",
+      "formula": "epssMedido",
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "feveEstimativa", "operador": "<", "valor": 7 }],
+          "texto": "Normal (FEVE estimada 55–70%).",
+          "severidade": "normal",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "feveEstimativa", "operador": "entreExclusive", "min": 7, "max": 13 }],
+          "texto": "Disfunção moderada (FEVE estimada 30–50%).",
+          "severidade": "limitrofe",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "feveEstimativa", "operador": ">", "valor": 13 }],
+          "texto": "Disfunção grave (FEVE estimada <30%).",
+          "severidade": "alterado",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "O ebook não classifica exatamente este valor (as faixas são \"< 7\", \"> 7 e < 13\" e \"> 13\" mm — 7 mm e 13 mm exatos ficam fora de todas elas). Repita a medida ou avalie com cautela; não interpole.",
+      "origem": "ebook",
+      "paginaEbook": 23,
+      "avisosCondicionais": [
+        {
+          "campos": ["proteseMitral"],
+          "modo": "qualquerVerdadeiro",
+          "mensagem": "Prótese valvar mitral: o EPSS não deve ser usado nessa situação."
+        },
+        {
+          "campos": ["valvopatia"],
+          "modo": "qualquerVerdadeiro",
+          "mensagem": "Valvopatia: nessa situação, o EPSS não deve ser a medida de escolha."
+        }
+      ]
+    }
+  ],
+  "comoMedir": [
+    "Janela acústica: Paraesternal longitudinal, com boa visualização do folheto anterior da valva mitral.",
+    "Modo M: ativar o modo M e posicionar a linha de amostragem sobre a ponta da cúspide anterior da valva mitral.",
+    "Ajustes: garantir boa definição das estruturas e alinhamento perpendicular ao septo interventricular.",
+    "Identificar o ponto E (pico de abertura inicial da cúspide anterior da valva mitral).",
+    "Identificar o septo interventricular.",
+    "Medir a distância mínima entre o ponto E e o septo interventricular (em milímetros)."
+  ],
+  "armadilhas": [
+    "Fibrilação Atrial: o EPSS deve ser avaliado em diferentes batimentos, com média de 3 a 5 medidas.",
+    "Valvopatias: nessas situações, o EPSS não deve ser a medida de escolha.",
+    "Prótese valvar mitral: o EPSS não deve ser usado nessa situação."
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "id": "debito-cardiaco",
+  "nome": "Débito Cardíaco",
+  "paginaEbook": 27,
+  "campos": [
+    {
+      "id": "tsveDiametro",
+      "label": "Diâmetro do TSVE",
+      "tipo": "numero",
+      "unidade": "cm",
+      "min": 0.5,
+      "max": 6,
+      "step": 0.1,
+      "dicaFaixa": "Referência do ebook: 1,7 – 2,3 cm",
+      "ajudaRapidaImpacto": true
+    },
+    {
+      "id": "vti",
+      "label": "VTI do TSVE",
+      "tipo": "numero",
+      "unidade": "cm",
+      "min": 1,
+      "max": 60,
+      "step": 0.1,
+      "dicaFaixa": "Referência do ebook: 18 – 25 cm"
+    },
+    {
+      "id": "fc",
+      "label": "Frequência cardíaca",
+      "tipo": "numero",
+      "unidade": "bpm",
+      "min": 20,
+      "max": 250,
+      "step": 1
+    },
+    {
+      "id": "peso",
+      "label": "Peso",
+      "tipo": "numero",
+      "unidade": "kg",
+      "min": 1,
+      "max": 300,
+      "step": 0.1,
+      "opcional": true
+    },
+    {
+      "id": "altura",
+      "label": "Altura",
+      "tipo": "numero",
+      "unidade": "cm",
+      "min": 30,
+      "max": 250,
+      "step": 1,
+      "opcional": true
+    }
+  ],
+  "resultados": [
+    {
+      "id": "areaTsve",
+      "label": "Área do TSVE",
+      "unidade": "cm²",
+      "formula": "pi * (tsveDiametro/2)^2",
+      "faixas": [],
+      "textoNaoClassificado": "Valor intermediário do cálculo — sem faixa de interpretação própria no ebook.",
+      "origem": "ebook",
+      "paginaEbook": 26
+    },
+    {
+      "id": "volumeSistolico",
+      "label": "Volume Sistólico (VS)",
+      "unidade": "mL/batimento",
+      "formula": "areaTsve * vti",
+      "faixaReferencia": { "min": 70, "max": 140 },
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "volumeSistolico", "operador": "entreInclusive", "min": 70, "max": 140 }],
+          "texto": "Dentro da faixa de referência do ebook (70 – 140 mL/batimento).",
+          "severidade": "normal",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "volumeSistolico", "operador": "<", "valor": 70 }],
+          "texto": "Abaixo da faixa de referência do ebook (70 – 140 mL/batimento).",
+          "severidade": "alterado",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "volumeSistolico", "operador": ">", "valor": 140 }],
+          "texto": "Acima da faixa de referência do ebook (70 – 140 mL/batimento).",
+          "severidade": "alterado",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "Fora da faixa avaliada pelo ebook.",
+      "origem": "ebook",
+      "paginaEbook": 27
+    },
+    {
+      "id": "debitoCardiaco",
+      "label": "Débito Cardíaco (DC)",
+      "unidade": "L/min",
+      "formula": "(volumeSistolico * fc) / 1000",
+      "faixaReferencia": { "min": 4, "max": 7 },
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "debitoCardiaco", "operador": "entreInclusive", "min": 4, "max": 7 }],
+          "texto": "Dentro da faixa de referência do ebook (4 – 7 L/min).",
+          "severidade": "normal",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "debitoCardiaco", "operador": "<", "valor": 4 }],
+          "texto": "Abaixo da faixa de referência do ebook (4 – 7 L/min).",
+          "severidade": "alterado",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "debitoCardiaco", "operador": ">", "valor": 7 }],
+          "texto": "Acima da faixa de referência do ebook (4 – 7 L/min).",
+          "severidade": "alterado",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "Fora da faixa avaliada pelo ebook.",
+      "origem": "ebook",
+      "paginaEbook": 27
+    },
+    {
+      "id": "superficieCorporal",
+      "label": "Superfície Corporal (Mosteller)",
+      "unidade": "m²",
+      "formula": "sqrt((altura * peso) / 3600)",
+      "faixas": [],
+      "textoNaoClassificado": "Cálculo complementar (fórmula de Mosteller, não consta do ebook) — usado só como etapa intermediária para o Índice Cardíaco.",
+      "origem": "complementar",
+      "somenteSeCamposPreenchidos": ["peso", "altura"]
+    },
+    {
+      "id": "indiceCardiaco",
+      "label": "Índice Cardíaco (complementar)",
+      "unidade": "L/min/m²",
+      "formula": "debitoCardiaco / superficieCorporal",
+      "faixas": [],
+      "textoNaoClassificado": "Cálculo complementar (não consta do Ebook TPOCUS 3.0) — sem faixa de interpretação definida nesta calculadora.",
+      "origem": "complementar",
+      "somenteSeCamposPreenchidos": ["peso", "altura"]
+    }
+  ],
+  "comoMedir": [
+    "Obtenha o diâmetro do trato de saída do ventrículo esquerdo (TSVE) na janela paraesternal eixo longo.",
+    "Calcule a área do TSVE: Área = π × (diâmetro/2)².",
+    "Meça o VTI do TSVE com Doppler pulsado (PW) na janela apical de cinco câmaras.",
+    "Calcule o volume sistólico (VS): VS = Área do TSVE × VTI do TSVE.",
+    "Multiplique pelo número de batimentos por minuto (FC)."
+  ],
+  "armadilhas": [
+    "O diâmetro do TSVE é elevado ao quadrado no cálculo da área — um erro de ±1 mm na medida amplifica o erro no resultado final. Confira a medida com atenção (veja o comparativo de sensibilidade nesta tela).",
+    "Fibrilação Atrial: meça 3 a 5 batimentos e calcule a média dos VTI."
+  ],
+  "dicas": [
+    "O TSVE é fixo; o VTI é o valor que muda ao longo do tempo. Depois de uma intervenção (volume, inotrópico etc.), o VTI é a medida que deve ser recalculada de forma seriada para avaliar a efetividade — não é preciso medir o TSVE de novo a cada vez."
+  ]
+}

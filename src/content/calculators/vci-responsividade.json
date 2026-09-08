@@ -1,0 +1,143 @@
+{
+  "id": "vci-responsividade",
+  "nome": "VCI — Responsividade a Volume",
+  "paginaEbook": 33,
+  "campos": [
+    {
+      "id": "modoVentilatorio",
+      "label": "Modo ventilatório",
+      "tipo": "selecao",
+      "opcoes": [
+        { "valor": "espontanea", "label": "Ventilação espontânea" },
+        { "valor": "mecanica", "label": "Ventilação mecânica" }
+      ]
+    },
+    {
+      "id": "vciMaximo",
+      "label": "Diâmetro máximo da VCI (inspiração)",
+      "tipo": "numero",
+      "unidade": "cm",
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1
+    },
+    {
+      "id": "vciMinimo",
+      "label": "Diâmetro mínimo da VCI (expiração)",
+      "tipo": "numero",
+      "unidade": "cm",
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1
+    },
+    {
+      "id": "gateVentilacaoControlada",
+      "label": "Paciente em ventilação controlada",
+      "tipo": "booleano",
+      "padrao": false,
+      "grupo": "Pré-requisitos de validade (ventilação mecânica, ebook pág. 34)",
+      "somenteSeCampo": { "id": "modoVentilatorio", "valor": "mecanica" }
+    },
+    {
+      "id": "gateVolumeCorrente",
+      "label": "Volume corrente ≥ 8 mL/kg",
+      "tipo": "booleano",
+      "padrao": false,
+      "grupo": "Pré-requisitos de validade (ventilação mecânica, ebook pág. 34)",
+      "somenteSeCampo": { "id": "modoVentilatorio", "valor": "mecanica" }
+    },
+    {
+      "id": "gateSemEsforco",
+      "label": "Sem esforço inspiratório",
+      "tipo": "booleano",
+      "padrao": false,
+      "grupo": "Pré-requisitos de validade (ventilação mecânica, ebook pág. 34)",
+      "somenteSeCampo": { "id": "modoVentilatorio", "valor": "mecanica" }
+    },
+    {
+      "id": "gateRitmoRegular",
+      "label": "Ritmo cardíaco regular (sem FA ou extrassístoles frequentes)",
+      "tipo": "booleano",
+      "padrao": false,
+      "grupo": "Pré-requisitos de validade (ventilação mecânica, ebook pág. 34)",
+      "somenteSeCampo": { "id": "modoVentilatorio", "valor": "mecanica" }
+    }
+  ],
+  "resultados": [
+    {
+      "id": "indiceColapsabilidade",
+      "label": "Índice de Colapsabilidade da VCI",
+      "unidade": "%",
+      "formula": "((vciMaximo - vciMinimo) / vciMaximo) * 100",
+      "somenteSeCampo": { "id": "modoVentilatorio", "valor": "espontanea" },
+      "faixas": [
+        {
+          "condicoes": [
+            { "variavel": "vciMaximo", "operador": "<", "valor": 2.1 },
+            { "variavel": "indiceColapsabilidade", "operador": ">", "valor": 50 }
+          ],
+          "texto": "VCI < 2,1 cm com colapso > 50%: sugere volemia adequada ou hipovolemia.",
+          "severidade": "limitrofe",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [
+            { "variavel": "vciMaximo", "operador": ">", "valor": 2.1 },
+            { "variavel": "indiceColapsabilidade", "operador": "<", "valor": 50 }
+          ],
+          "texto": "VCI > 2,1 cm com colapso < 50%: sugere hipervolemia ou pressão venosa central elevada.",
+          "severidade": "limitrofe",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "O ebook descreve só estes dois padrões combinados de diâmetro e colapsabilidade — esta combinação não se encaixa em nenhum dos dois. Interprete com cautela e em conjunto com o quadro clínico.",
+      "origem": "ebook",
+      "paginaEbook": 33
+    },
+    {
+      "id": "indiceDistensibilidade",
+      "label": "Índice de Distensibilidade da VCI",
+      "unidade": "%",
+      "formula": "((vciMaximo - vciMinimo) / vciMinimo) * 100",
+      "somenteSeCampo": { "id": "modoVentilatorio", "valor": "mecanica" },
+      "faixas": [
+        {
+          "condicoes": [{ "variavel": "indiceDistensibilidade", "operador": ">", "valor": 18 }],
+          "texto": "Sugere responsividade à reposição volêmica.",
+          "severidade": "normal",
+          "origem": "ebook"
+        },
+        {
+          "condicoes": [{ "variavel": "indiceDistensibilidade", "operador": "<", "valor": 18 }],
+          "texto": "Sugere baixa responsividade à reposição volêmica.",
+          "severidade": "limitrofe",
+          "origem": "ebook"
+        }
+      ],
+      "textoNaoClassificado": "O ebook não classifica exatamente 18% (as faixas são \"> 18%\" e \"< 18%\"). Repita a medida ou avalie com cautela.",
+      "origem": "ebook",
+      "paginaEbook": 33,
+      "avisosCondicionais": [
+        {
+          "campos": ["gateVentilacaoControlada", "gateVolumeCorrente", "gateSemEsforco", "gateRitmoRegular"],
+          "modo": "algumFalso",
+          "mensagem": "O índice de distensibilidade só tem valor preditivo se todos os pré-requisitos estiverem presentes (ventilação controlada, volume corrente ≥ 8 mL/kg, sem esforço inspiratório, ritmo regular sem FA ou extrassístoles frequentes). Como pelo menos um não está marcado, a variação da cava pode não refletir a pré-carga real."
+        }
+      ]
+    }
+  ],
+  "comoMedir": [
+    "Paciente em decúbito dorsal.",
+    "Use a janela subcostal (abaixo do apêndice xifoide).",
+    "Rotacione o transdutor no sentido anti-horário até visualizar a VCI entrando no átrio direito.",
+    "Meça a VCI a cerca de 2 cm da junção com o átrio direito, em modo bidimensional (B-mode).",
+    "Registre o diâmetro máximo (inspiração) e mínimo (expiração)."
+  ],
+  "armadilhas": [
+    "Pode-se confundir aorta com VCI; certifique-se de observar as veias hepáticas entrando na cava e que a cava adentra o átrio direito.",
+    "O diâmetro e o grau de colapso da VCI são influenciados pelo esforço respiratório de um paciente acordado.",
+    "A quantidade de suporte pressórico de um ventilador pode impactar a variação da VCI.",
+    "Pacientes com hiperinsuflação pulmonar crônica, insuficiência cardíaca direita e aumento da pressão intra-abdominal terão uma colapsabilidade da VCI imprecisa.",
+    "Como existem muitas situações em que o delta da VCI pode falhar em prever a responsividade a fluidos, ele deve ser usado em contexto com outras medições de volume."
+  ]
+}
