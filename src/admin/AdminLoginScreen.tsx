@@ -13,8 +13,13 @@ export function AdminLoginScreen({ onEntrar }: { onEntrar: () => void }) {
     setErro(null)
     setCarregando(true)
     try {
-      await login(senha)
-      definirSenhaAdmin(senha)
+      // trim: mesma tolerância a espaço/quebra de linha acidental do lado do servidor
+      // (api/_lib/adminAuth.ts) — evita guardar em sessionStorage uma senha com um
+      // caractere a mais que o login já aceitou, o que quebraria as chamadas
+      // administrativas seguintes (cada uma reenvia isso como Bearer).
+      const senhaLimpa = senha.trim()
+      await login(senhaLimpa)
+      definirSenhaAdmin(senhaLimpa)
       onEntrar()
     } catch (err) {
       setErro(err instanceof Error ? err.message : 'Erro ao entrar.')

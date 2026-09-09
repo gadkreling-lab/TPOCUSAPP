@@ -21,7 +21,9 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const corpo = req.body as { senha?: unknown } | undefined
-  const senha = typeof corpo?.senha === 'string' ? corpo.senha : ''
+  // .trim(): mesma razão do lado do servidor em adminAuth.ts — elimina espaço ou
+  // quebra de linha acidental também do lado do que foi digitado na tela de login.
+  const senha = typeof corpo?.senha === 'string' ? corpo.senha.trim() : ''
 
   let segredo: string
   try {

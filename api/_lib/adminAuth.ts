@@ -13,7 +13,13 @@ import { extrairBearer, type RequisicaoComAuth } from './bearer'
 export type { RequisicaoComAuth }
 
 export function segredoAdminDoAmbiente(): string {
-  const s = process.env.ADMIN_PASSWORD
+  // .trim(): o campo "Value" do Vercel (Environment Variables) é uma textarea
+  // multi-linha — um Enter/Tab acidental ao colar ou editar o valor vira um \n ou
+  // espaço no fim da string, e a comparação de tamanho em compararSeguro rejeitaria
+  // isso silenciosamente (sempre "senha incorreta", mesmo com a senha certa digitada
+  // certa na tela de login). Espaço/quebra de linha não é um caractere válido de
+  // senha aqui, então remover das duas pontas é seguro.
+  const s = process.env.ADMIN_PASSWORD?.trim()
   if (!s || s.length < 8) {
     throw new Error(
       'ADMIN_PASSWORD ausente ou curta demais. Defina uma variável de ambiente ADMIN_PASSWORD (≥8 caracteres, aleatória) no Vercel antes do deploy.',
