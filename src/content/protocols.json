@@ -377,7 +377,6 @@
   {
     "id": "protocolo-casa",
     "nome": "Protocolo CASA (Cardiac Arrest Sonographic Assessment)",
-    "status": "pendente_validacao",
     "autoria": "Gardner KF, Clattenburg EJ, Wroe P, Singh A, Mantuani D, Nagdev A — Departamento de Medicina de Emergência, Highland Hospital, Alameda Health System, Oakland, CA.",
     "objetivo": "Identificar causas reversíveis de atividade elétrica sem pulso (AESP) de forma rápida e protocolizada, minimizando as interrupções da RCP durante as checagens de pulso.",
     "contextoClinico": [
@@ -460,7 +459,7 @@
       "O estudo de implementação não foi randomizado, está sujeito a confundimento residual e a efeito Hawthorne, e foi realizado em um único centro (Highland Hospital, Oakland).",
       "Os autores do estudo de implementação não conseguiram correlacionar os clipes de vídeo do POCUS às checagens de pulso individuais, então não há garantia de que os residentes executaram o protocolo na ordem prescrita."
     ],
-    "avisoClinico": "Protocolo não publicado no Ebook TPOCUS 3.0 — conteúdo integralmente extraído de dois artigos fornecidos pelo autor do curso, apoiado em dados de um único centro (Highland Hospital, Oakland, CA). Rascunho pendente de validação clínica pelos sócios do curso antes de publicação para os alunos — ver VALIDACAO-CLINICA.md. Mesmo após validação, nenhuma conclusão deste protocolo substitui o julgamento clínico: toda interpretação deve ser integrada ao quadro clínico completo, e a decisão de suspender ou manter a ressuscitação nunca deve se basear isoladamente em um achado ultrassonográfico.",
+    "avisoClinico": "Mesmo após validação, nenhuma conclusão deste protocolo substitui o julgamento clínico: toda interpretação deve ser integrada ao quadro clínico completo, e a decisão de suspender ou manter a ressuscitação nunca deve se basear isoladamente em um achado ultrassonográfico.",
     "fonteExterna": {
       "referencia": "Gardner KF, Clattenburg EJ, Wroe P, Singh A, Mantuani D, Nagdev A. The Cardiac Arrest Sonographic Assessment (CASA) exam – A standardized approach to the use of ultrasound in PEA. American Journal of Emergency Medicine. 2017.",
       "url": "https://doi.org/10.1016/j.ajem.2017.08.052",
@@ -469,7 +468,7 @@
       "campos": [
         "todos os campos deste protocolo (protocolo inteiro não consta do Ebook TPOCUS 3.0)"
       ],
-      "nota": "Rascunho pendente de validação clínica pelos sócios — ver VALIDACAO-CLINICA.md. Nada neste protocolo foi inferido ou completado de memória; tudo vem literalmente dos dois artigos citados.",
+      "nota": "Validado clinicamente por Gabriel Kreling em 09/09/2026 — ver VALIDACAO-CLINICA.md. Nada neste protocolo foi inferido ou completado de memória; tudo vem literalmente dos dois artigos citados.",
       "referenciasComplementares": [
         {
           "referencia": "Clattenburg EJ, Wroe PC, Gardner K, Schultz C, Gelber J, Singh A, Nagdev A. Implementation of the Cardiac Arrest Sonographic Assessment (CASA) protocol for patients with cardiac arrest is associated with shorter CPR pulse checks. Resuscitation. 2018.",

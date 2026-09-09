@@ -52,7 +52,7 @@
       "proximosPassos": [
         "Se cardiac tamponade estiver presente, pericardiocentese deve ser fortemente considerada."
       ],
-      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+      "cuidado": "Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
     },
     "casa-conclusao-embolia": {
       "tipo": "conclusao",
@@ -62,7 +62,7 @@
       "proximosPassos": [
         "Se sinais de sobrecarga de câmaras direitas estiverem presentes, a embolia pulmonar deve permanecer como consideração na causa da AESP."
       ],
-      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+      "cuidado": "Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
     },
     "casa-conclusao-atividade-presente": {
       "tipo": "conclusao",
@@ -72,7 +72,7 @@
       "proximosPassos": [
         "Reavaliar pulsos e pressão arterial e considerar iniciar vasopressores contínuos."
       ],
-      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+      "cuidado": "Retome as compressões imediatamente após a pausa; nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
     },
     "casa-conclusao-atividade-ausente": {
       "tipo": "conclusao",
@@ -82,7 +82,7 @@
       "proximosPassos": [
         "A utilidade de manter a ressuscitação deve ser revisada em conjunto com outros fatores prognósticos desfavoráveis, como ETCO2 baixo, tempo de parada prolongado e parada não testemunhada."
       ],
-      "cuidado": "A ressuscitação inicial deve ser tentada em todos os pacientes independentemente da atividade cardíaca observada — esta conclusão nunca decide isoladamente a suspensão da ressuscitação. Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md)."
+      "cuidado": "A ressuscitação inicial deve ser tentada em todos os pacientes independentemente da atividade cardíaca observada — esta conclusão nunca decide isoladamente a suspensão da ressuscitação."
     },
     "casa-conclusao-indeterminado": {
       "tipo": "conclusao",
@@ -93,7 +93,7 @@
         "Retomar as compressões imediatamente.",
         "Reavaliar na próxima checagem de pulso, se indicado."
       ],
-      "cuidado": "Rascunho pendente de validação clínica (ver VALIDACAO-CLINICA.md). Nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
+      "cuidado": "Nenhuma conclusão deste protocolo substitui o julgamento clínico nem decide isoladamente sobre suspender ou manter a ressuscitação."
     }
   }
 }
