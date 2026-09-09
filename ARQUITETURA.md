@@ -807,4 +807,67 @@ funciona 100% offline.
   zero ocorrências (o storage do Módulo 4 nunca importa `src/content/*.json`, só tipos).
   `dist/sw.js` continua com `denylist: [/^\/api\//]`.
 
-Paro aqui para revisão antes de seguir para a Fase 7.
+### Fase 7 — status: concluída
+
+Tela administrativa de códigos, polimento e preparação de deploy — última fase do
+plano da seção 9.
+
+- **Lógica administrativa** (`api/_lib/acesso.ts`, estendido): `statusCodigo` (4
+  estados: `nao_ativado`/`ativo`/`expirado`/`revogado`, revogado sempre com
+  prioridade sobre os outros), `criarCodigos` (lote, código aleatório de 8 caracteres
+  num alfabeto sem O/0/I/1/L, com até 10 tentativas de evitar colisão),
+  `listarCodigos` (via um índice próprio em `codigos:indice` — `KVStore` só tem
+  get/set/delete por chave, sem "listar por prefixo", e um `SCAN`/`KEYS` do Redis foi
+  evitado de propósito) e `estenderPrazo`, que **endereça a lacuna conhecida desde a
+  Fase 1**: soma dias ao `expiraEm` atual do aluno (não zera a partir de agora),
+  operação própria que não existia antes.
+- **Auth separada da do aluno** (`api/_lib/adminAuth.ts`): senha de administrador via
+  `ADMIN_PASSWORD` (variável de ambiente, nunca no código), comparada em tempo
+  constante a cada requisição — sem token assinado, sem estado no servidor,
+  deliberadamente mais simples que o fluxo do aluno (ver seção 6, "decisão delegada a
+  mim"). `api/admin/login.ts` só confirma a senha para dar feedback imediato na tela;
+  `api/admin/codigos.ts` (GET lista / POST gera lote) e
+  `api/admin/codigos/[codigo].ts` (POST `{acao: 'revogar'|'estender'}`) fazem o
+  trabalho de verdade, cada chamada autenticada de forma independente.
+- **UI** (`src/admin/`, rota `/admin`): **fora da árvore do aluno de propósito** —
+  `App.tsx` decide o branch antes de montar `SessionProvider`/`DisclaimerGate`/`Shell`,
+  porque é outra credencial e outro propósito (quem gera código não precisa aceitar o
+  disclaimer clínico nem ver a tab bar dos 4 módulos). Senha guardada em
+  `sessionStorage` (não `localStorage`) — some ao fechar a aba. Tela única: formulário
+  de gerar lote (quantidade + duração em dias), lista de códigos com selo de status
+  colorido (reaproveitando as cores normal/limítrofe/alterado do design system, mesmo
+  não sendo severidade clínica), revogar e estender prazo por código.
+- **21 testes novos** (`tests/admin.test.ts`, 139 no projeto): as 4 combinações de
+  `statusCodigo` (revogado vence mesmo já ativo), `criarCodigos` gera lote único e
+  recuperável, `listarCodigos` reflete status e ordena mais-recente-primeiro,
+  `estenderPrazo` soma ao prazo existente (inclusive dias negativos, para corrigir um
+  lote gerado errado) e recusa código não ativado, `compararSeguro` em tempo
+  constante mesmo com comprimentos diferentes, `autenticarAdmin` falha fechada sem
+  `ADMIN_PASSWORD` configurada.
+- **Polimento**: alvo de toque ≥44px em elementos que faltavam (título editável da
+  sessão, campos da tela admin), foco visível consistente (`focus-visible:outline
+  ...outline-accent`, mesmo padrão já usado em `TelaBloqueio` desde a Fase 1) nos
+  campos de texto novos das Fases 5–7, `aria-label` no textarea de evolução, e um
+  gap real encontrado nesta revisão: `SessionDetailScreen` engolia silenciosamente
+  qualquer falha de escrita no IndexedDB (quota, navegação privada em alguns
+  navegadores) — agora toda ação de escrita mostra erro (`role="alert"`) em vez de
+  fingir que salvou.
+- **Deploy**: `vercel.json` (rewrite de SPA para tudo que não é `/api/*` — Vercel dá
+  prioridade a arquivo/function real antes de aplicar o rewrite, então isso não
+  interfere nas Functions) e `DEPLOY.md`, um checklist de variáveis de ambiente
+  (`TOKEN_SECRET`, `ADMIN_PASSWORD`, `UPSTASH_REDIS_REST_URL`/`_TOKEN`) e passos.
+  **Não executei o deploy de verdade** — esta sessão não tem acesso à conta Vercel
+  nem às credenciais do curso; `DEPLOY.md` é a entrega para quem for rodar os passos.
+- DRM verificado de novo, incluindo o segredo novo desta fase: `grep` no
+  `dist/assets/*.js` por texto clínico exclusivo, `ADMIN_PASSWORD`, `TOKEN_SECRET` e
+  `UPSTASH` — zero ocorrências (os arquivos `api/` nunca entram no bundle do Vite, só
+  os nomes de variável de UI/storage do lado admin, como `adminSenha`, que não são
+  segredo nenhum). `dist/sw.js` continua com `denylist: [/^\/api\//]`.
+
+---
+
+**As 8 fases do plano (seção 9) estão concluídas.** O que falta para "pronto para
+alunos" é operacional, não código: rodar o checklist do `DEPLOY.md` de verdade (só
+quem tem a conta Vercel do curso pode), gerar o primeiro lote de códigos pela tela
+`/admin`, e uma revisão clínica final — `VALIDACAO-CLINICA.md` continua pendente para
+o protocolo CASA antes de ele sair de rascunho para os alunos.
