@@ -23,3 +23,31 @@ export function criarHandlerConteudo<T>(dados: T) {
     return res.status(200).json(dados)
   }
 }
+
+/**
+ * Mesma coisa que criarHandlerConteudo, mas para vários recursos servidos por UMA
+ * função só (api/content/[recurso].ts) em vez de um arquivo por recurso. Existe por
+ * limite de plataforma, não de arquitetura: o plano Hobby da Vercel só permite 12
+ * Serverless Functions por deploy, e este projeto passou disso com um arquivo por
+ * endpoint de conteúdo. O cliente já chama tudo pelo mesmo padrão
+ * `/api/content/<recurso>` (src/queries/client.ts), então consolidar não muda nada do
+ * lado de quem consome — só reduz a contagem de funções.
+ */
+export function criarHandlerConteudoDinamico(mapa: Record<string, unknown>) {
+  return function handler(req: VercelRequest, res: VercelResponse) {
+    if (req.method !== 'GET') {
+      res.setHeader('Allow', 'GET')
+      return res.status(405).json({ motivo: 'metodo_nao_permitido', mensagem: 'Use GET.' })
+    }
+    const sessao = autenticarRequisicao(req)
+    if (!sessao) {
+      return res.status(401).json({ motivo: 'nao_autenticado', mensagem: 'Sessão ausente, inválida ou expirada.' })
+    }
+    const recurso = typeof req.query.recurso === 'string' ? req.query.recurso : ''
+    if (!Object.prototype.hasOwnProperty.call(mapa, recurso)) {
+      return res.status(404).json({ motivo: 'nao_encontrado', mensagem: 'Recurso de conteúdo não encontrado.' })
+    }
+    res.setHeader('Cache-Control', 'no-store')
+    return res.status(200).json(mapa[recurso])
+  }
+}
