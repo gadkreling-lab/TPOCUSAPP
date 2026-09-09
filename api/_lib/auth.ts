@@ -9,17 +9,9 @@
 import { segredoDoAmbiente } from './token'
 import { verificarTokenAcesso } from './acesso'
 import type { SessionPayload } from './token'
+import { extrairBearer, type RequisicaoComAuth } from './bearer'
 
-export interface RequisicaoComAuth {
-  headers: { authorization?: string | undefined } | Record<string, string | string[] | undefined>
-}
-
-function extrairBearer(req: RequisicaoComAuth): string | null {
-  const h = (req.headers as Record<string, string | string[] | undefined>)['authorization']
-  const valor = Array.isArray(h) ? h[0] : h
-  if (!valor || !valor.startsWith('Bearer ')) return null
-  return valor.slice('Bearer '.length).trim()
-}
+export type { RequisicaoComAuth }
 
 /** Devolve o payload da sessão se o Bearer for um token de acesso válido, senão null. */
 export function autenticarRequisicao(req: RequisicaoComAuth): SessionPayload | null {

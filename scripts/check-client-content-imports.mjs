@@ -23,7 +23,7 @@ const SRC = join(ROOT, 'src')
 // Pastas do cliente — tudo que vira bundle do navegador. `src/content` fica de fora
 // propositalmente (é onde estão os arquivos que este script proíbe de importar) e
 // `src` sozinho não entra na lista para não escanear a própria pasta content.
-const PASTAS_CLIENTE = ['app', 'ui', 'auth', 'queries', 'storage', 'engine', 'modules']
+const PASTAS_CLIENTE = ['app', 'ui', 'auth', 'queries', 'storage', 'engine', 'modules', 'admin']
 
 // Captura qualquer import cujo caminho passe por "/content/"; a exceção (arquivo
 // "types", em qualquer nível dentro de content/) é decidida em código logo abaixo,
