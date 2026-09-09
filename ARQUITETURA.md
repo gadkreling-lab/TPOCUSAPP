@@ -764,4 +764,47 @@ Atlas de Janelas completo (tela de detalhe) + busca global, fechando o Módulo 1
   continua vindo só do servidor) e o texto do placeholder da caixa de busca (cópia de
   UI, não conteúdo do ebook). `dist/sw.js` continua com `denylist: [/^\/api\//]`.
 
-Paro aqui para revisão antes de seguir para a Fase 6.
+### Fase 6 — status: concluída
+
+Sessão de exame (Módulo 4) com persistência real — substitui o `window.alert` stub da
+Fase 2. Único módulo que usa IndexedDB, exatamente como previsto na seção 4: dado
+gerado pelo aluno, nunca conteúdo do curso, então nunca passa pelo gate de DRM e
+funciona 100% offline.
+
+- **Camada pura, testável sem navegador** (`src/storage/{tipos,sessao,exportar}.ts`,
+  mesma filosofia dos motores de calculadora/protocolo): `SessaoExame` com 3 tipos de
+  `EntradaSessao` — `calculadora` (copia label/valor/unidade/texto/severidade/origem de
+  um `ResultadoCalculado`), `protocolo` (copia diagnostico — inclusive `string[]` do
+  caso multi-perfil —, confianca, justificativa, proximosPassos **e** `cuidado` do nó de
+  conclusão) e `evolucao` (texto livre digitado pelo aluno). `formatarSessaoParaTexto`
+  gera o resumo exportável e **sempre** termina com a mesma ressalva de integração
+  clínica do resto do app — um resumo exportado não é exceção à regra de nunca sugerir
+  conclusão isolada.
+- **Persistência** (`src/storage/db.ts`, via `idb`): um único object store `sessoes`,
+  chave `id`. Não é coberto por teste unitário — não há IndexedDB no ambiente `node` do
+  vitest deste projeto, e a lógica que precisava de teste já estava extraída para a
+  camada pura acima (mesmo raciocínio já usado para `useImagemUrl`/hooks de fetch: a
+  integração com API de navegador não é testada, só o que ela envolve).
+- **Sessão ativa** (`src/storage/sessaoAtiva.ts`, ponteiro em `localStorage` — não é
+  dado clínico, é convenção de UI): o botão "+ Adicionar à sessão" de uma calculadora
+  ou de uma conclusão de protocolo não obriga o aluno a abrir a aba Sessão antes;
+  `adicionarEntradaNaSessaoAtiva` cria uma sessão nova em silêncio se não houver uma
+  ativa (ou se o ponteiro estiver solto, sessão excluída pelo aluno).
+- **UI**: `SessionScreen` (lista, mais recente primeiro, "+ Nova sessão") e
+  `SessionDetailScreen` (rota `/sessao/:id` — entradas, texto de evolução, exportar via
+  `navigator.clipboard` com *fallback* de `prompt()` se a API não estiver disponível,
+  renomear, excluir item, excluir sessão, trocar qual sessão está ativa). O campo de
+  título tem um aviso explícito para não digitar dado que identifique o paciente — a
+  sessão é anônima por design, mesmo não estando atrás de nenhum gate.
+- `CalculatorScreen.onAdicionarASessao` e o novo botão "+ Adicionar à sessão" no nó de
+  conclusão do `ProtocolFlowScreen` chamam a mesma função — um só caminho de gravação.
+- 10 testes novos (`tests/sessao.test.ts`, 118 no projeto): `novaSessao`/`comEntrada`/
+  `semEntrada`/`comTitulo` como transformações puras e imutáveis, as 3 fábricas de
+  entrada preservando os campos certos (inclusive o `diagnostico: string[]` do RUSH
+  misto), e `formatarSessaoParaTexto` garantindo que a ressalva de integração clínica
+  está presente tanto numa sessão cheia quanto numa vazia.
+- DRM verificado de novo: `grep` no `dist/assets/*.js` por texto clínico exclusivo —
+  zero ocorrências (o storage do Módulo 4 nunca importa `src/content/*.json`, só tipos).
+  `dist/sw.js` continua com `denylist: [/^\/api\//]`.
+
+Paro aqui para revisão antes de seguir para a Fase 7.
