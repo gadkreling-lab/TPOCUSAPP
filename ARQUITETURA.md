@@ -725,4 +725,43 @@ protocolos do Módulo 3 com o mesmo motor genérico da Fase 3 — nenhuma mudan�
   "standstill", "cardiac tamponade", "Gardner", "Clattenburg", ids dos nós) — zero
   ocorrências. `dist/sw.js` continua com `denylist: [/^\/api\//]`.
 
-Paro aqui para revisão antes de seguir para a Fase 5.
+### Fase 5 — status: concluída
+
+Atlas de Janelas completo (tela de detalhe) + busca global, fechando o Módulo 1.
+
+- **Tela de detalhe** (`WindowDetailScreen`, rota `/janelas/:id`): todos os campos de
+  `Window` que existirem — transdutor (+ alternativo), posição do paciente, posição do
+  transdutor (ebook e/ou detalhada de fonte externa, lado a lado), marcador,
+  profundidade, estruturas visualizadas, o que avaliar, como otimizar, erros comuns,
+  imagens (via `useImagemUrl`, primeira tela do app a de fato usar esse hook — busca o
+  binário autenticado e converte em blob URL, nunca um `<img src="/api/...">` direto,
+  porque `<img>` não manda `Authorization`) e "ver também" (links cruzados por
+  `verTambem`). `null`/campo ausente continua só escondido, nunca preenchido (Regra 3).
+  `PageRef`/`SourceTag` no topo, mesmo padrão das outras telas.
+- **Busca global** (`src/modules/atlas/busca.ts`, função pura sem React — mesma
+  filosofia dos motores de calculadora/protocolo, testável sem montar componente):
+  decisão de escopo tomada durante a implementação — "global" aqui significa **cruzar
+  os 5 arquivos de conteúdo de referência ao mesmo tempo** (janelas, achados,
+  patologias, medidas, glossário) numa única caixa de busca, acento-insensível, e não
+  "toda tela do app tem um campo de busca". Windows/achados/patologias/medidas/
+  glossário não ganharam telas de detalhe próprias nesta fase (fora do escopo original
+  do módulo "Atlas de Janelas") — resultados desses 4 tipos aparecem como cartões
+  `<details>` expansíveis na própria lista de busca, com `PageRef`/`SourceTag` quando
+  aplicável, em vez de navegar para uma rota nova. Medidas com calculadora
+  correspondente (id idêntico — epss/mapse/tapse/debito-cardiaco/vci-responsividade/
+  derrame-pleural) ganham um link direto para a calculadora.
+- Digitar na busca filtra a lista de janelas categorizada já existente (sem duplicar
+  UI) e revela as 4 seções extras só quando há query — a navegação por categoria
+  continua idêntica à Fase 1 quando o campo está vazio.
+- 7 testes novos (`tests/busca.test.ts`, 108 no projeto) contra o conteúdo real:
+  acento/caixa-insensível, query vazia não retorna nada, busca cruza pelo menos 2 tipos
+  de conteúdo para um termo genérico ("derrame"), e nenhuma correspondência é
+  "inventada" — todo resultado realmente contém a query no texto do próprio item.
+- DRM verificado de novo: `grep` no `dist/assets/*.js` por texto clínico exclusivo
+  ("espaço de Morrison", "TAPSE", "colapso diastólico", "Síndrome Alveolar") — zero
+  ocorrências. O único match esperado foi o nome do campo `significadoClinico` (chave
+  de propriedade que o código acessa em runtime, não o texto clínico em si, que
+  continua vindo só do servidor) e o texto do placeholder da caixa de busca (cópia de
+  UI, não conteúdo do ebook). `dist/sw.js` continua com `denylist: [/^\/api\//]`.
+
+Paro aqui para revisão antes de seguir para a Fase 6.
