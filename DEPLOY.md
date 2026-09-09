@@ -61,6 +61,17 @@ definidas antes de gerar o primeiro lote de códigos de verdade.
   confirmar que a renovação silenciosa (`POST /api/renovar`) não derruba a sessão no
   meio de um cálculo ou protocolo em andamento.
 
+## 3.1. Se o build falhar sem nenhum erro no log
+
+Se o "Deployment failed with error" aparecer sem exceção nenhuma de JavaScript no
+Build Log (o `npm run build` termina limpo e o log simplesmente para no meio das
+funções serverless) — isso é o **limite de 12 Serverless Functions do plano Hobby**
+da Vercel. Já foi corrigido uma vez nesta fase (16 arquivos em `api/` → 7, ver
+ARQUITETURA.md, "Correção encontrada durante o deploy"); se voltar a acontecer depois
+de adicionar novos endpoints, o mesmo padrão resolve: consolidar os endpoints novos
+numa função dinâmica (`criarHandlerConteudoDinamico` em `api/_lib/conteudo.ts` já
+existe pronta pra isso) em vez de um arquivo por rota.
+
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 
 - Sem alerta automático quando o prazo de um aluno está para vencer — a tela `/admin`

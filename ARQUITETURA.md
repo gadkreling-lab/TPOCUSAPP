@@ -871,3 +871,28 @@ alunos" é operacional, não código: rodar o checklist do `DEPLOY.md` de verdad
 quem tem a conta Vercel do curso pode), gerar o primeiro lote de códigos pela tela
 `/admin`, e uma revisão clínica final — `VALIDACAO-CLINICA.md` continua pendente para
 o protocolo CASA antes de ele sair de rascunho para os alunos.
+
+### Correção encontrada durante o deploy (2026-09-09)
+
+O primeiro deploy real na Vercel falhou sem nenhum erro de código no log — o build do
+Vite/PWA e o `npm run validate` passaram limpos, e o processo simplesmente parava no
+meio da etapa de funções serverless. Causa: **o plano Hobby da Vercel permite no
+máximo 12 Serverless Functions por deploy**, e o projeto tinha 16 arquivos em `api/`
+(um por endpoint de conteúdo: `windows`, `findings`, `pathologies`, `measurements`,
+`glossary`, `references`, `protocols`, `images`, `calculators`, `protocol-flows`, mais
+`ativar`, `renovar`, os 3 de admin e o binário de imagem). Essa validação é da
+plataforma, não do `vercel build` — por isso não aparecia como exceção no log de
+texto, só como "Deployment failed with error" sem detalhe.
+
+**Correção:** os 10 endpoints que só servem "devolva este array JSON inteiro" foram
+consolidados numa única função dinâmica, `api/content/[recurso].ts` +
+`criarHandlerConteudoDinamico` em `api/_lib/conteudo.ts` — o cliente já chama todo
+conteúdo pelo mesmo padrão `/api/content/<recurso>` (`src/queries/client.ts`), então
+nada mudou do lado de quem consome, só a contagem de funções caiu de 16 para 7
+(`ativar`, `renovar`, `admin/login`, `admin/codigos`, `admin/codigos/[codigo]`,
+`content/[recurso]`, `content/images/[arquivo]`). O binário de imagem continua
+separado — resposta não é JSON, não cabe no mesmo padrão.
+
+Isso é uma restrição de infraestrutura, não uma revisão do princípio "um arquivo por
+endpoint" da seção 4 — se o projeto crescer e aproximar de 12 de novo (ex.: a tela
+administrativa ganhar mais operações), o mesmo padrão de handler dinâmico resolve.
