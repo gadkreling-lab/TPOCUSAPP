@@ -15,6 +15,8 @@ import {
 } from '../../engine/protocol'
 import { Button } from '../../ui/Button'
 import { SourceTag } from '../../ui/SourceTag'
+import { adicionarEntradaNaSessaoAtiva } from '../../storage/sessaoAtiva'
+import { entradaProtocolo } from '../../storage/sessao'
 
 export function ProtocolFlowScreen() {
   const params = useParams<{ id: string }>()
@@ -88,6 +90,7 @@ function ExecucaoProtocolo({
   nomesJanela: Map<string, string>
 }) {
   const [state, setState] = useState<ProtocolState>(() => iniciar(flow.id, flow.noInicial))
+  const [mensagemSessao, setMensagemSessao] = useState<string | null>(null)
 
   const no = noAtualObjeto(state, flow)
   const concluido = estaConcluido(state, flow)
@@ -95,6 +98,13 @@ function ExecucaoProtocolo({
 
   function onReiniciar() {
     setState(reiniciar(flow.id, flow.noInicial))
+  }
+
+  async function onAdicionarASessao() {
+    if (!no || no.tipo !== 'conclusao') return
+    await adicionarEntradaNaSessaoAtiva(entradaProtocolo(flow.id, protocolo?.nome ?? flow.id, no))
+    setMensagemSessao('Conclusão adicionada à sessão.')
+    setTimeout(() => setMensagemSessao(null), 2500)
   }
 
   if (!no) {
@@ -229,6 +239,16 @@ function ExecucaoProtocolo({
           )}
 
           <div className="rounded-lg border border-limitrofe/40 bg-limitrofe/10 p-3 text-sm text-fg">{no.cuidado}</div>
+
+          {mensagemSessao && (
+            <p role="status" className="rounded-lg bg-accent/10 px-3 py-2 text-sm text-accent">
+              {mensagemSessao}
+            </p>
+          )}
+
+          <Button bloco variante="secundario" onClick={onAdicionarASessao}>
+            + Adicionar à sessão
+          </Button>
 
           <Button bloco onClick={onReiniciar}>
             Reiniciar protocolo

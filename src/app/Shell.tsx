@@ -6,6 +6,7 @@ import { CalculatorScreen } from '../modules/calculators/CalculatorScreen'
 import { ProtocolsScreen } from '../modules/protocols/ProtocolsScreen'
 import { ProtocolFlowScreen } from '../modules/protocols/ProtocolFlowScreen'
 import { SessionScreen } from '../modules/session/SessionScreen'
+import { SessionDetailScreen } from '../modules/session/SessionDetailScreen'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
 interface ItemNav {
@@ -45,6 +46,7 @@ export function Shell() {
           <Route path="/protocolos" component={ProtocolsScreen} />
           <Route path="/protocolos/:id" component={ProtocolFlowScreen} />
           <Route path="/sessao" component={SessionScreen} />
+          <Route path="/sessao/:id" component={SessionDetailScreen} />
           <Route>
             <div className="p-4 text-base text-muted">Página não encontrada.</div>
           </Route>

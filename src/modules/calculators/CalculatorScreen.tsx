@@ -3,6 +3,8 @@ import { Link, useParams } from 'wouter'
 import type { CalculatorDef, FieldDef } from '../../content/calculators/types'
 import { useCalculators } from '../../queries/hooks'
 import { avaliarCalculadora, type ResultadoCalculado } from '../../engine/calculator'
+import { adicionarEntradaNaSessaoAtiva } from '../../storage/sessaoAtiva'
+import { entradaCalculadora } from '../../storage/sessao'
 import { Tabs } from '../../ui/Tabs'
 import { CampoInput, type ValoresFormulario } from './CampoInput'
 import { ResultCard } from './ResultCard'
@@ -57,15 +59,17 @@ function CalculatorForm({ def }: { def: CalculatorDef }) {
   // Lazy initializer: só roda uma vez, na primeira montagem — `def` já está garantido
   // (CalculatorScreen só monta este componente depois de resolver a calculadora).
   const [valores, setValores] = useState<ValoresFormulario>(() => valoresIniciais(def.campos))
+  const [mensagemSessao, setMensagemSessao] = useState<string | null>(null)
   const saida = useMemo(() => avaliarCalculadora(def, valores), [def, valores])
 
   function onChange(id: string, valor: number | boolean | string | undefined) {
     setValores((v) => ({ ...v, [id]: valor }))
   }
 
-  function onAdicionarASessao(_r: ResultadoCalculado) {
-    // Módulo 4 (Sessão de exame) é a Fase 6 — por ora só confirma visualmente.
-    window.alert('A sessão de exame chega na Fase 6. Por enquanto, este resultado não é salvo.')
+  async function onAdicionarASessao(r: ResultadoCalculado) {
+    await adicionarEntradaNaSessaoAtiva(entradaCalculadora(def.id, def.nome, r))
+    setMensagemSessao(`"${r.label}" adicionado à sessão.`)
+    setTimeout(() => setMensagemSessao(null), 2500)
   }
 
   const camposAjudaRapida = def.campos.filter((c) => c.ajudaRapidaImpacto)
@@ -121,6 +125,12 @@ function CalculatorForm({ def }: { def: CalculatorDef }) {
       {camposAjudaRapida.map((c) => (
         <SensibilidadePreview key={c.id} def={def} campoId={c.id} valores={valores} />
       ))}
+
+      {mensagemSessao && (
+        <p role="status" className="rounded-lg bg-accent/10 px-3 py-2 text-sm text-accent">
+          {mensagemSessao}
+        </p>
+      )}
 
       {saida.resultados.length > 0 && (
         <div className="space-y-3">
