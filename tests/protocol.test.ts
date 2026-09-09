@@ -369,7 +369,7 @@ describe('protocol-flows reais — BLUE (Fase 4)', () => {
   })
 })
 
-describe('protocol-flows reais — CASA (Fase 4, rascunho pendente de validação)', () => {
+describe('protocol-flows reais — CASA (Fase 4, validado em 2026-09-09)', () => {
   it('todo nó de pergunta tem opções e indeterminadoProximo apontando para nós existentes', () => {
     for (const [id, no] of Object.entries(casaFlow.nos)) {
       if (no.tipo !== 'pergunta') continue
