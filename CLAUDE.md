@@ -62,7 +62,7 @@ Onde há conteúdo externo:
 | `findings.json` | `consolidacao-subpleural`, `foguetes-vidro-fosco` | Volpicelli 2012, Lichtenstein 2014 |
 | `findings.json` | `sinal-da-praia` (`tipo: "autor"`) | autor do curso |
 | `glossary.json` | 9 entradas de perfis | Lichtenstein 2014 |
-| `protocols.json` → `protocolo-casa` (2026-09-08, `status: "pendente_validacao"`) | protocolo inteiro | Gardner 2017, Clattenburg 2018 |
+| `protocols.json` → `protocolo-casa` (2026-09-08; validado em 2026-09-09, ver `VALIDACAO-CLINICA.md`) | protocolo inteiro | Gardner 2017, Clattenburg 2018 |
 
 **Caso especial — `protocolo-blue`:** o campo `fluxograma` é a transcrição literal da
 Figura 16 do ebook; `regrasDecisao` é o algoritmo do artigo original. **As duas versões
@@ -106,7 +106,7 @@ src/content/
 ├── measurements.json  15  medidas quantitativas ← o arquivo mais sensível
 ├── glossary.json      71  siglas e termos
 ├── references.json     7  capítulos de referências bibliográficas
-├── protocols.json      4  BLUE, E-FAST, RUSH, CASA (rascunho, status: "pendente_validacao")
+├── protocols.json      4  BLUE, E-FAST, RUSH, CASA (validado em 2026-09-09)
 ├── images.json        54  catálogo das figuras
 ├── corrections.json   17  log de correções
 └── images/            54  figuras em WebP (2,8 MB)

@@ -1,5 +1,10 @@
 # VALIDAÇÃO CLÍNICA — Protocolo CASA
 
+> **✅ Fechado em 09/09/2026.** Validado por Gabriel Kreling, aprovado com um ajuste no
+> `avisoClinico` — ver "Registro de decisão" no fim deste arquivo.
+> `"status": "pendente_validacao"` já foi removido de `protocolo-casa`; o restante
+> deste arquivo é mantido como o registro de como a revisão foi conduzida.
+
 Este arquivo existe porque o app tem uma regra sem exceção: **nenhuma tela mostra uma
 conclusão diagnóstica sem os achados que a geraram e sem a ressalva de integração
 clínica**, e nenhum conteúdo é publicado para os alunos sem que um médico do curso o
@@ -92,9 +97,30 @@ Todo o conteúdo está em `src/content/protocols.json` → objeto `id: "protocol
 
 ## Registro de decisão
 
-_(Preencher quando revisado.)_
+- Revisor(es): Gabriel Kreling
+- Data: 09/09/2026
+- Decisão: [ ] aprovado como está · [x] aprovado com ajustes (listar) · [ ] não aprovado
+- Ajustes solicitados: reduzir o `avisoClinico` do protocolo a só a ressalva de
+  integração clínica — manter apenas o trecho que começa em "Mesmo após validação,
+  nenhuma conclusão deste protocolo substitui o julgamento clínico...", removendo a
+  parte sobre o protocolo não constar do ebook / vir de artigo de centro único / estar
+  pendente de validação (essa parte deixou de valer com a aprovação).
 
-- Revisor(es):
-- Data:
-- Decisão: [ ] aprovado como está · [ ] aprovado com ajustes (listar) · [ ] não aprovado
-- Ajustes solicitados:
+**Aplicado em 2026-09-09:**
+- `protocols.json` → `protocolo-casa`: `"status": "pendente_validacao"` removido —
+  o protocolo já pode aparecer para os alunos.
+- `avisoClinico` reduzido exatamente como pedido:
+  > "Mesmo após validação, nenhuma conclusão deste protocolo substitui o julgamento
+  > clínico: toda interpretação deve ser integrada ao quadro clínico completo, e a
+  > decisão de suspender ou manter a ressuscitação nunca deve se basear isoladamente
+  > em um achado ultrassonográfico."
+- Extensão da mesma limpeza, não pedida explicitamente mas decorrência direta da
+  aprovação (sinalizando aqui para registro): os campos `cuidado` de cada conclusão
+  em `src/content/protocol-flows/casa.json` também citavam "Rascunho pendente de
+  validação clínica (ver VALIDACAO-CLINICA.md)" — essa frase foi removida de cada um,
+  mantendo o restante do texto de segurança clínica intacto (nunca decidir
+  isoladamente suspender/manter a ressuscitação).
+- `fonteExterna.nota` do protocolo atualizada de "Rascunho pendente de validação
+  clínica..." para "Validado clinicamente por Gabriel Kreling em 09/09/2026" — a
+  marcação de fonte externa em si (Regra 2 do CLAUDE.md) continua, porque o conteúdo
+  segue não vindo do ebook.

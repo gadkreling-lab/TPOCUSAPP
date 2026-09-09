@@ -77,6 +77,11 @@ a lista completa de pontos a confirmar. Isso adianta a curadoria de conteúdo da
 a máquina de estados que executa o protocolo no app (nós, avançar/voltar, timer visual)
 continua para a Fase 3/4, depois que o motor genérico de protocolos existir.
 
+**Atualização 2026-09-09:** validado por Gabriel Kreling, aprovado com um ajuste (o
+`avisoClinico` foi reduzido só à ressalva de integração clínica — ver
+`VALIDACAO-CLINICA.md`, "Registro de decisão"). `"status": "pendente_validacao"` foi
+removido de `protocolo-casa`; o protocolo já pode aparecer para os alunos.
+
 ### 7. Índice Cardíaco (Mosteller) — confirmação, não lacuna
 Seu spec já dá a fórmula (SC = √(altura_cm × peso_kg / 3600)) e pede rótulo
 "complementar". Vou implementar exatamente assim, marcado como `origem: 'complementar'`
