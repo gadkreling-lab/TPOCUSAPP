@@ -1,5 +1,6 @@
 import { Link, Route, Switch, useLocation } from 'wouter'
 import { AtlasScreen } from '../modules/atlas/AtlasScreen'
+import { WindowDetailScreen } from '../modules/atlas/WindowDetailScreen'
 import { CalculatorsScreen } from '../modules/calculators/CalculatorsScreen'
 import { CalculatorScreen } from '../modules/calculators/CalculatorScreen'
 import { ProtocolsScreen } from '../modules/protocols/ProtocolsScreen'
@@ -38,6 +39,7 @@ export function Shell() {
       <main className="flex-1 pb-touch">
         <Switch>
           <Route path="/" component={AtlasScreen} />
+          <Route path="/janelas/:id" component={WindowDetailScreen} />
           <Route path="/calculadoras" component={CalculatorsScreen} />
           <Route path="/calculadoras/:id" component={CalculatorScreen} />
           <Route path="/protocolos" component={ProtocolsScreen} />
@@ -55,7 +57,10 @@ export function Shell() {
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         {ITENS.map((item) => {
-          const ativo = item.href === '/' ? localizacaoAtual === '/' : localizacaoAtual.startsWith(item.href)
+          const ativo =
+            item.href === '/'
+              ? localizacaoAtual === '/' || localizacaoAtual.startsWith('/janelas/')
+              : localizacaoAtual.startsWith(item.href)
           return (
             <Link
               key={item.href}
