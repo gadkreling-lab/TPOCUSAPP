@@ -87,7 +87,7 @@ export function AtlasScreen() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscar janela, achado, patologia, medida ou termo…"
-          className="min-h-touch w-full rounded-xl border border-border bg-surface px-4 text-base text-fg placeholder:text-muted"
+          className="min-h-touch w-full rounded-xl border border-border bg-surface px-4 text-base text-fg placeholder:text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         />
       </label>
 

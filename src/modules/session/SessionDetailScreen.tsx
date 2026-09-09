@@ -48,32 +48,49 @@ function DetalheSessao({
   const [titulo, setTitulo] = useState(sessao.titulo)
   const [textoEvolucao, setTextoEvolucao] = useState('')
   const [copiado, setCopiado] = useState(false)
+  const [erro, setErro] = useState<string | null>(null)
   const ativa = obterSessaoAtivaId() === sessao.id
 
-  async function onSalvarTitulo() {
+  // Falha de IndexedDB (quota, navegação privada em alguns navegadores) é rara mas
+  // não pode ficar silenciosa: sem isto, o aluno acharia que salvou/removeu algo que
+  // na verdade não persistiu.
+  function comTratativaDeErro(acao: () => Promise<void>) {
+    return async () => {
+      try {
+        await acao()
+        setErro(null)
+      } catch (e) {
+        setErro(e instanceof Error ? e.message : 'Não foi possível salvar. Tente novamente.')
+      }
+    }
+  }
+
+  const onSalvarTitulo = comTratativaDeErro(async () => {
     if (titulo.trim() === sessao.titulo) return
     await salvarSessao(comTitulo(sessao, titulo.trim() || 'Sessão sem título'))
     recarregar()
-  }
+  })
 
-  async function onAdicionarEvolucao() {
+  const onAdicionarEvolucao = comTratativaDeErro(async () => {
     if (!textoEvolucao.trim()) return
     const atualizada = { ...sessao, entradas: [...sessao.entradas, entradaEvolucao(textoEvolucao.trim())] }
     await salvarSessao(atualizada)
     setTextoEvolucao('')
     recarregar()
+  })
+
+  function onRemoverEntrada(entradaId: string) {
+    return comTratativaDeErro(async () => {
+      await salvarSessao(semEntrada(sessao, entradaId))
+      recarregar()
+    })()
   }
 
-  async function onRemoverEntrada(entradaId: string) {
-    await salvarSessao(semEntrada(sessao, entradaId))
-    recarregar()
-  }
-
-  async function onExcluirSessao() {
+  const onExcluirSessao = comTratativaDeErro(async () => {
     if (!window.confirm('Excluir esta sessão? Isso não pode ser desfeito.')) return
     await excluirSessao(sessao.id)
     navegar('/sessao')
-  }
+  })
 
   function onTornarAtiva() {
     definirSessaoAtivaId(sessao.id)
@@ -103,7 +120,7 @@ function DetalheSessao({
           onChange={(e) => setTitulo(e.target.value)}
           onBlur={onSalvarTitulo}
           aria-label="Título da sessão"
-          className="mt-1 block w-full rounded-lg border border-transparent bg-transparent px-0 text-xl font-semibold text-fg focus:border-border focus:bg-surface focus:px-2"
+          className="mt-1 min-h-touch w-full rounded-lg border border-transparent bg-transparent px-0 text-xl font-semibold text-fg focus:border-border focus:bg-surface focus:px-2"
         />
         <p className="text-xs text-muted">Use um rótulo neutro (ex.: "Leito 4") — evite nome ou dado que identifique o paciente.</p>
         {ativa ? (
@@ -116,6 +133,12 @@ function DetalheSessao({
           </button>
         )}
       </div>
+
+      {erro && (
+        <p role="alert" className="text-sm text-alterado">
+          {erro}
+        </p>
+      )}
 
       {sessao.entradas.length === 0 ? (
         <p className="text-base text-muted">
@@ -137,8 +160,9 @@ function DetalheSessao({
           value={textoEvolucao}
           onChange={(e) => setTextoEvolucao(e.target.value)}
           rows={3}
+          aria-label="Texto de evolução"
           placeholder="Anotação livre para esta sessão…"
-          className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-base text-fg placeholder:text-muted"
+          className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-base text-fg placeholder:text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         />
         <Button variante="secundario" onClick={onAdicionarEvolucao} disabled={!textoEvolucao.trim()}>
           Adicionar
