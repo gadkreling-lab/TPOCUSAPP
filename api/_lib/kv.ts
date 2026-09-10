@@ -68,6 +68,20 @@ export async function getKVStore(): Promise<KVStore> {
     }
   }
 
+  // Aviso só em produção (process.env.VERCEL, setado automaticamente pela
+  // plataforma) — em dev/teste esse fallback é esperado e não deve poluir o
+  // console. Isso existe porque esse cenário falha em silêncio de um jeito
+  // enganoso: cada função serverless (api/admin/codigos.ts, api/ativar.ts, ...) usa
+  // seu próprio MemoryKV isolado, então a tela /admin pode PARECER funcionar (o
+  // POST de gerar e o GET de listar caindo na mesma instância "quente" concordam
+  // entre si) enquanto a ativação do aluno nunca vê o código — sem nenhum erro,
+  // só "código inválido" pra qualquer código.
+  if (process.env.VERCEL) {
+    console.warn(
+      '[kv] UPSTASH_REDIS_REST_URL/TOKEN ausentes neste ambiente — caindo para MemoryKV, que NÃO persiste entre funções serverless em produção. Confira as env vars em Project Settings → Environment Variables.',
+    )
+  }
+
   if (!instanciaMemoria) instanciaMemoria = new MemoryKV()
   return instanciaMemoria
 }
