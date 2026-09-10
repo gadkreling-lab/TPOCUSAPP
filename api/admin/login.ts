@@ -21,10 +21,9 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const corpo = req.body as { senha?: unknown } | undefined
-  const senhaBruta = typeof corpo?.senha === 'string' ? corpo.senha : ''
   // .trim(): mesma razão do lado do servidor em adminAuth.ts — elimina espaço ou
   // quebra de linha acidental também do lado do que foi digitado na tela de login.
-  const senha = senhaBruta.trim()
+  const senha = typeof corpo?.senha === 'string' ? corpo.senha.trim() : ''
 
   let segredo: string
   try {
@@ -34,18 +33,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ motivo: 'erro_servidor', mensagem: 'Erro de configuração do servidor.' })
   }
 
-  const bateu = compararSeguro(senha, segredo)
-  // Diagnóstico temporário (só em Runtime Logs do Vercel, nunca na resposta ao
-  // cliente): NENHUM valor de senha é logado, só tamanhos — o suficiente pra
-  // distinguir "sobrou espaço/quebra de linha" de "o valor salvo é outro" sem expor
-  // segredo nenhum. Remover depois que /admin autenticar normalmente.
-  if (!bateu) {
-    console.error(
-      `[admin-login] tentativa sem sucesso — tamanho recebido (bruto)=${senhaBruta.length} tamanho recebido (trim)=${senha.length} tamanho esperado (trim)=${segredo.length}`,
-    )
-  }
-
-  if (!bateu) {
+  if (!compararSeguro(senha, segredo)) {
     return res.status(401).json({ motivo: 'senha_incorreta', mensagem: 'Senha incorreta.' })
   }
   return res.status(200).json({})
