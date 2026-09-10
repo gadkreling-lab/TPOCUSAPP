@@ -91,6 +91,26 @@ definitiva). Se voltar a acontecer com um `api/_lib/*.ts` novo: dá pra saber de
 antemão, sem esperar quebrar em produção — todo import relativo dele que outro arquivo
 de `api/` for usar já nasce com `.js` no fim.
 
+## 3.3. Se só as rotas de `api/` com colchetes (`[algo].ts`) falharem, com corpo estranho (não JSON) e status 200
+
+Sintoma: `/api/ativar`, `/api/admin/login` etc. funcionam normalmente, mas
+`/api/content/<recurso>` e `/api/admin/codigos/<codigo>` — as duas rotas dinâmicas de
+`api/` — voltam algo que não é JSON, mesmo com status 200 (no app, aparece como "Erro
+inesperado"/"Resposta inesperada do servidor" no Atlas, Calculadoras ou Protocolos).
+Reproduz igual em aba anônima (não é cache/service worker). No **Runtime Log** do
+Vercel, a rota com colchete nunca aparece na lista de invocações, mesmo testando na
+hora — a requisição não está chegando na função.
+
+Causa: o rewrite catch-all do SPA em `vercel.json` (`"/(.*)" → "/index.html"`,
+necessário pras rotas de navegação do app tipo `/atlas` funcionarem com refresh direto
+na URL) estava capturando as rotas dinâmicas de `api/` antes delas rodarem — só as
+rotas de arquivo estático dentro de `api/` escapavam disso. Já corrigido (ver
+ARQUITETURA.md, "Terceira correção encontrada durante o deploy"): `vercel.json` agora
+tem uma regra de passthrough pra `/api/*` antes do catch-all do SPA. Se voltar a
+acontecer (ex.: reescrita do `vercel.json` que perca essa regra): o sintoma exato é
+esse — estático funciona, dinâmico com colchete não, e o Runtime Log confirma que a
+função nunca roda.
+
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 
 - Sem alerta automático quando o prazo de um aluno está para vencer — a tela `/admin`

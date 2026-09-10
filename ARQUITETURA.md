@@ -959,3 +959,42 @@ função — todo import relativo entre arquivos `.ts` de `api/` precisa de exte
 explícita, e `"type": "module"` no `package.json` tem que estar presente. Um novo
 arquivo em `api/_lib/` que outro arquivo importe já deve nascer com essa extensão no
 import, não só depois de quebrar em produção.
+
+### Terceira correção encontrada durante o deploy (2026-09-10) — rewrite do SPA engolindo rotas dinâmicas de `api/`
+
+Depois das duas correções acima, `/admin`, `/api/ativar` e `/api/admin/*` funcionavam
+normalmente, mas **Atlas, Calculadoras e Protocolos** (os três módulos que buscam
+conteúdo via `/api/content/<recurso>`) davam erro genérico no cliente
+(`ErroConteudo` fora do formato esperado — corpo não era JSON válido, mesmo com status
+200). Descartado service worker/cache (reproduzia igual em aba anônima). A prova
+decisiva veio do **Runtime Log** do Vercel: `/api/ativar` e `/api/admin/*` apareciam
+normalmente na lista de invocações, mas **nenhuma linha de `/api/content/*` aparecia
+nunca**, mesmo testando na hora — ou seja, a requisição nunca chegava a rodar a
+função.
+
+Causa: `vercel.json` tinha só uma regra de `rewrites`, o catch-all do SPA
+(`"/(.*)" → "/index.html"`, necessário pra rotas de navegação do cliente como
+`/atlas`, `/protocolos` funcionarem com refresh direto na URL). Na prática, nesse
+deploy, essa regra capturava as **rotas dinâmicas de `api/` com colchetes**
+(`api/content/[recurso].ts`, `api/admin/codigos/[codigo].ts`) antes delas chegarem a
+rodar — só rotas de arquivo estático/exato dentro de `api/` (`ativar.ts`,
+`admin/login.ts`, `admin/codigos.ts`) escapavam disso. Resultado: pedir
+`/api/content/windows` devolvia o `index.html` do app (200, HTML) em vez de rodar a
+função — daí o cliente receber "sucesso" com um corpo que não é o JSON esperado.
+
+**Correção:** uma regra explícita de passthrough pra `/api/*` **antes** do catch-all
+do SPA, em `vercel.json`:
+```json
+"rewrites": [
+  { "source": "/api/(.*)", "destination": "/api/$1" },
+  { "source": "/(.*)", "destination": "/index.html" }
+]
+```
+Regras de rewrite são avaliadas em ordem, a primeira que casar vence — isso garante
+que qualquer coisa sob `/api/` (dinâmica ou não) nunca cai no fallback do SPA.
+
+Lição: qualquer rota nova de `api/**/[algo].ts` (com colchetes) deveria, a partir de
+agora, já estar coberta por essa regra — mas se um dia sumir do `vercel.json` (reescrita
+do arquivo, merge malfeito), o sintoma é exatamente este: só rotas de arquivo estático
+em `api/` funcionam, rotas dinâmicas com colchetes silenciosamente voltam HTML em vez
+de JSON, e o Runtime Log nunca mostra a invocação.
