@@ -1,9 +1,10 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link, useParams } from 'wouter'
 import type { Categoria, Transdutor } from '../../content/types'
 import { useImagemUrl, useImagesCatalog, useWindows } from '../../queries/hooks'
 import { PageRef } from '../../ui/PageRef'
 import { SourceTag } from '../../ui/SourceTag'
+import { VisualizadorImagem } from '../../ui/VisualizadorImagem'
 
 const ROTULO_CATEGORIA: Record<Categoria, string> = {
   cardiaca: 'Cardíaca',
@@ -27,6 +28,7 @@ export function WindowDetailScreen() {
   const params = useParams<{ id: string }>()
   const estadoWindows = useWindows()
   const estadoImagens = useImagesCatalog()
+  const [imagemAberta, setImagemAberta] = useState<{ src: string; alt: string } | null>(null)
 
   if (estadoWindows.status === 'carregando' || estadoImagens.status === 'carregando') {
     return (
@@ -81,7 +83,12 @@ export function WindowDetailScreen() {
       {imagens.length > 0 && (
         <div className="flex gap-2 overflow-x-auto">
           {imagens.map((im) => (
-            <ImagemJanela key={im.id} arquivo={im.arquivo} legenda={im.legendaEbook ?? im.secaoEbook} />
+            <ImagemJanela
+              key={im.id}
+              arquivo={im.arquivo}
+              legenda={im.legendaEbook ?? im.secaoEbook}
+              onAbrir={(src, alt) => setImagemAberta({ src, alt })}
+            />
           ))}
         </div>
       )}
@@ -136,6 +143,10 @@ export function WindowDetailScreen() {
           </div>
         </Secao>
       )}
+
+      {imagemAberta && (
+        <VisualizadorImagem src={imagemAberta.src} alt={imagemAberta.alt} onFechar={() => setImagemAberta(null)} />
+      )}
     </div>
   )
 }
@@ -162,8 +173,19 @@ function ListaSecao({ titulo, itens }: { titulo: string; itens: string[] }) {
   )
 }
 
-/** Busca o binário autenticado (ver useImagemUrl) e converte em blob URL local. */
-function ImagemJanela({ arquivo, legenda }: { arquivo: string; legenda: string }) {
+/**
+ * Busca o binário autenticado (ver useImagemUrl) e converte em blob URL local.
+ * Miniatura clicável — abre em VisualizadorImagem (tela cheia, zoom por pinça).
+ */
+function ImagemJanela({
+  arquivo,
+  legenda,
+  onAbrir,
+}: {
+  arquivo: string
+  legenda: string
+  onAbrir: (src: string, alt: string) => void
+}) {
   const estado = useImagemUrl(arquivo)
 
   if (estado.status !== 'pronto') {
@@ -175,7 +197,14 @@ function ImagemJanela({ arquivo, legenda }: { arquivo: string; legenda: string }
   }
   return (
     <figure className="w-48 shrink-0">
-      <img src={estado.dados} alt={legenda} className="h-32 w-48 rounded-lg border border-border object-cover" />
+      <button
+        type="button"
+        onClick={() => onAbrir(estado.dados, legenda)}
+        className="block rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        aria-label={`Ampliar imagem: ${legenda}`}
+      >
+        <img src={estado.dados} alt={legenda} className="h-32 w-48 rounded-lg border border-border object-cover" />
+      </button>
       <figcaption className="mt-1 text-xs text-muted">{legenda}</figcaption>
     </figure>
   )
