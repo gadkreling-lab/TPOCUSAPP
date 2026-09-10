@@ -42,7 +42,17 @@ export async function buscarConteudo<T>(recurso: string, obterTokenAcesso: () =>
       throw new ErroConteudo(corpo.motivo ?? `http_${resp.status}`, corpo.mensagem ?? 'Não foi possível carregar o conteúdo.')
     }
 
-    const dados = (await resp.json()) as T
+    let dados: T
+    try {
+      dados = (await resp.json()) as T
+    } catch {
+      // resp.ok (200) mas corpo não é JSON válido — não deveria acontecer com os
+      // endpoints deste app, mas sem este catch a exceção de parse escapava crua
+      // daqui e virava o fallback genérico 'erro_desconhecido' lá em cima
+      // (useConteudo.ts), escondendo que o problema era na resposta, não na rede
+      // nem na sessão.
+      throw new ErroConteudo('resposta_invalida', 'Resposta inesperada do servidor.')
+    }
     guardarNoCache(recurso, dados)
     return dados
   })
