@@ -111,6 +111,19 @@ acontecer (ex.: reescrita do `vercel.json` que perca essa regra): o sintoma exat
 esse — estático funciona, dinâmico com colchete não, e o Runtime Log confirma que a
 função nunca roda.
 
+## 3.4. Se a correção acima não bastar — cache de borda da Vercel preso na resposta antiga
+
+Depois de corrigir o rewrite (3.3) e fazer redeploy, `/api/content/*` pode continuar
+voltando corpo que não é JSON, com o Runtime Log continuando sem nenhuma linha pra essa
+rota mesmo testando ao vivo. Confira o header de resposta no DevTools (Network →
+clicar na chamada → Headers): se aparecer `x-vercel-cache: HIT`, a borda da rede da
+Vercel guardou em cache a resposta ERRADA de antes da correção, pra aquela URL exata, e
+continua servindo ela sem nunca voltar a chamar a função — o rewrite corrigido não
+importa, porque a requisição nem sai do cache. Já corrigido (ver ARQUITETURA.md, "Quarta
+correção encontrada durante o deploy"): a chamada no cliente ganhou `cache: 'no-store'`
++ parâmetro de cache-busting, e `vercel.json` ganhou uma regra de `headers` proibindo
+cache em qualquer coisa sob `/api/*`, pra nenhum endpoint futuro cair nisso de novo.
+
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 
 - Sem alerta automático quando o prazo de um aluno está para vencer — a tela `/admin`

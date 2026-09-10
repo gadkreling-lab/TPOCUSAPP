@@ -998,3 +998,39 @@ agora, já estar coberta por essa regra — mas se um dia sumir do `vercel.json`
 do arquivo, merge malfeito), o sintoma é exatamente este: só rotas de arquivo estático
 em `api/` funcionam, rotas dinâmicas com colchetes silenciosamente voltam HTML em vez
 de JSON, e o Runtime Log nunca mostra a invocação.
+
+### Quarta correção encontrada durante o deploy (2026-09-10) — cache de borda da Vercel guardando a resposta errada
+
+A correção anterior (regra de passthrough pra `/api/*`) **não bastou sozinha**: depois
+de aplicada e redeployada, `/api/content/windows` continuava voltando corpo que não é
+JSON, e o Runtime Log continuava sem nenhuma linha pra essa rota, mesmo testando ao
+vivo. A função em si estava correta e existia de verdade no deploy (confirmado na aba
+Resources do deployment: `/api/content/[recurso]`, 89.4 kB, listada normalmente). A
+prova veio dos **headers de resposta** no DevTools:
+
+```
+cache-control: public, max-age=0, must-revalidate
+x-vercel-cache: HIT
+```
+
+`x-vercel-cache: HIT` — a rede de borda da Vercel tinha guardado em cache a resposta
+ERRADA (o `index.html` do SPA, do bug da terceira correção, antes dela existir) pra
+essa URL específica, e continuava servindo ela direto do cache, sem nunca chegar na
+função de novo — por isso o Runtime Log nunca mostrava a invocação mesmo depois do
+rewrite corrigido: a requisição nem saía da borda.
+
+**Correção, duas partes:**
+1. `src/queries/client.ts`: a chamada a `/api/content/<recurso>` ganhou `cache:
+   'no-store'` (impede o navegador de servir do cache local) e um parâmetro
+   `?_=<timestamp>` (garante uma chave de cache nova a cada chamada, furando qualquer
+   entrada já guardada na borda pra essa URL exata — content é buscado uma vez por
+   sessão e cacheado em memória do lado do cliente mesmo, então perder cache HTTP aqui
+   não tem custo real).
+2. `vercel.json` ganhou uma regra de `headers` instruindo a borda a nunca cachear nada
+   sob `/api/*` (`Cache-Control: no-store, must-revalidate`), independente do que a
+   função devolver — fecha essa classe de bug pra qualquer endpoint futuro, não só o
+   que quebrou dessa vez.
+
+Isso não desfaz nem substitui a correção do rewrite (terceira correção) — as duas eram
+necessárias: uma fazia a rota funcionar de verdade a partir de agora, a outra garantia
+que o cache de uma versão quebrada anterior parasse de mascarar isso.

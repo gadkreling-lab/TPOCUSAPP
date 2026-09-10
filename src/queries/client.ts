@@ -27,7 +27,17 @@ export async function buscarConteudo<T>(recurso: string, obterTokenAcesso: () =>
 
     let resp: Response
     try {
-      resp = await fetch(`/api/content/${recurso}`, { headers: { Authorization: `Bearer ${token}` } })
+      // cache: 'no-store' + parâmetro _ aleatório: além de nunca dever ser cacheado
+      // (o endpoint já manda Cache-Control: no-store na resposta, ver
+      // api/_lib/conteudo.ts), uma versão anterior do vercel.json deixou a borda da
+      // Vercel guardar em cache a resposta ERRADA (o index.html do SPA) pra essa URL,
+      // de antes de uma correção de rewrite — sem isso, o cache antigo continuava
+      // sendo servido pra sempre, mesmo depois do bug corrigido, porque a requisição
+      // nem chegava a sair do cache de borda pra função rodar de novo.
+      resp = await fetch(`/api/content/${recurso}?_=${Date.now()}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: 'no-store',
+      })
     } catch {
       throw new ErroConteudo('sem_conexao', 'Verifique sua conexão e tente novamente.')
     }
