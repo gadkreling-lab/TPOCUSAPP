@@ -8,7 +8,7 @@ export type EstadoConteudo<T> =
   | { status: 'pronto'; dados: T }
 
 /**
- * Hook genérico de busca de conteúdo — GET /api/content/<recurso>, autenticado,
+ * Hook genérico de busca de conteúdo — GET /api/conteudo?recurso=<recurso>, autenticado,
  * cacheado em memória pela sessão. Os hooks tipados em src/queries/hooks.ts são a
  * forma normal de uso nos módulos; este fica exposto para casos que precisem de um
  * recurso ainda sem hook dedicado.

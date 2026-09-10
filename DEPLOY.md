@@ -54,7 +54,7 @@ definidas antes de gerar o primeiro lote de códigos de verdade.
 - **Vazamento de conteúdo clínico**: repita a checagem que já rodou em toda fase —
   abrir o app publicado, no DevTools → Network, confirmar que `windows.json`,
   `measurements.json` etc. nunca aparecem como arquivo estático, só como resposta
-  JSON de `/api/content/*` com o header `Authorization` presente na requisição.
+  JSON de `/api/conteudo` com o header `Authorization` presente na requisição.
 - **PWA instalável**: confirmar "Adicionar à tela inicial" funciona no domínio de
   produção (o manifest só é servido com o domínio HTTPS real, não localhost).
 - **Renovação de sessão**: deixar o app aberto e em uso por mais de 15 minutos uma vez,
@@ -123,6 +123,29 @@ importa, porque a requisição nem sai do cache. Já corrigido (ver ARQUITETURA.
 correção encontrada durante o deploy"): a chamada no cliente ganhou `cache: 'no-store'`
 + parâmetro de cache-busting, e `vercel.json` ganhou uma regra de `headers` proibindo
 cache em qualquer coisa sob `/api/*`, pra nenhum endpoint futuro cair nisso de novo.
+
+## 3.5. As rotas dinâmicas de api/ (com colchete) foram abandonadas de vez
+
+Mesmo depois de 3.3 e 3.4, `/api/content/*` continuou falhando. Em vez de continuar
+tentando isolar qual das causas concorrentes (rewrite? cache de borda? algo na forma
+como a Vercel resolve `[param].ts` dentro de `api/` neste projeto?) era a de verdade —
+sem conseguir inspecionar o routing manifest real do deploy —, a decisão foi eliminar a
+categoria inteira: **nenhuma rota de `api/` usa mais segmento de path dinâmico com
+colchete**. Ver ARQUITETURA.md, "Quinta correção encontrada durante o deploy".
+
+Se você está lendo isto porque uma URL antiga parou de funcionar, as rotas mudaram de
+forma (não de comportamento):
+
+| Antes | Agora |
+|---|---|
+| `GET /api/content/<recurso>` | `GET /api/conteudo?recurso=<recurso>` |
+| `GET /api/content/images/<arquivo>` | `GET /api/imagem?arquivo=<arquivo>` |
+| `POST /api/admin/codigos/<codigo>` | `POST /api/admin/codigo-acao` com `codigo` no corpo |
+
+Toda rota de arquivo estático em `api/` (sem colchete) funcionou sem exceção a cada
+deploy, do início ao fim desta fase — se um endpoint novo precisar de parâmetro,
+**não usar colchete**: nome de arquivo fixo, parâmetro em query string (GET) ou no
+corpo (POST).
 
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 

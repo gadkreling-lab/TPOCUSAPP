@@ -35,7 +35,7 @@ export const useImagesCatalog = (): EstadoConteudo<ImagemEbook[]> => useConteudo
  * Busca a imagem autenticada e devolve um object URL pronto para `<img src>`.
  * Uma tag <img> comum não manda cabeçalho Authorization — por isso o binário é
  * buscado via fetch (com Bearer) e convertido em blob URL local, não um caminho
- * estático direto para api/content/images/*.
+ * estático direto para api/imagem.
  */
 export function useImagemUrl(arquivo: string | null): EstadoConteudo<string> {
   const { obterTokenAcesso } = useSessao()
@@ -50,7 +50,10 @@ export function useImagemUrl(arquivo: string | null): EstadoConteudo<string> {
     ;(async () => {
       const token = await obterTokenAcesso()
       if (!token) throw new ErroConteudo('nao_autenticado', 'Sessão expirada.')
-      const resp = await fetch(`/api/content/images/${arquivo}`, { headers: { Authorization: `Bearer ${token}` } })
+      const resp = await fetch(`/api/imagem?arquivo=${encodeURIComponent(arquivo)}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: 'no-store',
+      })
       if (!resp.ok) throw new ErroConteudo(`http_${resp.status}`, 'Não foi possível carregar a imagem.')
       const blob = await resp.blob()
       urlCriada = URL.createObjectURL(blob)

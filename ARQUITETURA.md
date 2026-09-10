@@ -313,9 +313,11 @@ esse alguém consegue tirar do app*).
   Fase 1, mas o objetivo é que um erro de import vire falha de build, não um vazamento
   descoberto depois).
 - **Cada módulo busca o que precisa via API, autenticado pelo token de sessão** (o mesmo
-  da seção 6): `GET /api/content/windows`, `/api/content/measurements/:id`,
-  `/api/content/protocols/:id`, `/api/content/images/:arquivo` (esta última serve o
-  binário da imagem, também atrás do gate — nunca um link estático público). O servidor
+  da seção 6): `GET /api/conteudo?recurso=windows`, `?recurso=measurements`,
+  `?recurso=protocols`, e `GET /api/imagem?arquivo=:arquivo` (esta última serve o
+  binário da imagem, também atrás do gate — nunca um link estático público; nomes de
+  rota atualizados na "Quinta correção encontrada durante o deploy", seção posterior —
+  não são mais rotas dinâmicas com colchete). O servidor
   recusa qualquer requisição sem sessão válida, com o mesmo tratamento de prazo e
   aparelho da seção 6.
 - **Cache em memória, por sessão de app aberto — nunca em disco.** Uma vez buscado
@@ -413,7 +415,7 @@ construir o backend:
   mudou. `api/_lib/kv.ts` isola essa escolha atrás de uma interface `KVStore` — se o
   provedor mudar de novo, só esse arquivo muda.
 - **O token de sessão virou dois tokens**, não um: um **token de acesso** (~15 min,
-  Bearer de toda chamada a `/api/content/*`) e um **token de renovação** (só para
+  Bearer de toda chamada a `/api/conteudo` e `/api/imagem`) e um **token de renovação** (só para
   chamar `/api/renovar`, com `exp` igual a `expiraEm` do aluno — expira sozinho no
   prazo certo, por construção da assinatura, mesmo sem consultar o KV). Isso não muda
   a garantia descrita acima, só implementa com um token curto de fato circulando nas
@@ -1034,3 +1036,49 @@ rewrite corrigido: a requisição nem saía da borda.
 Isso não desfaz nem substitui a correção do rewrite (terceira correção) — as duas eram
 necessárias: uma fazia a rota funcionar de verdade a partir de agora, a outra garantia
 que o cache de uma versão quebrada anterior parasse de mascarar isso.
+
+### Quinta correção encontrada durante o deploy (2026-09-10) — abandono das rotas dinâmicas de api/ com colchete
+
+Depois das quatro correções acima (ESM/extensão, rewrite, cache de borda), `/api/content/*`
+**continuava** voltando corpo que não é JSON, mesmo com `cache: 'no-store'` +
+cache-busting por query string no cliente — o que devia ter furado qualquer cache de
+borda de vez. Isso derrubou a hipótese de cache persistente como única causa: ou a
+Vercel ignora query string na chave de cache pra essa rota (normalizando como se fosse
+um arquivo estático), ou existe uma causa estrutural concorrente na forma como a Vercel
+resolve rotas dinâmicas com colchete dentro de `api/` neste projeto — não foi possível
+isolar qual com certeza, sem acesso a inspecionar o routing manifest real do deploy
+(tentativa de rodar `vercel build` localmente falhou por falta de acesso de rede a
+`api.vercel.com`, bloqueado pela política de rede deste ambiente de execução).
+
+Em vez de continuar caçando a causa exata numa plataforma que não dá pra inspecionar
+localmente — quatro tentativas de correção, quatro causas plausíveis diferentes,
+nenhuma resolveu sozinha —, a decisão foi **eliminar a categoria inteira do problema**:
+nenhuma rota de `api/` usa mais segmento de path dinâmico com colchete. Ao longo de
+toda a depuração, toda rota de ARQUIVO ESTÁTICO em `api/` (`ativar.ts`, `renovar.ts`,
+`admin/login.ts`, `admin/codigos.ts`) funcionou sem exceção nenhuma vez — só as rotas
+com colchete (`[recurso].ts`, `[codigo].ts`, `[arquivo].ts`) falharam, de forma
+consistente, através de quatro deploys e quatro correções direcionadas a hipóteses
+diferentes.
+
+**Mudança:**
+- `api/content/[recurso].ts` → `api/conteudo.ts`, `recurso` por query string
+  (`/api/conteudo?recurso=windows`, não mais `/api/content/windows`).
+- `api/content/images/[arquivo].ts` → `api/imagem.ts`, `arquivo` por query string
+  (`/api/imagem?arquivo=fig-p001-01.webp`).
+- `api/admin/codigos/[codigo].ts` → `api/admin/codigo-acao.ts`, `codigo` movido pro
+  corpo da requisição (junto com `acao`/`dias`, que já estavam lá — já era POST com
+  corpo decidindo a operação, então mover `codigo` pra lá também é natural, não é
+  gambiarra).
+
+`criarHandlerConteudoDinamico` (api/_lib/conteudo.ts) não mudou nada — ele já lia
+`req.query.recurso`, que é preenchido do mesmo jeito pela Vercel tanto vindo de
+segmento de path dinâmico quanto de query string explícita. Só o NOME e LOCAL do
+arquivo de rota mudou, e as chamadas do cliente (`src/queries/client.ts`,
+`src/queries/hooks.ts`, `src/admin/api.ts`) foram atualizadas pra nova forma de URL.
+Contagem de funções continua em 7 (mesma de antes, só renomeadas) — bem abaixo do
+limite de 12 do plano Hobby.
+
+Lição, se algum dia uma rota nova de `api/` precisar de um parâmetro: **não usar
+colchete** (`[param].ts`) neste projeto na Vercel — usar nome de arquivo fixo com o
+parâmetro em query string (GET) ou no corpo (POST). O padrão com colchete nunca deu
+pra confiar de forma confiável aqui, mesmo com quatro ângulos de correção diferentes.

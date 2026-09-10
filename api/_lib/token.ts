@@ -6,7 +6,8 @@
  * Formato: `<payload base64url>.<assinatura base64url>`
  *
  * Dois "tipos" de token, mesmo formato, TTLs diferentes (ver api/_lib/acesso.ts):
- *   'acesso'    — Bearer em toda chamada a /api/content/*, vida curta (≤15 min).
+ *   'acesso'    — Bearer em toda chamada a /api/conteudo e /api/imagem, vida curta
+ *                 (≤15 min).
  *   'renovacao' — só para chamar /api/renovar; o próprio `exp` já é igual ao prazo
  *                 do aluno (`expiraEm`), então expira sozinho no dia certo mesmo sem
  *                 nenhuma checagem de KV.

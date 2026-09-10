@@ -26,12 +26,12 @@ export function criarHandlerConteudo<T>(dados: T) {
 
 /**
  * Mesma coisa que criarHandlerConteudo, mas para vários recursos servidos por UMA
- * função só (api/content/[recurso].ts) em vez de um arquivo por recurso. Existe por
+ * função só (api/conteudo.ts) em vez de um arquivo por recurso. Existe por
  * limite de plataforma, não de arquitetura: o plano Hobby da Vercel só permite 12
  * Serverless Functions por deploy, e este projeto passou disso com um arquivo por
  * endpoint de conteúdo. O cliente já chama tudo pelo mesmo padrão
- * `/api/content/<recurso>` (src/queries/client.ts), então consolidar não muda nada do
- * lado de quem consome — só reduz a contagem de funções.
+ * `/api/conteudo?recurso=<recurso>` (src/queries/client.ts), então consolidar não muda
+ * nada do lado de quem consome — só reduz a contagem de funções.
  */
 export function criarHandlerConteudoDinamico(mapa: Record<string, unknown>) {
   return function handler(req: VercelRequest, res: VercelResponse) {

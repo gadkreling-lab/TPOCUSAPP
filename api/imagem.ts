@@ -1,5 +1,9 @@
 /**
- * GET /api/content/images/:arquivo — serve o binário de uma figura do ebook.
+ * GET /api/imagem?arquivo=<arquivo> — serve o binário de uma figura do ebook.
+ *
+ * NÃO é mais rota dinâmica com colchete (era api/content/images/[arquivo].ts) — ver
+ * ARQUITETURA.md, "Quinta correção encontrada durante o deploy": rota estática de
+ * nome fixo, `arquivo` vem de query string.
  *
  * `arquivo` é validado contra a lista de nomes conhecidos em images.json (nunca lido
  * direto do path da requisição) — evita qualquer tentativa de path traversal, mesmo
@@ -9,8 +13,8 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import catalogo from '../../../src/content/images.json'
-import { autenticarRequisicao } from '../../_lib/auth.js'
+import catalogo from '../src/content/images.json'
+import { autenticarRequisicao } from './_lib/auth.js'
 
 const ARQUIVOS_CONHECIDOS = new Set(catalogo.map((im) => im.arquivo))
 const DIR_IMAGENS = join(process.cwd(), 'src', 'content', 'images')

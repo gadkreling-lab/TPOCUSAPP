@@ -2,7 +2,7 @@
 /**
  * Guarda de build: nenhum código do CLIENTE pode importar src/content/*.json nem
  * src/content/index.ts (que importa os JSONs). Conteúdo clínico é servido sob demanda
- * por api/content/*, autenticado — nunca vai para o bundle do cliente. Ver
+ * por api/conteudo e api/imagem, autenticado — nunca vai para o bundle do cliente. Ver
  * ARQUITETURA.md §4.
  *
  * Qualquer arquivo "types" dentro de content/, em qualquer subpasta, é seguro e
@@ -66,7 +66,7 @@ for (const pasta of PASTAS_CLIENTE) {
 if (violacoes.length) {
   console.error('✗ Importação proibida de conteúdo clínico no código do cliente:\n')
   for (const v of violacoes) console.error(`  ${v}`)
-  console.error('\nUse src/queries/ (fetch autenticado a /api/content/*) em vez de importar o JSON direto.')
+  console.error('\nUse src/queries/ (fetch autenticado a /api/conteudo) em vez de importar o JSON direto.')
   process.exit(1)
 }
 

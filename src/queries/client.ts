@@ -10,10 +10,15 @@ export class ErroConteudo extends Error {
 }
 
 /**
- * Busca um recurso de conteúdo em /api/content/<recurso>, autenticado pelo token de
- * acesso corrente (renovado por `obterTokenAcesso` se preciso). Cacheia em memória por
- * sessão — chamadas repetidas ao mesmo recurso não refazem a requisição. Ver
- * ARQUITETURA.md §4.
+ * Busca um recurso de conteúdo em /api/conteudo?recurso=<recurso>, autenticado pelo
+ * token de acesso corrente (renovado por `obterTokenAcesso` se preciso). Cacheia em
+ * memória por sessão — chamadas repetidas ao mesmo recurso não refazem a requisição.
+ * Ver ARQUITETURA.md §4.
+ *
+ * `recurso` vai em query string, não em segmento de path dinâmico (`/api/content/x`
+ * como era antes) — ver ARQUITETURA.md, "Quinta correção encontrada durante o deploy":
+ * rota dinâmica com colchete nunca funcionou de forma confiável neste projeto na
+ * Vercel.
  */
 export async function buscarConteudo<T>(recurso: string, obterTokenAcesso: () => Promise<string | null>): Promise<T> {
   const doCache = obterDoCache<T>(recurso)
@@ -27,14 +32,11 @@ export async function buscarConteudo<T>(recurso: string, obterTokenAcesso: () =>
 
     let resp: Response
     try {
-      // cache: 'no-store' + parâmetro _ aleatório: além de nunca dever ser cacheado
-      // (o endpoint já manda Cache-Control: no-store na resposta, ver
-      // api/_lib/conteudo.ts), uma versão anterior do vercel.json deixou a borda da
-      // Vercel guardar em cache a resposta ERRADA (o index.html do SPA) pra essa URL,
-      // de antes de uma correção de rewrite — sem isso, o cache antigo continuava
-      // sendo servido pra sempre, mesmo depois do bug corrigido, porque a requisição
-      // nem chegava a sair do cache de borda pra função rodar de novo.
-      resp = await fetch(`/api/content/${recurso}?_=${Date.now()}`, {
+      // cache: 'no-store' — o endpoint já manda Cache-Control: no-store na resposta
+      // (api/_lib/conteudo.ts) e vercel.json também proíbe cache de borda em /api/*;
+      // isso aqui é só reforço do lado do navegador, conteúdo autenticado nunca deve
+      // ser servido de cache nenhum.
+      resp = await fetch(`/api/conteudo?recurso=${encodeURIComponent(recurso)}`, {
         headers: { Authorization: `Bearer ${token}` },
         cache: 'no-store',
       })

@@ -146,7 +146,7 @@ export async function revogarCodigo(kv: KVStore, codigo: string): Promise<boolea
 }
 
 export interface SessaoEmitida {
-  /** Bearer usado em toda chamada a /api/content/* — vida curta (~15 min). */
+  /** Bearer usado em toda chamada a /api/conteudo e /api/imagem — vida curta (~15 min). */
   tokenAcesso: string
   /**
    * Usado só para chamar /api/renovar. Vida longa, mas o próprio `exp` criptografado

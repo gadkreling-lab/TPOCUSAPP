@@ -73,14 +73,14 @@ describe('handler genérico de conteúdo', () => {
 })
 
 /**
- * criarHandlerConteudoDinamico — api/content/[recurso].ts, o handler que consolidou os
+ * criarHandlerConteudoDinamico — api/conteudo.ts, o handler que consolidou os
  * 10 endpoints de conteúdo numa função só por causa do limite de 12 Serverless
  * Functions do plano Hobby (ver ARQUITETURA.md). Nunca teve teste próprio até agora
  * (só o criarHandlerConteudo original, que nenhuma rota usa mais) — o ponto mais
  * importante aqui é confirmar que req.query.recurso escolhe o item CERTO dentro de um
  * mapa com vários recursos, não só que um mapa de um item só funciona.
  */
-describe('handler genérico de conteúdo (multi-recurso, api/content/[recurso].ts)', () => {
+describe('handler genérico de conteúdo (multi-recurso, api/conteudo.ts)', () => {
   const windows = [{ id: 'janela-a' }]
   const findings = [{ id: 'achado-a' }]
   const protocolFlows = [{ id: 'fluxo-a' }]

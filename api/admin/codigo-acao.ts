@@ -1,16 +1,17 @@
 /**
- * POST /api/admin/codigos/:codigo { acao: 'revogar' } → revoga o código.
- * POST /api/admin/codigos/:codigo { acao: 'estender', dias: number } → soma `dias` ao
- *   `expiraEm` atual (só funciona em código já ativado — ver api/_lib/acesso.ts).
+ * POST /api/admin/codigo-acao { codigo, acao: 'revogar' } → revoga o código.
+ * POST /api/admin/codigo-acao { codigo, acao: 'estender', dias: number } → soma `dias`
+ *   ao `expiraEm` atual (só funciona em código já ativado — ver api/_lib/acesso.ts).
  *
- * Duas ações num único endpoint dinâmico em vez de duas rotas — mesmo raciocínio de
- * api/content/images/[arquivo].ts, um arquivo por recurso (o código), o corpo decide
- * a operação.
+ * NÃO é mais rota dinâmica com colchete (era api/admin/codigos/[codigo].ts) — ver
+ * ARQUITETURA.md, "Quinta correção encontrada durante o deploy": rota estática de
+ * nome fixo, `codigo` vem do corpo da requisição junto com `acao` (já era POST com
+ * corpo decidindo a operação, então mover `codigo` pra lá também é natural).
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { autenticarAdmin } from '../../_lib/adminAuth.js'
-import { getKVStore } from '../../_lib/kv.js'
-import { estenderPrazo, revogarCodigo } from '../../_lib/acesso.js'
+import { autenticarAdmin } from '../_lib/adminAuth.js'
+import { getKVStore } from '../_lib/kv.js'
+import { estenderPrazo, revogarCodigo } from '../_lib/acesso.js'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!autenticarAdmin(req)) {
@@ -21,12 +22,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ motivo: 'metodo_nao_permitido', mensagem: 'Use POST.' })
   }
 
-  const codigo = typeof req.query.codigo === 'string' ? req.query.codigo : ''
+  const corpo = req.body as { codigo?: unknown; acao?: unknown; dias?: unknown } | undefined
+  const codigo = typeof corpo?.codigo === 'string' ? corpo.codigo : ''
   if (!codigo) {
-    return res.status(400).json({ motivo: 'corpo_invalido', mensagem: 'Código ausente na URL.' })
+    return res.status(400).json({ motivo: 'corpo_invalido', mensagem: 'Código ausente no corpo da requisição.' })
   }
 
-  const corpo = req.body as { acao?: unknown; dias?: unknown } | undefined
   const kv = await getKVStore()
 
   if (corpo?.acao === 'revogar') {

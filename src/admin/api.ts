@@ -52,16 +52,19 @@ export async function gerarCodigos(quantidade: number, duracaoDias: number): Pro
   return codigos
 }
 
+// codigo vai no corpo (não mais em /api/admin/codigos/:codigo — ver ARQUITETURA.md,
+// "Quinta correção encontrada durante o deploy": rota dinâmica com colchete nunca
+// funcionou de forma confiável neste projeto na Vercel).
 export function revogarCodigo(codigo: string): Promise<void> {
-  return chamarAdmin(`/api/admin/codigos/${encodeURIComponent(codigo)}`, {
+  return chamarAdmin('/api/admin/codigo-acao', {
     method: 'POST',
-    body: JSON.stringify({ acao: 'revogar' }),
+    body: JSON.stringify({ codigo, acao: 'revogar' }),
   })
 }
 
 export function estenderPrazo(codigo: string, dias: number): Promise<{ novoExpiraEm: number }> {
-  return chamarAdmin(`/api/admin/codigos/${encodeURIComponent(codigo)}`, {
+  return chamarAdmin('/api/admin/codigo-acao', {
     method: 'POST',
-    body: JSON.stringify({ acao: 'estender', dias }),
+    body: JSON.stringify({ codigo, acao: 'estender', dias }),
   })
 }
