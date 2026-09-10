@@ -20,25 +20,32 @@
  * Imports estáticos explícitos (mesmo raciocínio do arquivo que este substitui): mais
  * simples de auditar, e o build falha na hora se um arquivo for renomeado ou removido,
  * em vez de sumir silenciosamente em runtime.
+ *
+ * `with { type: 'json' }` em cada import: obrigatório em Node.js recente sob ESM
+ * nativo (a função roda em Node.js 24.x na Vercel) — sem isso, `TypeError
+ * [ERR_IMPORT_ATTRIBUTE_MISSING]` derruba a função inteira no primeiro import, mas só
+ * em runtime. O TypeScript (resolveJsonModule) deixa compilar sem essa cláusula, então
+ * nunca aparece como erro de build/typecheck — só quebra de verdade na Vercel. Se um
+ * import de `.json` novo for adicionado em `api/**`, já nasce com essa cláusula.
  */
-import windows from '../src/content/windows.json'
-import findings from '../src/content/findings.json'
-import pathologies from '../src/content/pathologies.json'
-import measurements from '../src/content/measurements.json'
-import glossary from '../src/content/glossary.json'
-import references from '../src/content/references.json'
-import protocols from '../src/content/protocols.json'
-import images from '../src/content/images.json'
-import debitoCardiaco from '../src/content/calculators/debito-cardiaco.json'
-import epss from '../src/content/calculators/epss.json'
-import mapse from '../src/content/calculators/mapse.json'
-import tapse from '../src/content/calculators/tapse.json'
-import vciResponsividade from '../src/content/calculators/vci-responsividade.json'
-import derramePleural from '../src/content/calculators/derrame-pleural.json'
-import blue from '../src/content/protocol-flows/blue.json'
-import efast from '../src/content/protocol-flows/efast.json'
-import rush from '../src/content/protocol-flows/rush.json'
-import casa from '../src/content/protocol-flows/casa.json'
+import windows from '../src/content/windows.json' with { type: 'json' }
+import findings from '../src/content/findings.json' with { type: 'json' }
+import pathologies from '../src/content/pathologies.json' with { type: 'json' }
+import measurements from '../src/content/measurements.json' with { type: 'json' }
+import glossary from '../src/content/glossary.json' with { type: 'json' }
+import references from '../src/content/references.json' with { type: 'json' }
+import protocols from '../src/content/protocols.json' with { type: 'json' }
+import images from '../src/content/images.json' with { type: 'json' }
+import debitoCardiaco from '../src/content/calculators/debito-cardiaco.json' with { type: 'json' }
+import epss from '../src/content/calculators/epss.json' with { type: 'json' }
+import mapse from '../src/content/calculators/mapse.json' with { type: 'json' }
+import tapse from '../src/content/calculators/tapse.json' with { type: 'json' }
+import vciResponsividade from '../src/content/calculators/vci-responsividade.json' with { type: 'json' }
+import derramePleural from '../src/content/calculators/derrame-pleural.json' with { type: 'json' }
+import blue from '../src/content/protocol-flows/blue.json' with { type: 'json' }
+import efast from '../src/content/protocol-flows/efast.json' with { type: 'json' }
+import rush from '../src/content/protocol-flows/rush.json' with { type: 'json' }
+import casa from '../src/content/protocol-flows/casa.json' with { type: 'json' }
 import { criarHandlerConteudoDinamico } from './_lib/conteudo.js'
 
 const calculadoras = [debitoCardiaco, epss, mapse, tapse, vciResponsividade, derramePleural]

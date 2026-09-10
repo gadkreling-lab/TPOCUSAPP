@@ -9,11 +9,14 @@
  * direto do path da requisição) — evita qualquer tentativa de path traversal, mesmo
  * que a validação de forma abaixo já bastasse sozinha (nomes são sempre
  * `fig-p###-##.webp`).
+ *
+ * `with { type: 'json' }`: obrigatório em Node.js recente sob ESM nativo (a função
+ * roda em Node.js 24.x na Vercel) — ver api/conteudo.ts pra explicação completa.
  */
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import catalogo from '../src/content/images.json'
+import catalogo from '../src/content/images.json' with { type: 'json' }
 import { autenticarRequisicao } from './_lib/auth.js'
 
 const ARQUIVOS_CONHECIDOS = new Set(catalogo.map((im) => im.arquivo))

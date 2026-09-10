@@ -147,6 +147,26 @@ deploy, do início ao fim desta fase — se um endpoint novo precisar de parâme
 **não usar colchete**: nome de arquivo fixo, parâmetro em query string (GET) ou no
 corpo (POST).
 
+## 3.6. Se `/api/conteudo` ou `/api/imagem` derem 500 com `ERR_IMPORT_ATTRIBUTE_MISSING`
+
+Depois de 3.5 (rotas sem colchete), a causa final apareceu no Runtime Log:
+
+```
+TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:...windows.json" needs an
+import attribute of "type: json"
+```
+
+Node.js recente (a função roda em Node.js 24.x na Vercel) exige `with { type: 'json' }`
+em todo import ESM de arquivo `.json` — o TypeScript deixa compilar sem essa cláusula
+(`resolveJsonModule`), então nunca aparece como erro de build, só em runtime. Já
+corrigido (ver ARQUITETURA.md, "Quinta correção..."): todo import de `.json` em
+`api/conteudo.ts` e `api/imagem.ts` ganhou a cláusula. Reproduzido e confirmado
+localmente antes do fix (`node --input-type=module -e "import x from
+'...windows.json'"` reproduz o erro; com `with { type: 'json' }`, funciona).
+
+Se um import de `.json` novo for adicionado em qualquer arquivo de `api/`, já nasce com
+essa cláusula — não só depois de quebrar em produção.
+
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 
 - Sem alerta automático quando o prazo de um aluno está para vencer — a tela `/admin`

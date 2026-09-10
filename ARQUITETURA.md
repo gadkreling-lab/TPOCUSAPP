@@ -1096,3 +1096,36 @@ necessária desde o início. Se isso resolver, confirma que o passthrough auto-r
 `vercel.json` de vez como causa, e o próximo lugar a olhar é algo em nível de domínio/
 cache que não é por rota (ex.: o domínio `tpocusapp.vercel.app` tendo algum
 comportamento de cache próprio independente do path).
+
+**Resultado:** revertido `vercel.json`, a mensagem de erro no app mudou (de "resposta
+não é JSON com status 200" pra "não foi possível carregar o conteúdo", que só aparece
+com status de erro de verdade) — confirma que `/api/conteudo` finalmente estava sendo
+alcançado. O Runtime Log mostrou a causa real, escondida atrás de rewrite e cache o
+tempo todo:
+
+```
+TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:...windows.json" needs an
+import attribute of "type: json"
+```
+
+Causa: Node.js recente exige a cláusula `with { type: 'json' }` em todo import ESM de
+arquivo `.json` (a função roda em **Node.js 24.x** na Vercel — confirmado na aba
+Resources do deployment). `resolveJsonModule` do TypeScript deixa compilar sem essa
+cláusula, então nunca apareceu como erro de build/typecheck, só em runtime — mesmo
+padrão dos erros de módulo anteriores desta fase (ERR_MODULE_NOT_FOUND, `Cannot use
+import statement outside a module`): TypeScript aceita uma sintaxe mais permissiva do
+que o Node de verdade exige em ESM nativo.
+
+**Reproduzido e corrigido localmente, sem depender de mais nenhum teste em produção**
+(`node --input-type=module -e "import x from '...windows.json'"` reproduz
+`ERR_IMPORT_ATTRIBUTE_MISSING` byte a byte; com `with { type: 'json' }` no import, o
+mesmo comando funciona). Adicionada a cláusula em todo import de `.json` em `api/`:
+`api/conteudo.ts` (18 imports) e `api/imagem.ts` (1 import) — os únicos dois arquivos
+de rota que importam JSON direto.
+
+Essa causa provavelmente SEMPRE esteve presente, desde a versão original com rota
+dinâmica (`api/content/[recurso].ts` tinha os mesmos 18 imports) — só nunca apareceu
+nos Runtime Logs porque as camadas de cima (rewrite, depois cache de borda) impediam a
+requisição de sequer chegar na função. As correções anteriores desta fase não foram
+desperdiçadas: cada uma removeu uma camada real de problema até esta, a última, ficar
+visível.
