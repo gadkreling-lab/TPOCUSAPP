@@ -6,9 +6,9 @@
  * do token de sessão do aluno. Ver ARQUITETURA.md §6.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { autenticarAdmin } from '../_lib/adminAuth'
-import { getKVStore } from '../_lib/kv'
-import { criarCodigos, listarCodigos } from '../_lib/acesso'
+import { autenticarAdmin } from '../_lib/adminAuth.js'
+import { getKVStore } from '../_lib/kv.js'
+import { criarCodigos, listarCodigos } from '../_lib/acesso.js'
 
 const MAX_LOTE = 200
 

@@ -6,10 +6,10 @@
  * PRAZO do aluno é aplicada quando o token de acesso (curto) precisa ser renovado via
  * api/renovar.ts, que aí sim consulta o KV. Ver ARQUITETURA.md §6.
  */
-import { segredoDoAmbiente } from './token'
-import { verificarTokenAcesso } from './acesso'
-import type { SessionPayload } from './token'
-import { extrairBearer, type RequisicaoComAuth } from './bearer'
+import { segredoDoAmbiente } from './token.js'
+import { verificarTokenAcesso } from './acesso.js'
+import type { SessionPayload } from './token.js'
+import { extrairBearer, type RequisicaoComAuth } from './bearer.js'
 
 export type { RequisicaoComAuth }
 

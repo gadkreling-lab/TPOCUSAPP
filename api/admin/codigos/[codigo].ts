@@ -8,9 +8,9 @@
  * a operação.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { autenticarAdmin } from '../../_lib/adminAuth'
-import { getKVStore } from '../../_lib/kv'
-import { estenderPrazo, revogarCodigo } from '../../_lib/acesso'
+import { autenticarAdmin } from '../../_lib/adminAuth.js'
+import { getKVStore } from '../../_lib/kv.js'
+import { estenderPrazo, revogarCodigo } from '../../_lib/acesso.js'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!autenticarAdmin(req)) {

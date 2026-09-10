@@ -12,7 +12,7 @@
  * Resposta 401: { motivo, mensagem } — senha incorreta ou ausente.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { compararSeguro, segredoAdminDoAmbiente } from '../_lib/adminAuth'
+import { compararSeguro, segredoAdminDoAmbiente } from '../_lib/adminAuth.js'
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {

@@ -29,7 +29,7 @@ import blue from '../../src/content/protocol-flows/blue.json'
 import efast from '../../src/content/protocol-flows/efast.json'
 import rush from '../../src/content/protocol-flows/rush.json'
 import casa from '../../src/content/protocol-flows/casa.json'
-import { criarHandlerConteudoDinamico } from '../_lib/conteudo'
+import { criarHandlerConteudoDinamico } from '../_lib/conteudo.js'
 
 const calculadoras = [debitoCardiaco, epss, mapse, tapse, vciResponsividade, derramePleural]
 const protocolFlows = [blue, efast, rush, casa]

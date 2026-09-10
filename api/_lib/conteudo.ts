@@ -5,7 +5,7 @@
  * app. Ver ARQUITETURA.md §4 e §6.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { autenticarRequisicao } from './auth'
+import { autenticarRequisicao } from './auth.js'
 
 export function criarHandlerConteudo<T>(dados: T) {
   return function handler(req: VercelRequest, res: VercelResponse) {

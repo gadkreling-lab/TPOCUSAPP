@@ -10,7 +10,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import catalogo from '../../../src/content/images.json'
-import { autenticarRequisicao } from '../../_lib/auth'
+import { autenticarRequisicao } from '../../_lib/auth.js'
 
 const ARQUIVOS_CONHECIDOS = new Set(catalogo.map((im) => im.arquivo))
 const DIR_IMAGENS = join(process.cwd(), 'src', 'content', 'images')

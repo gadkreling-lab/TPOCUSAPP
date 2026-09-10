@@ -9,9 +9,9 @@
  * Resposta 4xx: { motivo, mensagem }
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { getKVStore } from './_lib/kv'
-import { segredoDoAmbiente } from './_lib/token'
-import { renovarSessao } from './_lib/acesso'
+import { getKVStore } from './_lib/kv.js'
+import { segredoDoAmbiente } from './_lib/token.js'
+import { renovarSessao } from './_lib/acesso.js'
 
 const MENSAGENS: Record<string, string> = {
   token_invalido: 'Sessão inválida. Ative seu código de acesso novamente.',

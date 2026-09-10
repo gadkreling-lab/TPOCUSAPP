@@ -8,9 +8,9 @@
  * Resposta 4xx: { motivo, mensagem }
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { getKVStore } from './_lib/kv'
-import { segredoDoAmbiente } from './_lib/token'
-import { ativarCodigo } from './_lib/acesso'
+import { getKVStore } from './_lib/kv.js'
+import { segredoDoAmbiente } from './_lib/token.js'
+import { ativarCodigo } from './_lib/acesso.js'
 
 const MENSAGENS: Record<string, string> = {
   codigo_invalido: 'Código de acesso inválido.',

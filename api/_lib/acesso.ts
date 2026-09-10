@@ -6,8 +6,8 @@
  *
  * Modelo de dados e fluxo completos em ARQUITETURA.md §6.
  */
-import type { KVStore } from './kv'
-import { assinarSessao, verificarSessao, type SessionPayload } from './token'
+import type { KVStore } from './kv.js'
+import { assinarSessao, verificarSessao, type SessionPayload } from './token.js'
 
 export interface CodigoRecord {
   duracaoDias: number

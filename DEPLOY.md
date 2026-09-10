@@ -76,12 +76,20 @@ existe pronta pra isso) em vez de um arquivo por rota.
 
 Sintoma: o build passa, o app abre, mas **nenhuma** chamada de API funciona — nem
 `/admin` com a senha certa, nem ativação de código. Isso já aconteceu e a causa não era
-senha nenhuma: era `"type": "module"` no `package.json` quebrando o import de
-`api/_lib/*` em runtime (`ERR_MODULE_NOT_FOUND` no Runtime Log da Vercel, não no Build
-Log). Já corrigido (ver ARQUITETURA.md, "Segunda correção encontrada durante o
-deploy"). Se voltar a acontecer: confira o Runtime Log (não o Build Log) da função que
-falhou antes de suspeitar de variável de ambiente — um erro de módulo ali é sempre bug
-de empacotamento, nunca senha errada.
+senha nenhuma: a Vercel não empacota `api/**/*.ts` num arquivo por função — ela
+transpila cada arquivo e mantém a estrutura de imports relativos entre eles, então
+precisa de **duas coisas ao mesmo tempo**: `"type": "module"` no `package.json` E
+extensão `.js` explícita em todo import relativo que aponta pra outro `.ts` do projeto
+(`from './_lib/kv.js'`, não `from './_lib/kv'`). Faltando a primeira: `Error
+[ERR_MODULE_NOT_FOUND]`. Faltando a segunda (ou as duas juntas erradas): `SyntaxError:
+Cannot use import statement outside a module`. Os dois aparecem só no **Runtime Log**
+da Vercel, nunca no Build Log — o build passa limpo porque o TypeScript
+(`moduleResolution: "bundler"`) aceita import sem extensão no código-fonte, só quebra
+quando a função roda de verdade. Já corrigido (ver ARQUITETURA.md, "Segunda correção
+encontrada durante o deploy" — as duas tentativas, a que não bastou sozinha e a
+definitiva). Se voltar a acontecer com um `api/_lib/*.ts` novo: dá pra saber de
+antemão, sem esperar quebrar em produção — todo import relativo dele que outro arquivo
+de `api/` for usar já nasce com `.js` no fim.
 
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 

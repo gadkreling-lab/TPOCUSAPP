@@ -920,15 +920,42 @@ algo de `api/_lib/*` (ou seja, **todas**: `ativar`, `renovar`, `content/[recurso
 `'Senha incorreta.'` — por isso o sintoma parecia sempre senha errada, mascarando um
 erro 500 de crash em todo o backend, não só no admin.
 
-**Correção:** remover `"type": "module"` do `package.json` — as funções da Vercel
-passam a rodar como CommonJS (resolução de módulo mais tolerante, sem exigir extensão
-em import relativo). Nada mais no repo dependia de ESM nativo fora do bundler da Vercel:
-os scripts do projeto já são `.mjs` (forçam ESM independente desse campo) e os configs
-(`vite.config.ts`, `vitest.config.ts`) são carregados pelo próprio Vite/Vitest, não pelo
-Node puro. `postcss.config.js` foi renomeado para `postcss.config.mjs` (só ele usava
-`export default` fora de um arquivo `.mjs`, e sem `"type": "module"` no `package.json`
-o Node avisava sobre isso ao rodar os testes — inofensivo, mas resolvido).
+**Primeira tentativa de correção (não funcionou sozinha):** remover `"type": "module"`
+do `package.json`, esperando que a Vercel tratasse as funções como CommonJS. Resultado
+foi **pior**, um novo erro no Runtime Log:
 
-Lição para a próxima vez que `ERR_MODULE_NOT_FOUND` aparecer num Runtime Log da Vercel
-(não confundir com falha de build): é isso, não falta de arquivo — checar `type` no
-`package.json` antes de qualquer outra hipótese.
+```
+SyntaxError: Cannot use import statement outside a module
+    at wrapSafe (node:internal/modules/cjs/loader:1804:18)
+```
+
+Isso revelou o quadro completo: o *builder* da Vercel para `api/**/*.ts` **não empacota
+tudo num arquivo só** — ele transpila cada arquivo TypeScript individualmente (só tira os
+tipos) e copia a árvore de arquivos praticamente como está, preservando `import`/`export`
+(sintaxe ESM) e a estrutura de imports relativos entre eles. Ou seja, o `.js` publicado
+de `api/admin/login.ts` genuinamente precisa ser interpretado como ESM — daí `"type":
+"module"` estar certo — mas o import relativo dele (`from '../_lib/adminAuth'`) precisa
+da extensão `.js` explícita, porque é assim que o resolvedor ESM do Node funciona (ele
+não "adivinha" extensão como o CommonJS faz, nem como o modo `moduleResolution:
+"bundler"` do TypeScript deixa escrever no código-fonte).
+
+**Correção definitiva, as duas partes juntas:**
+1. `"type": "module"` de volta no `package.json` (a função publicada É esm de verdade).
+2. Extensão `.js` explícita em **todo** import relativo dentro de `api/**/*.ts` que
+   aponta pra outro arquivo `.ts` do projeto (`from './_lib/kv'` → `from
+   './_lib/kv.js'`) — nos 11 arquivos que tinham import assim. `moduleResolution:
+   "bundler"` do `tsconfig.api.json` aceita essa extensão apontando pra um `.ts` sem
+   reclamar (é o padrão dual-compatível recomendado pra esse cenário), então o
+   typecheck continua batendo o arquivo certo mesmo a extensão dizendo `.js`. Imports de
+   `.json` (conteúdo) já tinham extensão explícita desde sempre, não precisaram mudar.
+
+`postcss.config.js` continua renomeado para `postcss.config.mjs` (não fazia diferença
+depois que `"type": "module"` voltou, mas não tinha motivo pra desfazer).
+
+Lição para a próxima vez que aparecer erro de módulo (`ERR_MODULE_NOT_FOUND` OU
+`Cannot use import statement outside a module`) num Runtime Log da Vercel (não
+confundir com falha de build): a Vercel não empacota `api/**/*.ts` num arquivo por
+função — todo import relativo entre arquivos `.ts` de `api/` precisa de extensão `.js`
+explícita, e `"type": "module"` no `package.json` tem que estar presente. Um novo
+arquivo em `api/_lib/` que outro arquivo importe já deve nascer com essa extensão no
+import, não só depois de quebrar em produção.

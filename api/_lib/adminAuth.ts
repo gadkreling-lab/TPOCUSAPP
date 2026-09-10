@@ -8,7 +8,7 @@
  * genérica).
  */
 import { timingSafeEqual } from 'node:crypto'
-import { extrairBearer, type RequisicaoComAuth } from './bearer'
+import { extrairBearer, type RequisicaoComAuth } from './bearer.js'
 
 export type { RequisicaoComAuth }
 
