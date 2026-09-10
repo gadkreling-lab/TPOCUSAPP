@@ -1082,3 +1082,17 @@ Lição, se algum dia uma rota nova de `api/` precisar de um parâmetro: **não 
 colchete** (`[param].ts`) neste projeto na Vercel — usar nome de arquivo fixo com o
 parâmetro em query string (GET) ou no corpo (POST). O padrão com colchete nunca deu
 pra confiar de forma confiável aqui, mesmo com quatro ângulos de correção diferentes.
+
+**Atualização (mesma data):** mesmo depois de `api/conteudo.ts` (rota estática nova,
+nunca existiu com esse nome antes — não podia ter cache nem confusão de rewrite
+envolvendo ela), o sintoma se repetiu. Isso apontou pra outro suspeito: as duas regras
+que eu mesmo tinha adicionado no `vercel.json` na terceira e quarta correção (o
+passthrough `/api/(.*) → /api/$1` e a regra de `headers` de `Cache-Control`) —
+nenhuma delas nunca tinha sido necessária pras rotas estáticas ORIGINAIS (`ativar.ts`,
+`admin/login.ts` sempre funcionaram sem nenhuma das duas). Removidas as duas,
+`vercel.json` volta a ter só o rewrite original de SPA, a única coisa comprovadamente
+necessária desde o início. Se isso resolver, confirma que o passthrough auto-referente
+(`/api/x` → `/api/x`) era o próprio problema, não a solução. Se não resolver, descarta
+`vercel.json` de vez como causa, e o próximo lugar a olhar é algo em nível de domínio/
+cache que não é por rota (ex.: o domínio `tpocusapp.vercel.app` tendo algum
+comportamento de cache próprio independente do path).
