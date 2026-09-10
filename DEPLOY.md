@@ -72,6 +72,17 @@ de adicionar novos endpoints, o mesmo padrão resolve: consolidar os endpoints n
 numa função dinâmica (`criarHandlerConteudoDinamico` em `api/_lib/conteudo.ts` já
 existe pronta pra isso) em vez de um arquivo por rota.
 
+## 3.2. Se o deploy "funcionar" mas toda chamada à API falhar (ex.: `/admin` sempre diz "Senha incorreta")
+
+Sintoma: o build passa, o app abre, mas **nenhuma** chamada de API funciona — nem
+`/admin` com a senha certa, nem ativação de código. Isso já aconteceu e a causa não era
+senha nenhuma: era `"type": "module"` no `package.json` quebrando o import de
+`api/_lib/*` em runtime (`ERR_MODULE_NOT_FOUND` no Runtime Log da Vercel, não no Build
+Log). Já corrigido (ver ARQUITETURA.md, "Segunda correção encontrada durante o
+deploy"). Se voltar a acontecer: confira o Runtime Log (não o Build Log) da função que
+falhou antes de suspeitar de variável de ambiente — um erro de módulo ali é sempre bug
+de empacotamento, nunca senha errada.
+
 ## 4. Limitações conhecidas, não resolvidas nesta fase
 
 - Sem alerta automático quando o prazo de um aluno está para vencer — a tela `/admin`

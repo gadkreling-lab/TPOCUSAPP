@@ -896,3 +896,39 @@ separado — resposta não é JSON, não cabe no mesmo padrão.
 Isso é uma restrição de infraestrutura, não uma revisão do princípio "um arquivo por
 endpoint" da seção 4 — se o projeto crescer e aproximar de 12 de novo (ex.: a tela
 administrativa ganhar mais operações), o mesmo padrão de handler dinâmico resolve.
+
+### Segunda correção encontrada durante o deploy (2026-09-10) — `type: module` quebrava toda a API
+
+Depois do deploy "com sucesso" (build passando, tela de bloqueio renderizando), **toda
+chamada à API falhava** — `/admin` sempre respondia "Senha incorreta" mesmo com a senha
+certa, sem log nenhum de tentativa. O Runtime Log da Vercel mostrou o motivo real, que
+não tinha nada a ver com senha:
+
+```
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/api/_lib/adminAuth'
+imported from /var/task/api/admin/login.js
+```
+
+Causa: o `package.json` tinha `"type": "module"`, o que faz o runtime Node da Vercel
+tratar cada função serverless como **ESM nativo** (sem empacotar os imports locais num
+arquivo só). O resolvedor de módulos ESM do Node exige extensão `.js` explícita em
+imports relativos (`from '../_lib/adminAuth.js'`), mas o TypeScript compilado com
+`moduleResolution: "bundler"` não gera essa extensão — então toda função que importa
+algo de `api/_lib/*` (ou seja, **todas**: `ativar`, `renovar`, `content/[recurso]`,
+`admin/*`) quebrava no import, antes de rodar qualquer linha de código. No cliente
+(`src/admin/api.ts`), uma resposta que não é JSON válido cai no fallback genérico
+`'Senha incorreta.'` — por isso o sintoma parecia sempre senha errada, mascarando um
+erro 500 de crash em todo o backend, não só no admin.
+
+**Correção:** remover `"type": "module"` do `package.json` — as funções da Vercel
+passam a rodar como CommonJS (resolução de módulo mais tolerante, sem exigir extensão
+em import relativo). Nada mais no repo dependia de ESM nativo fora do bundler da Vercel:
+os scripts do projeto já são `.mjs` (forçam ESM independente desse campo) e os configs
+(`vite.config.ts`, `vitest.config.ts`) são carregados pelo próprio Vite/Vitest, não pelo
+Node puro. `postcss.config.js` foi renomeado para `postcss.config.mjs` (só ele usava
+`export default` fora de um arquivo `.mjs`, e sem `"type": "module"` no `package.json`
+o Node avisava sobre isso ao rodar os testes — inofensivo, mas resolvido).
+
+Lição para a próxima vez que `ERR_MODULE_NOT_FOUND` aparecer num Runtime Log da Vercel
+(não confundir com falha de build): é isso, não falta de arquivo — checar `type` no
+`package.json` antes de qualquer outra hipótese.
