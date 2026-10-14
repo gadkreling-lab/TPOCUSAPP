@@ -177,3 +177,37 @@ essa cláusula — não só depois de quebrar em produção.
   as 10 tentativas esgotarem (o código simplesmente sai duplicado, sobrescrevendo o
   registro anterior). Não é um risco de segurança — é uma perda de dado silenciosa
   num cenário astronomicamente improvável — mas vale registrar.
+
+## 5. Google Analytics (GA4) — opcional, métricas de acesso
+
+Não é necessário pra o app funcionar — serve pra ter número de visita/página vista
+publicável (ex. pra negociar patrocínio). Desligado por padrão: sem a variável de
+ambiente abaixo, nenhum script de analytics carrega, nenhuma requisição é feita.
+
+**Passo a passo (feito uma vez, por quem tiver — ou criar — a conta Google):**
+
+1. Em [analytics.google.com](https://analytics.google.com), entrar com qualquer conta
+   Google/Gmail (pode ser uma só pro curso, não precisa ser pessoal) — é grátis.
+2. **Admin** (ícone de engrenagem, canto inferior esquerdo) → **Criar propriedade**.
+   Nome: "TPOCUS" (ou o que preferir). Fuso horário e moeda: Brasil.
+3. Na pergunta sobre plataforma, escolher **Web**. URL do site: o domínio de produção
+   (ex. `tpocusapp.vercel.app`, ou o domínio customizado se tiver um). Nome do fluxo:
+   "TPOCUS" de novo, tanto faz.
+4. Isso gera um **ID de métrica**, formato `G-XXXXXXXXXX` (aparece na tela depois de
+   criar o fluxo de dados, em **Detalhes da stream de dados**). Copiar esse ID.
+5. No Vercel: **Project Settings → Environment Variables** → adicionar
+   `VITE_GA_MEASUREMENT_ID` = (o ID copiado), escopo **só Production** (deixar
+   Preview de fora evita contar visita de teste/deploy de desenvolvimento nos
+   números reais).
+6. Redeploy (variável de ambiente só vale a partir do próximo build).
+7. Pra confirmar que está funcionando: no GA, **Relatórios → Tempo real** — abrir o
+   app publicado numa aba e ver se aparece 1 usuário ativo ali em alguns segundos.
+
+`VITE_GA_MEASUREMENT_ID` **não é segredo** (todo ID de métrica do GA aparece em texto
+puro no código-fonte de qualquer site que o usa) — tipo "Plain" no Vercel, sem
+precisar marcar como Sensitive/Secret.
+
+O que é enviado ao Google: só o **caminho de página** navegado dentro do app (ex.
+`/janelas/parasternal-eixo-longo`) — o mesmo que já aparece na barra de endereço do
+navegador de qualquer visitante, nunca o texto/conteúdo clínico da página. Ver
+`src/analytics.ts`.
